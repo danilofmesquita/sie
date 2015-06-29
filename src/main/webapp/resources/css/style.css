@@ -1,0 +1,73 @@
+html, body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-size: 12px;
+    margin: 0px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: aliceblue;
+}
+
+.ui-widget {
+    font-family: arial !important;
+}
+
+.bordeless-panelgrid td, .bordeless-panelgrid tr, .bordeless-panelgrid table {
+    border-style: none !important
+}
+
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+.top-bar {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 40px;
+    background-color: grey;
+}
+
+.menu-form {
+    position: absolute;
+    top: 45px;
+    bottom: 5px;
+    left: 5px;
+    width: 200px;
+    margin-bottom: 0px;
+}
+
+.sie-menu {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    width: 200px;
+    overflow: auto;
+}
+
+.body {
+    position: absolute;
+    top: 45px;
+    bottom: 5px;
+    left: 222px;
+    right: 5px;
+    overflow: auto;
+}
+
+.big-body {
+    position: absolute;
+    top: 45px;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    overflow: auto;
+}

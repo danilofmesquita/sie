@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="template.xhtml">
+    <ui:define name="body">
+        <h:form styleClass="menu-form">
+            <p:menu styleClass="sie-menu">
+                <p:submenu label="Secretária">
+                    <p:menuitem value="Matriculas"/>
+                    <p:menuitem value="Turmas"/>
+                    <p:menuitem value="Disciplinas"/>
+                </p:submenu>
+                <p:submenu label="Professor">
+                    <p:menuitem value="Relatórios"/>
+                    <p:menuitem value="Frequencia"/>
+                    <p:menuitem value="Notas"/>
+                </p:submenu>
+                <p:submenu label="Escola">
+                    <p:menuitem value="Funcionarios"/>
+                </p:submenu>
+                <p:submenu label="Documentos">
+                    <p:menuitem value="Historico Escolar"/>
+                    <p:menuitem value="Declaração de Passe"/>
+                </p:submenu>
+                <p:submenu label="Relátorios">
+                    <p:menuitem value="Analise Estatisticas"/>
+                </p:submenu>
+            </p:menu>
+        </h:form>
+        <p:panel styleClass="body">
+            <ui:insert name="_body"/>
+        </p:panel>
+    </ui:define>
+</ui:composition>

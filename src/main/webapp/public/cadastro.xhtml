@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="/template/common/clean-body.xhtml">
+    <ui:define name="_body">
+        <h:form id="form">
+            <p:messages closable="true" autoUpdate="true"/>
+            <p:fieldset legend="Dados Gerais" id="dadosGerais">
+                <p:panelGrid styleClass="bordeless-panelgrid">
+                    <p:row>
+                        <p:column styleClass="right">
+                            <p:outputLabel value="#{msg['label.tipo.pessoa']}:"/>
+                        </p:column>
+                        <p:column styleClass="left">
+                            <p:selectOneRadio value="#{cadastroController.usuario.tipoPessoa}"
+                                              label="#{msg['label.tipo.pessoa']}"
+                                              required="#{param['cadastrar']}">
+                                <f:selectItems value="#{factoryUtil.tiposPessoa}" var="tp" itemLabel="#{tp.descricao}"/>
+                                <p:ajax event="change" update=":form:dadosGerais" process="@this" global="false"/>
+                            </p:selectOneRadio>
+                        </p:column>
+                    </p:row>
+                    <p:row rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
+                        <p:column styleClass="right">
+                            <p:outputLabel value="#{msg['label.cpf']}:"/>
+                        </p:column>
+                        <p:column styleClass="left">
+                            <p:inputMask mask="999.999.999-99"
+                                         label="#{msg['label.cpf']}"
+                                         value="#{cadastroController.usuario.cpfCnpj}"/>
+                        </p:column>
+                    </p:row>
+                    <p:row rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
+                        <p:column styleClass="right">
+                            <p:outputLabel value="#{msg['label.nome.completo']}:"/>
+                        </p:column>
+                        <p:column styleClass="left">
+                            <p:inputText value="#{cadastroController.usuario.nomeCompleto}"
+                                         label="#{msg['label.nome.completo']}"
+                                         required="#{param['cadastrar']}"/>
+                        </p:column>
+                    </p:row>
+                    <p:row rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
+                        <p:column styleClass="right">
+                            <p:outputLabel value="#{msg['label.data.nascimento']}:"/>
+                        </p:column>
+                        <p:column styleClass="left">
+                            <p:calendar value="#{cadastroController.usuario.dataNascimento}"
+                                        label="#{msg['label.data.nascimento']}"
+                                        pattern="dd/MM/yyyy" mask="99/99/9999"
+                                        required="#{param['cadastrar']}"/>
+                        </p:column>
+                    </p:row>
+                    <p:row rendered="#{cadastroController.usuario.tipoPessoa.juridica}">
+                        <p:column styleClass="right">
+                            <p:outputLabel value="#{msg['label.cnpj']}:"/>
+                        </p:column>
+                        <p:column styleClass="left">
+                            <p:inputMask mask="99.999.999/9999-99"
+                                         label="#{msg['label.cnpj']}"
+                                         value="#{cadastroController.usuario.cpfCnpj}"/>
+                        </p:column>
+                    </p:row>
+                    <p:row rendered="#{cadastroController.usuario.tipoPessoa.juridica}">
+                        <p:column styleClass="right">
+                            <p:outputLabel value="#{msg['label.razao.social']}:"/>
+                        </p:column>
+                        <p:column styleClass="left">
+                            <p:inputText value="#{cadastroController.usuario.razaoSocial}"
+                                         label="#{msg['label.razao.social']}"
+                                         required="#{param['cadastrar']}"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column styleClass="right">
+                            <p:outputLabel value="#{msg['label.email']}:"/>
+                        </p:column>
+                        <p:column styleClass="left">
+                            <p:inputText required="#{param['cadastrar']}"
+                                         label="#{msg['label.email']}"
+                                         value="#{cadastroController.usuario.email}"/>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+            </p:fieldset>
+            <br/>
+            <p:fieldset legend="Endereço">
+                <p:panelGrid styleClass="bordeless-panelgrid" id="enderecoPanelgrid">
+                    <p:row>
+                        <p:column styleClass="right">
+                            <p:outputLabel value="#{msg['label.cep']}:"/>
+                        </p:column>
+                        <p:column styleClass="left">
+                            <p:inputMask required="#{param['cadastrar']}"
+                                         label="#{msg['label.cep']}"
+                                         mask="99.999-999"
+                                         value="#{cadastroController.usuario.endereco.cep}">
+                                <p:ajax event="change" update=":form:enderecoPanelgrid"
+                                        listener="#{cadastroController.carregarEnderecoPorCEP}"/>
+                                <f:converter converterId="sie.converter.integer"/>
+                            </p:inputMask>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column styleClass="right">
+                            <p:outputLabel value="#{msg['label.municipio']}:"/>
+                        </p:column>
+                        <p:column>
+                            <p:inputText required="#{param['cadastrar']}"
+                                         label="#{msg['label.municipio']}"
+                                         value="#{cadastroController.usuario.endereco.municipio}"/>
+                        </p:column>
+                        <p:column styleClass="right">
+                            <p:outputLabel value="#{msg['label.uf']}:"/>
+                        </p:column>
+                        <p:column>
+                            <p:selectOneMenu required="#{param['cadastrar']}"
+                                             label="#{msg['label.uf']}"
+                                             value="#{cadastroController.usuario.endereco.uf}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{factoryUtil.UFs}" var="_UF" itemLabel="#{_UF.sigla}"/>
+                            </p:selectOneMenu>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column styleClass="right">
+                            <p:outputLabel value="#{msg['label.endereco']}:"/>
+                        </p:column>
+                        <p:column>
+                            <p:inputText required="#{param['cadastrar']}"
+                                         label="#{msg['label.endereco']}"
+                                         value="#{cadastroController.usuario.endereco.endereco}"/>
+                        </p:column>
+                        <p:column styleClass="right">
+                            <p:outputLabel value="#{msg['label.numero']}:"/>
+                        </p:column>
+                        <p:column>
+                            <p:inputText required="#{param['cadastrar']}"
+                                         label="#{msg['label.numero']}"
+                                         value="#{cadastroController.usuario.endereco.numero}"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column styleClass="right">
+                            <p:outputLabel value="#{msg['label.bairro']}:"/>
+                        </p:column>
+                        <p:column>
+                            <p:inputText required="#{param['cadastrar']}"
+                                         label="#{msg['label.bairro']}"
+                                         value="#{cadastroController.usuario.endereco.bairro}"/>
+                        </p:column>
+                        <p:column styleClass="right">
+                            <p:outputLabel value="#{msg['label.complemento']}:"/>
+                        </p:column>
+                        <p:column>
+                            <p:inputText value="#{cadastroController.usuario.endereco.complemento}"
+                                         label="#{msg['label.complemento']}"/>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+            </p:fieldset>
+            <br/>
+            <p:fieldset legend="Telefone" id="telefoneFieldset">
+                <ui:repeat value="#{cadastroController.usuario.telefones}" var="_telefone">
+                    <p:panelGrid styleClass="bordeless-panelgrid">
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="#{msg['label.ddd']}:"/>
+                            </p:column>
+                            <p:column>
+                                <p:inputText size="1" required="#{param['cadastrar']}"
+                                             label="#{msg['label.ddd']}"
+                                             value="#{_telefone.ddd}"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="#{msg['label.numero']}:"/>
+                            </p:column>
+                            <p:column>
+                                <p:inputText required="#{param['cadastrar']}"
+                                             label="#{msg['label.numero']}"
+                                             value="#{_telefone.numero}"/>
+                            </p:column>
+                            <p:column>
+                                <p:commandButton icon="ui-icon-plusthick" update=":form:telefoneFieldset" global="false"
+                                                 rendered="#{cadastroController.usuario.telefones.indexOf(_telefone) eq cadastroController.usuario.telefones.size() - 1}"
+                                                 action="#{cadastroController.adicionarTelefone}"/>
+                                <p:commandButton icon="ui-icon-closethick" update=":form:telefoneFieldset"
+                                                 global="false"
+                                                 rendered="#{cadastroController.usuario.telefones.indexOf(_telefone) > 0}"
+                                                 action="#{cadastroController.usuario.telefones.remove(_telefone)}"/>
+                            </p:column>
+                        </p:row>
+                    </p:panelGrid>
+                </ui:repeat>
+            </p:fieldset>
+            <br/>
+
+            <div align="right">
+                <p:commandButton value="Cadastrar" ajax="false" action="#{cadastroController.salvar}">
+                    <f:param name="cadastrar" value="true"/>
+                </p:commandButton>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
