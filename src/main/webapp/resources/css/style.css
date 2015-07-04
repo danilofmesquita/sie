@@ -9,7 +9,7 @@ html, body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: aliceblue;
+    background-color:#f8f8f8;
 }
 
 .ui-widget {
@@ -29,20 +29,27 @@ html, body {
 }
 
 .top-bar {
+    border-bottom: 1px solid black;
+    font-family: Arial, sans-serif;
     position: absolute;
+    color: #f8f8f8;
+    font-size: 1.6em;
+    padding: 12px 14px 14px 12px;
     top: 0px;
     left: 0px;
     right: 0px;
-    height: 40px;
-    background-color: grey;
+    height: 18px;
+    font-weight: bold;
+    /*background: linear-gradient(#606fc0, #5c68ae);*/
+    background: linear-gradient(#0088cc, #0077b3);
 }
 
 .menu-form {
     position: absolute;
-    top: 45px;
+    top: 50px;
     bottom: 5px;
     left: 5px;
-    width: 200px;
+    width: 210px;
     margin-bottom: 0px;
 }
 
@@ -50,13 +57,13 @@ html, body {
     position: absolute;
     top: 0px;
     bottom: 0px;
-    width: 200px;
+    width: 210px;
     overflow: auto;
 }
 
 .body {
     position: absolute;
-    top: 45px;
+    top: 50px;
     bottom: 5px;
     left: 222px;
     right: 5px;
@@ -65,7 +72,7 @@ html, body {
 
 .big-body {
     position: absolute;
-    top: 45px;
+    top: 50px;
     bottom: 5px;
     left: 5px;
     right: 5px;

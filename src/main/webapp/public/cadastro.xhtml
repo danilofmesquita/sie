@@ -9,7 +9,7 @@
     <ui:define name="_body">
         <h:form id="form">
             <p:messages closable="true" autoUpdate="true"/>
-            <p:fieldset legend="Dados Gerais" id="dadosGerais">
+            <p:panel header="Dados Gerais" id="dadosGerais">
                 <p:panelGrid styleClass="bordeless-panelgrid">
                     <p:row>
                         <p:column styleClass="right">
@@ -86,9 +86,9 @@
                         </p:column>
                     </p:row>
                 </p:panelGrid>
-            </p:fieldset>
+            </p:panel>
             <br/>
-            <p:fieldset legend="Endereço">
+            <p:panel header="Endereço">
                 <p:panelGrid styleClass="bordeless-panelgrid" id="enderecoPanelgrid">
                     <p:row>
                         <p:column styleClass="right">
@@ -162,9 +162,9 @@
                         </p:column>
                     </p:row>
                 </p:panelGrid>
-            </p:fieldset>
+            </p:panel>
             <br/>
-            <p:fieldset legend="Telefone" id="telefoneFieldset">
+            <p:panel header="Telefone" id="telefoneFieldset">
                 <ui:repeat value="#{cadastroController.usuario.telefones}" var="_telefone">
                     <p:panelGrid styleClass="bordeless-panelgrid">
                         <p:row>
@@ -196,7 +196,7 @@
                         </p:row>
                     </p:panelGrid>
                 </ui:repeat>
-            </p:fieldset>
+            </p:panel>
             <br/>
 
             <div align="right">

@@ -9,25 +9,25 @@
     <ui:define name="body">
         <h:form styleClass="menu-form">
             <p:menu styleClass="sie-menu">
-                <p:submenu label="Secretária">
-                    <p:menuitem value="Matriculas"/>
-                    <p:menuitem value="Turmas"/>
-                    <p:menuitem value="Disciplinas"/>
-                </p:submenu>
-                <p:submenu label="Professor">
-                    <p:menuitem value="Relatórios"/>
-                    <p:menuitem value="Frequencia"/>
-                    <p:menuitem value="Notas"/>
-                </p:submenu>
                 <p:submenu label="Escola">
-                    <p:menuitem value="Funcionarios"/>
+                    <p:menuitem value="Funcionarios" icon="fa fa-users"/>
                 </p:submenu>
-                <p:submenu label="Documentos">
-                    <p:menuitem value="Historico Escolar"/>
-                    <p:menuitem value="Declaração de Passe"/>
+                <p:submenu label="Secretária">
+                    <p:menuitem value="Matriculas" icon="fa fa-edit"/>
+                    <p:menuitem value="Turmas" icon="fa fa-cubes"/>
+                    <p:menuitem value="Disciplinas" icon="fa fa-book"/>
                 </p:submenu>
-                <p:submenu label="Relátorios">
-                    <p:menuitem value="Analise Estatisticas"/>
+                <p:submenu label="Acadêmico">
+                    <p:menuitem value="Frequencia" icon="fa fa-th-list"/>
+                    <p:menuitem value="Notas" icon="fa fa-mortar-board"/>
+                    <p:menuitem value="Relatórios" icon="fa fa-files-o"/>
+                </p:submenu>
+                <p:submenu label="Documentos Eletronicos">
+                    <p:menuitem value="Historico Escolar" icon="fa fa-file-text-o"/>
+                    <p:menuitem value="Declaração de Passe" icon="fa fa-bus"/>
+                </p:submenu>
+                <p:submenu label="Graficos">
+                    <p:menuitem value="Analise Estatistica" icon="fa fa-line-chart  "/>
                 </p:submenu>
             </p:menu>
         </h:form>
