@@ -6,7 +6,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <f:loadBundle var="msg" basename="message" />
+    <f:loadBundle var="msg" basename="message"/>
     <ui:insert name="head"/>
     <title>
         SIE - Sistema Integrado de Educação
@@ -20,7 +20,13 @@
     </p:dialog>
 
     <div class="top-bar">
-        SIE - Sistema Integrado de Educação
+        <div style="float:left">
+            SIE - Sistema Integrado de Educação
+        </div>
+        <div style="float:right">
+            <p:commandButton value="Login" icon="fa fa-sign-in" type="button"/>
+            <p:commandButton value="Logout" icon="fa fa-sign-out" type="button"/>
+        </div>
     </div>
     <ui:insert name="body"/>
     <h:outputStylesheet library="css" name="style.css"/>

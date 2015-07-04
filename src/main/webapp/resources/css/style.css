@@ -9,7 +9,7 @@ html, body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color:#f8f8f8;
+    background-color: #f8f8f8;
 }
 
 .ui-widget {
@@ -29,27 +29,29 @@ html, body {
 }
 
 .top-bar {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #D5D5D5;
     font-family: Arial, sans-serif;
     position: absolute;
-    color: #f8f8f8;
-    font-size: 1.6em;
+    /*color: #f8f8f8;*/
+    font-size: 1.8em;
     padding: 12px 14px 14px 12px;
     top: 0px;
     left: 0px;
     right: 0px;
-    height: 18px;
+    height: 20px;
     font-weight: bold;
+    color: dimgrey;
     /*background: linear-gradient(#606fc0, #5c68ae);*/
-    background: linear-gradient(#0088cc, #0077b3);
+    /*background: linear-gradient(#0088cc, #0077b3);*/
+    background: linear-gradient(rgb(246, 247, 249), rgb(235, 237, 240));
 }
 
 .menu-form {
     position: absolute;
     top: 50px;
-    bottom: 5px;
-    left: 5px;
-    width: 210px;
+    bottom: 3px;
+    left: 3px;
+    width: 206px;
     margin-bottom: 0px;
 }
 
@@ -57,24 +59,24 @@ html, body {
     position: absolute;
     top: 0px;
     bottom: 0px;
-    width: 210px;
+    width: 206px;
     overflow: auto;
 }
 
 .body {
     position: absolute;
     top: 50px;
-    bottom: 5px;
+    bottom: 3px;
     left: 222px;
-    right: 5px;
+    right: 3px;
     overflow: auto;
 }
 
 .big-body {
     position: absolute;
     top: 50px;
-    bottom: 5px;
-    left: 5px;
-    right: 5px;
+    bottom: 3px;
+    left: 3px;
+    right: 3px;
     overflow: auto;
 }
