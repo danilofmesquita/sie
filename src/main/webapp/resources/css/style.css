@@ -4,7 +4,7 @@ html, body {
     left: 0;
     right: 0;
     bottom: 0;
-    font-size: 12px;
+    font-size: 14px;
     margin: 0px;
     left: 0;
     right: 0;
@@ -13,8 +13,7 @@ html, body {
 }
 
 .ui-widget {
-    font-family: arial !important;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .bordeless-panelgrid td, .bordeless-panelgrid tr, .bordeless-panelgrid table {
@@ -31,19 +30,16 @@ html, body {
 
 .top-bar {
     border-bottom: 1px solid #D5D5D5;
-    font-family: Arial, sans-serif;
+    font-family: "Segoe UI", Verdana, Arial, sans-serif;
     position: absolute;
-    /*color: #f8f8f8;*/
-    font-size: 1.8em;
-    padding: 12px 14px 14px 12px;
+    font-size: 1.6em;
+    padding: 8px 14px 18px 12px;
     top: 0px;
     left: 0px;
     right: 0px;
     height: 20px;
     font-weight: bold;
     color: dimgrey;
-    /*background: linear-gradient(#606fc0, #5c68ae);*/
-    /*background: linear-gradient(#0088cc, #0077b3);*/
     background: linear-gradient(rgb(246, 247, 249), rgb(235, 237, 240));
 }
 
@@ -80,4 +76,8 @@ html, body {
     left: 3px;
     right: 3px;
     overflow: auto;
+}
+
+.fa {
+    padding-right: 4px;
 }
