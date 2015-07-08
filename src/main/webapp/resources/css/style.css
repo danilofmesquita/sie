@@ -14,6 +14,7 @@ html, body {
 
 .ui-widget {
     font-family: arial !important;
+    font-size: 12px;
 }
 
 .bordeless-panelgrid td, .bordeless-panelgrid tr, .bordeless-panelgrid table {
@@ -51,7 +52,7 @@ html, body {
     top: 50px;
     bottom: 3px;
     left: 3px;
-    width: 206px;
+    width: 207px;
     margin-bottom: 0px;
 }
 
@@ -59,7 +60,7 @@ html, body {
     position: absolute;
     top: 0px;
     bottom: 0px;
-    width: 206px;
+    width: 207px;
     overflow: auto;
 }
 
