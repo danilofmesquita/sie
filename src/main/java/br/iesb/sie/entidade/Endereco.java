@@ -3,6 +3,7 @@ package br.iesb.sie.entidade;
 import br.iesb.sie.model.UF;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Endereco {
@@ -12,22 +13,28 @@ public class Endereco {
     private Long id;
 
     @Column
+    @NotNull
     private Integer cep;
 
     @Column
+    @NotNull
     private String municipio;
 
     @Column
+    @NotNull
     private String endereco;
 
     @Column
+    @NotNull
     @Enumerated(EnumType.STRING)
     private UF uf;
 
     @Column
+    @NotNull
     private String numero;
 
     @Column
+    @NotNull
     private String bairro;
 
     @Column

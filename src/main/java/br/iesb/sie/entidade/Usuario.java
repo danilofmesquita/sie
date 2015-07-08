@@ -3,6 +3,8 @@ package br.iesb.sie.entidade;
 import br.iesb.sie.model.TipoPessoa;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.util.Date;
 import java.util.List;
 
@@ -14,9 +16,7 @@ public class Usuario {
     private Long id;
 
     @Column
-    private String matricula;
-
-    @Column
+    @NotNull
     @Enumerated(EnumType.STRING)
     private TipoPessoa tipoPessoa;
 
@@ -24,17 +24,26 @@ public class Usuario {
     private String cpfCnpj;
 
     @Column
+    @NotNull
     private String nomeCompleto;
 
     @Column
+    @NotNull
     private String razaoSocial;
 
+    @Past
     @Column
+    @NotNull
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
 
     @Column
+    @NotNull
     private String email;
+
+    @Column
+    @NotNull
+    private String senha;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
@@ -43,20 +52,18 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Telefone> telefones;
 
+    @ManyToMany
+    @JoinTable(name = "PerfilUsuario",
+            joinColumns = {@JoinColumn(name = "usuario")},
+            inverseJoinColumns = {@JoinColumn(name = "perfil")})
+    private List<Perfil> perfis;
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
     }
 
     public TipoPessoa getTipoPessoa() {
@@ -121,5 +128,21 @@ public class Usuario {
 
     public void setTelefones(List<Telefone> telefones) {
         this.telefones = telefones;
+    }
+
+    public List<Perfil> getPerfis() {
+        return perfis;
+    }
+
+    public void setPerfis(List<Perfil> perfis) {
+        this.perfis = perfis;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }
