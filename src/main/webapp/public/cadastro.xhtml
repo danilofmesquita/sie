@@ -13,12 +13,11 @@
                 <p:panelGrid styleClass="bordeless-panelgrid">
                     <p:row>
                         <p:column styleClass="right">
-                            <p:outputLabel value="#{msg['label.tipo.pessoa']}:"/>
+                            <p:outputLabel value="#{msg['label.tipo.pessoa']}" for=":form:tipoPessoa"/>
                         </p:column>
                         <p:column styleClass="left">
-                            <p:selectOneRadio value="#{cadastroController.usuario.tipoPessoa}"
-                                              label="#{msg['label.tipo.pessoa']}"
-                                              required="#{param['cadastrar']}">
+                            <p:selectOneRadio id="tipoPessoa" value="#{cadastroController.usuario.tipoPessoa}"
+                                              label="#{msg['label.tipo.pessoa']}">
                                 <f:selectItems value="#{factoryUtil.tiposPessoa}" var="tp" itemLabel="#{tp.descricao}"/>
                                 <p:ajax event="change" update=":form:dadosGerais" process="@this" global="false"/>
                             </p:selectOneRadio>
@@ -26,63 +25,73 @@
                     </p:row>
                     <p:row rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
                         <p:column styleClass="right">
-                            <p:outputLabel value="#{msg['label.cpf']}:"/>
+                            <p:outputLabel value="#{msg['label.cpf']}" for=":form:cpf"/>
                         </p:column>
                         <p:column styleClass="left">
-                            <p:inputMask mask="999.999.999-99"
-                                         label="#{msg['label.cpf']}"
+                            <p:inputMask id="cpf" mask="999.999.999-99" label="#{msg['label.cpf']}"
                                          value="#{cadastroController.usuario.cpfCnpj}"/>
                         </p:column>
                     </p:row>
                     <p:row rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
                         <p:column styleClass="right">
-                            <p:outputLabel value="#{msg['label.nome.completo']}:"/>
+                            <p:outputLabel value="#{msg['label.nome.completo']}" for=":form:nomeCompleto"/>
                         </p:column>
                         <p:column styleClass="left">
-                            <p:inputText value="#{cadastroController.usuario.nomeCompleto}"
+                            <p:inputText id="nomeCompleto" value="#{cadastroController.usuario.nomeCompleto}"
+                                         size="40"
                                          label="#{msg['label.nome.completo']}"
-                                         required="#{param['cadastrar']}"/>
+                                    />
                         </p:column>
                     </p:row>
                     <p:row rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
                         <p:column styleClass="right">
-                            <p:outputLabel value="#{msg['label.data.nascimento']}:"/>
+                            <p:outputLabel value="#{msg['label.data.nascimento']}" for=":form:dataNascimento"/>
                         </p:column>
                         <p:column styleClass="left">
-                            <p:calendar value="#{cadastroController.usuario.dataNascimento}"
+                            <p:calendar id="dataNascimento" value="#{cadastroController.usuario.dataNascimento}"
                                         label="#{msg['label.data.nascimento']}"
+                                        size="10"
                                         pattern="dd/MM/yyyy" mask="99/99/9999"
-                                        required="#{param['cadastrar']}"/>
+                                    />
                         </p:column>
                     </p:row>
                     <p:row rendered="#{cadastroController.usuario.tipoPessoa.juridica}">
                         <p:column styleClass="right">
-                            <p:outputLabel value="#{msg['label.cnpj']}:"/>
+                            <p:outputLabel value="#{msg['label.cnpj']}" for=":form:cnpj"/>
                         </p:column>
                         <p:column styleClass="left">
-                            <p:inputMask mask="99.999.999/9999-99"
+                            <p:inputMask id="cnpj" mask="99.999.999/9999-99"
                                          label="#{msg['label.cnpj']}"
                                          value="#{cadastroController.usuario.cpfCnpj}"/>
                         </p:column>
                     </p:row>
                     <p:row rendered="#{cadastroController.usuario.tipoPessoa.juridica}">
                         <p:column styleClass="right">
-                            <p:outputLabel value="#{msg['label.razao.social']}:"/>
+                            <p:outputLabel value="#{msg['label.razao.social']}" for=":form:razaoSocial"/>
                         </p:column>
                         <p:column styleClass="left">
-                            <p:inputText value="#{cadastroController.usuario.razaoSocial}"
-                                         label="#{msg['label.razao.social']}"
-                                         required="#{param['cadastrar']}"/>
+                            <p:inputText id="razaoSocial" value="#{cadastroController.usuario.razaoSocial}" size="40"
+                                         label="#{msg['label.razao.social']}"/>
                         </p:column>
                     </p:row>
                     <p:row>
                         <p:column styleClass="right">
-                            <p:outputLabel value="#{msg['label.email']}:"/>
+                            <p:outputLabel value="#{msg['label.email']}" for=":form:email"/>
                         </p:column>
                         <p:column styleClass="left">
-                            <p:inputText required="#{param['cadastrar']}"
-                                         label="#{msg['label.email']}"
+                            <p:inputText id="email" size="40" label="#{msg['label.email']}"
                                          value="#{cadastroController.usuario.email}"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column styleClass="right">
+                            <p:outputLabel value="#{msg['label.senha']}" for=":form:senha"/>
+                        </p:column>
+                        <p:column styleClass="left">
+                            <p:password feedback="true" autocomplete="false"
+                                        label="#{msg['label.senha']}" id="senha" promptLabel="Por favor digite a senha"
+                                        weakLabel="Fraca" goodLabel="Razoavel" strongLabel="Forte"
+                                        value="#{cadastroController.usuario.senha}"/>
                         </p:column>
                     </p:row>
                 </p:panelGrid>
@@ -92,10 +101,10 @@
                 <p:panelGrid styleClass="bordeless-panelgrid" id="enderecoPanelgrid">
                     <p:row>
                         <p:column styleClass="right">
-                            <p:outputLabel value="#{msg['label.cep']}:"/>
+                            <p:outputLabel value="#{msg['label.cep']}" for=":form:cep"/>
                         </p:column>
                         <p:column styleClass="left">
-                            <p:inputMask required="#{param['cadastrar']}"
+                            <p:inputMask id="cep"
                                          label="#{msg['label.cep']}"
                                          mask="99.999-999"
                                          value="#{cadastroController.usuario.endereco.cep}">
@@ -107,57 +116,57 @@
                     </p:row>
                     <p:row>
                         <p:column styleClass="right">
-                            <p:outputLabel value="#{msg['label.municipio']}:"/>
+                            <p:outputLabel value="#{msg['label.municipio']}" for=":form:municipio"/>
                         </p:column>
                         <p:column>
-                            <p:inputText required="#{param['cadastrar']}"
+                            <p:inputText id="municipio"
                                          label="#{msg['label.municipio']}"
                                          value="#{cadastroController.usuario.endereco.municipio}"/>
                         </p:column>
                         <p:column styleClass="right">
-                            <p:outputLabel value="#{msg['label.uf']}:"/>
+                            <p:outputLabel value="#{msg['label.uf']}" for=":form:uf"/>
                         </p:column>
                         <p:column>
-                            <p:selectOneMenu required="#{param['cadastrar']}"
+                            <p:selectOneMenu id="uf"
                                              label="#{msg['label.uf']}"
                                              value="#{cadastroController.usuario.endereco.uf}">
-                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItem itemLabel="Selecione "/>
                                 <f:selectItems value="#{factoryUtil.UFs}" var="_UF" itemLabel="#{_UF.sigla}"/>
                             </p:selectOneMenu>
                         </p:column>
                     </p:row>
                     <p:row>
                         <p:column styleClass="right">
-                            <p:outputLabel value="#{msg['label.endereco']}:"/>
+                            <p:outputLabel value="#{msg['label.endereco']}" for=":form:endereco"/>
                         </p:column>
                         <p:column>
-                            <p:inputText required="#{param['cadastrar']}"
+                            <p:inputText id="endereco"
                                          label="#{msg['label.endereco']}"
                                          value="#{cadastroController.usuario.endereco.endereco}"/>
                         </p:column>
                         <p:column styleClass="right">
-                            <p:outputLabel value="#{msg['label.numero']}:"/>
+                            <p:outputLabel value="#{msg['label.numero']}" for=":form:numero"/>
                         </p:column>
                         <p:column>
-                            <p:inputText required="#{param['cadastrar']}"
+                            <p:inputText id="numero"
                                          label="#{msg['label.numero']}"
                                          value="#{cadastroController.usuario.endereco.numero}"/>
                         </p:column>
                     </p:row>
                     <p:row>
                         <p:column styleClass="right">
-                            <p:outputLabel value="#{msg['label.bairro']}:"/>
+                            <p:outputLabel value="#{msg['label.bairro']}" for=":form:bairro"/>
                         </p:column>
                         <p:column>
-                            <p:inputText required="#{param['cadastrar']}"
+                            <p:inputText id="bairro"
                                          label="#{msg['label.bairro']}"
                                          value="#{cadastroController.usuario.endereco.bairro}"/>
                         </p:column>
                         <p:column styleClass="right">
-                            <p:outputLabel value="#{msg['label.complemento']}:"/>
+                            <p:outputLabel value="#{msg['label.complemento']}" for=":form:complemento"/>
                         </p:column>
                         <p:column>
-                            <p:inputText value="#{cadastroController.usuario.endereco.complemento}"
+                            <p:inputText id="complemento" value="#{cadastroController.usuario.endereco.complemento}"
                                          label="#{msg['label.complemento']}"/>
                         </p:column>
                     </p:row>
@@ -169,27 +178,27 @@
                     <p:panelGrid styleClass="bordeless-panelgrid">
                         <p:row>
                             <p:column>
-                                <p:outputLabel value="#{msg['label.ddd']}:"/>
+                                <p:outputLabel value="#{msg['label.ddd']}" for="ddd"/>
                             </p:column>
                             <p:column>
-                                <p:inputText size="1" required="#{param['cadastrar']}"
+                                <p:inputText size="1" id="ddd"
                                              label="#{msg['label.ddd']}"
                                              value="#{_telefone.ddd}"/>
                             </p:column>
                             <p:column>
-                                <p:outputLabel value="#{msg['label.numero']}:"/>
+                                <p:outputLabel value="#{msg['label.numero']}" for="numeroTelefone"/>
                             </p:column>
                             <p:column>
-                                <p:inputText required="#{param['cadastrar']}"
+                                <p:inputText id="numeroTelefone"
                                              label="#{msg['label.numero']}"
                                              value="#{_telefone.numero}"/>
                             </p:column>
                             <p:column>
                                 <p:commandButton icon="ui-icon-plusthick" update=":form:telefoneFieldset" global="false"
                                                  rendered="#{cadastroController.usuario.telefones.indexOf(_telefone) eq cadastroController.usuario.telefones.size() - 1}"
-                                                 action="#{cadastroController.adicionarTelefone}"/>
+                                                 action="#{cadastroController.adicionarTelefone}" immediate="true"/>
                                 <p:commandButton icon="ui-icon-closethick" update=":form:telefoneFieldset"
-                                                 global="false"
+                                                 global="false" immediate="true"
                                                  rendered="#{cadastroController.usuario.telefones.indexOf(_telefone) > 0}"
                                                  action="#{cadastroController.usuario.telefones.remove(_telefone)}"/>
                             </p:column>
@@ -200,9 +209,7 @@
             <br/>
 
             <div align="right">
-                <p:commandButton value="Cadastrar" ajax="false" action="#{cadastroController.salvar}">
-                    <f:param name="cadastrar" value="true"/>
-                </p:commandButton>
+                <p:commandButton value="Cadastrar" ajax="false" action="#{cadastroController.salvar}"/>
             </div>
         </h:form>
     </ui:define>

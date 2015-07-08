@@ -19,4 +19,44 @@
         <param-name>primefaces.FONT_AWESOME</param-name>
         <param-value>true</param-value>
     </context-param>
+
+    <context-param>
+        <param-name>
+            javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL
+        </param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <security-role>
+        <role-name>PROFESSOR</role-name>
+    </security-role>
+    <security-role>
+        <role-name>SECRETARIA</role-name>
+    </security-role>
+    <security-role>
+        <role-name>ALUNO</role-name>
+    </security-role>
+    <security-role>
+        <role-name>ESCOLA</role-name>
+    </security-role>
+    <security-role>
+        <role-name>USUARIO</role-name>
+    </security-role>
+    <security-role>
+        <role-name>ADMINISTRADOR</role-name>
+    </security-role>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Protected Area</web-resource-name>
+            <url-pattern>/view</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>USUARIO</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <login-config>
+        <auth-method>BASIC</auth-method>
+    </login-config>
 </web-app>

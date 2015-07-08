@@ -1,6 +1,7 @@
 package br.iesb.sie.entidade;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Telefone {
@@ -10,9 +11,11 @@ public class Telefone {
     private Long id;
 
     @Column
+    @NotNull
     private Integer ddd;
 
     @Column
+    @NotNull
     private Integer numero;
 
     @ManyToOne
