@@ -35,7 +35,7 @@ html, body {
     top: 0px;
     left: 0px;
     right: 0px;
-    background-color: #205081;
+    background-color: #0077b3;
 }
 
 .logo {
@@ -43,7 +43,7 @@ html, body {
     font-size: 26px;
     padding: 8px 14px 18px 12px;
     font-weight: bold;
-    color: floralwhite;
+    color: #f8f8f8;
 }
 
 .float-right {
@@ -72,27 +72,13 @@ html, body {
 }
 
 .body {
-    position: absolute;
-    top: 45px;
-    bottom: 3px;
-    left: 222px;
-    right: 3px;
+    margin: 45px 3px 3px 222px;
 }
 
 .big-body {
-    position: absolute;
-    top: 45px;
-    bottom: 3px;
-    left: 3px;
-    right: 3px;
+    margin: 45px 3px 3px 3px;
 }
 
 .fa {
     padding-right: 4px;
-}
-
-.panelGridNoBorderNoColor td, .bordeless-panelgrid tr, .bordeless-panelgrid table {
-    border-style: none !important;
-    background-color: transparent !important;;
-    background: transparent !important;;
 }
