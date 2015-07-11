@@ -20,13 +20,14 @@
     </p:dialog>
 
     <div class="top-bar">
-        <div style="float:left">
-            SIE - Sistema Integrado de Educação
-        </div>
-        <div style="float:right">
-            <p:commandButton value="Login" icon="fa fa-sign-in" type="button"/>
-            <p:commandButton value="Logout" icon="fa fa-sign-out" type="button"/>
-        </div>
+        <h:panelGrid style="width: 100%;" styleClass="bordeless-panelgrid" columns="2">
+            <h:column>
+                <h:outputText value="SIE - Sistema Integrado de Educação" styleClass="logo"/>
+            </h:column>
+            <h:column>
+                <p:commandButton value="Login" icon="fa fa-sign-in" type="button" styleClass="float-right"/>
+            </h:column>
+        </h:panelGrid>
     </div>
     <ui:insert name="body"/>
     <h:outputStylesheet library="css" name="style.css"/>

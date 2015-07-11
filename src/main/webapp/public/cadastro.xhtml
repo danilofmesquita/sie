@@ -209,6 +209,9 @@
             <br/>
 
             <div align="right">
+                <p:commandButton value="Limpar" immediate="true" ajax="false">
+                    <p:resetInput target="form" />
+                </p:commandButton>
                 <p:commandButton value="Cadastrar" ajax="false" action="#{cadastroController.salvar}"/>
             </div>
         </h:form>
