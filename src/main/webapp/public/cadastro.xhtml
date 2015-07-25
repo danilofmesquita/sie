@@ -17,6 +17,7 @@
                         </p:column>
                         <p:column styleClass="left">
                             <p:selectOneRadio id="tipoPessoa" value="#{cadastroController.usuario.tipoPessoa}"
+                                              required="#{not empty param['submitForm']}"
                                               label="#{msg['label.tipo.pessoa']}">
                                 <f:selectItems value="#{factoryUtil.tiposPessoa}" var="tp" itemLabel="#{tp.descricao}"/>
                                 <p:ajax event="change" update=":form:dadosGerais" process="@this" global="false"/>
@@ -38,7 +39,7 @@
                         </p:column>
                         <p:column styleClass="left">
                             <p:inputText id="nomeCompleto" value="#{cadastroController.usuario.nomeCompleto}"
-                                         size="40"
+                                         size="40" required="#{not empty param['submitForm']}"
                                          label="#{msg['label.nome.completo']}"
                                     />
                         </p:column>
@@ -50,7 +51,7 @@
                         <p:column styleClass="left">
                             <p:calendar id="dataNascimento" value="#{cadastroController.usuario.dataNascimento}"
                                         label="#{msg['label.data.nascimento']}"
-                                        size="10"
+                                        size="10" required="#{not empty param['submitForm']}"
                                         pattern="dd/MM/yyyy" mask="99/99/9999"
                                     />
                         </p:column>
@@ -61,7 +62,7 @@
                         </p:column>
                         <p:column styleClass="left">
                             <p:inputMask id="cnpj" mask="99.999.999/9999-99"
-                                         label="#{msg['label.cnpj']}"
+                                         label="#{msg['label.cnpj']}" required="#{not empty param['submitForm']}"
                                          value="#{cadastroController.usuario.cpfCnpj}"/>
                         </p:column>
                     </p:row>
@@ -71,6 +72,7 @@
                         </p:column>
                         <p:column styleClass="left">
                             <p:inputText id="razaoSocial" value="#{cadastroController.usuario.razaoSocial}" size="40"
+                                         required="#{not empty param['submitForm']}"
                                          label="#{msg['label.razao.social']}"/>
                         </p:column>
                     </p:row>
@@ -80,6 +82,7 @@
                         </p:column>
                         <p:column styleClass="left">
                             <p:inputText id="email" size="40" label="#{msg['label.email']}"
+                                         required="#{not empty param['submitForm']}"
                                          value="#{cadastroController.usuario.email}"/>
                         </p:column>
                     </p:row>
@@ -90,6 +93,7 @@
                         <p:column styleClass="left">
                             <p:password feedback="true" autocomplete="false"
                                         label="#{msg['label.senha']}" id="senha" promptLabel="Por favor digite a senha"
+                                        required="#{not empty param['submitForm']}"
                                         weakLabel="Fraca" goodLabel="Razoavel" strongLabel="Forte"
                                         value="#{cadastroController.usuario.senha}"/>
                         </p:column>
@@ -107,6 +111,7 @@
                             <p:inputMask id="cep"
                                          label="#{msg['label.cep']}"
                                          mask="99.999-999"
+                                         required="#{not empty param['submitForm']}"
                                          value="#{cadastroController.usuario.endereco.cep}">
                                 <p:ajax event="change" update=":form:enderecoPanelgrid"
                                         listener="#{cadastroController.carregarEnderecoPorCEP}"/>
@@ -120,6 +125,7 @@
                         </p:column>
                         <p:column>
                             <p:inputText id="municipio"
+                                         required="#{not empty param['submitForm']}"
                                          label="#{msg['label.municipio']}"
                                          value="#{cadastroController.usuario.endereco.municipio}"/>
                         </p:column>
@@ -128,6 +134,7 @@
                         </p:column>
                         <p:column>
                             <p:selectOneMenu id="uf"
+                                             required="#{not empty param['submitForm']}"
                                              label="#{msg['label.uf']}"
                                              value="#{cadastroController.usuario.endereco.uf}">
                                 <f:selectItem itemLabel="Selecione "/>
@@ -141,6 +148,7 @@
                         </p:column>
                         <p:column>
                             <p:inputText id="endereco"
+                                         required="#{not empty param['submitForm']}"
                                          label="#{msg['label.endereco']}"
                                          value="#{cadastroController.usuario.endereco.endereco}"/>
                         </p:column>
@@ -149,6 +157,7 @@
                         </p:column>
                         <p:column>
                             <p:inputText id="numero"
+                                         required="#{not empty param['submitForm']}"
                                          label="#{msg['label.numero']}"
                                          value="#{cadastroController.usuario.endereco.numero}"/>
                         </p:column>
@@ -159,6 +168,7 @@
                         </p:column>
                         <p:column>
                             <p:inputText id="bairro"
+                                         required="#{not empty param['submitForm']}"
                                          label="#{msg['label.bairro']}"
                                          value="#{cadastroController.usuario.endereco.bairro}"/>
                         </p:column>
@@ -182,6 +192,7 @@
                             </p:column>
                             <p:column>
                                 <p:inputText size="1" id="ddd"
+                                             required="#{not empty param['submitForm']}"
                                              label="#{msg['label.ddd']}"
                                              value="#{_telefone.ddd}"/>
                             </p:column>
@@ -190,15 +201,18 @@
                             </p:column>
                             <p:column>
                                 <p:inputText id="numeroTelefone"
+                                             required="#{not empty param['submitForm']}"
                                              label="#{msg['label.numero']}"
+
                                              value="#{_telefone.numero}"/>
                             </p:column>
                             <p:column>
-                                <p:commandButton icon="ui-icon-plusthick" update=":form:telefoneFieldset" global="false"
+                                <p:commandButton icon="ui-icon-plusthick" update=":form:telefoneFieldset"
+                                                 global="false" process=":form:telefoneFieldset"
                                                  rendered="#{cadastroController.usuario.telefones.indexOf(_telefone) eq cadastroController.usuario.telefones.size() - 1}"
-                                                 action="#{cadastroController.adicionarTelefone}" immediate="true"/>
+                                                 action="#{cadastroController.adicionarTelefone}"/>
                                 <p:commandButton icon="ui-icon-closethick" update=":form:telefoneFieldset"
-                                                 global="false" immediate="true"
+                                                 global="false" process=":form:telefoneFieldset"
                                                  rendered="#{cadastroController.usuario.telefones.indexOf(_telefone) > 0}"
                                                  action="#{cadastroController.usuario.telefones.remove(_telefone)}"/>
                             </p:column>
@@ -210,9 +224,11 @@
 
             <div align="right">
                 <p:commandButton value="Limpar" immediate="true" ajax="false">
-                    <p:resetInput target="form" />
+                    <p:resetInput target="form"/>
                 </p:commandButton>
-                <p:commandButton value="Cadastrar" ajax="false" action="#{cadastroController.salvar}"/>
+                <p:commandButton value="Cadastrar" ajax="false" action="#{cadastroController.salvar}">
+                    <f:param name="submitForm" value="true" />
+                </p:commandButton>
             </div>
         </h:form>
     </ui:define>

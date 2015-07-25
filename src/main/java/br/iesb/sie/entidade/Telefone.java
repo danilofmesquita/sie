@@ -11,11 +11,9 @@ public class Telefone {
     private Long id;
 
     @Column
-    @NotNull
     private Integer ddd;
 
     @Column
-    @NotNull
     private Integer numero;
 
     @ManyToOne

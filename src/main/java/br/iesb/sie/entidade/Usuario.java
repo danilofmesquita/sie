@@ -16,7 +16,6 @@ public class Usuario {
     private Long id;
 
     @Column
-    @NotNull
     @Enumerated(EnumType.STRING)
     private TipoPessoa tipoPessoa;
 
@@ -24,25 +23,20 @@ public class Usuario {
     private String cpfCnpj;
 
     @Column
-    @NotNull
     private String nomeCompleto;
 
     @Column
-    @NotNull
     private String razaoSocial;
 
     @Past
     @Column
-    @NotNull
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
 
     @Column
-    @NotNull
     private String email;
 
     @Column
-    @NotNull
     private String senha;
 
     @OneToOne(cascade = CascadeType.ALL)
