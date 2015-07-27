@@ -4,7 +4,7 @@ html, body {
     left: 0;
     right: 0;
     bottom: 0;
-    font-size: 14px;
+    font-size: 13px;
     margin: 0px;
     left: 0;
     right: 0;
@@ -13,7 +13,7 @@ html, body {
 }
 
 .ui-widget {
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .bordeless-panelgrid td, .bordeless-panelgrid tr, .bordeless-panelgrid table {
@@ -43,7 +43,7 @@ html, body {
     font-size: 26px;
     padding: 8px 14px 18px 12px;
     font-weight: bold;
-    color: #f8f8f8;
+    color: white;
 }
 
 .float-right {
