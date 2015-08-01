@@ -12,6 +12,13 @@ public class CadastroService {
     @Inject
     private EntityManager entityManager;
 
+    @Inject
+    private SenhaService senhaService;
+
+    public void cadastrarUsuario(Usuario u){
+        String passwd = senhaService.criarNovaSenha();
+    }
+
     public void salvar(Usuario usuario){
         entityManager.persist(usuario);
     }

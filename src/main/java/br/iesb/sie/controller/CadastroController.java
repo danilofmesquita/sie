@@ -46,6 +46,10 @@ public class CadastroController implements Serializable {
         return "cadastroConcluido";
     }
 
+    public void limpar(){
+        init();
+    }
+
     public Usuario getUsuario() {
         return usuario;
     }

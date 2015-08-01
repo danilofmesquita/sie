@@ -32,6 +32,12 @@ public class Usuario {
     private String nomeCompleto;
 
     @Column
+    private String nomeCompletoPai;
+
+    @Column
+    private String nomeCompletoMae;
+
+    @Column
     private String razaoSocial;
 
     @Past
@@ -152,4 +158,19 @@ public class Usuario {
         }
     }
 
+    public String getNomeCompletoPai() {
+        return nomeCompletoPai;
+    }
+
+    public void setNomeCompletoPai(String nomeCompletoPai) {
+        this.nomeCompletoPai = nomeCompletoPai;
+    }
+
+    public String getNomeCompletoMae() {
+        return nomeCompletoMae;
+    }
+
+    public void setNomeCompletoMae(String nomeCompletoMae) {
+        this.nomeCompletoMae = nomeCompletoMae;
+    }
 }
