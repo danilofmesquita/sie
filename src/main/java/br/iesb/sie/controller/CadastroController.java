@@ -5,6 +5,7 @@ import br.iesb.sie.service.CadastroService;
 import br.iesb.sie.entidade.Endereco;
 import br.iesb.sie.entidade.Telefone;
 import br.iesb.sie.entidade.Usuario;
+import br.iesb.sie.util.NavigationRules;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -42,8 +43,8 @@ public class CadastroController implements Serializable {
     }
 
     public String salvar() {
-        cadastroService.salvar(usuario);
-        return "cadastroConcluido";
+        cadastroService.criarNovoUsuaro(usuario);
+        return NavigationRules.CADASTRO_CONCLUIDO;
     }
 
     public void limpar(){

@@ -7,11 +7,5 @@
     <application>
         <message-bundle>message</message-bundle>
     </application>
-    <navigation-rule>
-        <from-view-id>*</from-view-id>
-        <navigation-case>
-            <from-outcome>cadastroConcluido</from-outcome>
-            <to-view-id>/public/cadastro-concluido.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
+
 </faces-config>

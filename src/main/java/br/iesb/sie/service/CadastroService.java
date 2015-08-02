@@ -15,12 +15,16 @@ public class CadastroService {
     @Inject
     private SenhaService senhaService;
 
-    public void cadastrarUsuario(Usuario u){
-        String passwd = senhaService.criarNovaSenha();
+    @Inject
+    private EmailService emailService;
+
+    public void criarNovoUsuaro(Usuario u){
+        String senha = senhaService.criarNovaSenha();
+        //TODO Enviar email
+
+        u.setSenha(senha);
+        entityManager.persist(u);
     }
 
-    public void salvar(Usuario usuario){
-        entityManager.persist(usuario);
-    }
 
 }
