@@ -64,6 +64,9 @@ public class Usuario {
             inverseJoinColumns = {@JoinColumn(name = "perfil")})
     private List<Perfil> perfis;
 
+    @Column
+    private Integer login;
+
     public Long getId() {
         return id;
     }
@@ -172,5 +175,13 @@ public class Usuario {
 
     public void setNomeCompletoMae(String nomeCompletoMae) {
         this.nomeCompletoMae = nomeCompletoMae;
+    }
+
+    public Integer getLogin() {
+        return login;
+    }
+
+    public void setLogin(Integer login) {
+        this.login = login;
     }
 }

@@ -32,7 +32,8 @@
                             </p:column>
                             <p:column styleClass="left">
                                 <p:inputMask id="cpf" mask="999.999.999-99" label="#{msg['label.cpf']}"
-                                             value="#{cadastroController.usuario.cpfCnpj}"/>
+                                             value="#{cadastroController.usuario.cpfCnpj}">
+                                </p:inputMask>
                             </p:column>
                         </p:row>
                         <p:row rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
@@ -42,8 +43,7 @@
                             <p:column styleClass="left">
                                 <p:inputText id="nomeCompleto" value="#{cadastroController.usuario.nomeCompleto}"
                                              size="40" required="#{param['validateForm']}"
-                                             label="#{msg['label.nome.completo']}"
-                                        />
+                                             label="#{msg['label.nome.completo']}"/>
                             </p:column>
                         </p:row>
                         <p:row rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
@@ -51,7 +51,7 @@
                                 <p:outputLabel value="#{msg['label.nome.completo.mae']}:" for=":form:nomeCompletoMae"/>
                             </p:column>
                             <p:column styleClass="left">
-                                <p:inputText id="nomeCompletoMae" value="#{cadastroController.usuario.nomeCompleto}"
+                                <p:inputText id="nomeCompletoMae" value="#{cadastroController.usuario.nomeCompletoMae}"
                                              size="40" required="#{param['validateForm']}"
                                              label="#{msg['label.nome.completo.mae']}"/>
                             </p:column>
@@ -61,10 +61,9 @@
                                 <p:outputLabel value="#{msg['label.nome.completo.pai']}:" for=":form:nomeCompletoPai"/>
                             </p:column>
                             <p:column styleClass="left">
-                                <p:inputText id="nomeCompletoPai" value="#{cadastroController.usuario.nomeCompleto}"
+                                <p:inputText id="nomeCompletoPai" value="#{cadastroController.usuario.nomeCompletoPai}"
                                              size="40" required="#{param['validateForm']}"
-                                             label="#{msg['label.nome.completo.pai']}"
-                                        />
+                                             label="#{msg['label.nome.completo.pai']}"/>
                             </p:column>
                         </p:row>
                         <p:row rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
@@ -85,7 +84,8 @@
                             <p:column styleClass="left">
                                 <p:inputMask id="cnpj" mask="99.999.999/9999-99"
                                              label="#{msg['label.cnpj']}" required="#{param['validateForm']}"
-                                             value="#{cadastroController.usuario.cpfCnpj}"/>
+                                             value="#{cadastroController.usuario.cpfCnpj}">
+                                </p:inputMask>
                             </p:column>
                         </p:row>
                         <p:row rendered="#{cadastroController.usuario.tipoPessoa.juridica}">
@@ -211,11 +211,12 @@
                                     <p:outputLabel value="#{msg['label.numero']}:" for="numeroTelefone"/>
                                 </p:column>
                                 <p:column>
-                                    <p:inputText id="numeroTelefone"
+                                    <p:inputMask id="numeroTelefone" mask="9999-9999"
                                                  required="#{param['validateForm']}"
                                                  label="#{msg['label.numero']}"
-
-                                                 value="#{_telefone.numero}"/>
+                                                 value="#{_telefone.numero}">
+                                        <f:convertNumber/>
+                                    </p:inputMask>
                                 </p:column>
                                 <p:column>
                                     <p:commandButton icon="ui-icon-plusthick" update=":form:telefoneFieldset"
