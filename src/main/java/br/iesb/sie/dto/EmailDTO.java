@@ -4,11 +4,8 @@ import javax.inject.Inject;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,8 +48,6 @@ public class EmailDTO {
 
             return m;
 
-        } catch (AddressException e) {
-            logger.log(Level.SEVERE, "Não foi possível popular o email!", e);
         } catch (MessagingException e) {
             logger.log(Level.SEVERE, "Não foi possível popular o email!", e);
         }

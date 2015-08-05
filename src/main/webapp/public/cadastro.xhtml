@@ -215,7 +215,7 @@
                                                  required="#{param['validateForm']}"
                                                  label="#{msg['label.numero']}"
                                                  value="#{_telefone.numero}">
-                                        <f:convertNumber/>
+                                        <f:converter converterId="sie.converter.integer"/>
                                     </p:inputMask>
                                 </p:column>
                                 <p:column>

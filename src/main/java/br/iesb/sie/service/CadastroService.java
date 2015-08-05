@@ -6,6 +6,10 @@ import br.iesb.sie.entidade.Usuario;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Stateless
@@ -20,30 +24,34 @@ public class CadastroService {
     @Inject
     private EmailService emailService;
 
-    public void criarNovoUsuaro(Usuario u){
+    public void criarNovoUsuaro(Usuario u) {
         String senha = senhaService.criarNovaSenha();
 
         u.setSenha(senha);
         u.setLogin(criarNovoLogin());
 
         entityManager.persist(u);
-        emailService.enviarEmail(new EmailCadastroConcluidoDTO(u,senha));
+        emailService.enviarEmail(new EmailCadastroConcluidoDTO(u, senha));
     }
 
 
-    private Integer criarNovoLogin(){
-        StringBuilder hql = new StringBuilder();
+    private Integer criarNovoLogin() {
 
-        hql.append(" SELECT U.login FROM ").append(Usuario.class.getName()).append(" U ");
-        hql.append(" ORDER BY U.login DESC ");
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Usuario> c = cb.createQuery(Usuario.class);
+        Root<Usuario> root = c.from(Usuario.class);
 
-        List<Integer> resultList = entityManager.createQuery(hql.toString()).setMaxResults(1).getResultList();
+        c.select(root);
+        c.orderBy(cb.desc(root.get("login")));
 
+        TypedQuery<Usuario> query = entityManager.createQuery(c);
 
-        if(resultList.isEmpty()){
+        List<Usuario> resultList = query.getResultList();
+
+        if (resultList.isEmpty()) {
             return 1;
         } else {
-            return resultList.get(0) + 1;
+            return resultList.get(0).getLogin() + 1;
         }
 
     }
