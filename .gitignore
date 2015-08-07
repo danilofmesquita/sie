@@ -17,3 +17,6 @@ target
 #intellij
 *.iml
 .idea
+/.project
+/.classpath
+/.settings/

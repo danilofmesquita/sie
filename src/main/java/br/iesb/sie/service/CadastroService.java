@@ -1,58 +1,44 @@
 package br.iesb.sie.service;
 
-import br.iesb.sie.dto.EmailCadastroConcluidoDTO;
-import br.iesb.sie.entidade.Usuario;
-
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import java.util.List;
+
+import br.iesb.sie.dao.UsuarioDAO;
+import br.iesb.sie.dto.EmailCadastroConcluidoDTO;
+import br.iesb.sie.entidade.Usuario;
 
 @Stateless
 public class CadastroService {
 
-    @Inject
-    private EntityManager entityManager;
+	@Inject
+	private UsuarioDAO usuarioDAO;
 
-    @Inject
-    private SenhaService senhaService;
+	@Inject
+	private SenhaService senhaService;
 
-    @Inject
-    private EmailService emailService;
+	@Inject
+	private EmailService emailService;
 
-    public void criarNovoUsuaro(Usuario u) {
-        String senha = senhaService.criarNovaSenha();
+	public void criarNovoUsuaro(Usuario u) {
 
-        u.setSenha(senha);
-        u.setLogin(criarNovoLogin());
+		String senha = senhaService.criarNovaSenha();
 
-        entityManager.persist(u);
-        emailService.enviarEmail(new EmailCadastroConcluidoDTO(u, senha));
-    }
+		u.setSenha(senha);
+		u.setLogin(criarNovoLogin());
 
+		adicionarPerfilBasico(u);
 
-    private Integer criarNovoLogin() {
+		usuarioDAO.salvar(u);
 
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Usuario> c = cb.createQuery(Usuario.class);
-        Root<Usuario> root = c.from(Usuario.class);
+		emailService.enviarEmail(new EmailCadastroConcluidoDTO(u, senha));
+	}
 
-        c.select(root);
-        c.orderBy(cb.desc(root.get("login")));
+	private Integer criarNovoLogin() {
+		return usuarioDAO.buscarUltimoLogin() + 1;
+	}
 
-        TypedQuery<Usuario> query = entityManager.createQuery(c);
+	private void adicionarPerfilBasico(Usuario u) {
 
-        List<Usuario> resultList = query.getResultList();
+	}
 
-        if (resultList.isEmpty()) {
-            return 1;
-        } else {
-            return resultList.get(0).getLogin() + 1;
-        }
-
-    }
 }

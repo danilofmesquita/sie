@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
     <f:loadBundle var="msg" basename="message"/>
     <ui:insert name="head"/>
@@ -24,7 +25,7 @@
             <h:column>
                 <h:outputText value="SIE - Sistema Integrado de Educação" styleClass="logo"/>
             </h:column>
-            <h:column>
+            <h:column rendered="false">
                 <p:commandButton value="Login" icon="fa fa-sign-in" type="button" styleClass="float-right"/>
             </h:column>
         </h:panelGrid>
