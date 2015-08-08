@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -7,18 +7,26 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
+
     <f:loadBundle var="msg" basename="message"/>
-    <ui:insert name="head"/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+
     <title>
         SIE - Sistema Integrado de Educação
     </title>
+
     <h:outputStylesheet library="bootstrap" name="/css/bootstrap.css"/>
-    <!--<h:outputStylesheet library="bootstrap" name="/css/bootstrap-theme.css"/>-->
+    <h:outputStylesheet library="bootstrap" name="/css/bootstrap-theme.css"/>
     <h:outputStylesheet library="font-awesome" name="/css/font-awesome.css"/>
-    <h:outputStylesheet library="sie" name="style.css"/>
+    <h:outputStylesheet library="sie" name="/css/style.css"/>
+
+    <ui:insert name="head"/>
 
 </h:head>
 <h:body>
+
     <div class="container">
         <h:form>
             <!-- Static navbar -->
@@ -26,8 +34,7 @@
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                                data-target="#navbar"
-                                aria-expanded="false" aria-controls="navbar">
+                                data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -37,7 +44,7 @@
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="dropdown" jsf:rendered="false">
+                            <li class="dropdown" jsf:rendered="#{not empty usuarioLogadoController.usuario}">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-haspopup="true"
                                    aria-expanded="false">Escola<span class="caret"></span>
@@ -46,60 +53,72 @@
                                     <li><a href="#"><span class="fa fa-users fa-fw"></span> Funcionarios</a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown" jsf:rendered="false">
+                            <li class="dropdown" jsf:rendered="#{not empty usuarioLogadoController.usuario}">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-haspopup="true"
                                    aria-expanded="false">Secretária<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Matricula</a></li>
-                                    <li><a href="#">Turmas</a></li>
-                                    <li><a href="#">Disciplinas</a></li>
+                                    <li><a href="#"><span class="fa fa-edit fa-fw"></span>Matricula</a></li>
+                                    <li><a href="#"><span class="fa fa-cubes fa-fw"></span>Turmas</a></li>
+                                    <li><a href="#"><span class="fa fa-book fa-fw"></span>Disciplinas</a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown" jsf:rendered="false">
+                            <li class="dropdown" jsf:rendered="#{not empty usuarioLogadoController.usuario}">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-haspopup="true"
                                    aria-expanded="false">Acadêmico<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Frequencia</a></li>
-                                    <li><a href="#">Notas</a></li>
-                                    <li><a href="#">Relatórios</a></li>
+                                    <li><a href="#"><span class="fa fa-th-list fa-fw"></span>Frequencia</a></li>
+                                    <li><a href="#"><span class="fa fa-mortar-board fa-fw"></span>Notas</a></li>
+                                    <li><a href="#"><span class="fa fa-files-o fa-fw"></span>Relatórios</a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown" jsf:rendered="false">
+                            <li class="dropdown" jsf:rendered="#{not empty usuarioLogadoController.usuario}">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-haspopup="true"
                                    aria-expanded="false">Documentos Eletronicos<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Historico Escolar</a></li>
-                                    <li><a href="#">Declaração de Pass</a></li>
+                                    <li><a href="#"><span class="fa fa-file-text-o fa-fw"></span>Historico Escolar</a>
+                                    </li>
+                                    <li><a href="#"><span class="fa fa-bus fa-fw"></span>Declaração de Passe</a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown" jsf:rendered="false">
+                            <li class="dropdown" jsf:rendered="#{not empty usuarioLogadoController.usuario}">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-haspopup="true"
                                    aria-expanded="false">Graficos<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Analise Estatistica</a></li>
+                                    <li><a href="#"><i class="fa fa-bar-chart fa-fw"></i>Analise Estatistica</a></li>
                                 </ul>
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><h:commandLink action="/public/login.xhtml?faces-redirect=true" value="Entrar"/></li>
+                            <li jsf:rendered="#{empty usuarioLogadoController.usuario}">
+                                <h:commandLink action="/public/login.xhtml?faces-redirect=true" value="Entrar"/>
+                            </li>
+                            <li jsf:rendered="#{not empty usuarioLogadoController.usuario}">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    #{usuarioLogadoController.usuario.nomeCompleto}<span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-left">
+                                    <li><a href="#">Perfil</a></li>
+                                </ul>
+                            </li>
+                            <li jsf:rendered="#{not empty usuarioLogadoController.usuario}">
+                                <h:commandLink action="#{usuarioLogadoController.logout()}" value="Sair"/>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </h:form>
 
-        <div>
-            <ui:insert name="_body"/>
-        </div>
-
+        <ui:insert name="_body"/>
         <h:outputScript library="jquery" name="/js/jquery-2.1.4.min.js"/>
         <h:outputScript library="jquery" name="/js/jquery.mask.js"/>
         <h:outputScript library="bootstrap" name="/js/bootstrap.js"/>

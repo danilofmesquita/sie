@@ -4,7 +4,7 @@ import br.iesb.sie.entidade.Endereco;
 import br.iesb.sie.entidade.Telefone;
 import br.iesb.sie.entidade.Usuario;
 import br.iesb.sie.service.CEPService;
-import br.iesb.sie.service.CadastroService;
+import br.iesb.sie.service.UsuarioService;
 import br.iesb.sie.util.NavigationRules;
 
 import javax.annotation.PostConstruct;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class CadastroController implements Serializable {
 
     @Inject
-    private CadastroService cadastroService;
+    private UsuarioService usuarioService;
 
     @Inject
     private CEPService cepService;
@@ -45,7 +45,7 @@ public class CadastroController implements Serializable {
     }
 
     public String salvar() {
-        cadastroService.criarNovoUsuaro(usuario);
+        usuarioService.criarNovoUsuaro(usuario);
         return NavigationRules.CADASTRO_CONCLUIDO;
     }
 

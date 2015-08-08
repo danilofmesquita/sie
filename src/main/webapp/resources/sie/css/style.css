@@ -2,6 +2,11 @@ body {
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
+.navbar {
+    margin-bottom: 20px;
+}
+
 .btn-margin-left {
     margin-left: 2px;
 }
@@ -12,4 +17,8 @@ body {
 
 .bold {
     font-weight: bold;
+}
+
+.fa {
+    margin-right: 10px;
 }

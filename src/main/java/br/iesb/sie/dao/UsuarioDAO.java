@@ -1,10 +1,9 @@
 package br.iesb.sie.dao;
 
-import java.util.List;
+import br.iesb.sie.entidade.Usuario;
 
 import javax.inject.Named;
-
-import br.iesb.sie.entidade.Usuario;
+import java.util.List;
 
 @Named
 public class UsuarioDAO extends BaseDAO<Usuario> {
@@ -19,5 +18,10 @@ public class UsuarioDAO extends BaseDAO<Usuario> {
 		} else {
 			return rl.get(0);
 		}
+	}
+
+	public Usuario buscarUsuarioPorLogin(String login) {
+		String query = "select u from Usuario u where u.login = :login";
+		return getEntityManager().createQuery(query, Usuario.class).setParameter("login", Integer.valueOf(login)).getSingleResult();
 	}
 }

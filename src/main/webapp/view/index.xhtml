@@ -4,5 +4,11 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/template/common/dashboard.xhtml">
+    <ui:define name="_body">
+        <div class="jumbotron">
+            <h1>Olá, #{usuarioLogadoController.usuario.nomeCompleto}</h1>
 
+            <p>Seja bem vindo ao Sistema Integrado de Educação</p>
+        </div>
+    </ui:define>
 </ui:composition>
