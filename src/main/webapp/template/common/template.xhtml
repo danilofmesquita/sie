@@ -26,108 +26,107 @@
 
 </h:head>
 <h:body>
-
-    <div class="container">
-        <h:form>
-            <!-- Static navbar -->
-            <div class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                                data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand">SIE</a>
-                    </div>
-                    <div id="navbar" class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown" jsf:rendered="#{not empty usuarioLogadoController.usuario}">
-                                <a class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true"
-                                   aria-expanded="false">Escola<span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a><span class="fa fa-users fa-fw"></span> Funcionarios</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown" jsf:rendered="#{not empty usuarioLogadoController.usuario}">
-                                <a class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true"
-                                   aria-expanded="false">Secretária<span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a><span class="fa fa-edit fa-fw"></span>Matricula</a></li>
-                                    <li><a><span class="fa fa-cubes fa-fw"></span>Turmas</a></li>
-                                    <li><a><span class="fa fa-book fa-fw"></span>Disciplinas</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown" jsf:rendered="#{not empty usuarioLogadoController.usuario}">
-                                <a class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true"
-                                   aria-expanded="false">Acadêmico<span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a><span class="fa fa-th-list fa-fw"></span>Frequencia</a></li>
-                                    <li><a><span class="fa fa-mortar-board fa-fw"></span>Notas</a></li>
-                                    <li><a><span class="fa fa-files-o fa-fw"></span>Relatórios</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown" jsf:rendered="#{not empty usuarioLogadoController.usuario}">
-                                <a class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true"
-                                   aria-expanded="false">Documentos Eletronicos<span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a><span class="fa fa-file-text-o fa-fw"></span>Historico Escolar</a>
-                                    </li>
-                                    <li><a><span class="fa fa-bus fa-fw"></span>Declaração de Passe</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown" jsf:rendered="#{not empty usuarioLogadoController.usuario}">
-                                <a class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true"
-                                   aria-expanded="false">Graficos<span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a><span class="fa fa-bar-chart fa-fw"></span>Analise Estatistica</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li jsf:rendered="#{empty usuarioLogadoController.usuario}">
-                                <a jsf:action="/public/login.xhtml?faces-redirect=true">
-                                    Entrar
-                                </a>
-                            </li>
-                            <li jsf:rendered="#{not empty usuarioLogadoController.usuario}">
-                                <a class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true" aria-expanded="false">
-                                    #{usuarioLogadoController.usuario.nomeCompleto}<span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-left">
-                                    <li>
-                                        <a>
-                                            <span class="fa fa-gears fa-fw"></span>Configurações
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a jsf:action="#{usuarioLogadoController.logout()}">
-                                            <span class="fa fa-sign-out fa-fw"></span>Sair
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
+    <h:form>
+        <!-- Static navbar -->
+        <div class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand bold" style="font-size: 2em">SIE</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown" jsf:rendered="#{not empty usuarioLogadoController.usuario}">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Escola<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a><span class="fa fa-users fa-fw"></span> Funcionarios</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" jsf:rendered="#{not empty usuarioLogadoController.usuario}">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Secretária<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a><span class="fa fa-edit fa-fw"></span>Matricula</a></li>
+                                <li><a><span class="fa fa-cubes fa-fw"></span>Turmas</a></li>
+                                <li><a><span class="fa fa-book fa-fw"></span>Disciplinas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" jsf:rendered="#{not empty usuarioLogadoController.usuario}">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Acadêmico<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a><span class="fa fa-th-list fa-fw"></span>Frequencia</a></li>
+                                <li><a><span class="fa fa-mortar-board fa-fw"></span>Notas</a></li>
+                                <li><a><span class="fa fa-files-o fa-fw"></span>Relatórios</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" jsf:rendered="#{not empty usuarioLogadoController.usuario}">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Documentos Eletronicos<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a><span class="fa fa-file-text-o fa-fw"></span>Historico Escolar</a>
+                                </li>
+                                <li><a><span class="fa fa-bus fa-fw"></span>Declaração de Passe</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" jsf:rendered="#{not empty usuarioLogadoController.usuario}">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Graficos<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a><span class="fa fa-bar-chart fa-fw"></span>Analise Estatistica</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li jsf:rendered="#{empty usuarioLogadoController.usuario}">
+                            <a jsf:action="/public/login.xhtml?faces-redirect=true">
+                                Entrar
+                            </a>
+                        </li>
+                        <li jsf:rendered="#{not empty usuarioLogadoController.usuario}">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                #{usuarioLogadoController.usuario.nomeCompleto}<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-left">
+                                <li>
+                                    <a>
+                                        <span class="fa fa-gears fa-fw"></span>Configurações
+                                    </a>
+                                </li>
+                                <li>
+                                    <a jsf:action="#{usuarioLogadoController.logout()}">
+                                        <span class="fa fa-sign-out fa-fw"></span>Sair
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </h:form>
+        </div>
+    </h:form>
 
-        <ui:insert name="_body"/>
+    <div class="container">
+        <ui:insert name="body"/>
         <h:outputScript library="jquery" name="/js/jquery-2.1.4.min.js"/>
         <h:outputScript library="jquery" name="/js/jquery.mask.js"/>
         <h:outputScript library="bootstrap" name="/js/bootstrap.js"/>

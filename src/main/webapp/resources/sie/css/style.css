@@ -1,10 +1,5 @@
-body {
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-.navbar {
-    margin-bottom: 20px;
+.navbar-static-top {
+    margin-bottom: 19px;
 }
 
 .btn-margin-left {
@@ -21,4 +16,8 @@ body {
 
 .fa {
     margin-right: 10px;
+}
+
+body {
+    margin-bottom: 30px;
 }
