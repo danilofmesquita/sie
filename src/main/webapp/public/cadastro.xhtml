@@ -3,247 +3,118 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui" 
-                xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:sie="http://java.sun.com/jsf/composite/sie"
                 template="/template/common/clean-body.xhtml">
     <ui:define name="_body">
-        <p:panel header="Cadastro">
-            <h:form id="form">
-                <p:messages closable="true" autoUpdate="true"/>
-                <p:fieldset legend="Dados Gerais" id="dadosGerais">
-                    <p:panelGrid styleClass="bordeless-panelgrid">
-                        <p:row>
-                            <p:column styleClass="right">
-                                <p:outputLabel value="#{msg['label.tipo.pessoa']}:" for=":form:tipoPessoa"/>
-                            </p:column>
-                            <p:column styleClass="left">
-                                <p:selectOneRadio id="tipoPessoa" value="#{cadastroController.usuario.tipoPessoa}"
-                                                  required="#{param['validateForm']}"
-                                                  label="#{msg['label.tipo.pessoa']}">
-                                    <f:selectItems value="#{factoryUtil.tiposPessoa}" var="tp"
-                                                   itemLabel="#{tp.descricao}"/>
-                                    <p:ajax event="change" update=":form:dadosGerais" process="@this" global="false"/>
-                                </p:selectOneRadio>
-                            </p:column>
-                        </p:row>
-                        <p:row rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
-                            <p:column styleClass="right">
-                                <p:outputLabel value="#{msg['label.cpf']}:" for=":form:cpf"/>
-                            </p:column>
-                            <p:column styleClass="left">
-                                <p:inputMask id="cpf" mask="999.999.999-99" label="#{msg['label.cpf']}"
-                                             value="#{cadastroController.usuario.cpfCnpj}">
-                                </p:inputMask>
-                            </p:column>
-                        </p:row>
-                        <p:row rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
-                            <p:column styleClass="right">
-                                <p:outputLabel value="#{msg['label.nome.completo']}:" for=":form:nomeCompleto"/>
-                            </p:column>
-                            <p:column styleClass="left">
-                                <p:inputText id="nomeCompleto" value="#{cadastroController.usuario.nomeCompleto}"
-                                             size="40" required="#{param['validateForm']}"
-                                             label="#{msg['label.nome.completo']}"/>
-                            </p:column>
-                        </p:row>
-                        <p:row rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
-                            <p:column styleClass="right">
-                                <p:outputLabel value="#{msg['label.nome.completo.mae']}:" for=":form:nomeCompletoMae"/>
-                            </p:column>
-                            <p:column styleClass="left">
-                                <p:inputText id="nomeCompletoMae" value="#{cadastroController.usuario.nomeCompletoMae}"
-                                             size="40" required="#{param['validateForm']}"
-                                             label="#{msg['label.nome.completo.mae']}"/>
-                            </p:column>
-                        </p:row>
-                        <p:row rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
-                            <p:column styleClass="right">
-                                <p:outputLabel value="#{msg['label.nome.completo.pai']}:" for=":form:nomeCompletoPai"/>
-                            </p:column>
-                            <p:column styleClass="left">
-                                <p:inputText id="nomeCompletoPai" value="#{cadastroController.usuario.nomeCompletoPai}"
-                                             size="40" required="#{param['validateForm']}"
-                                             label="#{msg['label.nome.completo.pai']}"/>
-                            </p:column>
-                        </p:row>
-                        <p:row rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
-                            <p:column styleClass="right">
-                                <p:outputLabel value="#{msg['label.data.nascimento']}:" for=":form:dataNascimento"/>
-                            </p:column>
-                            <p:column styleClass="left">
-                                <p:calendar id="dataNascimento" value="#{cadastroController.usuario.dataNascimento}"
-                                            label="#{msg['label.data.nascimento']}"
-                                            size="6" required="#{param['validateForm']}"
-                                            pattern="dd/MM/yyyy" mask="99/99/9999"/>
-                            </p:column>
-                        </p:row>
-                        <p:row rendered="#{cadastroController.usuario.tipoPessoa.juridica}">
-                            <p:column styleClass="right">
-                                <p:outputLabel value="#{msg['label.cnpj']}:" for=":form:cnpj"/>
-                            </p:column>
-                            <p:column styleClass="left">
-                                <p:inputMask id="cnpj" mask="99.999.999/9999-99"
-                                             label="#{msg['label.cnpj']}" required="#{param['validateForm']}"
-                                             value="#{cadastroController.usuario.cpfCnpj}">
-                                </p:inputMask>
-                            </p:column>
-                        </p:row>
-                        <p:row rendered="#{cadastroController.usuario.tipoPessoa.juridica}">
-                            <p:column styleClass="right">
-                                <p:outputLabel value="#{msg['label.razao.social']}:" for=":form:razaoSocial"/>
-                            </p:column>
-                            <p:column styleClass="left">
-                                <p:inputText id="razaoSocial" value="#{cadastroController.usuario.razaoSocial}"
-                                             size="40"
-                                             required="#{param['validateForm']}"
-                                             label="#{msg['label.razao.social']}"/>
-                            </p:column>
-                        </p:row>
-                        <p:row>
-                            <p:column styleClass="right">
-                                <p:outputLabel value="#{msg['label.email']}:" for=":form:email"/>
-                            </p:column>
-                            <p:column styleClass="left">
-                                <p:inputText id="email" size="40" label="#{msg['label.email']}"
-                                             required="#{param['validateForm']}"
-                                             value="#{cadastroController.usuario.email}"/>
-                            </p:column>
-                        </p:row>
-                    </p:panelGrid>
-                </p:fieldset>
-                <br/>
-                <p:fieldset legend="Endereço">
-                    <p:panelGrid styleClass="bordeless-panelgrid" id="enderecoPanelgrid">
-                        <p:row>
-                            <p:column styleClass="right">
-                                <p:outputLabel value="#{msg['label.cep']}:" for=":form:cep"/>
-                            </p:column>
-                            <p:column styleClass="left">
-                                <p:inputMask id="cep"
-                                             label="#{msg['label.cep']}"
-                                             mask="99.999-999"
-                                             required="#{param['validateForm']}"
-                                             value="#{cadastroController.usuario.endereco.cep}">
-                                    <p:ajax event="change" update=":form:enderecoPanelgrid"
-                                            listener="#{cadastroController.carregarEnderecoPorCEP}"/>
-                                    <f:converter converterId="sie.converter.integer"/>
-                                </p:inputMask>
-                            </p:column>
-                        </p:row>
-                        <p:row>
-                            <p:column styleClass="right">
-                                <p:outputLabel value="#{msg['label.municipio']}:" for=":form:municipio"/>
-                            </p:column>
-                            <p:column>
-                                <p:inputText id="municipio"
-                                             required="#{param['validateForm']}"
-                                             label="#{msg['label.municipio']}"
-                                             value="#{cadastroController.usuario.endereco.municipio}"/>
-                            </p:column>
-                            <p:column styleClass="right">
-                                <p:outputLabel value="#{msg['label.uf']}:" for=":form:uf"/>
-                            </p:column>
-                            <p:column>
-                                <p:selectOneMenu id="uf"
-                                                 required="#{param['validateForm']}"
-                                                 label="#{msg['label.uf']}"
-                                                 value="#{cadastroController.usuario.endereco.uf}">
-                                    <f:selectItem itemLabel="Selecione "/>
-                                    <f:selectItems value="#{factoryUtil.UFs}" var="_UF" itemLabel="#{_UF.sigla}"/>
-                                </p:selectOneMenu>
-                            </p:column>
-                        </p:row>
-                        <p:row>
-                            <p:column styleClass="right">
-                                <p:outputLabel value="#{msg['label.endereco']}:" for=":form:endereco"/>
-                            </p:column>
-                            <p:column>
-                                <p:inputText id="endereco"
-                                             required="#{param['validateForm']}"
-                                             label="#{msg['label.endereco']}"
-                                             value="#{cadastroController.usuario.endereco.endereco}"/>
-                            </p:column>
-                            <p:column styleClass="right">
-                                <p:outputLabel value="#{msg['label.numero']}:" for=":form:numero"/>
-                            </p:column>
-                            <p:column>
-                                <p:inputText id="numero"
-                                             required="#{param['validateForm']}"
-                                             label="#{msg['label.numero']}"
-                                             value="#{cadastroController.usuario.endereco.numero}"/>
-                            </p:column>
-                        </p:row>
-                        <p:row>
-                            <p:column styleClass="right">
-                                <p:outputLabel value="#{msg['label.bairro']}:" for=":form:bairro"/>
-                            </p:column>
-                            <p:column>
-                                <p:inputText id="bairro"
-                                             required="#{param['validateForm']}"
-                                             label="#{msg['label.bairro']}"
-                                             value="#{cadastroController.usuario.endereco.bairro}"/>
-                            </p:column>
-                            <p:column styleClass="right">
-                                <p:outputLabel value="#{msg['label.complemento']}:" for=":form:complemento"/>
-                            </p:column>
-                            <p:column>
-                                <p:inputText id="complemento" value="#{cadastroController.usuario.endereco.complemento}"
-                                             label="#{msg['label.complemento']}"/>
-                            </p:column>
-                        </p:row>
-                    </p:panelGrid>
-                </p:fieldset>
-                <br/>
-                <p:fieldset legend="Telefone" id="telefoneFieldset">
-                    <ui:repeat value="#{cadastroController.usuario.telefones}" var="_telefone">
-                        <p:panelGrid styleClass="bordeless-panelgrid">
-                            <p:row>
-                                <p:column>
-                                    <p:outputLabel value="#{msg['label.ddd']}:" for="ddd"/>
-                                </p:column>
-                                <p:column>
-                                    <p:inputText size="1" id="ddd"
-                                                 required="#{param['validateForm']}"
-                                                 label="#{msg['label.ddd']}"
-                                                 value="#{_telefone.ddd}"/>
-                                </p:column>
-                                <p:column>
-                                    <p:outputLabel value="#{msg['label.numero']}:" for="numeroTelefone"/>
-                                </p:column>
-                                <p:column>
-                                    <p:inputMask id="numeroTelefone" mask="9999-9999"
-                                                 required="#{param['validateForm']}"
-                                                 label="#{msg['label.numero']}"
-                                                 value="#{_telefone.numero}">
-                                        <f:converter converterId="sie.converter.integer"/>
-                                    </p:inputMask>
-                                </p:column>
-                                <p:column>
-                                    <p:commandButton icon="ui-icon-plusthick" update=":form:telefoneFieldset"
-                                                     global="false" process=":form:telefoneFieldset"
-                                                     rendered="#{cadastroController.usuario.telefones.indexOf(_telefone) eq cadastroController.usuario.telefones.size() - 1}"
-                                                     action="#{cadastroController.adicionarTelefone}"/>
-                                    <p:commandButton icon="ui-icon-closethick" update=":form:telefoneFieldset"
-                                                     global="false" process=":form:telefoneFieldset"
-                                                     rendered="#{cadastroController.usuario.telefones.indexOf(_telefone) > 0}"
-                                                     action="#{cadastroController.usuario.telefones.remove(_telefone)}"/>
-                                </p:column>
-                            </p:row>
-                        </p:panelGrid>
-                    </ui:repeat>
-                </p:fieldset>
-                <br/>
+        <h:form id="form">
+            <div class="panel panel-default">
+                <div class="panel-heading">Dados Gerais</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <sie:ajaxSelectOneMenu id="tipoPessoa" value="#{cadastroController.usuario.tipoPessoa}"
+                                               render="@form"
+                                               label="#{msg['label.tipo.pessoa']}"
+                                               required="#{param['validateForm']}"
+                                               execute="@this">
+                            <f:selectItem itemLabel="Selecione"/>
+                            <f:selectItems value="#{factoryUtil.tiposPessoa}" var="tp"
+                                           itemLabel="#{tp.descricao}"/>
+                        </sie:ajaxSelectOneMenu>
 
-                <div align="right">
-                    <p:commandButton value="Limpar" ajax="false" actionListener="#{cadastroController.limpar}">
-                        <f:param name="validateForm" value="false"/>
-                    </p:commandButton>
-                    <p:commandButton value="Cadastrar" ajax="false" action="#{cadastroController.salvar}">
-                        <f:param name="validateForm" value="true"/>
-                    </p:commandButton>
+                        <h:panelGroup rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
+                            <sie:inputText label="#{msg['label.cpf']}"
+                                           onkeypress="$(this).mask('999.999.999-99');"
+                                           required="#{param['validateForm']}"
+                                           value="#{cadastroController.usuario.cpfCnpj}"/>
+                            <sie:inputText label="#{msg['label.nome.completo']}"
+                                           required="#{param['validateForm']}"
+                                           value="#{cadastroController.usuario.nomeCompleto}"/>
+                            <sie:inputText label="#{msg['label.nome.completo.mae']}"
+                                           required="#{param['validateForm']}"
+                                           value="#{cadastroController.usuario.nomeCompletoMae}"/>
+                            <sie:inputText label="#{msg['label.nome.completo.pai']}"
+                                           required="#{param['validateForm']}"
+                                           value="#{cadastroController.usuario.nomeCompletoPai}"/>
+                            <sie:inputDate label="#{msg['label.data.nascimento']}"
+                                           required="#{param['validateForm']}"
+                                           value="#{cadastroController.usuario.dataNascimento}">
+                            </sie:inputDate>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{cadastroController.usuario.tipoPessoa.juridica}">
+                            <sie:inputText label="#{msg['label.cnpj']}"
+                                           onkeypress="$(this).mask('999.999.999-99');"
+                                           required="#{param['validateForm']}"
+                                           value="#{cadastroController.usuario.cpfCnpj}"/>
+                            <sie:inputText label="#{msg['label.razao.social']}"
+                                           required="#{param['validateForm']}"
+                                           value="#{cadastroController.usuario.razaoSocial}"/>
+                        </h:panelGroup>
+
+                        <sie:inputText label="#{msg['label.email']}"
+                                       required="#{param['validateForm']}"
+                                       value="#{cadastroController.usuario.email}"/>
+                    </div>
+
                 </div>
-            </h:form>
-        </p:panel>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Endereço</div>
+                <div class="panel-body">
+
+                    <div class="row">
+                        <sie:inputText label="#{msg['label.cep']}" onkeypress="$(this).mask('99.999-999')"
+                                       required="#{param['validateForm']}" render="@form"
+                                       actionListener="#{cadastroController.carregarEnderecoPorCEP}" ajax="true"
+                                       execute="@this" value="#{cadastroController.usuario.endereco.cep}"/>
+                        <sie:inputText label="#{msg['label.municipio']}"
+                                       required="#{param['validateForm']}"
+                                       value="#{cadastroController.usuario.endereco.municipio}"/>
+                        <sie:selectOneMenu value="#{cadastroController.usuario.endereco.uf}"
+                                           label="#{msg['label.uf']}" required="#{param['validateForm']}">
+                            <f:selectItem itemLabel="Selecione"/>
+                            <f:selectItems value="#{factoryUtil.UFs}" var="_UF" itemLabel="#{_UF.sigla}"/>
+                        </sie:selectOneMenu>
+                        <sie:inputText label="#{msg['label.endereco']}"
+                                       required="#{param['validateForm']}"
+                                       value="#{cadastroController.usuario.endereco.endereco}"/>
+                        <sie:inputText label="#{msg['label.bairro']}"
+                                       required="#{param['validateForm']}"
+                                       value="#{cadastroController.usuario.endereco.bairro}"/>
+                        <sie:inputText label="#{msg['label.numero']}"
+                                       required="#{param['validateForm']}"
+                                       value="#{cadastroController.usuario.endereco.numero}"/>
+                        <sie:inputText label="#{msg['label.complemento']}"
+                                       required="#{param['validateForm']}"
+                                       value="#{cadastroController.usuario.endereco.complemento}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Telefones</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <sie:inputText label="#{msg['label.telefone.principal']}"
+                                       required="#{param['validateForm']}"
+                                       value="#{cadastroController.usuario.telefones[0].numero}"/>
+                        <sie:inputText label="#{msg['label.telefone.alternativo']}"
+                                       required="#{param['validateForm']}"
+                                       value="#{cadastroController.usuario.telefones[1].numero}"/>
+                    </div>
+                </div>
+            </div>
+            <h:commandButton value="Salvar" styleClass="btn btn-primary pull-right btn-margin-left"
+                             action="#{cadastroController.salvar}">
+                <f:param name="validateForm" value="true"/>
+            </h:commandButton>
+            <h:commandButton value="Limpar" styleClass="btn btn-default pull-right btn-margin-right"
+                             action="#{cadastroController.limpar}">
+                <f:param name="validateForm" value="false"/>
+            </h:commandButton>
+
+        </h:form>
     </ui:define>
 </ui:composition>

@@ -1,32 +1,18 @@
 package br.iesb.sie.entidade;
 
+import br.iesb.sie.model.TipoPessoa;
+
+import javax.persistence.*;
+import javax.validation.constraints.Past;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.Past;
-
-import br.iesb.sie.model.TipoPessoa;
 
 @Entity
 public class Usuario {
@@ -70,7 +56,7 @@ public class Usuario {
     private Endereco endereco;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Telefone> telefones;
+    private List<Telefone> telefones = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "PerfilUsuario",

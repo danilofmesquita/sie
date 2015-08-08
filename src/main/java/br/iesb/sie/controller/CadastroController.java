@@ -1,10 +1,10 @@
 package br.iesb.sie.controller;
 
-import br.iesb.sie.service.CEPService;
-import br.iesb.sie.service.CadastroService;
 import br.iesb.sie.entidade.Endereco;
 import br.iesb.sie.entidade.Telefone;
 import br.iesb.sie.entidade.Usuario;
+import br.iesb.sie.service.CEPService;
+import br.iesb.sie.service.CadastroService;
 import br.iesb.sie.util.NavigationRules;
 
 import javax.annotation.PostConstruct;
@@ -31,6 +31,8 @@ public class CadastroController implements Serializable {
         usuario = new Usuario();
         usuario.setEndereco(new Endereco());
         usuario.setTelefones(new ArrayList<>());
+        usuario.getTelefones().add(new Telefone());
+        usuario.getTelefones().add(new Telefone());
         adicionarTelefone();
     }
 

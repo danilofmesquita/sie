@@ -4,7 +4,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui" 
       xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
     <f:loadBundle var="msg" basename="message"/>
@@ -12,25 +11,88 @@
     <title>
         SIE - Sistema Integrado de Educação
     </title>
+    <h:outputStylesheet library="bootstrap" name="/css/bootstrap.css"/>
+    <h:outputStylesheet library="bootstrap" name="/css/bootstrap-theme.css"/>
+    <h:outputStylesheet library="font-awesome" name="/css/font-awesome.css"/>
+    <h:outputStylesheet library="sie" name="style.css"/>
+
 </h:head>
 <h:body>
-    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"/>
-    <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false"
-              showHeader="false">
-        <h:graphicImage library="images" name="ajax.gif"/>
-    </p:dialog>
-
-    <div class="top-bar">
-        <h:panelGrid style="width: 100%;" styleClass="bordeless-panelgrid" columns="2">
-            <h:column>
-                <h:outputText value="SIE - Sistema Integrado de Educação" styleClass="logo"/>
-            </h:column>
-            <h:column rendered="false">
-                <p:commandButton value="Login" icon="fa fa-sign-in" type="button" styleClass="float-right"/>
-            </h:column>
-        </h:panelGrid>
+    <!-- Static navbar -->
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">SIE</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Escola<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><span class="fa fa-users fa-fw"></span> Funcionarios</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Secretária<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Matricula</a></li>
+                            <li><a href="#">Turmas</a></li>
+                            <li><a href="#">Disciplinas</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Acadêmico<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Frequencia</a></li>
+                            <li><a href="#">Notas</a></li>
+                            <li><a href="#">Relatórios</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Documentos Eletronicos<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Historico Escolar</a></li>
+                            <li><a href="#">Declaração de Pass</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Graficos<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Analise Estatistica</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="../navbar/">Entrar</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <ui:insert name="body"/>
-    <h:outputStylesheet library="css" name="style.css"/>
+
+    <div class="container">
+        <div>
+            <ui:insert name="_body"/>
+        </div>
+    </div>
+    <h:outputScript library="jquery" name="/js/jquery-2.1.4.min.js"/>
+    <h:outputScript library="jquery" name="/js/jquery.mask.js"/>
+    <h:outputScript library="bootstrap" name="/js/bootstrap.js"/>
 </h:body>
 </html>

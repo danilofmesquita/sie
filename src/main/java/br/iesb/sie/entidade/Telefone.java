@@ -1,7 +1,6 @@
 package br.iesb.sie.entidade;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class Telefone {
@@ -9,9 +8,6 @@ public class Telefone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column
-    private Integer ddd;
 
     @Column
     private Integer numero;
@@ -26,14 +22,6 @@ public class Telefone {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getDdd() {
-        return ddd;
-    }
-
-    public void setDdd(Integer ddd) {
-        this.ddd = ddd;
     }
 
     public Integer getNumero() {
