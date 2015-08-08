@@ -59,7 +59,7 @@
         <auth-method>FORM</auth-method>
         <form-login-config>
             <form-login-page>/public/login.xhtml</form-login-page>
-            <form-error-page>/public/cadastro.xhtml</form-error-page>
+            <form-error-page>/public/login.xhtml?error=true</form-error-page>
         </form-login-config>
     </login-config>
 </web-app>

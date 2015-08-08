@@ -2,7 +2,7 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
                 template="/template/common/clean-body.xhtml">
     <ui:define name="_body">
         <form method="POST" action="j_security_check">
@@ -10,6 +10,15 @@
                 <div class="panel-heading bold">Login</div>
                 <div class="panel-body">
                     <div class="row">
+                        <div class="col-sm-12">
+                            <h:panelGroup rendered="#{param['error']}">
+                                <div class="alert alert-danger" role="alert">
+                                    <span class="fa fa-exclamation" aria-hidden="true"></span>
+                                    <span class="sr-only">Error:</span>
+                                    Não possível autenticar, verifique a matricula e senha inserida
+                                </div>
+                            </h:panelGroup>
+                        </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <span class="control-label">#{msg['label.matricula']}</span>

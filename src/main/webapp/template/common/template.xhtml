@@ -8,8 +8,8 @@
       xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 
-    <f:loadBundle var="msg" basename="message"/>
 
+    <f:loadBundle var="msg" basename="message"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 
@@ -92,7 +92,8 @@
                                    aria-expanded="false">Graficos<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#"><i class="fa fa-bar-chart fa-fw"></i>Analise Estatistica</a></li>
+                                    <li><a href="#"><span class="fa fa-bar-chart fa-fw"></span>Analise Estatistica</a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -106,7 +107,7 @@
                                     #{usuarioLogadoController.usuario.nomeCompleto}<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-left">
-                                    <li><a href="#">Perfil</a></li>
+                                    <li><a href="#"><span class="fa fa-gears fa-fw"></span>Configurações</a></li>
                                 </ul>
                             </li>
                             <li jsf:rendered="#{not empty usuarioLogadoController.usuario}">
