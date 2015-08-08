@@ -5,27 +5,24 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
                 xmlns:sie="http://java.sun.com/jsf/composite/sie"
                 template="/template/common/clean-body.xhtml">
     <ui:define name="_body">
         <h:form id="form">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dados Gerais</div>
+            <div class="panel panel-primary">
+                <div class="panel-heading bold">Dados Gerais</div>
                 <div class="panel-body">
                     <div class="row">
                         <sie:ajaxSelectOneMenu id="tipoPessoa" value="#{cadastroController.usuario.tipoPessoa}"
-                                               render="@form"
-                                               label="#{msg['label.tipo.pessoa']}"
-                                               required="#{param['validateForm']}"
-                                               execute="@this">
+                                               render="@form" label="#{msg['label.tipo.pessoa']}" execute="@this"
+                                               required="#{param['validateForm']}">
                             <f:selectItem itemLabel="Selecione"/>
                             <f:selectItems value="#{factoryUtil.tiposPessoa}" var="tp"
                                            itemLabel="#{tp.descricao}"/>
                         </sie:ajaxSelectOneMenu>
-
                         <h:panelGroup rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
-                            <sie:inputText label="#{msg['label.cpf']}"
-                                           onkeypress="$(this).mask('999.999.999-99');"
+                            <sie:inputText label="#{msg['label.cpf']}" styleClass="cpf"
                                            required="#{param['validateForm']}"
                                            value="#{cadastroController.usuario.cpfCnpj}"/>
                             <sie:inputText label="#{msg['label.nome.completo']}"
@@ -44,8 +41,7 @@
                         </h:panelGroup>
 
                         <h:panelGroup rendered="#{cadastroController.usuario.tipoPessoa.juridica}">
-                            <sie:inputText label="#{msg['label.cnpj']}"
-                                           onkeypress="$(this).mask('999.999.999-99');"
+                            <sie:inputText label="#{msg['label.cnpj']}" styleClass="cnpj"
                                            required="#{param['validateForm']}"
                                            value="#{cadastroController.usuario.cpfCnpj}"/>
                             <sie:inputText label="#{msg['label.razao.social']}"
@@ -60,23 +56,21 @@
 
                 </div>
             </div>
-
-            <div class="panel panel-default">
-                <div class="panel-heading">Endereço</div>
+            <div class="panel panel-primary">
+                <div class="panel-heading bold" jsf:id="endereco">Endereço</div>
                 <div class="panel-body">
-
                     <div class="row">
-                        <sie:inputText label="#{msg['label.cep']}" onkeypress="$(this).mask('99.999-999')"
-                                       required="#{param['validateForm']}" render="@form"
+                        <sie:inputText label="#{msg['label.cep']}" styleClass="cep"
+                                       required="#{param['validateForm']}" render="@form" execute="@form"
                                        actionListener="#{cadastroController.carregarEnderecoPorCEP}" ajax="true"
-                                       execute="@this" value="#{cadastroController.usuario.endereco.cep}"/>
+                                       value="#{cadastroController.usuario.endereco.cep}"/>
                         <sie:inputText label="#{msg['label.municipio']}"
                                        required="#{param['validateForm']}"
                                        value="#{cadastroController.usuario.endereco.municipio}"/>
                         <sie:selectOneMenu value="#{cadastroController.usuario.endereco.uf}"
                                            label="#{msg['label.uf']}" required="#{param['validateForm']}">
                             <f:selectItem itemLabel="Selecione"/>
-                            <f:selectItems value="#{factoryUtil.UFs}" var="_UF" itemLabel="#{_UF.sigla}"/>
+                            <f:selectItems value="#{factoryUtil.UFs}" var="_UF" itemLabel="#{_UF.nome}"/>
                         </sie:selectOneMenu>
                         <sie:inputText label="#{msg['label.endereco']}"
                                        required="#{param['validateForm']}"
@@ -93,8 +87,8 @@
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">Telefones</div>
+            <div class="panel panel-primary">
+                <div class="panel-heading bold">Telefones</div>
                 <div class="panel-body">
                     <div class="row">
                         <sie:inputText label="#{msg['label.telefone.principal']}"
@@ -114,7 +108,6 @@
                              action="#{cadastroController.limpar}">
                 <f:param name="validateForm" value="false"/>
             </h:commandButton>
-
         </h:form>
     </ui:define>
 </ui:composition>

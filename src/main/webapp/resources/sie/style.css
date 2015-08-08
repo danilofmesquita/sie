@@ -1,7 +1,15 @@
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
 .btn-margin-left {
     margin-left: 2px;
 }
 
 .btn-margin-right {
     margin-right: 2px;
+}
+
+.bold {
+    font-weight: bold;
 }
