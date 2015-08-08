@@ -62,7 +62,7 @@ public class Usuario {
     @JoinTable(name = "PerfilUsuario",
             joinColumns = {@JoinColumn(name = "usuario")},
             inverseJoinColumns = {@JoinColumn(name = "perfil")})
-    private List<Perfil> perfis;
+    private List<Perfil> perfis = new ArrayList<>();
 
     @Column
     private Integer login;
@@ -153,7 +153,7 @@ public class Usuario {
 
     public void setSenha(String senha) {
         try {
-            MessageDigest ms = MessageDigest.getInstance("SHA-512");
+            MessageDigest ms = MessageDigest.getInstance("SHA-256");
             byte[] digest = ms.digest(senha.getBytes(Charset.forName("UTF-8")));
             this.senha = Base64.getEncoder().encodeToString(digest);
         } catch (NoSuchAlgorithmException e) {

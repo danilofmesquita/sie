@@ -12,6 +12,13 @@ public class Perfil {
     @Column
     private String nome;
 
+    public Perfil(String nome) {
+        this.nome = nome;
+    }
+
+    public Perfil() {
+    }
+
     public String getNome() {
         return nome;
     }

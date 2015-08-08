@@ -60,7 +60,7 @@
                 <div class="panel-heading bold" jsf:id="endereco">Endereço</div>
                 <div class="panel-body">
                     <div class="row">
-                        <sie:inputText label="#{msg['label.cep']}" styleClass="cep"
+                        <sie:inputText label="#{msg['label.cep']}" styleClass="cep" converterId="sie.converter.integer"
                                        required="#{param['validateForm']}" render="@form" execute="@form"
                                        actionListener="#{cadastroController.carregarEnderecoPorCEP}" ajax="true"
                                        value="#{cadastroController.usuario.endereco.cep}"/>

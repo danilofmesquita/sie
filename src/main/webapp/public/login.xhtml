@@ -5,20 +5,20 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/template/common/clean-body.xhtml">
     <ui:define name="_body">
-        <form method="post" action="j_security_check">
+        <form method="POST" action="j_security_check">
             <div class="panel panel-primary">
                 <div class="panel-heading bold">Login</div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <span class="control-label">Mátricula</span>
+                                <span class="control-label">#{msg['label.matricula']}</span>
                                 <input type="text" name="j_username" class="form-control" required="true"/>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <span class="control-label">Senha</span>
+                                <span class="control-label">#{msg['label.senha']}</span>
                                 <input type="text" name="j_password" class="form-control" required="true"/>
                             </div>
                         </div>

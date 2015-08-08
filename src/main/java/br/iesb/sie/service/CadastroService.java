@@ -1,11 +1,12 @@
 package br.iesb.sie.service;
 
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-
+import br.iesb.sie.dao.PerfilDAO;
 import br.iesb.sie.dao.UsuarioDAO;
 import br.iesb.sie.dto.EmailCadastroConcluidoDTO;
 import br.iesb.sie.entidade.Usuario;
+
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 @Stateless
 public class CadastroService {
@@ -19,14 +20,16 @@ public class CadastroService {
 	@Inject
 	private EmailService emailService;
 
+	@Inject
+	private PerfilDAO perfilDAO;
+
 	public void criarNovoUsuaro(Usuario u) {
 
 		String senha = senhaService.criarNovaSenha();
 
 		u.setSenha(senha);
 		u.setLogin(criarNovoLogin());
-
-		adicionarPerfilBasico(u);
+		u.getPerfis().add(perfilDAO.buscarPerfil("USUARIO"));
 
 		usuarioDAO.salvar(u);
 
@@ -35,10 +38,6 @@ public class CadastroService {
 
 	private Integer criarNovoLogin() {
 		return usuarioDAO.buscarUltimoLogin() + 1;
-	}
-
-	private void adicionarPerfilBasico(Usuario u) {
-
 	}
 
 }

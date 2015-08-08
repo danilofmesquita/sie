@@ -1,9 +1,9 @@
 package br.iesb.sie.bean;
 
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import java.io.Serializable;
 
-@SessionScoped
+@RequestScoped
 public class UsuarioLogado implements Serializable {
 
 

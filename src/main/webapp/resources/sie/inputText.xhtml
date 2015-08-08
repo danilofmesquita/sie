@@ -14,6 +14,7 @@
     <composite:attribute name="render"/>
     <composite:attribute name="execute"/>
     <composite:attribute name="actionListener" method-signature="java.lang.String action()"/>
+    <composite:attribute name="converterId" default="sie.converter.default"/>
 </composite:interface>
 <composite:implementation>
     <h:panelGroup rendered="#{not cc.attrs.ajax}">
@@ -23,6 +24,7 @@
                 <h:inputText label="#{cc.attrs.label}" styleClass="form-control #{cc.attrs.styleClass}"
                              id="inputText" onkeypress="#{cc.attrs.onkeypress}"
                              required="#{cc.attrs.required}" value="#{cc.attrs.value}">
+                    <f:converter for="inputText" converterId="#{cc.attrs.converterId}"/>
                     <composite:insertChildren/>
                 </h:inputText>
                 <h:message for="inputText"/>
@@ -38,6 +40,7 @@
                              required="#{cc.attrs.required}" value="#{cc.attrs.value}">
                     <f:ajax event="change" execute="#{cc.attrs.execute}" render="#{cc.attrs.render}"
                             listener="#{cc.attrs.actionListener}"/>
+                    <f:converter for="inputTextAjax" converterId="#{cc.attrs.converterId}"/>
                     <composite:insertChildren/>
                 </h:inputText>
                 <h:message for="inputTextAjax"/>
