@@ -13,7 +13,7 @@
     <composite:attribute name="execute"/>
 </composite:interface>
 <composite:implementation>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         <div class="form-group #{component.children[2].valid ? '' : 'has-error'}">
             <h:outputLabel value="#{cc.attrs.label}:" styleClass="control-label"/>
             <h:selectOneMenu id="ajaxSelectOneMenu" value="#{cc.attrs.value}" styleClass="form-control"
@@ -21,7 +21,6 @@
                 <composite:insertChildren/>
                 <f:ajax event="change" render="#{cc.attrs.render}" execute="#{cc.attrs.execute}"/>
             </h:selectOneMenu>
-            <h:message for="ajaxSelectOneMenu"/>
         </div>
     </div>
 </composite:implementation>

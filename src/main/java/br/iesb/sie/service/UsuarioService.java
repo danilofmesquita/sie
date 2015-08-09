@@ -11,37 +11,48 @@ import javax.inject.Inject;
 @Stateless
 public class UsuarioService {
 
-	@Inject
-	private UsuarioDAO usuarioDAO;
+    @Inject
+    private UsuarioDAO usuarioDAO;
 
-	@Inject
-	private SenhaService senhaService;
+    @Inject
+    private SenhaService senhaService;
 
-	@Inject
-	private EmailService emailService;
+    @Inject
+    private EmailService emailService;
 
-	@Inject
-	private PerfilDAO perfilDAO;
+    @Inject
+    private PerfilDAO perfilDAO;
 
-	public void criarNovoUsuaro(Usuario u) {
+    public void criarNovoUsuaro(Usuario u) {
 
-		String senha = senhaService.criarNovaSenha();
+        String senha = senhaService.criarNovaSenha();
 
-		u.setSenha(senha);
-		u.setLogin(criarNovoLogin());
-		u.getPerfis().add(perfilDAO.buscarPerfil("USUARIO"));
+        u.setSenha(senhaService.codificarSenha(senha));
+        u.setLogin(criarNovoLogin());
+        u.getPerfis().add(perfilDAO.buscarPerfil("USUARIO"));
 
-		usuarioDAO.salvar(u);
+        if (u.getTipoPessoa().isJuridica()) {
+            u.getPerfis().add(perfilDAO.buscarPerfil("ESCOLA"));
+        }
 
-		emailService.enviarEmail(new EmailCadastroConcluidoDTO(u, senha));
-	}
+        usuarioDAO.salvar(u);
 
-	private Integer criarNovoLogin() {
-		return usuarioDAO.buscarUltimoLogin() + 1;
-	}
+        emailService.enviarEmail(new EmailCadastroConcluidoDTO(u, senha));
+    }
 
-	public Usuario buscarUsuarioPorLogin(String login) {
-		return usuarioDAO.buscarUsuarioPorLogin(login);
-	}
+    private Integer criarNovoLogin() {
+        return usuarioDAO.buscarUltimoLogin() + 1;
+    }
+
+    public Usuario buscarUsuarioPorLogin(String login) {
+        return usuarioDAO.buscarUsuarioPorLogin(login);
+    }
+
+    public void atualizarSenha(Long idUsuario, String senhaAnterior, String novaSenha) {
+        Usuario usuario = usuarioDAO.get(idUsuario);
+        if (usuario.getSenha().equals(senhaService.codificarSenha(senhaAnterior))) {
+            usuario.setSenha(senhaService.codificarSenha(novaSenha));
+        }
+    }
 
 }

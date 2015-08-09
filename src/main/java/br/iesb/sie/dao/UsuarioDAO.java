@@ -3,25 +3,28 @@ package br.iesb.sie.dao;
 import br.iesb.sie.entidade.Usuario;
 
 import javax.inject.Named;
-import java.util.List;
 
 @Named
-public class UsuarioDAO extends BaseDAO<Usuario> {
+public class UsuarioDAO extends BaseDAO<Usuario, Long> {
 
-	public Integer buscarUltimoLogin() {
-		String query = "select u.login from Usuario u order by u.login desc";
+    public UsuarioDAO() {
+        super(Usuario.class);
+    }
 
-		List<Integer> rl = getEntityManager().createQuery(query, Integer.class).setMaxResults(1).getResultList();
+    public Integer buscarUltimoLogin() {
+        String query = "select u.login from Usuario u order by u.login desc";
 
-		if (rl.isEmpty()) {
-			return null;
-		} else {
-			return rl.get(0);
-		}
-	}
+        Object login = getSession().createQuery(query).setMaxResults(1).uniqueResult();
 
-	public Usuario buscarUsuarioPorLogin(String login) {
-		String query = "select u from Usuario u where u.login = :login";
-		return getEntityManager().createQuery(query, Usuario.class).setParameter("login", Integer.valueOf(login)).getSingleResult();
-	}
+        if (login != null) {
+            return (Integer) login;
+        } else {
+            return null;
+        }
+    }
+
+    public Usuario buscarUsuarioPorLogin(String login) {
+        String query = "select u from Usuario u where u.login = :login";
+        return (Usuario) getSession().createQuery(query).setParameter("login", Integer.valueOf(login)).uniqueResult();
+    }
 }

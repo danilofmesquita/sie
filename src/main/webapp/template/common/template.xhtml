@@ -18,7 +18,7 @@
     </title>
 
     <h:outputStylesheet library="bootstrap" name="/css/bootstrap.css"/>
-    <h:outputStylesheet library="bootstrap" name="/css/bootstrap-theme.css"/>
+    <!--<h:outputStylesheet library="bootstrap" name="/css/bootstrap-theme.css"/>-->
     <h:outputStylesheet library="font-awesome" name="/css/font-awesome.css"/>
     <h:outputStylesheet library="sie" name="/css/style.css"/>
 
@@ -108,7 +108,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-left">
                                 <li>
-                                    <a>
+                                    <a jsf:action="/view/usuario/configuracoes.xhtml?faces-redirect=true">
                                         <span class="fa fa-gears fa-fw"></span>Configurações
                                     </a>
                                 </li>

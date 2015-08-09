@@ -1,24 +1,29 @@
 package br.iesb.sie.dao;
 
 import br.iesb.sie.entidade.Perfil;
+import org.hibernate.Query;
 
 import javax.inject.Named;
-import javax.persistence.TypedQuery;
 
 @Named
-public class PerfilDAO extends BaseDAO<Perfil> {
-	
-	public Perfil buscarPerfil(String nome){
-        TypedQuery<Perfil> query =
-                getEntityManager().createQuery("select p from Perfil p where p.nome = :nome ", Perfil.class);
+public class PerfilDAO extends BaseDAO<Perfil, Long> {
+
+    public PerfilDAO() {
+        super(Perfil.class);
+    }
+
+    public Perfil buscarPerfil(String nome) {
+        String hqlQuery = "select p from Perfil p where p.nome = :nome ";
+        Query query = getSession().createQuery(hqlQuery);
 
         query.setParameter("nome", nome);
+        Perfil perfil = (Perfil) query.uniqueResult();
 
-        if(query.getResultList().isEmpty()){
-            getEntityManager().persist(new Perfil(nome));
+        if (perfil == null) {
+            getSession().save(new Perfil(nome));
             return buscarPerfil(nome);
         } else {
-            return query.getResultList().get(0);
+            return perfil;
         }
     }
 

@@ -10,50 +10,45 @@
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <h:form id="form">
+            <h:messages/>
             <div class="panel panel-primary">
                 <div class="panel-heading bold">Dados Gerais</div>
                 <div class="panel-body">
-                    <div class="row">
-                        <sie:ajaxSelectOneMenu id="tipoPessoa" value="#{cadastroController.usuario.tipoPessoa}"
-                                               render="@form" label="#{msg['label.tipo.pessoa']}" execute="@this"
-                                               required="#{param['validateForm']}">
-                            <f:selectItem itemLabel="Selecione"/>
-                            <f:selectItems value="#{factoryUtil.tiposPessoa}" var="tp"
-                                           itemLabel="#{tp.descricao}"/>
-                        </sie:ajaxSelectOneMenu>
-                        <h:panelGroup rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
-                            <sie:inputText label="#{msg['label.cpf']}" styleClass="cpf"
-                                           required="#{param['validateForm']}"
-                                           value="#{cadastroController.usuario.cpfCnpj}"/>
-                            <sie:inputText label="#{msg['label.nome.completo']}"
-                                           required="#{param['validateForm']}"
-                                           value="#{cadastroController.usuario.nomeCompleto}"/>
-                            <sie:inputText label="#{msg['label.nome.completo.mae']}"
-                                           required="#{param['validateForm']}"
-                                           value="#{cadastroController.usuario.nomeCompletoMae}"/>
-                            <sie:inputText label="#{msg['label.nome.completo.pai']}"
-                                           required="#{param['validateForm']}"
-                                           value="#{cadastroController.usuario.nomeCompletoPai}"/>
-                            <sie:inputDate label="#{msg['label.data.nascimento']}"
-                                           required="#{param['validateForm']}"
-                                           value="#{cadastroController.usuario.dataNascimento}">
-                            </sie:inputDate>
-                        </h:panelGroup>
-
-                        <h:panelGroup rendered="#{cadastroController.usuario.tipoPessoa.juridica}">
-                            <sie:inputText label="#{msg['label.cnpj']}" styleClass="cnpj"
-                                           required="#{param['validateForm']}"
-                                           value="#{cadastroController.usuario.cpfCnpj}"/>
-                            <sie:inputText label="#{msg['label.razao.social']}"
-                                           required="#{param['validateForm']}"
-                                           value="#{cadastroController.usuario.razaoSocial}"/>
-                        </h:panelGroup>
-
-                        <sie:inputText label="#{msg['label.email']}"
+                    <sie:ajaxSelectOneMenu id="tipoPessoa" value="#{cadastroController.usuario.tipoPessoa}"
+                                           render="@form" label="#{msg['label.tipo.pessoa']}" execute="@this"
+                                           required="#{param['validateForm']}">
+                        <f:selectItem itemLabel="Selecione"/>
+                        <f:selectItems value="#{factoryUtil.tiposPessoa}" var="tp"
+                                       itemLabel="#{tp.descricao}"/>
+                    </sie:ajaxSelectOneMenu>
+                    <h:panelGroup rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
+                        <sie:inputText label="#{msg['label.cpf']}" styleClass="cpf"
+                                       value="#{cadastroController.usuario.cpfCnpj}"/>
+                        <sie:inputText label="#{msg['label.nome.completo']}"
                                        required="#{param['validateForm']}"
-                                       value="#{cadastroController.usuario.email}"/>
-                    </div>
-
+                                       value="#{cadastroController.usuario.nomeCompleto}"/>
+                        <sie:inputText label="#{msg['label.nome.completo.mae']}"
+                                       required="#{param['validateForm']}"
+                                       value="#{cadastroController.usuario.nomeCompletoMae}"/>
+                        <sie:inputText label="#{msg['label.nome.completo.pai']}"
+                                       required="#{param['validateForm']}"
+                                       value="#{cadastroController.usuario.nomeCompletoPai}"/>
+                        <sie:inputDate label="#{msg['label.data.nascimento']}"
+                                       required="#{param['validateForm']}"
+                                       value="#{cadastroController.usuario.dataNascimento}">
+                        </sie:inputDate>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{cadastroController.usuario.tipoPessoa.juridica}">
+                        <sie:inputText label="#{msg['label.cnpj']}" styleClass="cnpj"
+                                       required="#{param['validateForm']}"
+                                       value="#{cadastroController.usuario.cpfCnpj}"/>
+                        <sie:inputText label="#{msg['label.razao.social']}"
+                                       required="#{param['validateForm']}"
+                                       value="#{cadastroController.usuario.razaoSocial}"/>
+                    </h:panelGroup>
+                    <sie:inputText label="#{msg['label.email']}"
+                                   required="#{param['validateForm']}"
+                                   value="#{cadastroController.usuario.email}"/>
                 </div>
             </div>
             <div class="panel panel-primary">
@@ -72,6 +67,8 @@
                             <f:selectItem itemLabel="Selecione"/>
                             <f:selectItems value="#{factoryUtil.UFs}" var="_UF" itemLabel="#{_UF.nome}"/>
                         </sie:selectOneMenu>
+                    </div>
+                    <div class="row">
                         <sie:inputText label="#{msg['label.endereco']}"
                                        required="#{param['validateForm']}"
                                        value="#{cadastroController.usuario.endereco.endereco}"/>
@@ -81,8 +78,9 @@
                         <sie:inputText label="#{msg['label.numero']}"
                                        required="#{param['validateForm']}"
                                        value="#{cadastroController.usuario.endereco.numero}"/>
+                    </div>
+                    <div class="row">
                         <sie:inputText label="#{msg['label.complemento']}"
-                                       required="#{param['validateForm']}"
                                        value="#{cadastroController.usuario.endereco.complemento}"/>
                     </div>
                 </div>

@@ -18,7 +18,7 @@
 </composite:interface>
 <composite:implementation>
     <h:panelGroup rendered="#{not cc.attrs.ajax}">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <div class="form-group #{component.children[2].valid ? '' : 'has-error'}">
                 <h:outputLabel value="#{cc.attrs.label}:" styleClass="control-label"/>
                 <h:inputText label="#{cc.attrs.label}" styleClass="form-control #{cc.attrs.styleClass}"
@@ -27,12 +27,11 @@
                     <f:converter for="inputText" converterId="#{cc.attrs.converterId}"/>
                     <composite:insertChildren/>
                 </h:inputText>
-                <h:message for="inputText"/>
             </div>
         </div>
     </h:panelGroup>
     <h:panelGroup rendered="#{cc.attrs.ajax}">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <div class="form-group #{component.children[2].valid ? '' : 'has-error'}">
                 <h:outputLabel value="#{cc.attrs.label}:" styleClass="control-label"/>
                 <h:inputText label="#{cc.attrs.label}" styleClass="form-control #{cc.attrs.styleClass}"
@@ -43,7 +42,6 @@
                     <f:converter for="inputTextAjax" converterId="#{cc.attrs.converterId}"/>
                     <composite:insertChildren/>
                 </h:inputText>
-                <h:message for="inputTextAjax"/>
             </div>
         </div>
     </h:panelGroup>

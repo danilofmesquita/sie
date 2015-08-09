@@ -3,16 +3,9 @@ package br.iesb.sie.entidade;
 import br.iesb.sie.model.TipoPessoa;
 
 import javax.persistence.*;
-import javax.validation.constraints.Past;
-import java.nio.charset.Charset;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Entity
 public class Usuario {
@@ -40,7 +33,6 @@ public class Usuario {
     @Column
     private String razaoSocial;
 
-    @Past
     @Column
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
@@ -51,8 +43,8 @@ public class Usuario {
     @Column
     private String senha;
 
-    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
+    @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -152,13 +144,7 @@ public class Usuario {
     }
 
     public void setSenha(String senha) {
-        try {
-            MessageDigest ms = MessageDigest.getInstance("SHA-256");
-            byte[] digest = ms.digest(senha.getBytes(Charset.forName("UTF-8")));
-            this.senha = Base64.getEncoder().encodeToString(digest);
-        } catch (NoSuchAlgorithmException e) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, e.getMessage());
-        }
+        this.senha = senha;
     }
 
     public String getNomeCompletoPai() {

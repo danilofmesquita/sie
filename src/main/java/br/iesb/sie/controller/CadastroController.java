@@ -36,7 +36,7 @@ public class CadastroController implements Serializable {
         adicionarTelefone();
     }
 
-    public void carregarEnderecoPorCEP(){
+    public void carregarEnderecoPorCEP() {
         usuario.setEndereco(cepService.buscarEnderecoPorCEP(usuario.getEndereco().getCep()));
     }
 
@@ -49,7 +49,7 @@ public class CadastroController implements Serializable {
         return NavigationRules.CADASTRO_CONCLUIDO;
     }
 
-    public void limpar(){
+    public void limpar() {
         init();
     }
 
