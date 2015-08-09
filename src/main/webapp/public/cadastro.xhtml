@@ -23,6 +23,7 @@
                     </sie:ajaxSelectOneMenu>
                     <h:panelGroup rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
                         <sie:inputText label="#{msg['label.cpf']}" styleClass="cpf"
+                                       converterId="sie.converter.number"
                                        value="#{cadastroController.usuario.cpfCnpj}"/>
                         <sie:inputText label="#{msg['label.nome.completo']}"
                                        required="#{param['validateForm']}"
@@ -40,6 +41,7 @@
                     </h:panelGroup>
                     <h:panelGroup rendered="#{cadastroController.usuario.tipoPessoa.juridica}">
                         <sie:inputText label="#{msg['label.cnpj']}" styleClass="cnpj"
+                                       converterId="sie.converter.number"
                                        required="#{param['validateForm']}"
                                        value="#{cadastroController.usuario.cpfCnpj}"/>
                         <sie:inputText label="#{msg['label.razao.social']}"
@@ -55,7 +57,7 @@
                 <div class="panel-heading bold" jsf:id="endereco">Endereço</div>
                 <div class="panel-body">
                     <div class="row">
-                        <sie:inputText label="#{msg['label.cep']}" styleClass="cep" converterId="sie.converter.integer"
+                        <sie:inputText label="#{msg['label.cep']}" styleClass="cep" converterId="sie.converter.number"
                                        required="#{param['validateForm']}" render="@form" execute="@form"
                                        actionListener="#{cadastroController.carregarEnderecoPorCEP}" ajax="true"
                                        value="#{cadastroController.usuario.endereco.cep}"/>
@@ -91,9 +93,13 @@
                     <div class="row">
                         <sie:inputText label="#{msg['label.telefone.principal']}"
                                        required="#{param['validateForm']}"
+                                       styleClass="telefone"
+                                       converterId="sie.converter.number"
                                        value="#{cadastroController.usuario.telefones[0].numero}"/>
                         <sie:inputText label="#{msg['label.telefone.alternativo']}"
                                        required="#{param['validateForm']}"
+                                       converterId="sie.converter.number"
+                                       styleClass="telefone"
                                        value="#{cadastroController.usuario.telefones[1].numero}"/>
                     </div>
                 </div>

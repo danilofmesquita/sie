@@ -10,7 +10,7 @@ public class Telefone {
     private Long id;
 
     @Column
-    private Integer numero;
+    private Long numero;
 
     @ManyToOne
     @JoinColumn
@@ -24,11 +24,11 @@ public class Telefone {
         this.id = id;
     }
 
-    public Integer getNumero() {
+    public Long getNumero() {
         return numero;
     }
 
-    public void setNumero(Integer numero) {
+    public void setNumero(Long numero) {
         this.numero = numero;
     }
 

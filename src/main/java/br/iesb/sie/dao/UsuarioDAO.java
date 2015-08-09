@@ -19,7 +19,7 @@ public class UsuarioDAO extends BaseDAO<Usuario, Long> {
         if (login != null) {
             return (Integer) login;
         } else {
-            return null;
+            return 0;
         }
     }
 
