@@ -109,15 +109,20 @@ public class BootstrapMessagesRenderer extends MessagesRenderer {
         ResponseWriter writer = facesContext.getResponseWriter();
 
         String alertSeverityClass = "";
+        String srOnlySeverityMessage = "";
 
         if (FacesMessage.SEVERITY_INFO.equals(severity)) {
             alertSeverityClass = "alert-info";
+            srOnlySeverityMessage = "Info:";
         } else if (FacesMessage.SEVERITY_WARN.equals(severity)) {
             alertSeverityClass = "alert-warning"; // Default alert is a warning
+            srOnlySeverityMessage = "Alerta:";
         } else if (FacesMessage.SEVERITY_ERROR.equals(severity)) {
             alertSeverityClass = "alert-danger";
+            srOnlySeverityMessage = "Error:";
         } else if (FacesMessage.SEVERITY_FATAL.equals(severity)) {
             alertSeverityClass = "alert-danger";
+            srOnlySeverityMessage = "Error:";
         }
 
         alertSeverityClass += " fade in";
@@ -131,13 +136,18 @@ public class BootstrapMessagesRenderer extends MessagesRenderer {
         writer.write("&times;");
         writer.endElement("a");
 
-        writer.startElement("ul", null);
-
         for (FacesMessage msg : messages) {
             String summary = msg.getSummary() != null ? msg.getSummary() : "";
             String detail = msg.getDetail() != null ? msg.getDetail() : summary;
 
-            writer.startElement("li", component);
+            writer.startElement("span", component);
+            writer.writeAttribute("class", "fa fa-exclamation", "class");
+            writer.endElement("span");
+
+            writer.startElement("span", component);
+            writer.writeAttribute("class", "sr-only", "class");
+            writer.write(srOnlySeverityMessage);
+            writer.endElement("span");
 
             if (uiMessages.isShowSummary()) {
                 writer.startElement("strong", component);
@@ -148,11 +158,10 @@ public class BootstrapMessagesRenderer extends MessagesRenderer {
             if (uiMessages.isShowDetail()) {
                 writer.writeText(" " + detail, null);
             }
-
-            writer.endElement("li");
+            writer.write("<br />");
             msg.rendered();
         }
-        writer.endElement("ul");
+
         writer.endElement("div");
     }
 }
