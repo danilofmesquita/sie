@@ -48,11 +48,14 @@ public class UsuarioService {
         return usuarioDAO.buscarUsuarioPorLogin(login);
     }
 
-    public void atualizarSenha(Long idUsuario, String senhaAnterior, String novaSenha) {
-        Usuario usuario = usuarioDAO.get(idUsuario);
+    public Integer atualizarSenha(Usuario usuario, String senhaAnterior, String novaSenha) {
         if (usuario.getSenha().equals(senhaService.codificarSenha(senhaAnterior))) {
             usuario.setSenha(senhaService.codificarSenha(novaSenha));
+            usuarioDAO.salvar(usuario);
+            return 1;
         }
+
+        return -1;
     }
 
 }

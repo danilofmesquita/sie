@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+<!DOCTYPE fragment  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-</f:view>
-</html>
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:sie="http://java.sun.com/jsf/composite/sie"
+             xmlns:ui="http://java.sun.com/jsf/facelets">
+    <br/>
+    <h:messages/>
+    <h:form>
+        <div class="row">
+            <div class="col-sm-4">
+                <sie:inputSecret label="Senha Anterior"
+                                 value="#{alterarSenhaController.senhaAnterior}"
+                                 required="#{param['validateAlterarSenha']}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <sie:inputSecret label="Nova Senha"
+                                 value="#{alterarSenhaController.novaSenha}"
+                                 required="#{param['validateAlterarSenha']}"/>
+            </div>
+        </div>
+        <h:commandButton value="Salvar" styleClass="btn btn-primary pull-right btn-margin-left"
+                         action="#{alterarSenhaController.salvar}">
+            <f:param name="validateAlterarSenha" value="true"/>
+        </h:commandButton>
+    </h:form>
+</ui:fragment>
