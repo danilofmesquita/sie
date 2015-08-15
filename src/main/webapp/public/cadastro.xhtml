@@ -15,62 +15,80 @@
             <div class="panel panel-primary">
                 <div class="panel-heading bold">Dados Gerais</div>
                 <div class="panel-body">
-                    <div class="col-sm-4">
-                        <sie:ajaxSelectOneMenu id="tipoPessoa" value="#{cadastroController.usuario.tipoPessoa}"
-                                               render="@form" label="#{msg['label.tipo.pessoa']}" execute="@this"
-                                               required="#{param['validateForm']}">
-                            <f:selectItem itemLabel="Selecione"/>
-                            <f:selectItems value="#{factoryUtil.tiposPessoa}" var="tp"
-                                           itemLabel="#{tp.descricao}"/>
-                        </sie:ajaxSelectOneMenu>
-                    </div>
-
-                    <h:panelGroup rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
+                    <div class="row">
                         <div class="col-sm-4">
+                            <sie:ajaxSelectOneMenu id="tipoPessoa" value="#{cadastroController.usuario.tipoPessoa}"
+                                                   render="@form" label="#{msg['label.tipo.pessoa']}" execute="@this"
+                                                   required="#{param['validateForm']}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{factoryUtil.tiposPessoa}" var="tp"
+                                               itemLabel="#{tp.descricao}"/>
+                            </sie:ajaxSelectOneMenu>
+                        </div>
+                        <div class="col-sm-4" jsf:rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
                             <sie:inputText label="#{msg['label.cpf']}" styleClass="cpf"
                                            converterId="sie.converter.number"
                                            value="#{cadastroController.usuario.cpfCnpj}"/>
                         </div>
-                        <div class="col-sm-4">
-                            <sie:inputText label="#{msg['label.nome.completo']}"
-                                           required="#{param['validateForm']}"
-                                           value="#{cadastroController.usuario.nomeCompleto}"/>
-                        </div>
-                        <div class="col-sm-4">
-                            <sie:inputText label="#{msg['label.nome.completo.mae']}"
-                                           required="#{param['validateForm']}"
-                                           value="#{cadastroController.usuario.nomeCompletoMae}"/>
-                        </div>
-                        <div class="col-sm-4">
-                            <sie:inputText label="#{msg['label.nome.completo.pai']}"
-                                           required="#{param['validateForm']}"
-                                           value="#{cadastroController.usuario.nomeCompletoPai}"/>
-                        </div>
-                        <div class="col-sm-4">
-                            <sie:inputDate label="#{msg['label.data.nascimento']}"
-                                           required="#{param['validateForm']}"
-                                           value="#{cadastroController.usuario.dataNascimento}"/>
-                        </div>
-                    </h:panelGroup>
-                    <h:panelGroup rendered="#{cadastroController.usuario.tipoPessoa.juridica}">
-                        <div class="col-sm-4">
+                        <div class="col-sm-4" jsf:rendered="#{cadastroController.usuario.tipoPessoa.juridica}">
                             <sie:inputText label="#{msg['label.cnpj']}" styleClass="cnpj"
                                            converterId="sie.converter.number"
                                            required="#{param['validateForm']}"
                                            value="#{cadastroController.usuario.cpfCnpj}"/>
                         </div>
-                        <div class="col-sm-4">
-                            <sie:inputText label="#{msg['label.razao.social']}"
-                                           required="#{param['validateForm']}"
-                                           value="#{cadastroController.usuario.razaoSocial}"/>
+                    </div>
+
+                    <h:panelGroup rendered="#{cadastroController.usuario.tipoPessoa.fisica}">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <sie:inputText label="#{msg['label.nome.completo']}"
+                                               required="#{param['validateForm']}"
+                                               value="#{cadastroController.usuario.nomeCompleto}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <sie:inputText label="#{msg['label.nome.completo.mae']}"
+                                               required="#{param['validateForm']}"
+                                               value="#{cadastroController.usuario.nomeCompletoMae}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <sie:inputText label="#{msg['label.nome.completo.pai']}"
+                                               required="#{param['validateForm']}"
+                                               value="#{cadastroController.usuario.nomeCompletoPai}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <sie:inputDate label="#{msg['label.data.nascimento']}"
+                                               required="#{param['validateForm']}"
+                                               value="#{cadastroController.usuario.dataNascimento}"/>
+                            </div>
+                            <div class="col-sm-8">
+                                <sie:inputText label="#{msg['label.email']}"
+                                               required="#{param['validateForm']}"
+                                               value="#{cadastroController.usuario.email}"/>
+                            </div>
                         </div>
                     </h:panelGroup>
-
-                    <div class="col-sm-4">
-                        <sie:inputText label="#{msg['label.email']}"
-                                       required="#{param['validateForm']}"
-                                       value="#{cadastroController.usuario.email}"/>
-                    </div>
+                    <h:panelGroup rendered="#{cadastroController.usuario.tipoPessoa.juridica}">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <sie:inputText label="#{msg['label.razao.social']}"
+                                               required="#{param['validateForm']}"
+                                               value="#{cadastroController.usuario.razaoSocial}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <sie:inputText label="#{msg['label.email']}"
+                                               required="#{param['validateForm']}"
+                                               value="#{cadastroController.usuario.email}"/>
+                            </div>
+                        </div>
+                    </h:panelGroup>
                 </div>
             </div>
             <div class="panel panel-primary">

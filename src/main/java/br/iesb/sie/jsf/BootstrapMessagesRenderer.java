@@ -141,7 +141,6 @@ public class BootstrapMessagesRenderer extends MessagesRenderer {
             String detail = msg.getDetail() != null ? msg.getDetail() : summary;
 
             writer.startElement("span", component);
-            writer.writeAttribute("class", "fa fa-exclamation", "class");
             writer.endElement("span");
 
             writer.startElement("span", component);

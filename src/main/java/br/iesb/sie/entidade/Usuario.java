@@ -170,4 +170,11 @@ public class Usuario {
     public void setLogin(Integer login) {
         this.login = login;
     }
+
+    public String getPrimeiroNome(){
+        if(nomeCompleto != null){
+            return nomeCompleto.substring(0, nomeCompleto.indexOf(" "));
+        }
+        return null;
+    }
 }
