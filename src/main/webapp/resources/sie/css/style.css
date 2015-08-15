@@ -2,8 +2,8 @@ body, html {
     background-color: #FCFDFE;
 }
 
-.navbar-static-top {
-    margin-bottom: 19px;
+body {
+  padding-top: 70px;
 }
 
 .btn-margin-left {
