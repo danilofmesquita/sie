@@ -3,7 +3,7 @@ package br.iesb.sie.entidade;
 import javax.persistence.*;
 
 @Entity
-public class Perfil {
+public class Perfil extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

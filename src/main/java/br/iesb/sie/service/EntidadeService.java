@@ -1,18 +1,18 @@
 package br.iesb.sie.service;
 
 import br.iesb.sie.dao.PerfilDAO;
-import br.iesb.sie.dao.UsuarioDAO;
+import br.iesb.sie.dao.EntidadeDAO;
 import br.iesb.sie.dto.EmailCadastroConcluidoDTO;
-import br.iesb.sie.entidade.Usuario;
+import br.iesb.sie.entidade.Entidade;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 @Stateless
-public class UsuarioService {
+public class EntidadeService {
 
     @Inject
-    private UsuarioDAO usuarioDAO;
+    private EntidadeDAO entidadeDAO;
 
     @Inject
     private SenhaService senhaService;
@@ -23,7 +23,7 @@ public class UsuarioService {
     @Inject
     private PerfilDAO perfilDAO;
 
-    public void criarNovoUsuaro(Usuario u) {
+    public void criarNovoUsuaro(Entidade u) {
 
         String senha = senhaService.criarNovaSenha();
 
@@ -35,23 +35,23 @@ public class UsuarioService {
             u.getPerfis().add(perfilDAO.buscarPerfil("ESCOLA"));
         }
 
-        usuarioDAO.salvar(u);
+        entidadeDAO.salvar(u);
 
         emailService.enviarEmail(new EmailCadastroConcluidoDTO(u, senha));
     }
 
     private Integer criarNovoLogin() {
-        return usuarioDAO.buscarUltimoLogin() + 1;
+        return entidadeDAO.buscarUltimoLogin() + 1;
     }
 
-    public Usuario buscarUsuarioPorLogin(String login) {
-        return usuarioDAO.buscarUsuarioPorLogin(login);
+    public Entidade buscarEntidadePorLogin(String login) {
+        return entidadeDAO.buscarEntidadePorLogin(login);
     }
 
-    public Integer atualizarSenha(Usuario usuario, String senhaAnterior, String novaSenha) {
-        if (usuario.getSenha().equals(senhaService.codificarSenha(senhaAnterior))) {
-            usuario.setSenha(senhaService.codificarSenha(novaSenha));
-            usuarioDAO.salvar(usuario);
+    public Integer atualizarSenha(Entidade entidade, String senhaAnterior, String novaSenha) {
+        if (entidade.getSenha().equals(senhaService.codificarSenha(senhaAnterior))) {
+            entidade.setSenha(senhaService.codificarSenha(novaSenha));
+            entidadeDAO.salvar(entidade);
             return 1;
         }
 

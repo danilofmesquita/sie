@@ -1,14 +1,15 @@
 package br.iesb.sie.dao;
 
+import br.iesb.sie.entidade.BaseEntity;
 import org.hibernate.Session;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.io.Serializable;
 
-public class BaseDAO<T, ID extends Serializable> {
+public class BaseDAO<T extends BaseEntity, ID extends Serializable> {
 
-    private Class<T> clazz;
+    private final Class<T> clazz;
 
     @PersistenceContext(name = "sie-pu")
     private EntityManager em;

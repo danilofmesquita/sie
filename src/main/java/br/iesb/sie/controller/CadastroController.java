@@ -2,50 +2,49 @@ package br.iesb.sie.controller;
 
 import br.iesb.sie.entidade.Endereco;
 import br.iesb.sie.entidade.Telefone;
-import br.iesb.sie.entidade.Usuario;
+import br.iesb.sie.entidade.Entidade;
 import br.iesb.sie.service.CEPService;
-import br.iesb.sie.service.UsuarioService;
+import br.iesb.sie.service.EntidadeService;
 import br.iesb.sie.util.NavigationRules;
 
-import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.io.Serializable;
 import java.util.ArrayList;
+import javax.annotation.PostConstruct;
 
 @Named
 @ViewScoped
-public class CadastroController implements Serializable {
+public class CadastroController extends BaseController {
 
     @Inject
-    private UsuarioService usuarioService;
+    private EntidadeService entidadeService;
 
     @Inject
     private CEPService cepService;
 
-    private Usuario usuario;
+    private Entidade entidade;
 
     @PostConstruct
-    private void init() {
-        usuario = new Usuario();
-        usuario.setEndereco(new Endereco());
-        usuario.setTelefones(new ArrayList<>());
-        usuario.getTelefones().add(new Telefone());
-        usuario.getTelefones().add(new Telefone());
+    public void init() {
+        entidade = new Entidade();
+        entidade.setEndereco(new Endereco());
+        entidade.setTelefones(new ArrayList<>());
+        entidade.getTelefones().add(new Telefone());
+        entidade.getTelefones().add(new Telefone());
         adicionarTelefone();
     }
 
     public void carregarEnderecoPorCEP() {
-        usuario.setEndereco(cepService.buscarEnderecoPorCEP(usuario.getEndereco().getCep()));
+        entidade.setEndereco(cepService.buscarEnderecoPorCEP(entidade.getEndereco().getCep()));
     }
 
     public void adicionarTelefone() {
-        usuario.getTelefones().add(new Telefone());
+        entidade.getTelefones().add(new Telefone());
     }
 
     public String salvar() {
-        usuarioService.criarNovoUsuaro(usuario);
+        entidadeService.criarNovoUsuaro(entidade);
         return NavigationRules.CADASTRO_CONCLUIDO;
     }
 
@@ -53,11 +52,11 @@ public class CadastroController implements Serializable {
         init();
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Entidade getEntidade() {
+        return entidade;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setEntidade(Entidade entidade) {
+        this.entidade = entidade;
     }
 }

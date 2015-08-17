@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Usuario {
+public class Entidade extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,13 +47,15 @@ public class Usuario {
     @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "entidade", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Telefone> telefones = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "PerfilUsuario",
-            joinColumns = {@JoinColumn(name = "usuario")},
-            inverseJoinColumns = {@JoinColumn(name = "perfil")})
+    @JoinTable(name = "PerfilEntidade",
+            joinColumns = {
+                @JoinColumn(name = "entidade")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "perfil")})
     private List<Perfil> perfis = new ArrayList<>();
 
     @Column
@@ -171,8 +173,8 @@ public class Usuario {
         this.login = login;
     }
 
-    public String getPrimeiroNome(){
-        if(nomeCompleto != null){
+    public String getPrimeiroNome() {
+        if (nomeCompleto != null) {
             return nomeCompleto.substring(0, nomeCompleto.indexOf(" "));
         }
         return null;

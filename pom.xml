@@ -18,13 +18,13 @@
         <dependency>
             <groupId>com.sun.faces</groupId>
             <artifactId>jsf-impl</artifactId>
-            <version>2.2.11</version>
+            <version>${jsf.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>4.3.10.Final</version>
+            <version>${hibernate.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -41,4 +41,27 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <id>wildfly-8.2.1</id>
+            <properties>
+                <jsf.version>2.2.8</jsf.version>
+                <hibernate.version>4.3.7.Final</hibernate.version>
+            </properties>
+        </profile>
+        <profile>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <id>wildfly-9.0.1</id>
+            <properties>
+                <jsf.version>2.2.11</jsf.version>
+                <hibernate.version>4.3.10.Final</hibernate.version>
+            </properties>
+        </profile>
+                
+    </profiles>
 </project>

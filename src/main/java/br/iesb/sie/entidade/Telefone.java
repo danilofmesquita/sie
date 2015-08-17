@@ -3,7 +3,7 @@ package br.iesb.sie.entidade;
 import javax.persistence.*;
 
 @Entity
-public class Telefone {
+public class Telefone extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +14,7 @@ public class Telefone {
 
     @ManyToOne
     @JoinColumn
-    private Usuario usuario;
+    private Entidade entidade;
 
     public Long getId() {
         return id;
@@ -32,11 +32,11 @@ public class Telefone {
         this.numero = numero;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Entidade getEntidade() {
+        return entidade;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setEntidade(Entidade entidade) {
+        this.entidade = entidade;
     }
 }

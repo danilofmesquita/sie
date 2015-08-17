@@ -1,8 +1,8 @@
 package br.iesb.sie.bean;
 
 import br.iesb.sie.controller.BaseController;
-import br.iesb.sie.entidade.Usuario;
-import br.iesb.sie.service.UsuarioService;
+import br.iesb.sie.entidade.Entidade;
+import br.iesb.sie.service.EntidadeService;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
@@ -10,15 +10,15 @@ import javax.servlet.http.HttpSession;
 import java.security.Principal;
 
 @Model
-public class UsuarioLogadoController extends BaseController {
+public class EntidadeLogadaController extends BaseController {
 
     @Inject
-    private UsuarioService usuarioService;
+    private EntidadeService entidadeService;
 
-    public Usuario getUsuario() {
+    public Entidade getEntidade() {
         Principal userPrincipal = getFacesContext().getExternalContext().getUserPrincipal();
         if (userPrincipal != null) {
-            return usuarioService.buscarUsuarioPorLogin(userPrincipal.getName());
+            return entidadeService.buscarEntidadePorLogin(userPrincipal.getName());
         } else {
             return null;
         }
