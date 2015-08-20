@@ -155,7 +155,7 @@
                     <driver>mysql</driver>
                     <security>
                         <user-name>root</user-name>
-                        <password></password>
+                        <password>qwe123</password>
                     </security>
                 </datasource>
                 <drivers>
@@ -353,8 +353,8 @@
                     <authentication>
                         <login-module code="Database" flag="required">
                             <module-option name="dsJndiName" value="java:jboss/datasources/SieDS"/>
-                            <module-option name="principalsQuery" value="select senha from sie.entidade where login=?"/>
-                            <module-option name="rolesQuery" value="select p.nome, 'Roles' from sie.perfil p inner join sie.perfilEntidade pe on pe.perfil = p.id  inner join sie.Entidade e on pu.entidade = u.id where u.login = ?"/>
+                            <module-option name="principalsQuery" value="select senha from SIE.Entidade where login=?"/>
+                            <module-option name="rolesQuery" value="select p.nome, 'Roles' from SIE.Perfil p inner join SIE.PerfilEntidade pe on pe.perfil = p.id  inner join SIE.Entidade e on pe.entidade = e.id where e.login = ?"/>
                             <module-option name="hashAlgorithm" value="SHA-256"/>
                             <module-option name="hashEncoding" value="base64"/>
                         </login-module>
@@ -432,4 +432,5 @@
             <remote-destination host="smtp.gmail.com" port="465"/>
         </outbound-socket-binding>
     </socket-binding-group>
+
 </server>

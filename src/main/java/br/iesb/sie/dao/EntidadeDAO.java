@@ -32,7 +32,7 @@ public class EntidadeDAO extends BaseDAO<Entidade, Long> {
 
         StringBuilder hql = new StringBuilder();
 
-        hql.append(" select e.login ");
+        hql.append(" select e  ");
         hql.append(" from ").append(Entidade.class.getName()).append(" e ");
         hql.append(" where e.login = :login ");
 
