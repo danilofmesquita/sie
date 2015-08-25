@@ -8,7 +8,6 @@
     <composite:attribute name="required"/>
     <composite:attribute name="label"/>
     <composite:attribute name="value"/>
-    <composite:attribute name="converter" default="sie.converter.default"/>
 </composite:interface>
 <composite:implementation>
     <div class="form-group #{component.children[2].valid ? '' : 'has-error'}">
@@ -16,7 +15,6 @@
         <h:selectOneMenu id="selectOneMenu" value="#{cc.attrs.value}" styleClass="form-control"
                          required="#{cc.attrs.required}" label="#{cc.attrs.label}">
             <composite:insertChildren/>
-            <f:converter converterId="#{cc.attrs.converter}"/>
         </h:selectOneMenu>
     </div>
 </composite:implementation>

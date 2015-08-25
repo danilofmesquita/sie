@@ -78,8 +78,7 @@
                                 <sie:selectManyMenu label="Perfil" value="#{cadastroController.entidade.perfis}"
                                                     style="height: 80px;" required="true"
                                                     converter="br.sie.perfilConverter">
-                                    <f:selectItem itemLabel="Selecione"/>
-                                    <f:selectItems value="#{factoryUtil.perfisCPF}" var="_p"/>
+                                    <f:selectItems value="#{factoryUtil.perfisCPF}" var="_p" itemLabel="#{_p.nomeMF}"/>
                                 </sie:selectManyMenu>
                             </div>
                         </div>
