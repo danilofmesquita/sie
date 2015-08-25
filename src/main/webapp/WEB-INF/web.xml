@@ -39,12 +39,6 @@
     <security-role>
         <role-name>ESCOLA</role-name>
     </security-role>
-    <security-role>
-        <role-name>USUARIO</role-name>
-    </security-role>
-    <security-role>
-        <role-name>ADMINISTRADOR</role-name>
-    </security-role>
 
     <security-constraint>
         <web-resource-collection>
@@ -52,7 +46,10 @@
             <url-pattern>/view/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>USUARIO</role-name>
+            <role-name>ALUNO</role-name>
+            <role-name>ESCOLA</role-name>
+            <role-name>PROFESSOR</role-name>
+            <role-name>SECRETARIA</role-name>
         </auth-constraint>
     </security-constraint>
     <login-config>

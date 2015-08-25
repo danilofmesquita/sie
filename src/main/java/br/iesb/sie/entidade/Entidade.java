@@ -1,5 +1,6 @@
 package br.iesb.sie.entidade;
 
+import br.iesb.sie.model.Perfil;
 import br.iesb.sie.model.TipoPessoa;
 
 import javax.persistence.*;
@@ -50,12 +51,11 @@ public class Entidade extends BaseEntity {
     @OneToMany(mappedBy = "entidade", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Telefone> telefones = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(name = "PerfilEntidade",
-            joinColumns = {
-                @JoinColumn(name = "entidade")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "perfil")})
+    @Column(name = "nomePerfil")
+    @Enumerated(EnumType.STRING)
+    @ElementCollection(targetClass = Perfil.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "PerfilEntidade",
+            joinColumns = @JoinColumn(name = "idEntidade"))
     private List<Perfil> perfis = new ArrayList<>();
 
     @Column
@@ -175,8 +175,19 @@ public class Entidade extends BaseEntity {
 
     public String getPrimeiroNome() {
         if (nomeCompleto != null) {
-            return nomeCompleto.substring(0, nomeCompleto.indexOf(" "));
+            if (nomeCompleto.contains(" ")) {
+                return nomeCompleto.substring(0, nomeCompleto.indexOf(" "));
+            } else {
+                return nomeCompleto;
+            }
+        } else if (razaoSocial != null) {
+            if (razaoSocial.contains(" ")) {
+                return razaoSocial.substring(0, razaoSocial.indexOf(" "));
+            } else {
+                return razaoSocial;
+            }
         }
+
         return null;
     }
 }

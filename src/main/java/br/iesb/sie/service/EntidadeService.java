@@ -1,12 +1,13 @@
 package br.iesb.sie.service;
 
-import br.iesb.sie.dao.PerfilDAO;
 import br.iesb.sie.dao.EntidadeDAO;
 import br.iesb.sie.dto.EmailCadastroConcluidoDTO;
 import br.iesb.sie.entidade.Entidade;
+import br.iesb.sie.model.Perfil;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.List;
 
 @Stateless
 public class EntidadeService {
@@ -20,8 +21,6 @@ public class EntidadeService {
     @Inject
     private EmailService emailService;
 
-    @Inject
-    private PerfilDAO perfilDAO;
 
     public void criarNovoUsuaro(Entidade u) {
 
@@ -29,11 +28,6 @@ public class EntidadeService {
 
         u.setSenha(senhaService.codificarSenha(senha));
         u.setLogin(criarNovoLogin());
-        u.getPerfis().add(perfilDAO.buscarPerfil("USUARIO"));
-
-        if (u.getTipoPessoa().isJuridica()) {
-            u.getPerfis().add(perfilDAO.buscarPerfil("ESCOLA"));
-        }
 
         entidadeDAO.salvar(u);
 

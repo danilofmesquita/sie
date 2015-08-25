@@ -1,5 +1,6 @@
 package br.iesb.sie.util;
 
+import br.iesb.sie.model.Perfil;
 import br.iesb.sie.model.TipoPessoa;
 import br.iesb.sie.model.UF;
 
@@ -14,7 +15,15 @@ public class FactoryUtil {
         return Arrays.asList(TipoPessoa.values());
     }
 
-    public List<UF> getUFs(){
+    public List<UF> getUFs() {
         return Arrays.asList(UF.values());
+    }
+
+    public List<Perfil> getPerfisCPF() {
+        return Arrays.asList(Perfil.ALUNO, Perfil.PROFESSOR, Perfil.SECRETARIA);
+    }
+
+    public List<Perfil> getPerfisCNPJ() {
+        return Arrays.asList(Perfil.ESCOLA);
     }
 }

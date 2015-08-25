@@ -1,6 +1,6 @@
 package br.iesb.sie.controller;
 
-import br.iesb.sie.bean.EntidadeLogadaController;
+import br.iesb.sie.bean.UsuarioLogado;
 import br.iesb.sie.service.EntidadeService;
 
 import javax.faces.view.ViewScoped;
@@ -15,14 +15,14 @@ public class AlterarSenhaController extends BaseController {
     private EntidadeService entidadeService;
 
     @Inject
-    private EntidadeLogadaController entidadeLogadaController;
+    private UsuarioLogado usuarioLogado;
 
     private String senhaAnterior;
 
     private String novaSenha;
 
     public void salvar() {
-        Integer status = entidadeService.atualizarSenha(entidadeLogadaController.getEntidade(), senhaAnterior, novaSenha);
+        Integer status = entidadeService.atualizarSenha(usuarioLogado.getEntidade(), senhaAnterior, novaSenha);
         if (status > 0) {
             addInfoMessage("Senha atualizada com sucesso.");
         } else {

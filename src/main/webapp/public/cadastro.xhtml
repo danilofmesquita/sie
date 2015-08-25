@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -39,6 +39,7 @@
                     </div>
 
                     <h:panelGroup rendered="#{cadastroController.entidade.tipoPessoa.fisica}">
+
                         <div class="row">
                             <div class="col-sm-12">
                                 <sie:inputText label="#{msg['label.nome.completo']}"
@@ -72,6 +73,16 @@
                                                value="#{cadastroController.entidade.email}"/>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <sie:selectManyMenu label="Perfil" value="#{cadastroController.entidade.perfis}"
+                                                    style="height: 80px;" required="true"
+                                                    converter="br.sie.perfilConverter">
+                                    <f:selectItem itemLabel="Selecione"/>
+                                    <f:selectItems value="#{factoryUtil.perfisCPF}" var="_p"/>
+                                </sie:selectManyMenu>
+                            </div>
+                        </div>
                     </h:panelGroup>
                     <h:panelGroup rendered="#{cadastroController.entidade.tipoPessoa.juridica}">
                         <div class="row">
@@ -88,9 +99,20 @@
                                                value="#{cadastroController.entidade.email}"/>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <sie:selectManyMenu label="Perfil" value="#{cadastroController.entidade.perfis}"
+                                                    converter="br.sie.perfilConverter"
+                                                    required="#{param['validateForm']}" style="height: 30px;">
+                                    <f:selectItems value="#{factoryUtil.perfisCNPJ}" var="_p" itemLabel="#{_p.nomeMF}"
+                                                   itemValue="#{_p}"/>
+                                </sie:selectManyMenu>
+                            </div>
+                        </div>
                     </h:panelGroup>
                 </div>
             </div>
+
             <div class="panel panel-primary">
                 <div class="panel-heading bold" jsf:id="endereco">Endereço</div>
                 <div class="panel-body">

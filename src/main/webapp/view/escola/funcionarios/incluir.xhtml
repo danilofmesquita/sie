@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:sie="http://java.sun.com/jsf/composite/sie" xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf"
+                template="/template/common/template.xhtml">
+    <ui:define name="body">
+        <h:form>
+            <div class="panel panel-default">
+                <div class="panel-heading">Funcionarios</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-4" jsf:rendered="false">
+                            <sie:selectOneMenu label="#{msg['label.nome']}"
+                                               value="#{manterFuncionarioController.funcionario.funcionario}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{manterFuncionarioController.funcionario}" var="_func"
+                                               itemLabel="#{_func.nomeCompleto}"/>
+                            </sie:selectOneMenu>
+                        </div>
+                        <div class="col-sm-4">
+                            <sie:selectOneMenu value="#{manterFuncionarioController.funcionario.escola}"
+                                               label="#{msg['label.escola']}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{manterFuncionarioController.escolas}" var="_escola"
+                                               itemLabel="#{_escola.nomeCompleto}"/>
+                            </sie:selectOneMenu>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="check-box">
+                                <label>
+                                    <h:selectBooleanCheckbox
+                                            value="#{manterFuncionarioController.funcionario.vinculoAtivo}"/>
+                                    Ativar Vinculo
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <h:commandButton value="Voltar" styleClass="btn btn-default pull-right btn-margin-left"/>
+                    <h:commandButton value="Salvar" styleClass="btn btn-primary pull-right btn-margin-left"/>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -1,8 +1,10 @@
 package br.iesb.sie.dao;
 
 import br.iesb.sie.entidade.Entidade;
+import br.iesb.sie.model.Perfil;
 
 import javax.inject.Named;
+import java.util.List;
 
 @Named
 public class EntidadeDAO extends BaseDAO<Entidade, Long> {
@@ -38,5 +40,10 @@ public class EntidadeDAO extends BaseDAO<Entidade, Long> {
 
         return (Entidade) getSession().createQuery(hql.toString())
                 .setParameter("login", Integer.valueOf(login)).uniqueResult();
+    }
+
+    public List<Entidade> buscarEscolas() {
+        return getSession().createQuery("select e from Entidade e inner join e.perfis p where p = :escola")
+                .setParameter("escola", Perfil.ESCOLA).list();
     }
 }
