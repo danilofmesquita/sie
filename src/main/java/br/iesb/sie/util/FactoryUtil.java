@@ -26,4 +26,9 @@ public class FactoryUtil {
     public List<Perfil> getPerfisCNPJ() {
         return Arrays.asList(Perfil.ESCOLA);
     }
+
+
+    public List<Perfil> getCargos() {
+        return Arrays.asList(Perfil.PROFESSOR, Perfil.SECRETARIA);
+    }
 }

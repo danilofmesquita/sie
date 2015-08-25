@@ -3,18 +3,20 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:composite="http://java.sun.com/jsf/composite">
+      xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core">
 <composite:interface>
     <composite:attribute name="required"/>
     <composite:attribute name="label"/>
     <composite:attribute name="value"/>
+    <composite:attribute name="converter" default="sie.converter.default"/>
 </composite:interface>
 <composite:implementation>
     <div class="form-group #{component.children[2].valid ? '' : 'has-error'}">
         <h:outputLabel value="#{cc.attrs.label}:" styleClass="control-label"/>
         <h:selectOneMenu id="selectOneMenu" value="#{cc.attrs.value}" styleClass="form-control"
-                         converter="#{cc.attrs.converter}" required="#{cc.attrs.required}" label="#{cc.attrs.label}">
+                         required="#{cc.attrs.required}" label="#{cc.attrs.label}">
             <composite:insertChildren/>
+            <f:converter converterId="#{cc.attrs.converter}"/>
         </h:selectOneMenu>
     </div>
 </composite:implementation>

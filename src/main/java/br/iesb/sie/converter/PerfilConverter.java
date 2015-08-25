@@ -12,12 +12,18 @@ public class PerfilConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
-        return uiComponent.getAttributes().get("perfil");
+        if (s == null || s.equals("Selecione")) {
+            return null;
+        }
+        return uiComponent.getAttributes().get(s);
     }
 
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
-        uiComponent.getAttributes().put("perfil", o);
+        if (o == null) {
+            return null;
+        }
+        uiComponent.getAttributes().put(((Perfil) o).getNomeMF() , o);
         return ((Perfil) o).getNomeMF();
     }
 }

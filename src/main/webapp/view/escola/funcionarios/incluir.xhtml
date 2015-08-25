@@ -12,34 +12,47 @@
                 <div class="panel-heading">Funcionarios</div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-sm-4" jsf:rendered="false">
-                            <sie:selectOneMenu label="#{msg['label.nome']}"
-                                               value="#{manterFuncionarioController.funcionario.funcionario}">
-                                <f:selectItem itemLabel="Selecione"/>
-                                <f:selectItems value="#{manterFuncionarioController.funcionario}" var="_func"
-                                               itemLabel="#{_func.nomeCompleto}"/>
-                            </sie:selectOneMenu>
-                        </div>
                         <div class="col-sm-4">
-                            <sie:selectOneMenu value="#{manterFuncionarioController.funcionario.escola}"
-                                               label="#{msg['label.escola']}">
+                            <sie:ajaxSelectOneMenu label="#{msg['label.cargo']}" render="@form" execute="@this"
+                                                   value="#{manterFuncionarioController.perfil}"
+                                                   converter="br.sie.perfilConverter">
                                 <f:selectItem itemLabel="Selecione"/>
-                                <f:selectItems value="#{manterFuncionarioController.escolas}" var="_escola"
-                                               itemLabel="#{_escola.nomeCompleto}"/>
-                            </sie:selectOneMenu>
+                                <f:selectItems value="#{factoryUtil.cargos}" var="_p" itemLabel="#{_p.nomeMF}"/>
+                            </sie:ajaxSelectOneMenu>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="check-box">
-                                <label>
-                                    <h:selectBooleanCheckbox
-                                            value="#{manterFuncionarioController.funcionario.vinculoAtivo}"/>
-                                    Ativar Vinculo
-                                </label>
+                    <h:panelGroup rendered="#{not empty manterFuncionarioController.perfil}">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <sie:selectOneMenu label="#{msg['label.nome']}"
+                                                   value="#{manterFuncionarioController.funcionario.funcionario}">
+                                    <f:selectItem itemLabel="Selecione"/>
+                                    <!--<f:selectItems value="#{manterFuncionarioController.funcionario}" var="_func"-->
+                                    <!--itemLabel="#{_func.nomeCompleto}" />-->
+                                </sie:selectOneMenu>
+                            </div>
+                            <div class="col-sm-4">
+                                <sie:selectOneMenu value="#{manterFuncionarioController.funcionario.escola}"
+                                                   label="#{msg['label.escola']}">
+                                    <f:selectItem itemLabel="Selecione"/>
+                                    <f:selectItems value="#{manterFuncionarioController.escolas}" var="_escola"
+                                                   itemLabel="#{_escola.razaoSocial}" itemValue="#{_escola}"/>
+                                </sie:selectOneMenu>
                             </div>
                         </div>
-                    </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="check-box">
+                                    <label>
+                                        <h:selectBooleanCheckbox
+                                                value="#{manterFuncionarioController.funcionario.vinculoAtivo}"/>
+                                        Ativar Vinculo
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </h:panelGroup>
                     <h:commandButton value="Voltar" styleClass="btn btn-default pull-right btn-margin-left"/>
                     <h:commandButton value="Salvar" styleClass="btn btn-primary pull-right btn-margin-left"/>
                 </div>

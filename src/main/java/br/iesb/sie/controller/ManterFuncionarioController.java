@@ -29,6 +29,8 @@ public class ManterFuncionarioController extends BaseController {
 
     private Funcionario funcionario;
 
+    private Perfil perfil;
+
     @PostConstruct
     public void init() {
         funcionarios = funcionarioService.buscarFuncionarios();
@@ -68,5 +70,13 @@ public class ManterFuncionarioController extends BaseController {
 
     public void setFuncionarios(List<Entidade> funcionarios) {
         this.funcionarios = funcionarios;
+    }
+
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
     }
 }
