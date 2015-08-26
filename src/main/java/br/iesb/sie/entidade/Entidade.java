@@ -77,14 +77,6 @@ public class Entidade extends BaseEntity {
         this.tipoPessoa = tipoPessoa;
     }
 
-    public String getCpfCnpj() {
-        return cpfCnpj;
-    }
-
-    public void setCpfCnpj(String cpfCnpj) {
-        this.cpfCnpj = cpfCnpj;
-    }
-
     public String getNomeCompleto() {
         return nomeCompleto;
     }
@@ -173,6 +165,14 @@ public class Entidade extends BaseEntity {
         this.login = login;
     }
 
+    public String getCpfCnpj() {
+        return cpfCnpj;
+    }
+
+    public void setCpfCnpj(String cpf) {
+        this.cpfCnpj = cpf;
+    }
+
     public String getPrimeiroNome() {
         if (nomeCompleto != null) {
             if (nomeCompleto.contains(" ")) {
@@ -190,4 +190,5 @@ public class Entidade extends BaseEntity {
 
         return null;
     }
+
 }

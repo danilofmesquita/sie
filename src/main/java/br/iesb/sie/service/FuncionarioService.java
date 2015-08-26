@@ -29,4 +29,8 @@ public class FuncionarioService {
     public List<Entidade> buscarEscolas() {
         return entidadeDAO.buscarEscolas();
     }
+
+    public void salvar(Funcionario funcionario) {
+        funcionarioDAO.salvar(funcionario);
+    }
 }

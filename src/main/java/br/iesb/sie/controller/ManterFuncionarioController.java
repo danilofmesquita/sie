@@ -33,8 +33,10 @@ public class ManterFuncionarioController extends BaseController {
 
     @PostConstruct
     public void init() {
+
         funcionarios = funcionarioService.buscarFuncionarios();
         escolas = funcionarioService.buscarEscolas();
+
         Long id = getFlashAttribute(Attributes.ID);
 
         if (id == null) {
@@ -46,6 +48,12 @@ public class ManterFuncionarioController extends BaseController {
             funcionario = funcionarioService.buscarFuncionario(id);
         }
 
+    }
+
+    public void salvar(){
+        funcionarioService.salvar(funcionario);
+        addInfoMessage("Dados salvos com sucesso!");
+        init();
     }
 
     public Funcionario getFuncionario() {

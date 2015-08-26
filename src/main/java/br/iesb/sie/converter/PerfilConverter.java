@@ -7,7 +7,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter("br.sie.perfilConverter")
+@FacesConverter("sie.converter.perfil")
 public class PerfilConverter implements Converter {
 
     @Override
@@ -15,7 +15,7 @@ public class PerfilConverter implements Converter {
         if (s == null || s.equals("Selecione")) {
             return null;
         }
-        return uiComponent.getAttributes().get(s);
+        return Perfil.valueOf(s);
     }
 
     @Override
@@ -23,7 +23,6 @@ public class PerfilConverter implements Converter {
         if (o == null) {
             return null;
         }
-        uiComponent.getAttributes().put(((Perfil) o).getNomeMF() , o);
-        return ((Perfil) o).getNomeMF();
+        return o.toString();
     }
 }

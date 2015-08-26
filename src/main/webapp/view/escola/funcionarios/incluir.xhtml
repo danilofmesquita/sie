@@ -3,60 +3,63 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:sie="http://java.sun.com/jsf/composite/sie" xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:sie="http://java.sun.com/jsf/composite/sie"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <h:form>
-            <div class="panel panel-default">
-                <div class="panel-heading">Funcionarios</div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <sie:ajaxSelectOneMenu label="#{msg['label.cargo']}" render="@form" execute="@this"
-                                                   value="#{manterFuncionarioController.perfil}"
-                                                   converter="br.sie.perfilConverter">
+            <sie:panel header="Funcionarios">
+                <h:messages/>
+                <sie:row>
+                    <sie:column span="4">
+                        <sie:selectOneMenu id="cargo" label="#{msg['label.cargo']}"
+                                           value="#{manterFuncionarioController.perfil}">
+                            <f:selectItem itemLabel="Selecione"/>
+                            <f:selectItems value="#{factoryUtil.cargos}" var="_p" itemLabel="#{_p.nomeMF}"
+                                           itemValue="#{_p}"/>
+                            <f:ajax event="change" render="@form" execute="@this"/>
+                        </sie:selectOneMenu>
+                    </sie:column>
+                </sie:row>
+                <h:panelGroup rendered="#{not empty manterFuncionarioController.perfil}">
+                    <sie:row>
+                        <sie:column span="4">
+                            <sie:selectOneMenu label="#{msg['label.nome']}"
+                                               value="#{manterFuncionarioController.funcionario.funcionario}">
                                 <f:selectItem itemLabel="Selecione"/>
-                                <f:selectItems value="#{factoryUtil.cargos}" var="_p" itemLabel="#{_p.nomeMF}"/>
-                            </sie:ajaxSelectOneMenu>
-                        </div>
-                    </div>
-                    <h:panelGroup rendered="#{not empty manterFuncionarioController.perfil}">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <sie:selectOneMenu label="#{msg['label.nome']}"
-                                                   value="#{manterFuncionarioController.funcionario.funcionario}">
-                                    <f:selectItem itemLabel="Selecione"/>
-                                    <!--<f:selectItems value="#{manterFuncionarioController.funcionario}" var="_func"-->
-                                    <!--itemLabel="#{_func.nomeCompleto}" />-->
-                                </sie:selectOneMenu>
-                            </div>
-                            <div class="col-sm-4">
-                                <sie:selectOneMenu value="#{manterFuncionarioController.funcionario.escola}"
-                                                   label="#{msg['label.escola']}">
-                                    <f:selectItem itemLabel="Selecione"/>
-                                    <f:selectItems value="#{manterFuncionarioController.escolas}" var="_escola"
-                                                   itemLabel="#{_escola.razaoSocial}" itemValue="#{_escola}"/>
-                                </sie:selectOneMenu>
-                            </div>
-                        </div>
+                                <f:selectItems value="#{manterFuncionarioController.funcionarios}" var="_func"
+                                               itemLabel="#{_func.nomeCompleto}"/>
+                            </sie:selectOneMenu>
+                        </sie:column>
+                        <sie:column span="4">
+                            <sie:selectOneMenu value="#{manterFuncionarioController.funcionario.escola}"
+                                               label="#{msg['label.escola']}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{manterFuncionarioController.escolas}" var="_escola"
+                                               itemLabel="#{_escola.razaoSocial}" itemValue="#{_escola}"/>
+                                <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
+                            </sie:selectOneMenu>
+                        </sie:column>
+                    </sie:row>
 
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="check-box">
-                                    <label>
-                                        <h:selectBooleanCheckbox
-                                                value="#{manterFuncionarioController.funcionario.vinculoAtivo}"/>
-                                        Ativar Vinculo
-                                    </label>
-                                </div>
+                    <sie:row>
+                        <sie:column span="12">
+                            <div class="check-box">
+                                <label>
+                                    <h:selectBooleanCheckbox
+                                            value="#{manterFuncionarioController.funcionario.vinculoAtivo}"/>
+                                    Ativar Vinculo
+                                </label>
                             </div>
-                        </div>
-                    </h:panelGroup>
-                    <h:commandButton value="Voltar" styleClass="btn btn-default pull-right btn-margin-left"/>
-                    <h:commandButton value="Salvar" styleClass="btn btn-primary pull-right btn-margin-left"/>
-                </div>
-            </div>
+                        </sie:column>
+                    </sie:row>
+                </h:panelGroup>
+                <h:commandButton value="Voltar" styleClass="btn btn-default pull-right btn-margin-left"/>
+                <h:commandButton value="Salvar"
+                                 action="#{manterFuncionarioController.salvar}"
+                                 styleClass="btn btn-primary pull-right btn-margin-left"/>
+            </sie:panel>
         </h:form>
     </ui:define>
 </ui:composition>

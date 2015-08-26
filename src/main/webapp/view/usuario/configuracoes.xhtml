@@ -3,29 +3,27 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:sie="http://java.sun.com/jsf/composite/sie"
                 template="/template/common/template.xhtml">
     <ui:define name="body">
-        <div class="panel panel-default">
-            <div class="panel-heading">Configurações</div>
-            <div class="panel-body">
-                <div>
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#senhaPanel" aria-controls="home" role="tab"
-                                                                  data-toggle="tab">Alterar Senha</a></li>
-                        <li role="presentation"><a href="#dadosPanel" aria-controls="profile" role="tab"
-                                                   data-toggle="tab">Atualizar Dados</a></li>
-                    </ul>
+        <sie:panel header="Configurações" type="default">
+            <div>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#senhaPanel" aria-controls="home" role="tab"
+                                                              data-toggle="tab">Alterar Senha</a></li>
+                    <li role="presentation"><a href="#dadosPanel" aria-controls="profile" role="tab"
+                                               data-toggle="tab">Atualizar Dados</a></li>
+                </ul>
 
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="senhaPanel">
-                            <ui:include src="/view/usuario/alterarSenha.xhtml"/>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="dadosPanel">
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="senhaPanel">
+                        <ui:include src="/view/usuario/alterarSenha.xhtml"/>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="dadosPanel">
 
-                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </sie:panel>
     </ui:define>
 </ui:composition>

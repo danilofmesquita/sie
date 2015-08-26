@@ -1,14 +1,9 @@
 package br.iesb.sie.entidade;
 
+import br.iesb.sie.model.Perfil;
+
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
+import javax.persistence.*;
 
 @Entity
 public class Funcionario extends BaseEntity {
@@ -31,6 +26,10 @@ public class Funcionario extends BaseEntity {
     @Column
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataVinculo;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Perfil perfil;
 
     public Entidade getFuncionario() {
         return funcionario;

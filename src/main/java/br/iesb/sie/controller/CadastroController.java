@@ -7,6 +7,7 @@ import br.iesb.sie.service.CEPService;
 import br.iesb.sie.service.EntidadeService;
 import br.iesb.sie.util.NavigationRules;
 
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;

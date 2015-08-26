@@ -9,18 +9,20 @@
     <composite:attribute name="label"/>
     <composite:attribute name="value"/>
     <composite:attribute name="style"/>
-    <composite:attribute name="converter" default="sie.converter.default"/>
-
-
+    <composite:valueHolder name="selectManyListbox"/>
 </composite:interface>
 <composite:implementation>
     <div class="form-group #{component.children[2].valid ? '' : 'has-error'}">
-        <h:outputLabel value="#{cc.attrs.label}:" styleClass="control-label"/>
-        <h:selectManyMenu id="selectManyMenu" value="#{cc.attrs.value}" styleClass="form-control"
-                          required="#{cc.attrs.required}" label="#{cc.attrs.label}" style="#{cc.attrs.style}">
+        <h:outputLabel value="#{cc.attrs.label}:"
+                       styleClass="control-label"/>
+        <h:selectManyListbox id="selectManyListbox"
+                             value="#{cc.attrs.value}"
+                             styleClass="form-control"
+                             required="#{cc.attrs.required}"
+                             label="#{cc.attrs.label}"
+                             style="#{cc.attrs.style}">
             <composite:insertChildren/>
-            <f:converter converterId="#{cc.attrs.converter}" />
-        </h:selectManyMenu>
+        </h:selectManyListbox>
     </div>
 </composite:implementation>
 </html>

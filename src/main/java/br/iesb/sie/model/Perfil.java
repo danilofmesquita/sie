@@ -2,10 +2,10 @@ package br.iesb.sie.model;
 
 public enum Perfil {
 
-    ESCOLA("Escola", "Escola"),
-    ALUNO("Aluno", "Aluno(a)"),
-    PROFESSOR("Professor", "Professor(a)"),
-    SECRETARIA("Secretária", "Secretária(o)");
+    ESCOLA("ESCOLA", "Escola"),
+    ALUNO("ALUNO", "Aluno(a)"),
+    PROFESSOR("PROFESSOR", "Professor(a)"),
+    SECRETARIA("SECRETARIA", "Secretária(o)");
 
     private String nome;
     private String nomeMF;
@@ -14,7 +14,6 @@ public enum Perfil {
         this.nome = nome;
         this.nomeMF = nomeMF;
     }
-
 
     public String getNome() {
         return nome;
