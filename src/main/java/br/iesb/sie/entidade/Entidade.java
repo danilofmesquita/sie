@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Entidade extends BaseEntity {
@@ -191,4 +192,21 @@ public class Entidade extends BaseEntity {
         return null;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Entidade entidade = (Entidade) o;
+        return Objects.equals(id, entidade.id) &&
+                Objects.equals(tipoPessoa, entidade.tipoPessoa) &&
+                Objects.equals(cpfCnpj, entidade.cpfCnpj) &&
+                Objects.equals(email, entidade.email) &&
+                Objects.equals(senha, entidade.senha) &&
+                Objects.equals(login, entidade.login);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, tipoPessoa, cpfCnpj, email, senha, login);
+    }
 }

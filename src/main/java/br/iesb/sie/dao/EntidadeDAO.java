@@ -46,4 +46,10 @@ public class EntidadeDAO extends BaseDAO<Entidade, Long> {
         return getSession().createQuery("select e from Entidade e inner join e.perfis p where p = :escola")
                 .setParameter("escola", Perfil.ESCOLA).list();
     }
+
+    public List<Entidade> buscarEntidadesPorPerfil(Perfil perfil) {
+        return (List<Entidade>) getSession()
+                .createQuery(" select e from Entidade e inner join e.perfis p where p = :perfil")
+                .setParameter("perfil", perfil).list();
+    }
 }

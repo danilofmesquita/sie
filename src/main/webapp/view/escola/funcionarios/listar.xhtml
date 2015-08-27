@@ -3,57 +3,67 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:sie="http://java.sun.com/jsf/composite/sie" xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:sie="http://java.sun.com/jsf/composite/sie"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <h:form>
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">Funcionarios</div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <sie:inputText label="#{msg['label.nome']}"
                                            value="#{listarFuncionariosController.nomeFuncionario}"/>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <sie:inputText label="#{msg['label.escola']}"
                                            value="#{listarFuncionariosController.nomeEscola}"/>
                         </div>
                     </div>
-                    <h:commandButton value="Consultar" styleClass="btn btn-primary pull-right btn-margin-left"/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Cargo</th>
-                            <th>Escola</th>
-                            <th>Ativo</th>
-                            <th>Data de Ingresso</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Danilo</td>
-                            <td>Professor</td>
-                            <td>Dandel</td>
-                            <td>Sim</td>
-                            <td>25/08/2015</td>
-                        </tr>                        <tr>
-                            <td>Sharlene</td>
-                            <td>Secretaria</td>
-                            <td>Dandel</td>
-                            <td>Sim</td>
-                            <td>22/10/2015</td>
-                        </tr>
-                        </tbody>
-                    </table>
 
-                    <h:commandButton value="Novo Funcionario"
-                                     action="/view/escola/funcionarios/incluir.xhtml?faces-redirect=true"
+                    <h:commandButton value="Filtrar"
                                      styleClass="btn btn-primary pull-right btn-margin-left"/>
+                    <h:commandButton value="Novo Funcionario"
+                                     action="incluir.xhtml?faces-redirect=true"
+                                     styleClass="btn btn-default pull-right btn-margin-left"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:dataTable value="#{listarFuncionariosController.funcionarios}" var="f"
+                                 styleClass="table table-striped">
+                        <h:column>
+                            <f:facet name="header">Nome</f:facet>
+                            <h:outputText value="#{f.funcionario.nomeCompleto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Cargo</f:facet>
+                            <h:outputText value="#{f.perfil.nomeMF}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Escola</f:facet>
+                            <h:outputText value="#{f.escola.razaoSocial}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Ativo</f:facet>
+                            <h:outputText value="#{f.vinculoAtivo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Data de Ingresso</f:facet>
+                            <h:outputText value="#{f.dataVinculo}"/>
+                        </h:column>
+                        <h:column>
+                            <div align="center">
+                                <button class="btn btn-warning"
+                                        jsf:action="#{listarFuncionariosController.editar(f)}">
+                                    <span class="glyphicon glyphicon-edit"></span> Editar
+                                </button>
+                            </div>
+                        </h:column>
+                    </h:dataTable>
+
                 </div>
             </div>
         </h:form>

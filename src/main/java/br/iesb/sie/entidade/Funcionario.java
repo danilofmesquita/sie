@@ -31,6 +31,13 @@ public class Funcionario extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Perfil perfil;
 
+    @PrePersist
+    public void prePersist() {
+        if (dataVinculo == null) {
+            dataVinculo = new Date();
+        }
+    }
+
     public Entidade getFuncionario() {
         return funcionario;
     }
@@ -71,4 +78,11 @@ public class Funcionario extends BaseEntity {
         this.dataVinculo = dataVinculo;
     }
 
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
 }

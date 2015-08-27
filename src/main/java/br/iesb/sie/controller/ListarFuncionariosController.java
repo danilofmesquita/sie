@@ -5,6 +5,7 @@ import br.iesb.sie.entidade.Funcionario;
 import br.iesb.sie.jsf.Paginator;
 import br.iesb.sie.jsf.PaginatorFilter;
 import br.iesb.sie.service.FuncionarioService;
+import br.iesb.sie.util.Attributes;
 
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -14,13 +15,15 @@ import javax.inject.Named;
 
 @Named
 @ViewScoped
-public class ListarFuncionariosController extends BaseController implements Paginator<Funcionario> {
+public class ListarFuncionariosController extends BaseController {
 
     @Inject
     private FuncionarioService funcionarioService;
 
     @Inject
     private UsuarioLogado usuarioLogado;
+
+    private List<Funcionario> funcionarios;
 
     private String nomeFuncionario;
 
@@ -33,17 +36,13 @@ public class ListarFuncionariosController extends BaseController implements Pagi
         if(usuarioLogado.isEscola()){
             escola = true;
             nomeEscola = usuarioLogado.getEntidade().getNomeCompleto();
+            funcionarios = funcionarioService.buscarFuncionarios(usuarioLogado.getEntidade());
         }
     }
 
-    @Override
-    public Integer contarRegistros() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Funcionario> consultarRegistros(int first, int pageSize, PaginatorFilter filter) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String editar(Funcionario funcionario){
+        putFlashAttribute(Attributes.ID, funcionario.getId());
+        return "incluir.xhtml?faces-redirect=true";
     }
 
     public String getNomeEscola() {
@@ -64,5 +63,13 @@ public class ListarFuncionariosController extends BaseController implements Pagi
 
     public boolean isEscola() {
         return escola;
+    }
+
+    public List<Funcionario> getFuncionarios() {
+        return funcionarios;
+    }
+
+    public void setFuncionarios(List<Funcionario> funcionarios) {
+        this.funcionarios = funcionarios;
     }
 }

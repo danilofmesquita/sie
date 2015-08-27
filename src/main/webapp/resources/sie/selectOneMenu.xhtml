@@ -17,11 +17,14 @@
                        styleClass="control-label"/>
         <h:selectOneMenu id="selectOneMenu"
                          value="#{cc.attrs.value}"
-                         styleClass="form-control"
+                         styleClass="form-control select2"
                          required="#{cc.attrs.required}"
                          label="#{cc.attrs.label}">
             <composite:insertChildren/>
         </h:selectOneMenu>
     </div>
+    <script type="text/javascript">
+        $("select[id='#{cc.clientId}:selectOneMenu']").select2();
+    </script>
 </composite:implementation>
 </html>

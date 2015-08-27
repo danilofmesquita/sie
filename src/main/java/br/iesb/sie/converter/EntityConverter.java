@@ -27,7 +27,8 @@ public class EntityConverter implements Converter {
             component.getAttributes().put(String.valueOf(be.getId()), be);
             return String.valueOf(be.getId());
         }
-        return null;
+
+        return String.valueOf(value);
 
     }
 }

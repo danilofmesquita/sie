@@ -7,6 +7,7 @@ import br.iesb.sie.entidade.Funcionario;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.List;
 
 @Stateless
@@ -32,5 +33,9 @@ public class FuncionarioService {
 
     public void salvar(Funcionario funcionario) {
         funcionarioDAO.salvar(funcionario);
+    }
+
+    public List<Funcionario> buscarFuncionarios(Entidade escola) {
+        return funcionarioDAO.buscarFuncionarios(escola);
     }
 }

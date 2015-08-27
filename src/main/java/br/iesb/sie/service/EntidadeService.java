@@ -52,4 +52,7 @@ public class EntidadeService {
         return -1;
     }
 
+    public List<Entidade> buscarEntidadesPorPerfil(Perfil perfil) {
+        return entidadeDAO.buscarEntidadesPorPerfil(perfil);
+    }
 }
