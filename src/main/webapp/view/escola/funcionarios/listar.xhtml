@@ -15,16 +15,27 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-sm-6">
-                            <sie:inputText label="#{msg['label.nome']}"
-                                           value="#{listarFuncionariosController.nomeFuncionario}"/>
+                            <sie:selectOneMenu id="cargo" label="#{msg['label.cargo']}"
+                                               value="#{listarFuncionariosController.filtro.perfil}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{factoryUtil.cargos}" var="_p" itemLabel="#{_p.nomeMF}"
+                                               itemValue="#{_p}"/>
+                                <f:ajax event="change" render="@form" execute="@this"/>
+                            </sie:selectOneMenu>
                         </div>
                         <div class="col-sm-6">
-                            <sie:inputText label="#{msg['label.escola']}"
-                                           value="#{listarFuncionariosController.nomeEscola}"/>
+                            <sie:selectOneMenu label="#{msg['label.nome']}"
+                                               value="#{listarFuncionariosController.filtro.funcionario}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{listarFuncionariosController.buscarPessoasPorPerfil()}"
+                                               var="_func" itemLabel="#{_func.nomeCompleto}"/>
+                                <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
+                            </sie:selectOneMenu>
                         </div>
                     </div>
 
                     <h:commandButton value="Filtrar"
+                                     action="#{listarFuncionariosController.filtrar}"
                                      styleClass="btn btn-primary pull-right btn-margin-left"/>
                     <h:commandButton value="Novo Funcionario"
                                      action="incluir.xhtml?faces-redirect=true"
@@ -48,7 +59,7 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">Ativo</f:facet>
-                            <h:outputText value="#{f.vinculoAtivo}"/>
+                            <sie:simNaoOutput value="#{f.vinculoAtivo}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">Data de Ingresso</f:facet>

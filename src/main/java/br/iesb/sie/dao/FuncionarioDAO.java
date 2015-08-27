@@ -6,7 +6,9 @@ import br.iesb.sie.model.TipoPessoa;
 import org.hibernate.Query;
 
 import javax.inject.Named;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Named
 public class FuncionarioDAO extends BaseDAO<Funcionario, Long> {
@@ -20,19 +22,37 @@ public class FuncionarioDAO extends BaseDAO<Funcionario, Long> {
                 .setParameter("pf", TipoPessoa.FISICA).list();
     }
 
-    public List<Funcionario> buscarFuncionarios(Entidade escola) {
-        String hql = " select f from Funcionario f ";
+    public List<Funcionario> buscarFuncionarios(Funcionario filtro) {
 
-        if (escola != null) {
-            hql += " where f.escola = :escola ";
+        StringBuilder hql = new StringBuilder();
+        Map<String, Object> params = new HashMap<>();
+
+        hql.append(" select f from Funcionario f ");
+        hql.append(" where 1=1 ");
+
+        if (filtro.getFuncionario() != null) {
+            hql.append(" and f.funcionario = :funcionario ");
+            params.put("funcionario", filtro.getFuncionario());
         }
 
-        Query query = getSession().createQuery(hql);
+        if (filtro.getEscola() != null) {
+            hql.append(" and f.escola = :escola");
+            params.put("escola", filtro.getEscola());
 
-        if (escola != null) {
-            query.setParameter("escola", escola);
+        }
+
+        if (filtro.getPerfil() != null) {
+            hql.append(" and f.perfil = :perfil");
+            params.put("perfil", filtro.getPerfil());
+        }
+
+        Query query = getSession().createQuery(hql.toString());
+
+        for (Map.Entry<String, Object> entry : params.entrySet()) {
+            query.setParameter(entry.getKey(), entry.getValue());
         }
 
         return query.list();
     }
+
 }
