@@ -10,20 +10,23 @@
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <h:form>
+            <h:messages/>
             <sie:panel header="Dados Gerais">
-                <h:messages/>
                 <sie:row>
                     <sie:column span="4">
-                        <sie:selectOneMenu label="Série" value="#{manterTurmaController.turma.serie}">
+                        <sie:selectOneMenu label="Série" required="#{param['salvar']}"
+                                           value="#{manterTurmaController.turma.serie}">
                             <f:selectItem itemLabel="Selecione"/>
                             <f:selectItems value="#{factoryUtil.series}" var="_s" itemLabel="#{_s.descricao}"/>
                         </sie:selectOneMenu>
                     </sie:column>
                     <sie:column span="4">
-                        <sie:inputText value="#{manterTurmaController.turma.nome}" label="Nome"/>
+                        <sie:inputText value="#{manterTurmaController.turma.nome}" required="#{param['salvar']}"
+                                       label="Nome"/>
                     </sie:column>
                     <sie:column span="4">
-                        <sie:selectOneMenu label="Turno" value="#{manterTurmaController.turma.turno}">
+                        <sie:selectOneMenu label="Turno" required="#{param['salvar']}"
+                                           value="#{manterTurmaController.turma.turno}">
                             <f:selectItem itemLabel="Selecione"/>
                             <f:selectItems value="#{factoryUtil.turnos}" var="_t" itemLabel="#{_t.descricao}"/>
                         </sie:selectOneMenu>
@@ -31,17 +34,19 @@
                 </sie:row>
                 <sie:row>
                     <sie:column span="4">
-                        <sie:inputDate value="#{manterTurmaController.turma.dataInicio}" label="Data de Inicio"/>
+                        <sie:inputDate value="#{manterTurmaController.turma.dataInicio}" required="#{param['salvar']}"
+                                       label="Data de Inicio"/>
                     </sie:column>
                     <sie:column span="4">
-                        <sie:inputDate value="#{manterTurmaController.turma.dataFim}" label="Data de Fim"/>
+                        <sie:inputDate value="#{manterTurmaController.turma.dataFim}" required="#{param['salvar']}"
+                                       label="Data de Fim"/>
                     </sie:column>
                 </sie:row>
             </sie:panel>
             <sie:panel header="Professores">
                 <sie:row>
                     <sie:column span="6">
-                        <sie:selectOneMenu label="Professor"
+                        <sie:selectOneMenu label="Professor" required="#{param['adicionar']}"
                                            value="#{manterTurmaController.professorDisciplina.professor}">
                             <f:selectItem itemLabel="Selecione"/>
                             <f:selectItems value="#{manterTurmaController.professores}" var="_p"
@@ -50,7 +55,7 @@
                         </sie:selectOneMenu>
                     </sie:column>
                     <sie:column span="6">
-                        <sie:selectOneMenu label="Disciplina"
+                        <sie:selectOneMenu label="Disciplina" required="#{param['adicionar']}"
                                            value="#{manterTurmaController.professorDisciplina.disciplina}">
                             <f:selectItem itemLabel="Selecione"/>
                             <f:selectItems value="#{factoryUtil.disciplinas}" var="_d" itemLabel="#{_d.descricao}"/>
@@ -61,6 +66,7 @@
                         jsf:action="#{manterTurmaController.adicionarProfessorDisciplina}">
                     <span class="glyphicon glyphicon-plus"></span> Adicionar
                     <f:ajax execute="@form" render="@form"/>
+                    <f:param name="adicionar" value="true"/>
                 </button>
                 <h:dataTable value="#{manterTurmaController.turma.professorDisciplinas}" var="_pd"
                              rendered="#{not empty manterTurmaController.turma.professorDisciplinas}"
@@ -95,7 +101,9 @@
                 </h:dataTable>
             </sie:panel>
             <h:commandButton value="Salvar" action="#{manterTurmaController.salvar}"
-                             styleClass="btn btn-primary pull-right btn-margin-left"/>
+                             styleClass="btn btn-primary pull-right btn-margin-left">
+                <f:param value="true" name="salvar"/>
+            </h:commandButton>
             <h:commandButton value="Voltar" action="listar?faces-redirect=true"
                              styleClass="btn btn-default pull-right btn-margin-left"/>
         </h:form>

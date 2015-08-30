@@ -17,5 +17,11 @@
             <f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR" timeZone="America/Sao_Paulo"/>
         </h:inputText>
     </div>
+    <script type="text/javascript">
+        $("input[id='#{cc.clientId}:inputText']").datepicker({
+            format: "dd/mm/yyyy",
+            language: "pt-BR"
+        });
+    </script>
 </composite:implementation>
 </html>

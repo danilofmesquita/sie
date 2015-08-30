@@ -13,7 +13,7 @@
                 <h:messages/>
                 <sie:row>
                     <sie:column span="6">
-                        <sie:selectOneMenu id="cargo" label="#{msg['label.cargo']}"
+                        <sie:selectOneMenu id="cargo" label="#{msg['label.cargo']}" required="#{param['salvar']}"
                                            value="#{manterFuncionarioController.funcionario.perfil}">
                             <f:selectItem itemLabel="Selecione"/>
                             <f:selectItems value="#{factoryUtil.cargos}" var="_p" itemLabel="#{_p.nomeMF}"
@@ -24,7 +24,7 @@
                 </sie:row>
                 <sie:row>
                     <sie:column span="6" rendered="#{not empty manterFuncionarioController.funcionario.perfil}">
-                        <sie:selectOneMenu label="#{msg['label.nome']}"
+                        <sie:selectOneMenu label="#{msg['label.nome']}" required="#{param['salvar']}"
                                            value="#{manterFuncionarioController.funcionario.funcionario}">
                             <f:selectItem itemLabel="Selecione"/>
                             <f:selectItems value="#{manterFuncionarioController.buscarPessoasPorPerfil()}"
@@ -47,7 +47,9 @@
             </sie:panel>
             <h:commandButton value="Salvar"
                              action="#{manterFuncionarioController.salvar}"
-                             styleClass="btn btn-primary pull-right btn-margin-left"/>
+                             styleClass="btn btn-primary pull-right btn-margin-left">
+                <f:param name="salvar" value="true"/>
+            </h:commandButton>
             <h:commandButton value="Voltar" action="listar?faces-redirect=true"
                              styleClass="btn btn-default pull-right btn-margin-left"/>
         </h:form>

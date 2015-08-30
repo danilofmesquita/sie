@@ -23,11 +23,14 @@ public class TurmaService {
         if (turma.getId() != null) {
 
             Turma turmaSalva = buscarTurma(turma.getId());
+
             turmaSalva.setEscola(turma.getEscola());
             turmaSalva.setDataFim(turma.getDataFim());
             turmaSalva.setDataInicio(turma.getDataInicio());
             turmaSalva.getProfessorDisciplinas().clear();
             turmaSalva.setTurno(turma.getTurno());
+            turmaSalva.setSerie(turma.getSerie());
+            turmaSalva.setNome(turma.getNome());
 
             for (ProfessorDisciplina pd : turma.getProfessorDisciplinas()) {
                 if (pd.getId() != null) {
