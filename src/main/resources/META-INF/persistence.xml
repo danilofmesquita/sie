@@ -7,8 +7,8 @@
     <persistence-unit name="sie-pu">
         <jta-data-source>java:jboss/datasources/SieDS</jta-data-source>
         <properties>
-            <property name="hibernate.hbm2ddl.auto" value="update" />
-            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
         </properties>
     </persistence-unit>
 </persistence>

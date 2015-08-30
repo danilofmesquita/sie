@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
-import java.util.List;
 
 @Named
 @javax.faces.view.ViewScoped
@@ -37,7 +36,7 @@ public class UsuarioLogado extends BaseController {
         return "/view/index.xhtml?faces-redirect=true";
     }
 
-    public boolean isEscola(){
+    public boolean isEscola() {
         return getEntidade().getPerfis().contains(Perfil.ESCOLA);
     }
 

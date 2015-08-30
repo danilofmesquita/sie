@@ -1,11 +1,10 @@
 package br.iesb.sie.util;
 
-import br.iesb.sie.model.Perfil;
-import br.iesb.sie.model.TipoPessoa;
-import br.iesb.sie.model.UF;
+import br.iesb.sie.model.*;
 
 import javax.enterprise.inject.Model;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Model
@@ -24,11 +23,22 @@ public class FactoryUtil {
     }
 
     public List<Perfil> getPerfisCNPJ() {
-        return Arrays.asList(Perfil.ESCOLA);
+        return Collections.singletonList(Perfil.ESCOLA);
     }
-
 
     public List<Perfil> getCargos() {
         return Arrays.asList(Perfil.PROFESSOR, Perfil.SECRETARIA);
+    }
+
+    public List<Disciplina> getDisciplinas() {
+        return Arrays.asList(Disciplina.values());
+    }
+
+    public List<Serie> getSeries() {
+        return Arrays.asList(Serie.values());
+    }
+
+    public List<Turno> getTurnos() {
+        return Arrays.asList(Turno.values());
     }
 }

@@ -3,7 +3,6 @@ package br.iesb.sie.entidade;
 import br.iesb.sie.model.UF;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class Endereco extends BaseEntity {

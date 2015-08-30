@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 public class Resources {
 
     @Produces
-    private Logger logger(InjectionPoint ip){
+    private Logger logger(InjectionPoint ip) {
         return Logger.getLogger(ip.getMember().getDeclaringClass().getName());
     }
 

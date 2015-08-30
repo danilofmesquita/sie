@@ -14,7 +14,7 @@
         <h:outputLabel value="#{cc.attrs.label}:" styleClass="control-label"/>
         <h:inputText id="inputText" label="#{cc.attrs.label}" styleClass="form-control data"
                      required="#{cc.attrs.required}" value="#{cc.attrs.value}">
-            <f:convertDateTime pattern="dd/MM/yyyy"/>
+            <f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR" timeZone="America/Sao_Paulo"/>
         </h:inputText>
     </div>
 </composite:implementation>

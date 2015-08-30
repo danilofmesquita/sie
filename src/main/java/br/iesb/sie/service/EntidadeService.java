@@ -55,4 +55,9 @@ public class EntidadeService {
     public List<Entidade> buscarEntidadesPorPerfil(Perfil perfil) {
         return entidadeDAO.buscarEntidadesPorPerfil(perfil);
     }
+
+    public List<Entidade> buscarProfessores(Entidade escola) {
+        return entidadeDAO.buscarProfessores(escola);
+    }
+
 }

@@ -1,11 +1,13 @@
 package br.iesb.sie.dao;
 
 import br.iesb.sie.entidade.BaseEntity;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.io.Serializable;
+import java.util.Map;
 
 public class BaseDAO<T extends BaseEntity, ID extends Serializable> {
 
@@ -28,5 +30,12 @@ public class BaseDAO<T extends BaseEntity, ID extends Serializable> {
 
     public T get(ID id) {
         return (T) getSession().get(clazz, id);
+    }
+
+    public Query addQueryParams(Map<String, Object> params, Query query) {
+        for (Map.Entry<String, Object> entry : params.entrySet()) {
+            query.setParameter(entry.getKey(), entry.getValue());
+        }
+        return query;
     }
 }

@@ -10,7 +10,7 @@ public class NumberConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        if(value != null){
+        if (value != null) {
             return value.replaceAll("[^0-9]", "");
         }
         return null;

@@ -1,8 +1,6 @@
 package br.iesb.sie.dao;
 
-import br.iesb.sie.entidade.Entidade;
 import br.iesb.sie.entidade.Funcionario;
-import br.iesb.sie.model.TipoPessoa;
 import org.hibernate.Query;
 
 import javax.inject.Named;
@@ -17,12 +15,7 @@ public class FuncionarioDAO extends BaseDAO<Funcionario, Long> {
         super(Funcionario.class);
     }
 
-    public List<Entidade> buscarFuncionarios() {
-        return getSession().createQuery(" select e from Entidade e where e.tipoPessoa = :pf ")
-                .setParameter("pf", TipoPessoa.FISICA).list();
-    }
-
-    public List<Funcionario> buscarFuncionarios(Funcionario filtro) {
+    public List buscarFuncionarios(Funcionario filtro) {
 
         StringBuilder hql = new StringBuilder();
         Map<String, Object> params = new HashMap<>();

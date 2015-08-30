@@ -1,10 +1,9 @@
 package br.iesb.sie.entidade;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
-public class Telefone extends BaseEntity{
+public class Telefone extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

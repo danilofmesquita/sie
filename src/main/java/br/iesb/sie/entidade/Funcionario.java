@@ -2,8 +2,8 @@ package br.iesb.sie.entidade;
 
 import br.iesb.sie.model.Perfil;
 
-import java.util.Date;
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Funcionario extends BaseEntity {

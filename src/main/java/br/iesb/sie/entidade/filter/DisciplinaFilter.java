@@ -1,6 +1,7 @@
 package br.iesb.sie.entidade.filter;
 
 import br.iesb.sie.jsf.PaginatorFilter;
+
 import java.util.Date;
 
 public class DisciplinaFilter implements PaginatorFilter {

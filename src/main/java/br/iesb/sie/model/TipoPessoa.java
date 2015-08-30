@@ -21,11 +21,11 @@ public enum TipoPessoa {
         return descricao;
     }
 
-    public boolean isJuridica(){
+    public boolean isJuridica() {
         return this == TipoPessoa.JURIDICA;
     }
 
-    public boolean isFisica(){
+    public boolean isFisica() {
         return this == TipoPessoa.FISICA;
     }
 }

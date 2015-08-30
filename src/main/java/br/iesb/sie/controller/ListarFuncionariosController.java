@@ -18,24 +18,18 @@ import java.util.List;
 @ViewScoped
 public class ListarFuncionariosController extends BaseController {
 
+    boolean escola;
     @Inject
     private FuncionarioService funcionarioService;
-
     @Inject
     private UsuarioLogado usuarioLogado;
-
     @Inject
     private EntidadeService entidadeService;
-
     private List<Funcionario> funcionarios;
-
-    boolean escola;
-
-    private Funcionario filtro;
+    private Funcionario filtro = new Funcionario();
 
     @PostConstruct
     public void init() {
-        filtro = new Funcionario();
         if (usuarioLogado.isEscola()) {
             escola = true;
             filtro.setEscola(usuarioLogado.getEntidade());
@@ -46,6 +40,14 @@ public class ListarFuncionariosController extends BaseController {
     public String editar(Funcionario funcionario) {
         putFlashAttribute(Attributes.ID, funcionario.getId());
         return "incluir.xhtml?faces-redirect=true";
+    }
+
+    public List<Entidade> buscarPessoasPorPerfil() {
+        if (filtro.getPerfil() != null) {
+            return entidadeService.buscarEntidadesPorPerfil(filtro.getPerfil());
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     public boolean isEscola() {
@@ -60,15 +62,7 @@ public class ListarFuncionariosController extends BaseController {
         this.funcionarios = funcionarios;
     }
 
-    public List<Entidade> buscarPessoasPorPerfil() {
-        if (filtro.getPerfil() != null) {
-            return entidadeService.buscarEntidadesPorPerfil(filtro.getPerfil());
-        } else {
-            return Collections.emptyList();
-        }
-    }
-
-    public void filtrar(){
+    public void filtrar() {
         funcionarios = funcionarioService.buscarFuncionarios(filtro);
     }
 

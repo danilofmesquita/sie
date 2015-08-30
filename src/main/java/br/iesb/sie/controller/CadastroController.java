@@ -1,18 +1,17 @@
 package br.iesb.sie.controller;
 
 import br.iesb.sie.entidade.Endereco;
-import br.iesb.sie.entidade.Telefone;
 import br.iesb.sie.entidade.Entidade;
+import br.iesb.sie.entidade.Telefone;
 import br.iesb.sie.service.CEPService;
 import br.iesb.sie.service.EntidadeService;
 import br.iesb.sie.util.NavigationRules;
 
-import javax.faces.context.FacesContext;
+import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
-import javax.annotation.PostConstruct;
 
 @Named
 @ViewScoped

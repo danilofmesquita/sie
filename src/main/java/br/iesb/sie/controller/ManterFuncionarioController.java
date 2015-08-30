@@ -3,7 +3,6 @@ package br.iesb.sie.controller;
 import br.iesb.sie.bean.UsuarioLogado;
 import br.iesb.sie.entidade.Entidade;
 import br.iesb.sie.entidade.Funcionario;
-import br.iesb.sie.model.Perfil;
 import br.iesb.sie.service.EntidadeService;
 import br.iesb.sie.service.FuncionarioService;
 import br.iesb.sie.util.Attributes;
@@ -48,8 +47,8 @@ public class ManterFuncionarioController extends BaseController {
         addInfoMessage("Dados salvos com sucesso!");
     }
 
-    public List<Entidade> buscarPessoasPorPerfil(){
-        if(funcionario.getPerfil() != null) {
+    public List<Entidade> buscarPessoasPorPerfil() {
+        if (funcionario.getPerfil() != null) {
             return entidadeService.buscarEntidadesPorPerfil(funcionario.getPerfil());
         } else {
             return Collections.emptyList();

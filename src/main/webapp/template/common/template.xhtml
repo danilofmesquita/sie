@@ -1,141 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core">
-    <h:head>
+<h:head>
 
 
-        <f:loadBundle var="msg" basename="message"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
-        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <f:loadBundle var="msg" basename="message"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 
-        <title>
-            SIE - Sistema Integrado de Educação
-        </title>
+    <title>
+        SIE - Sistema Integrado de Educação
+    </title>
 
-        <h:outputStylesheet library="bootstrap" name="/css/bootstrap.css"/>
-        <!--<h:outputStylesheet library="bootstrap" name="/css/bootstrap-theme.css"/>-->
-        <h:outputStylesheet library="font-awesome" name="/css/font-awesome.css"/>
-        <h:outputStylesheet library="sie" name="/css/style.css"/>
-        <h:outputStylesheet library="select2" name="/css/select2.css"/>
-        <h:outputStylesheet library="select2" name="/css/select2-bootstrap.css"/>
+    <h:outputStylesheet library="bootstrap" name="/css/bootstrap.css"/>
+    <h:outputStylesheet library="bootstrap" name="/css/bootstrap-theme.css"/>
+    <h:outputStylesheet library="font-awesome" name="/css/font-awesome.css"/>
+    <h:outputStylesheet library="sie" name="/css/style.css"/>
+    <h:outputStylesheet library="select2" name="/css/select2.css"/>
+    <h:outputStylesheet library="select2" name="/css/select2-bootstrap.css"/>
 
-        <h:outputScript library="jquery" name="/js/jquery-2.1.4.min.js"/>
-        <h:outputScript library="jquery" name="/js/jquery.mask.js"/>
-        <h:outputScript library="bootstrap" name="/js/bootstrap.js"/>
-        <h:outputScript library="select2" name="/js/select2.js"/>
-        <h:outputScript library="select2" name="/js/select2_locale_pt-BR.js"/>
-        <ui:insert name="head"/>
+    <h:outputScript library="jquery" name="/js/jquery-2.1.4.min.js"/>
+    <h:outputScript library="jquery" name="/js/jquery.mask.js"/>
+    <h:outputScript library="bootstrap" name="/js/bootstrap.js"/>
+    <h:outputScript library="select2" name="/js/select2.js"/>
+    <h:outputScript library="select2" name="/js/select2_locale_pt-BR.js"/>
+    <ui:insert name="head"/>
 
-    </h:head>
-    <h:body>
-        <h:form>
-            <!-- Static navbar -->
-            <div class="navbar navbar-default navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                                data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand bold" style="font-size: 2em"
-                           jsf:action="/view/index.xhtml?faces-redirect=true">SIE</a>
-                    </div>
-                    <div id="navbar" class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown" jsf:rendered="#{not empty usuarioLogado.entidade}">
-                                <a class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true"
-                                   aria-expanded="false">Escola<span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a jsf:action="/view/escola/funcionarios/listar.xhtml?faces-redirect=true"><span class="fa fa-users fa-fw"></span> Funcionarios</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown" jsf:rendered="#{not empty usuarioLogado.entidade}">
-                                <a class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true"
-                                   aria-expanded="false">Secretária<span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a><span class="fa fa-edit fa-fw"></span>Matricula</a></li>
-                                    <li><a><span class="fa fa-cubes fa-fw"></span>Turmas</a></li>
-                                    <li><a><span class="fa fa-book fa-fw"></span>Disciplinas</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown" jsf:rendered="#{not empty usuarioLogado.entidade}">
-                                <a class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true"
-                                   aria-expanded="false">Acadêmico<span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a><span class="fa fa-th-list fa-fw"></span>Frequencia</a></li>
-                                    <li><a><span class="fa fa-mortar-board fa-fw"></span>Notas</a></li>
-                                    <li><a><span class="fa fa-files-o fa-fw"></span>Relatórios</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown" jsf:rendered="#{not empty usuarioLogado.entidade}">
-                                <a class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true"
-                                   aria-expanded="false">Documentos Eletronicos<span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a><span class="fa fa-file-text-o fa-fw"></span>Historico Escolar</a>
-                                    </li>
-                                    <li><a><span class="fa fa-bus fa-fw"></span>Declaração de Passe</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown" jsf:rendered="#{not empty usuarioLogado.entidade}">
-                                <a class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true"
-                                   aria-expanded="false">Graficos<span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a><span class="fa fa-bar-chart fa-fw"></span>Analise Estatistica</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li jsf:rendered="#{empty usuarioLogado.entidade}">
-                                <a jsf:action="/public/login.xhtml?faces-redirect=true">
-                                    Entrar
-                                </a>
-                            </li>
-                            <li jsf:rendered="#{not empty usuarioLogado.entidade}">
-                                <a class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true" aria-expanded="false">
-                                    #{usuarioLogado.entidade.primeiroNome}<span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-left">
-                                    <li>
-                                        <a jsf:action="/view/usuario/configuracoes.xhtml?faces-redirect=true">
-                                            <span class="fa fa-gears fa-fw"></span>Configurações
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a jsf:action="#{usuarioLogado.logout()}">
-                                            <span class="fa fa-sign-out fa-fw"></span>Sair
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
+</h:head>
+<h:body>
+    <h:form>
+        <!-- Static navbar -->
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand bold" style="font-size: 2em"
+                       jsf:action="/view/index.xhtml?faces-redirect=true">SIE</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown" jsf:rendered="#{not empty usuarioLogado.entidade}">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Escola<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a jsf:action="/view/escola/funcionarios/listar.xhtml?faces-redirect=true"><span
+                                        class="fa fa-users fa-fw"></span> Funcionarios</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" jsf:rendered="#{not empty usuarioLogado.entidade}">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Secretária<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a jsf:action="/view/secretaria/turma/listar.xhtml?faces-redirect=true">
+                                        <span class="fa fa-cubes fa-fw"></span>
+                                        Turmas
+                                    </a>
+                                </li>
+                                <li>
+                                    <a><span class="fa fa-edit fa-fw"></span>Matricula</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" jsf:rendered="#{not empty usuarioLogado.entidade}">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Acadêmico<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a><span class="fa fa-th-list fa-fw"></span>Frequencia</a></li>
+                                <li><a><span class="fa fa-mortar-board fa-fw"></span>Notas</a></li>
+                                <li><a><span class="fa fa-files-o fa-fw"></span>Relatórios</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" jsf:rendered="#{not empty usuarioLogado.entidade}">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Documentos Eletronicos<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a><span class="fa fa-file-text-o fa-fw"></span>Historico Escolar</a>
+                                </li>
+                                <li><a><span class="fa fa-bus fa-fw"></span>Declaração de Passe</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" jsf:rendered="#{not empty usuarioLogado.entidade}">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Graficos<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a><span class="fa fa-bar-chart fa-fw"></span>Analise Estatistica</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li jsf:rendered="#{empty usuarioLogado.entidade}">
+                            <a jsf:action="/public/login.xhtml?faces-redirect=true">
+                                Entrar
+                            </a>
+                        </li>
+                        <li jsf:rendered="#{not empty usuarioLogado.entidade}">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                #{usuarioLogado.entidade.primeiroNome}<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-left">
+                                <li>
+                                    <a jsf:action="/view/usuario/configuracoes.xhtml?faces-redirect=true">
+                                        <span class="fa fa-gears fa-fw"></span>Configurações
+                                    </a>
+                                </li>
+                                <li>
+                                    <a jsf:action="#{usuarioLogado.logout()}">
+                                        <span class="fa fa-sign-out fa-fw"></span>Sair
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </h:form>
-
-        <div class="container">
-            <ui:insert name="body"/>
-            <h:outputScript library="sie" name="/js/sie.js"/>
         </div>
-    </h:body>
+    </h:form>
+
+    <div class="container">
+        <ui:insert name="body"/>
+        <h:outputScript library="sie" name="/js/sie.js"/>
+    </div>
+</h:body>
 </html>

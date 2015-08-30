@@ -1,6 +1,6 @@
 package br.iesb.sie.model;
 
-public enum UF  {
+public enum UF {
 
     AC("AC", "Acre"),
     AL("AL", "Alagoas"),

@@ -2,6 +2,7 @@ package br.iesb.sie.entidade.filter;
 
 import br.iesb.sie.entidade.Entidade;
 import br.iesb.sie.jsf.PaginatorFilter;
+
 import java.util.Date;
 
 public class FuncionarioFilter implements PaginatorFilter {
