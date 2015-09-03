@@ -10,7 +10,7 @@
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <h:form>
-            <sie:panel header="Filtro">
+            <sie:panel header="Consultar Funcionarios" type="primary">
                 <sie:row>
                     <sie:column span="6">
                         <sie:selectOneMenu id="cargo" label="#{msg['label.cargo']}"
@@ -37,39 +37,44 @@
                 <h:commandButton value="Novo Funcionario"
                                  action="incluir.xhtml?faces-redirect=true"
                                  styleClass="btn btn-default pull-right btn-margin-left"/>
-            </sie:panel>
-            <sie:panel header="Funcionarios">
-                <h:dataTable value="#{listarFuncionariosController.funcionarios}" var="f"
-                             styleClass="table table-striped">
-                    <h:column>
-                        <f:facet name="header">Nome</f:facet>
-                        <h:outputText value="#{f.funcionario.nomeCompleto}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Cargo</f:facet>
-                        <h:outputText value="#{f.perfil.nomeMF}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Escola</f:facet>
-                        <h:outputText value="#{f.escola.razaoSocial}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Ativo</f:facet>
-                        <sie:simNaoOutput value="#{f.vinculoAtivo}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Data de Ingresso</f:facet>
-                        <h:outputText value="#{f.dataVinculo}"/>
-                    </h:column>
-                    <h:column>
-                        <div align="center">
-                            <button class="btn btn-warning"
-                                    jsf:action="#{listarFuncionariosController.editar(f)}">
-                                <span class="glyphicon glyphicon-edit"></span> Editar
-                            </button>
-                        </div>
-                    </h:column>
-                </h:dataTable>
+                <br/>
+                <br/>
+                <br/>
+                <sie:panel header="Funcionarios" type="default">
+                    <div class="table-responsive">
+                        <h:dataTable value="#{listarFuncionariosController.funcionarios}" var="f"
+                                     styleClass="table table-striped">
+                            <h:column>
+                                <f:facet name="header">Nome</f:facet>
+                                <h:outputText value="#{f.funcionario.nomeCompleto}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Cargo</f:facet>
+                                <h:outputText value="#{f.perfil.nomeMF}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Escola</f:facet>
+                                <h:outputText value="#{f.escola.razaoSocial}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Ativo</f:facet>
+                                <sie:simNaoOutput value="#{f.vinculoAtivo}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Data de Ingresso</f:facet>
+                                <h:outputText value="#{f.dataVinculo}"/>
+                            </h:column>
+                            <h:column>
+                                <div align="center">
+                                    <button class="btn btn-warning"
+                                            jsf:action="#{listarFuncionariosController.editar(f)}">
+                                        <span class="glyphicon glyphicon-edit"></span> Editar
+                                    </button>
+                                </div>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </sie:panel>
             </sie:panel>
         </h:form>
     </ui:define>

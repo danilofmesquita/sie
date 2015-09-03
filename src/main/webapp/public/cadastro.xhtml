@@ -10,178 +10,180 @@
     <ui:define name="body">
         <h:form id="form">
             <h:messages/>
-            <sie:panel type="primary" header="Dados Gerais">
-                <sie:row>
-                    <sie:column span="4">
-                        <sie:selectOneMenu id="tipoPessoa" value="#{cadastroController.entidade.tipoPessoa}"
-                                           required="#{param['validar']}"
-                                           label="#{msg['label.tipo.pessoa']}">
-                            <f:selectItem itemLabel="Selecione"/>
-                            <f:selectItems value="#{factoryUtil.tiposPessoa}" var="tp"
-                                           itemLabel="#{tp.descricao}"/>
-                            <f:ajax event="change" render="@form" execute="@this"/>
-                        </sie:selectOneMenu>
-                    </sie:column>
-                    <sie:column span="4" rendered="#{cadastroController.entidade.tipoPessoa.fisica}">
-                        <sie:inputText label="#{msg['label.cpf']}" styleClass="cpf"
-                                       value="#{cadastroController.entidade.cpfCnpj}">
-                            <f:converter for="inputText" converterId="sie.converter.number"/>
-                        </sie:inputText>
-                    </sie:column>
-                    <sie:column span="4" rendered="#{cadastroController.entidade.tipoPessoa.juridica}">
-                        <sie:inputText label="#{msg['label.cnpj']}" styleClass="cnpj"
-                                       required="#{param['validar']}"
-                                       value="#{cadastroController.entidade.cpfCnpj}">
-                            <f:converter for="inputText" converterId="sie.converter.number"/>
-                        </sie:inputText>
-                    </sie:column>
-                </sie:row>
-                <h:panelGroup rendered="#{cadastroController.entidade.tipoPessoa.fisica}">
+            <sie:panel type="primary" header="Cadastro de Usuario">
+                <sie:panel header="Dados Gerais">
                     <sie:row>
-                        <sie:column span="12">
-                            <sie:inputText label="#{msg['label.nome.completo']}"
+                        <sie:column span="4">
+                            <sie:selectOneMenu id="tipoPessoa" value="#{cadastroController.entidade.tipoPessoa}"
+                                               required="#{param['validar']}"
+                                               label="#{msg['label.tipo.pessoa']}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{factoryUtil.tiposPessoa}" var="tp"
+                                               itemLabel="#{tp.descricao}"/>
+                                <f:ajax event="change" render="@form" execute="@this"/>
+                            </sie:selectOneMenu>
+                        </sie:column>
+                        <sie:column span="4" rendered="#{cadastroController.entidade.tipoPessoa.fisica}">
+                            <sie:inputText label="#{msg['label.cpf']}" styleClass="cpf"
+                                           value="#{cadastroController.entidade.cpfCnpj}">
+                                <f:converter for="inputText" converterId="sie.converter.number"/>
+                            </sie:inputText>
+                        </sie:column>
+                        <sie:column span="4" rendered="#{cadastroController.entidade.tipoPessoa.juridica}">
+                            <sie:inputText label="#{msg['label.cnpj']}" styleClass="cnpj"
                                            required="#{param['validar']}"
-                                           value="#{cadastroController.entidade.nomeCompleto}"/>
+                                           value="#{cadastroController.entidade.cpfCnpj}">
+                                <f:converter for="inputText" converterId="sie.converter.number"/>
+                            </sie:inputText>
                         </sie:column>
                     </sie:row>
+                    <h:panelGroup rendered="#{cadastroController.entidade.tipoPessoa.fisica}">
+                        <sie:row>
+                            <sie:column span="12">
+                                <sie:inputText label="#{msg['label.nome.completo']}"
+                                               required="#{param['validar']}"
+                                               value="#{cadastroController.entidade.nomeCompleto}"/>
+                            </sie:column>
+                        </sie:row>
+                        <sie:row>
+                            <sie:column span="12">
+                                <sie:inputText label="#{msg['label.nome.completo.mae']}"
+                                               required="#{param['validar']}"
+                                               value="#{cadastroController.entidade.nomeCompletoMae}"/>
+                            </sie:column>
+                        </sie:row>
+                        <sie:row>
+                            <sie:column span="12">
+                                <sie:inputText label="#{msg['label.nome.completo.pai']}"
+                                               required="#{param['validar']}"
+                                               value="#{cadastroController.entidade.nomeCompletoPai}"/>
+                            </sie:column>
+                        </sie:row>
+                        <sie:row>
+                            <sie:column span="4">
+                                <sie:inputDate label="#{msg['label.data.nascimento']}"
+                                               required="#{param['validar']}"
+                                               value="#{cadastroController.entidade.dataNascimento}"/>
+                            </sie:column>
+                            <sie:column span="8">
+                                <sie:inputText label="#{msg['label.email']}"
+                                               required="#{param['validar']}"
+                                               value="#{cadastroController.entidade.email}"/>
+                            </sie:column>
+                        </sie:row>
+                        <sie:row>
+                            <sie:column span="12">
+                                <sie:selectManyListbox label="Perfil" value="#{cadastroController.entidade.perfis}"
+                                                       required="#{param['validar']}">
+                                    <f:selectItems value="#{factoryUtil.perfisCPF}" var="_p" itemLabel="#{_p.nomeMF}"/>
+                                    <f:converter for="selectManyListbox" converterId="sie.converter.perfil"/>
+                                </sie:selectManyListbox>
+                            </sie:column>
+                        </sie:row>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{cadastroController.entidade.tipoPessoa.juridica}">
+                        <sie:row>
+                            <sie:column span="12">
+                                <sie:inputText label="#{msg['label.razao.social']}"
+                                               required="#{param['validar']}"
+                                               value="#{cadastroController.entidade.razaoSocial}"/>
+                            </sie:column>
+                        </sie:row>
+                        <sie:row>
+                            <sie:column span="12">
+                                <sie:inputText label="#{msg['label.email']}"
+                                               required="#{param['validar']}"
+                                               value="#{cadastroController.entidade.email}"/>
+                            </sie:column>
+                        </sie:row>
+                        <sie:row>
+                            <sie:column span="12">
+                                <sie:selectManyListbox label="Perfil" value="#{cadastroController.entidade.perfis}"
+                                                       required="#{param['validar']}">
+                                    <f:selectItems value="#{factoryUtil.perfisCNPJ}" var="_p" itemLabel="#{_p.nomeMF}"
+                                                   itemValue="#{_p}"/>
+                                    <f:converter for="selectManyListbox" converterId="sie.converter.perfil"/>
+                                </sie:selectManyListbox>
+                            </sie:column>
+                        </sie:row>
+                    </h:panelGroup>
+                </sie:panel>
+                <sie:panel header="Endereço">
                     <sie:row>
-                        <sie:column span="12">
-                            <sie:inputText label="#{msg['label.nome.completo.mae']}"
+                        <sie:column span="4">
+                            <sie:inputText label="#{msg['label.cep']}" styleClass="cep"
                                            required="#{param['validar']}"
-                                           value="#{cadastroController.entidade.nomeCompletoMae}"/>
+                                           value="#{cadastroController.entidade.endereco.cep}">
+                                <f:ajax event="change" execute="@form" render="@form"
+                                        listener="#{cadastroController.carregarEnderecoPorCEP}"/>
+                                <f:converter for="inputText" converterId="sie.converter.number"/>
+                            </sie:inputText>
                         </sie:column>
-                    </sie:row>
-                    <sie:row>
-                        <sie:column span="12">
-                            <sie:inputText label="#{msg['label.nome.completo.pai']}"
+                        <sie:column span="4">
+                            <sie:inputText label="#{msg['label.municipio']}"
                                            required="#{param['validar']}"
-                                           value="#{cadastroController.entidade.nomeCompletoPai}"/>
+                                           value="#{cadastroController.entidade.endereco.municipio}"/>
+                        </sie:column>
+                        <sie:column span="4">
+                            <sie:selectOneMenu value="#{cadastroController.entidade.endereco.uf}"
+                                               required="#{param['validar']}"
+                                               label="#{msg['label.uf']}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{factoryUtil.UFs}" var="_UF" itemLabel="#{_UF.nome}"/>
+                            </sie:selectOneMenu>
                         </sie:column>
                     </sie:row>
                     <sie:row>
                         <sie:column span="4">
-                            <sie:inputDate label="#{msg['label.data.nascimento']}"
+                            <sie:inputText label="#{msg['label.endereco']}"
                                            required="#{param['validar']}"
-                                           value="#{cadastroController.entidade.dataNascimento}"/>
+                                           value="#{cadastroController.entidade.endereco.endereco}"/>
                         </sie:column>
-                        <sie:column span="8">
-                            <sie:inputText label="#{msg['label.email']}"
+                        <sie:column span="4">
+                            <sie:inputText label="#{msg['label.bairro']}"
                                            required="#{param['validar']}"
-                                           value="#{cadastroController.entidade.email}"/>
+                                           value="#{cadastroController.entidade.endereco.bairro}"/>
+                        </sie:column>
+                        <sie:column span="4">
+                            <sie:inputText label="#{msg['label.numero']}"
+                                           required="#{param['validar']}"
+                                           value="#{cadastroController.entidade.endereco.numero}"/>
                         </sie:column>
                     </sie:row>
                     <sie:row>
-                        <sie:column span="12">
-                            <sie:selectManyListbox label="Perfil" value="#{cadastroController.entidade.perfis}"
-                                                   required="#{param['validar']}">
-                                <f:selectItems value="#{factoryUtil.perfisCPF}" var="_p" itemLabel="#{_p.nomeMF}"/>
-                                <f:converter for="selectManyListbox" converterId="sie.converter.perfil"/>
-                            </sie:selectManyListbox>
+                        <sie:column span="4">
+                            <sie:inputText label="#{msg['label.complemento']}"
+                                           value="#{cadastroController.entidade.endereco.complemento}"/>
                         </sie:column>
                     </sie:row>
-                </h:panelGroup>
-                <h:panelGroup rendered="#{cadastroController.entidade.tipoPessoa.juridica}">
+                </sie:panel>
+                <sie:panel header="Telefone">
                     <sie:row>
-                        <sie:column span="12">
-                            <sie:inputText label="#{msg['label.razao.social']}"
-                                           required="#{param['validar']}"
-                                           value="#{cadastroController.entidade.razaoSocial}"/>
+                        <sie:column span="4">
+                            <sie:inputText label="#{msg['label.telefone.principal']}"
+                                           styleClass="telefone" required="#{param['validar']}"
+                                           value="#{cadastroController.entidade.telefones[0].numero}">
+                                <f:converter for="inputText" converterId="sie.converter.number"/>
+                            </sie:inputText>
+                        </sie:column>
+                        <sie:column span="4">
+                            <sie:inputText label="#{msg['label.telefone.alternativo']}"
+                                           styleClass="telefone"
+                                           value="#{cadastroController.entidade.telefones[1].numero}">
+                                <f:converter for="inputText" converterId="sie.converter.number"/>
+                            </sie:inputText>
                         </sie:column>
                     </sie:row>
-                    <sie:row>
-                        <sie:column span="12">
-                            <sie:inputText label="#{msg['label.email']}"
-                                           required="#{param['validar']}"
-                                           value="#{cadastroController.entidade.email}"/>
-                        </sie:column>
-                    </sie:row>
-                    <sie:row>
-                        <sie:column span="12">
-                            <sie:selectManyListbox label="Perfil" value="#{cadastroController.entidade.perfis}"
-                                                   required="#{param['validar']}">
-                                <f:selectItems value="#{factoryUtil.perfisCNPJ}" var="_p" itemLabel="#{_p.nomeMF}"
-                                               itemValue="#{_p}"/>
-                                <f:converter for="selectManyListbox" converterId="sie.converter.perfil"/>
-                            </sie:selectManyListbox>
-                        </sie:column>
-                    </sie:row>
-                </h:panelGroup>
+                </sie:panel>
+                <h:commandButton value="Salvar" styleClass="btn btn-primary pull-right btn-margin-left"
+                                 action="#{cadastroController.salvar}">
+                    <f:param name="validar" value="true"/>
+                </h:commandButton>
+                <h:commandButton value="Limpar" styleClass="btn btn-default pull-right btn-margin-right"
+                                 action="#{cadastroController.limpar}">
+                    <f:param name="validar" value="false"/>
+                </h:commandButton>
             </sie:panel>
-            <sie:panel header="Endereço">
-                <sie:row>
-                    <sie:column span="4">
-                        <sie:inputText label="#{msg['label.cep']}" styleClass="cep"
-                                       required="#{param['validar']}"
-                                       value="#{cadastroController.entidade.endereco.cep}">
-                            <f:ajax event="change" execute="@form" render="@form"
-                                    listener="#{cadastroController.carregarEnderecoPorCEP}"/>
-                            <f:converter for="inputText" converterId="sie.converter.number"/>
-                        </sie:inputText>
-                    </sie:column>
-                    <sie:column span="4">
-                        <sie:inputText label="#{msg['label.municipio']}"
-                                       required="#{param['validar']}"
-                                       value="#{cadastroController.entidade.endereco.municipio}"/>
-                    </sie:column>
-                    <sie:column span="4">
-                        <sie:selectOneMenu value="#{cadastroController.entidade.endereco.uf}"
-                                           required="#{param['validar']}"
-                                           label="#{msg['label.uf']}">
-                            <f:selectItem itemLabel="Selecione"/>
-                            <f:selectItems value="#{factoryUtil.UFs}" var="_UF" itemLabel="#{_UF.nome}"/>
-                        </sie:selectOneMenu>
-                    </sie:column>
-                </sie:row>
-                <sie:row>
-                    <sie:column span="4">
-                        <sie:inputText label="#{msg['label.endereco']}"
-                                       required="#{param['validar']}"
-                                       value="#{cadastroController.entidade.endereco.endereco}"/>
-                    </sie:column>
-                    <sie:column span="4">
-                        <sie:inputText label="#{msg['label.bairro']}"
-                                       required="#{param['validar']}"
-                                       value="#{cadastroController.entidade.endereco.bairro}"/>
-                    </sie:column>
-                    <sie:column span="4">
-                        <sie:inputText label="#{msg['label.numero']}"
-                                       required="#{param['validar']}"
-                                       value="#{cadastroController.entidade.endereco.numero}"/>
-                    </sie:column>
-                </sie:row>
-                <sie:row>
-                    <sie:column span="4">
-                        <sie:inputText label="#{msg['label.complemento']}"
-                                       value="#{cadastroController.entidade.endereco.complemento}"/>
-                    </sie:column>
-                </sie:row>
-            </sie:panel>
-            <sie:panel header="Telefone" type="primary">
-                <sie:row>
-                    <sie:column span="4">
-                        <sie:inputText label="#{msg['label.telefone.principal']}"
-                                       styleClass="telefone" required="#{param['validar']}"
-                                       value="#{cadastroController.entidade.telefones[0].numero}">
-                            <f:converter for="inputText" converterId="sie.converter.number"/>
-                        </sie:inputText>
-                    </sie:column>
-                    <sie:column span="4">
-                        <sie:inputText label="#{msg['label.telefone.alternativo']}"
-                                       styleClass="telefone"
-                                       value="#{cadastroController.entidade.telefones[1].numero}">
-                            <f:converter for="inputText" converterId="sie.converter.number"/>
-                        </sie:inputText>
-                    </sie:column>
-                </sie:row>
-            </sie:panel>
-            <h:commandButton value="Salvar" styleClass="btn btn-primary pull-right btn-margin-left"
-                             action="#{cadastroController.salvar}">
-                <f:param name="validar" value="true"/>
-            </h:commandButton>
-            <h:commandButton value="Limpar" styleClass="btn btn-default pull-right btn-margin-right"
-                             action="#{cadastroController.limpar}">
-                <f:param name="validar" value="false"/>
-            </h:commandButton>
         </h:form>
     </ui:define>
 </ui:composition>

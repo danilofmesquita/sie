@@ -10,102 +10,105 @@
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <h:form>
+            <sie:panel header="Cadastrar Turma" type="primary">
             <h:messages/>
-            <sie:panel header="Dados Gerais">
-                <sie:row>
-                    <sie:column span="4">
-                        <sie:selectOneMenu label="Série" required="#{param['salvar']}"
-                                           value="#{manterTurmaController.turma.serie}">
-                            <f:selectItem itemLabel="Selecione"/>
-                            <f:selectItems value="#{factoryUtil.series}" var="_s" itemLabel="#{_s.descricao}"/>
-                        </sie:selectOneMenu>
-                    </sie:column>
-                    <sie:column span="4">
-                        <sie:inputText value="#{manterTurmaController.turma.nome}" required="#{param['salvar']}"
-                                       label="Nome"/>
-                    </sie:column>
-                    <sie:column span="4">
-                        <sie:selectOneMenu label="Turno" required="#{param['salvar']}"
-                                           value="#{manterTurmaController.turma.turno}">
-                            <f:selectItem itemLabel="Selecione"/>
-                            <f:selectItems value="#{factoryUtil.turnos}" var="_t" itemLabel="#{_t.descricao}"/>
-                        </sie:selectOneMenu>
-                    </sie:column>
-                </sie:row>
-                <sie:row>
-                    <sie:column span="4">
-                        <sie:inputDate value="#{manterTurmaController.turma.dataInicio}" required="#{param['salvar']}"
-                                       label="Data de Inicio"/>
-                    </sie:column>
-                    <sie:column span="4">
-                        <sie:inputDate value="#{manterTurmaController.turma.dataFim}" required="#{param['salvar']}"
-                                       label="Data de Fim"/>
-                    </sie:column>
-                </sie:row>
+                <sie:panel header="Dados Gerais" type="default">
+                    <sie:row>
+                        <sie:column span="4">
+                            <sie:selectOneMenu label="Série" required="#{param['salvar']}"
+                                               value="#{manterTurmaController.turma.serie}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{factoryUtil.series}" var="_s" itemLabel="#{_s.descricao}"/>
+                            </sie:selectOneMenu>
+                        </sie:column>
+                        <sie:column span="4">
+                            <sie:inputText value="#{manterTurmaController.turma.nome}" required="#{param['salvar']}"
+                                           label="Nome"/>
+                        </sie:column>
+                        <sie:column span="4">
+                            <sie:selectOneMenu label="Turno" required="#{param['salvar']}"
+                                               value="#{manterTurmaController.turma.turno}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{factoryUtil.turnos}" var="_t" itemLabel="#{_t.descricao}"/>
+                            </sie:selectOneMenu>
+                        </sie:column>
+                    </sie:row>
+                    <sie:row>
+                        <sie:column span="4">
+                            <sie:inputDate value="#{manterTurmaController.turma.dataInicio}"
+                                           required="#{param['salvar']}"
+                                           label="Data de Inicio"/>
+                        </sie:column>
+                        <sie:column span="4">
+                            <sie:inputDate value="#{manterTurmaController.turma.dataFim}" required="#{param['salvar']}"
+                                           label="Data de Fim"/>
+                        </sie:column>
+                    </sie:row>
+                </sie:panel>
+                <sie:panel header="Professores" type="default">
+                    <sie:row>
+                        <sie:column span="6">
+                            <sie:selectOneMenu label="Professor" required="#{param['adicionar']}"
+                                               value="#{manterTurmaController.professorDisciplina.professor}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{manterTurmaController.professores}" var="_p"
+                                               itemLabel="#{_p.nomeCompleto}"/>
+                                <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
+                            </sie:selectOneMenu>
+                        </sie:column>
+                        <sie:column span="6">
+                            <sie:selectOneMenu label="Disciplina" required="#{param['adicionar']}"
+                                               value="#{manterTurmaController.professorDisciplina.disciplina}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{factoryUtil.disciplinas}" var="_d" itemLabel="#{_d.descricao}"/>
+                            </sie:selectOneMenu>
+                        </sie:column>
+                    </sie:row>
+                    <button class="btn btn-primary pull-right btn-margin-left"
+                            jsf:action="#{manterTurmaController.adicionarProfessorDisciplina}">
+                        <span class="glyphicon glyphicon-plus"></span> Adicionar
+                        <f:ajax execute="@form" render="@form"/>
+                        <f:param name="adicionar" value="true"/>
+                    </button>
+                    <h:dataTable value="#{manterTurmaController.turma.professorDisciplinas}" var="_pd"
+                                 rendered="#{not empty manterTurmaController.turma.professorDisciplinas}"
+                                 styleClass="table table-striped">
+                        <h:column>
+                            <f:facet name="header">
+                                Professor
+                            </f:facet>
+                            <h:outputText value="#{_pd.professor.nomeCompleto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                Disciplina
+                            </f:facet>
+                            <h:outputText value="#{_pd.disciplina.descricao}"/>
+                        </h:column>
+                        <h:column>
+                            <div align="center">
+                                <button class="btn btn-warning"
+                                        jsf:action="#{manterTurmaController.editarProfessorDisciplina(_pd)}">
+                                    <span class="glyphicon glyphicon-edit"></span> Editar
+                                    <f:ajax execute="@form" render="@form"/>
+                                </button>
+                                <span/>
+                                <button class="btn btn-danger"
+                                        jsf:action="#{manterTurmaController.removerProfessorDisciplina(_pd)}">
+                                    <span class="glyphicon glyphicon-remove"></span> Excluir
+                                    <f:ajax execute="@form" render="@form"/>
+                                </button>
+                            </div>
+                        </h:column>
+                    </h:dataTable>
+                </sie:panel>
+                <h:commandButton value="Salvar" action="#{manterTurmaController.salvar}"
+                                 styleClass="btn btn-primary pull-right btn-margin-left">
+                    <f:param value="true" name="salvar"/>
+                </h:commandButton>
+                <h:commandButton value="Voltar" action="listar?faces-redirect=true"
+                                 styleClass="btn btn-default pull-right btn-margin-left"/>
             </sie:panel>
-            <sie:panel header="Professores">
-                <sie:row>
-                    <sie:column span="6">
-                        <sie:selectOneMenu label="Professor" required="#{param['adicionar']}"
-                                           value="#{manterTurmaController.professorDisciplina.professor}">
-                            <f:selectItem itemLabel="Selecione"/>
-                            <f:selectItems value="#{manterTurmaController.professores}" var="_p"
-                                           itemLabel="#{_p.nomeCompleto}"/>
-                            <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
-                        </sie:selectOneMenu>
-                    </sie:column>
-                    <sie:column span="6">
-                        <sie:selectOneMenu label="Disciplina" required="#{param['adicionar']}"
-                                           value="#{manterTurmaController.professorDisciplina.disciplina}">
-                            <f:selectItem itemLabel="Selecione"/>
-                            <f:selectItems value="#{factoryUtil.disciplinas}" var="_d" itemLabel="#{_d.descricao}"/>
-                        </sie:selectOneMenu>
-                    </sie:column>
-                </sie:row>
-                <button class="btn btn-primary pull-right btn-margin-left"
-                        jsf:action="#{manterTurmaController.adicionarProfessorDisciplina}">
-                    <span class="glyphicon glyphicon-plus"></span> Adicionar
-                    <f:ajax execute="@form" render="@form"/>
-                    <f:param name="adicionar" value="true"/>
-                </button>
-                <h:dataTable value="#{manterTurmaController.turma.professorDisciplinas}" var="_pd"
-                             rendered="#{not empty manterTurmaController.turma.professorDisciplinas}"
-                             styleClass="table table-striped">
-                    <h:column>
-                        <f:facet name="header">
-                            Professor
-                        </f:facet>
-                        <h:outputText value="#{_pd.professor.nomeCompleto}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            Disciplina
-                        </f:facet>
-                        <h:outputText value="#{_pd.disciplina.descricao}"/>
-                    </h:column>
-                    <h:column>
-                        <div align="center">
-                            <button class="btn btn-warning"
-                                    jsf:action="#{manterTurmaController.editarProfessorDisciplina(_pd)}">
-                                <span class="glyphicon glyphicon-edit"></span> Editar
-                                <f:ajax execute="@form" render="@form"/>
-                            </button>
-                            <span/>
-                            <button class="btn btn-danger"
-                                    jsf:action="#{manterTurmaController.removerProfessorDisciplina(_pd)}">
-                                <span class="glyphicon glyphicon-remove"></span> Excluir
-                                <f:ajax execute="@form" render="@form"/>
-                            </button>
-                        </div>
-                    </h:column>
-                </h:dataTable>
-            </sie:panel>
-            <h:commandButton value="Salvar" action="#{manterTurmaController.salvar}"
-                             styleClass="btn btn-primary pull-right btn-margin-left">
-                <f:param value="true" name="salvar"/>
-            </h:commandButton>
-            <h:commandButton value="Voltar" action="listar?faces-redirect=true"
-                             styleClass="btn btn-default pull-right btn-margin-left"/>
         </h:form>
     </ui:define>
 </ui:composition>

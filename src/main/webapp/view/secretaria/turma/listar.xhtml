@@ -10,7 +10,7 @@
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <h:form>
-            <sie:panel header="Filtro">
+            <sie:panel header="Consultar Turmas" type="primary">
                 <h:messages/>
                 <sie:row>
                     <sie:column span="4">
@@ -46,43 +46,48 @@
                 <h:commandButton value="Nova Turma"
                                  action="incluir.xhtml?faces-redirect=true"
                                  styleClass="btn btn-default pull-right btn-margin-left"/>
-            </sie:panel>
-            <sie:panel header="Turmas">
-                <h:dataTable value="#{listarTurmaController.turmas}" var="_t"
-                             styleClass="table table-striped">
-                    <h:column>
-                        <f:facet name="header">Série</f:facet>
-                        <h:outputText value="#{_t.serie.descricao}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Nome</f:facet>
-                        <h:outputText value="#{_t.nome}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Turno</f:facet>
-                        <h:outputText value="#{_t.turno.descricao}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Data de Inicio</f:facet>
-                        <h:outputText value="#{_t.dataInicio}">
-                            <f:convertDateTime pattern="dd/MM/yyyy"/>
-                        </h:outputText>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Data de Fim</f:facet>
-                        <h:outputText value="#{_t.dataFim}">
-                            <f:convertDateTime pattern="dd/MM/yyyy"/>
-                        </h:outputText>
-                    </h:column>
-                    <h:column>
-                        <div align="center">
-                            <button class="btn btn-warning"
-                                    jsf:action="#{listarTurmaController.editar(_t)}">
-                                <span class="glyphicon glyphicon-edit"></span> Editar
-                            </button>
-                        </div>
-                    </h:column>
-                </h:dataTable>
+                <br/>
+                <br/>
+                <br/>
+                <sie:panel header="Turmas" type="default">
+                    <div class="table-responsive">
+                        <h:dataTable value="#{listarTurmaController.turmas}" var="_t"
+                                     styleClass="table table-striped">
+                            <h:column>
+                                <f:facet name="header">Série</f:facet>
+                                <h:outputText value="#{_t.serie.descricao}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Nome</f:facet>
+                                <h:outputText value="#{_t.nome}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Turno</f:facet>
+                                <h:outputText value="#{_t.turno.descricao}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Data de Inicio</f:facet>
+                                <h:outputText value="#{_t.dataInicio}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Data de Fim</f:facet>
+                                <h:outputText value="#{_t.dataFim}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <div align="center">
+                                    <button class="btn btn-warning"
+                                            jsf:action="#{listarTurmaController.editar(_t)}">
+                                        <span class="glyphicon glyphicon-edit"></span> Editar
+                                    </button>
+                                </div>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </sie:panel>
             </sie:panel>
         </h:form>
     </ui:define>

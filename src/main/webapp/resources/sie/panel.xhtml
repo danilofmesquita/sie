@@ -2,14 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:composite="http://java.sun.com/jsf/composite">
+      xmlns:composite="http://java.sun.com/jsf/composite" xmlns:h="http://java.sun.com/jsf/html">
 <composite:interface>
-    <composite:attribute name="type" default="primary"/>
+    <composite:attribute name="type" default="default"/>
     <composite:attribute name="header"/>
 </composite:interface>
 <composite:implementation>
     <div class="panel panel-#{cc.attrs.type}">
-        <div class="panel-heading bold">#{cc.attrs.header}</div>
+        <h:panelGroup rendered="#{not empty cc.attrs.header}">
+            <div class="panel-heading bold">#{cc.attrs.header}</div>
+        </h:panelGroup>
         <div class="panel-body">
             <composite:insertChildren/>
         </div>
