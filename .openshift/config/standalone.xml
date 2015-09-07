@@ -295,6 +295,10 @@
                 <smtp-server outbound-socket-binding-ref="gmail-smtp" ssl="true" username="mirante.teste@gmail.com"
                              password="miranteInfo"/>
             </mail-session>
+            <mail-session name="sendgrid" jndi-name="java:jboss/mail/Sendgrid">
+                <smtp-server outbound-socket-binding-ref="sendgrid" ssl="true" username="${env.SENDGRID_USERNAME}"
+                             password="${env.SENDGRID_PASSWORD}"/>
+            </mail-session>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:naming:2.0">
             <remote-naming/>
@@ -413,6 +417,9 @@
         </outbound-socket-binding>
         <outbound-socket-binding name="gmail-smtp">
             <remote-destination host="smtp.gmail.com" port="465"/>
+        </outbound-socket-binding>
+        <outbound-socket-binding name="sendgrid-smtp">
+            <remote-destination host="${env.SENDGRID_HOSTNAME}" port="465"/>
         </outbound-socket-binding>
     </socket-binding-group>
 </server>
