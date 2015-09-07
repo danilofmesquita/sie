@@ -1,6 +1,6 @@
 package br.iesb.sie.dto;
 
-import br.iesb.sie.entidade.Entidade;
+import br.iesb.sie.entity.Entidade;
 
 public class EmailCadastroConcluidoDTO extends EmailDTO {
 

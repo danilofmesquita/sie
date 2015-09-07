@@ -1,7 +1,7 @@
 package br.iesb.sie.bean;
 
 import br.iesb.sie.controller.BaseController;
-import br.iesb.sie.entidade.Entidade;
+import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.model.Perfil;
 import br.iesb.sie.service.EntidadeService;
 

@@ -2,7 +2,7 @@ package br.iesb.sie.service;
 
 import br.iesb.sie.dao.EntidadeDAO;
 import br.iesb.sie.dao.FuncionarioDAO;
-import br.iesb.sie.entidade.Funcionario;
+import br.iesb.sie.entity.Funcionario;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;

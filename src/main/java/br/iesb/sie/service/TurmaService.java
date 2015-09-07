@@ -2,8 +2,8 @@ package br.iesb.sie.service;
 
 import br.iesb.sie.dao.ProfessorDisciplinaDAO;
 import br.iesb.sie.dao.TurmaDAO;
-import br.iesb.sie.entidade.ProfessorDisciplina;
-import br.iesb.sie.entidade.Turma;
+import br.iesb.sie.entity.ProfessorDisciplina;
+import br.iesb.sie.entity.Turma;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;

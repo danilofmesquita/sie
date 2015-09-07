@@ -1,6 +1,6 @@
 package br.iesb.sie.service;
 
-import br.iesb.sie.entidade.Endereco;
+import br.iesb.sie.entity.Endereco;
 import br.iesb.sie.model.UF;
 
 import javax.ejb.Stateless;

@@ -1,6 +1,6 @@
 package br.iesb.sie.dao;
 
-import br.iesb.sie.entidade.BaseEntity;
+import br.iesb.sie.entity.BaseEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
 

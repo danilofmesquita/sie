@@ -1,9 +1,9 @@
 package br.iesb.sie.controller;
 
 import br.iesb.sie.bean.UsuarioLogado;
-import br.iesb.sie.entidade.Entidade;
-import br.iesb.sie.entidade.ProfessorDisciplina;
-import br.iesb.sie.entidade.Turma;
+import br.iesb.sie.entity.Entidade;
+import br.iesb.sie.entity.ProfessorDisciplina;
+import br.iesb.sie.entity.Turma;
 import br.iesb.sie.service.EntidadeService;
 import br.iesb.sie.service.TurmaService;
 import br.iesb.sie.util.Attributes;

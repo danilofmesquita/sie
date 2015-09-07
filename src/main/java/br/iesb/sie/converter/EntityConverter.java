@@ -1,6 +1,6 @@
 package br.iesb.sie.converter;
 
-import br.iesb.sie.entidade.BaseEntity;
+import br.iesb.sie.entity.BaseEntity;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;

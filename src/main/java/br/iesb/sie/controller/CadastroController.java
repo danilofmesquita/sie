@@ -1,8 +1,8 @@
 package br.iesb.sie.controller;
 
-import br.iesb.sie.entidade.Endereco;
-import br.iesb.sie.entidade.Entidade;
-import br.iesb.sie.entidade.Telefone;
+import br.iesb.sie.entity.Endereco;
+import br.iesb.sie.entity.Entidade;
+import br.iesb.sie.entity.Telefone;
 import br.iesb.sie.service.CEPService;
 import br.iesb.sie.service.EntidadeService;
 import br.iesb.sie.util.NavigationRules;

@@ -1,6 +1,6 @@
 package br.iesb.sie.dao;
 
-import br.iesb.sie.entidade.Funcionario;
+import br.iesb.sie.entity.Funcionario;
 import org.hibernate.Query;
 
 import javax.inject.Named;

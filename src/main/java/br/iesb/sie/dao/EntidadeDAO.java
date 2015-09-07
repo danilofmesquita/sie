@@ -1,6 +1,6 @@
 package br.iesb.sie.dao;
 
-import br.iesb.sie.entidade.Entidade;
+import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.model.Perfil;
 
 import javax.inject.Named;

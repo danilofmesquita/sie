@@ -1,8 +1,8 @@
 package br.iesb.sie.controller;
 
 import br.iesb.sie.bean.UsuarioLogado;
-import br.iesb.sie.entidade.Entidade;
-import br.iesb.sie.entidade.Funcionario;
+import br.iesb.sie.entity.Entidade;
+import br.iesb.sie.entity.Funcionario;
 import br.iesb.sie.service.EntidadeService;
 import br.iesb.sie.service.FuncionarioService;
 import br.iesb.sie.util.Attributes;

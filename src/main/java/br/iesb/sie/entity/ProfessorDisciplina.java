@@ -1,4 +1,4 @@
-package br.iesb.sie.entidade;
+package br.iesb.sie.entity;
 
 import br.iesb.sie.model.Disciplina;
 

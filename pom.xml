@@ -27,6 +27,11 @@
             <version>${hibernate.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.1.1</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>sie</finalName>
@@ -54,7 +59,7 @@
         </profile>
         <profile>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <id>wildfly-9.0.1</id>
             <properties>

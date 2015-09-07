@@ -1,6 +1,6 @@
 package br.iesb.sie.dao;
 
-import br.iesb.sie.entidade.Turma;
+import br.iesb.sie.entity.Turma;
 
 import java.util.HashMap;
 import java.util.List;
