@@ -296,7 +296,7 @@
                              password="miranteInfo"/>
             </mail-session>
             <mail-session name="sendgrid" jndi-name="java:jboss/mail/Sendgrid">
-                <smtp-server outbound-socket-binding-ref="sendgrid" ssl="true" username="dmRABg0A8S"
+                <smtp-server outbound-socket-binding-ref="sendgrid-smtp" ssl="true" username="dmRABg0A8S"
                              password="ZaZI5pKQ7cL26392"/>
             </mail-session>
         </subsystem>
