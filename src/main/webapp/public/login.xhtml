@@ -4,6 +4,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <form method="POST" action="j_security_check">
@@ -28,7 +29,7 @@
                             <input type="password" name="j_password" class="form-control" required="true"/>
                         </div>
                         <p>
-                            Não possui login? <a href="/public/cadastro.xhtml">Cadastre-se</a>
+                            Não possui login? <a jsf:acion="/public/cadastro.xhtml">Cadastre-se</a>
                         </p>
                         <button type="submit" class="btn btn-primary pull-right btn-margin-left">Entrar</button>
                         <button type="reset" class="btn btn-default pull-right btn-margin-right">Limpar</button>
