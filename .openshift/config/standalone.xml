@@ -150,11 +150,11 @@
 </security>
 </datasource>
 <datasource jndi-name="java:jboss/datasources/SieDS" pool-name="SieDS" enabled="true" use-java-context="true">
-<connection-url>jdbc:mysql://127.0.0.1:3306/SIE?characterEncoding=utf-8</connection-url>
+<connection-url>mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/SIE?characterEncoding=utf-8</connection-url>
 <driver>mysql</driver>
 <security>
 <user-name>root</user-name>
-<password>qwe123</password>
+<password>q48YUGNAsnQm</password>
 </security>
 </datasource>
 <drivers>
