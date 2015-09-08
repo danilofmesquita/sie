@@ -291,10 +291,6 @@
             <mail-session name="default" jndi-name="java:jboss/mail/Default">
                 <smtp-server outbound-socket-binding-ref="mail-smtp"/>
             </mail-session>
-            <mail-session name="gmail" jndi-name="java:jboss/mail/Gmail">
-                <smtp-server outbound-socket-binding-ref="gmail-smtp" ssl="true" username="mirante.teste@gmail.com"
-                             password="miranteInfo"/>
-            </mail-session>
             <mail-session name="sie" jndi-name="java:jboss/mail/SIE">
                 <smtp-server outbound-socket-binding-ref="sie-smtp" ssl="true" username="dmRABg0A8S"
                              password="ZaZI5pKQ7cL26392"/>
