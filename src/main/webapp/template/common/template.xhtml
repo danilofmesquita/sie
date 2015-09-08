@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:sie="http://java.sun.com/jsf/composite/sie"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
@@ -18,7 +19,7 @@
     </title>
 
     <h:outputStylesheet library="bootstrap" name="/css/bootstrap.css"/>
-<!--    <h:outputStylesheet library="bootstrap" name="/css/bootstrap-theme.css"/>-->
+    <!--    <h:outputStylesheet library="bootstrap" name="/css/bootstrap-theme.css"/>-->
     <h:outputStylesheet library="font-awesome" name="/css/font-awesome.css"/>
     <h:outputStylesheet library="sie" name="/css/style.css"/>
     <h:outputStylesheet library="select2" name="/css/select2.css"/>
@@ -54,7 +55,8 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="dropdown" jsf:rendered="#{not empty usuarioLogado.entidade and usuarioLogado.escola}">
+                        <li class="dropdown"
+                            jsf:rendered="#{not empty usuarioLogado.entidade and usuarioLogado.escola}">
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true"
                                aria-expanded="false">Escola<span class="caret"></span>
@@ -145,6 +147,12 @@
     </h:form>
 
     <div class="container">
+        <div class='ajaxloader'>
+            <sie:panel>
+            Carregando
+            <img alt="#" src="#{resource['images/ajax-loader.gif']}"/>
+            </sie:panel>
+        </div>
         <ui:insert name="body"/>
         <h:outputScript library="sie" name="/js/sie.js"/>
     </div>

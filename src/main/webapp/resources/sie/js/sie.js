@@ -13,5 +13,21 @@ SIE.aplicarMascaras = function () {
 
     if (typeof jsf != "undefined") {
         jsf.ajax.addOnEvent(SIE.aplicarMascaras);
+        jsf.ajax.addOnEvent(function(data){
+            var ajaxStatus = data.status;
+            var ajaxLoader = $('.ajaxloader');
+
+            switch (ajaxStatus){
+                case "begin":
+                    ajaxLoader.show();
+                    break;
+                case "complete":
+                    ajaxLoader.hide();
+                    break;
+                case "sucess":
+                    break;
+            }
+        });
     }
 })();
+
