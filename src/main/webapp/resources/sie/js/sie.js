@@ -11,12 +11,9 @@ SIE.aplicarMascaras = function () {
 (function () {
     $(document).ready(SIE.aplicarMascaras);
 
-    $('.ajaxloader').hide();
-
     if (typeof jsf != "undefined") {
 
         jsf.ajax.addOnEvent(SIE.aplicarMascaras);
-
         jsf.ajax.addOnEvent(function(data){
 
             var ajaxStatus = data.status;
