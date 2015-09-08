@@ -295,8 +295,8 @@
                 <smtp-server outbound-socket-binding-ref="gmail-smtp" ssl="true" username="mirante.teste@gmail.com"
                              password="miranteInfo"/>
             </mail-session>
-            <mail-session name="sendgrid" jndi-name="java:jboss/mail/Sendgrid">
-                <smtp-server outbound-socket-binding-ref="sendgrid-smtp" ssl="true" username="dmRABg0A8S"
+            <mail-session name="sie" jndi-name="java:jboss/mail/SIE">
+                <smtp-server outbound-socket-binding-ref="sie-smtp" ssl="true" username="dmRABg0A8S"
                              password="ZaZI5pKQ7cL26392"/>
             </mail-session>
         </subsystem>
@@ -415,10 +415,7 @@
         <outbound-socket-binding name="mail-smtp">
             <remote-destination host="localhost" port="25"/>
         </outbound-socket-binding>
-        <outbound-socket-binding name="gmail-smtp">
-            <remote-destination host="smtp.gmail.com" port="465"/>
-        </outbound-socket-binding>
-        <outbound-socket-binding name="sendgrid-smtp">
+        <outbound-socket-binding name="sie-smtp">
             <remote-destination host="smtp.sendgrid.net" port="465"/>
         </outbound-socket-binding>
     </socket-binding-group>

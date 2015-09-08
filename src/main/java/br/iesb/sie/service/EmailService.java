@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 @Stateless
 public class EmailService {
 
-    @Resource(mappedName = "java:jboss/mail/Sendgrid")
+    @Resource(mappedName = "java:jboss/mail/SIE")
     private Session mailSession;
 
     @Inject
