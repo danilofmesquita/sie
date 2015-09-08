@@ -22,9 +22,11 @@ SIE.aplicarMascaras = function () {
             switch (ajaxStatus){
                 case "begin":
                     ajaxLoader.show();
+                    $("body").css('cursor','wait');
                     break;
                 case "complete":
                     ajaxLoader.hide();
+                    $("body").css('cursor','auto');
                     break;
                 case "sucess":
                     break;
