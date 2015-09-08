@@ -10,7 +10,10 @@ public enum Serie {
     SEXTO_ATO(6, "Sexto Ano"),
     SETIMO_ANO(7, "Sétimo Ano"),
     OITAVO_ANO(8, "Oitavo Ano"),
-    NOVO_ANO(9, "Novo Ano");
+    NOVO_ANO(9, "Nono Ano"),
+    PRIMEIRO_ANO_EM(10, "Primeiro Ano do Ensino Médio"),
+    SEGUNDO_ANO_EM(11, "Segundo Ano do Ensino Médio"),
+    TERCEIRO_ANO_EM(12, "Terceiro Ano do Ensino Médio");
 
 
     private Integer codigo;
