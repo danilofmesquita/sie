@@ -1,6 +1,8 @@
 package br.iesb.sie.dao;
 
+import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.entity.Funcionario;
+import br.iesb.sie.model.Perfil;
 import org.hibernate.Query;
 
 import javax.inject.Named;
@@ -48,4 +50,16 @@ public class FuncionarioDAO extends BaseDAO<Funcionario, Long> {
         return query.list();
     }
 
+    public List<Funcionario> buscarFuncionarioPorPerfil(Perfil perfil, Entidade funcionario) {
+        String hql = " select f from Funcionario f";
+
+        hql += " where f.funcionario = :funcionario ";
+        hql += " and f.perfil = :perfil ";
+        hql += " and f.vinculoAtivo is true ";
+
+        return getSession().createQuery(hql)
+                .setParameter("funcionario", funcionario)
+                .setParameter("perfil",perfil)
+                .list();
+    }
 }

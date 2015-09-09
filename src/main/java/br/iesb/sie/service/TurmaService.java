@@ -2,6 +2,7 @@ package br.iesb.sie.service;
 
 import br.iesb.sie.dao.ProfessorDisciplinaDAO;
 import br.iesb.sie.dao.TurmaDAO;
+import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.entity.ProfessorDisciplina;
 import br.iesb.sie.entity.Turma;
 
@@ -25,8 +26,7 @@ public class TurmaService {
             Turma turmaSalva = buscarTurma(turma.getId());
 
             turmaSalva.setEscola(turma.getEscola());
-            turmaSalva.setDataFim(turma.getDataFim());
-            turmaSalva.setDataInicio(turma.getDataInicio());
+            turmaSalva.setAno(turma.getAno());
             turmaSalva.getProfessorDisciplinas().clear();
             turmaSalva.setTurno(turma.getTurno());
             turmaSalva.setSerie(turma.getSerie());
@@ -51,8 +51,8 @@ public class TurmaService {
         return turma;
     }
 
-    public List<Turma> buscarTurmas(Turma filtro) {
-        return turmaDAO.buscarTurmas(filtro);
+    public List<Turma> buscarTurmas(Turma filtro, List<Entidade> escolas) {
+        return turmaDAO.buscarTurmas(filtro, escolas);
     }
 
 }

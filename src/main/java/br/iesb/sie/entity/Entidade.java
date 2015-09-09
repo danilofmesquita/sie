@@ -62,6 +62,9 @@ public class Entidade extends BaseEntity {
     @Column
     private Integer login;
 
+    @OneToMany(mappedBy = "escola")
+    private List<Funcionario> funcionarios = new ArrayList<>();
+
     public Long getId() {
         return id;
     }

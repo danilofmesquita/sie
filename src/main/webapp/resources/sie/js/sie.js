@@ -17,16 +17,14 @@ SIE.aplicarMascaras = function () {
         jsf.ajax.addOnEvent(function(data){
 
             var ajaxStatus = data.status;
-            var ajaxLoader = $('.ajaxloader').hide();
+            var ajaxloaderContainer = $('.ajaxloaderContainer').hide();
 
             switch (ajaxStatus){
                 case "begin":
-                    ajaxLoader.show();
-                    $("body").css('cursor','wait');
+                    ajaxloaderContainer.show();
                     break;
                 case "complete":
-                    ajaxLoader.hide();
-                    $("body").css('cursor','auto');
+                    ajaxloaderContainer.hide();
                     break;
                 case "sucess":
                     break;

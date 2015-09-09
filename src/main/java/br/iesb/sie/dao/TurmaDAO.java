@@ -1,5 +1,6 @@
 package br.iesb.sie.dao;
 
+import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.entity.Turma;
 
 import java.util.HashMap;
@@ -13,7 +14,7 @@ public class TurmaDAO extends BaseDAO<Turma, Long> {
     }
 
 
-    public List buscarTurmas(Turma filtro) {
+    public List buscarTurmas(Turma filtro, List<Entidade> escolas) {
 
         String hql = "";
         Map<String, Object> params = new HashMap<>();
@@ -24,6 +25,9 @@ public class TurmaDAO extends BaseDAO<Turma, Long> {
         if (filtro.getEscola() != null) {
             hql += " AND t.escola = :escola ";
             params.put("escola", filtro.getEscola());
+        } else if(escolas != null && !escolas.isEmpty()){
+            hql += " AND t.escola in :escolas ";
+            params.put("escolas", escolas);
         }
 
         if (filtro.getSerie() != null) {
@@ -36,14 +40,9 @@ public class TurmaDAO extends BaseDAO<Turma, Long> {
             params.put("nome", filtro.getNome());
         }
 
-        if (filtro.getDataInicio() != null) {
-            hql += " AND t.dataInicio >= :dataInicio ";
-            params.put("dataInicio", filtro.getDataInicio());
-        }
-
-        if (filtro.getDataFim() != null) {
-            hql += " AND t.dataFim <= :dataFim ";
-            params.put("dataFim", filtro.getDataFim());
+        if (filtro.getAno() != null) {
+            hql += " AND t.ano = :ano ";
+            params.put("ano", filtro.getAno());
         }
 
         if (filtro.getTurno() != null) {

@@ -11,9 +11,19 @@
     <ui:define name="body">
         <h:form>
             <sie:panel header="Cadastrar Turma" type="primary">
-            <h:messages/>
+                <h:messages/>
                 <sie:panel header="Dados Gerais" type="default">
                     <sie:row>
+                        <sie:column span="4">
+                            <sie:selectOneMenu label="Escola" required="#{param['salvar']}"
+                                               value="#{manterTurmaController.turma.escola}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{manterTurmaController.escolasVinculadas}"
+                                               var="_ev" itemLabel="#{_ev.razaoSocial}"/>
+                                <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
+                                <f:ajax event="change" execute="@form" render="@form"/>
+                            </sie:selectOneMenu>
+                        </sie:column>
                         <sie:column span="4">
                             <sie:selectOneMenu label="Série" required="#{param['salvar']}"
                                                value="#{manterTurmaController.turma.serie}">
@@ -21,6 +31,12 @@
                                 <f:selectItems value="#{factoryUtil.series}" var="_s" itemLabel="#{_s.descricao}"/>
                             </sie:selectOneMenu>
                         </sie:column>
+                        <sie:column span="4">
+                            <sie:inputText value="#{manterTurmaController.turma.ano}" required="#{param['salvar']}"
+                                           label="Ano"/>
+                        </sie:column>
+                    </sie:row>
+                    <sie:row>
                         <sie:column span="4">
                             <sie:inputText value="#{manterTurmaController.turma.nome}" required="#{param['salvar']}"
                                            label="Nome"/>
@@ -33,25 +49,15 @@
                             </sie:selectOneMenu>
                         </sie:column>
                     </sie:row>
-                    <sie:row>
-                        <sie:column span="4">
-                            <sie:inputDate value="#{manterTurmaController.turma.dataInicio}"
-                                           required="#{param['salvar']}"
-                                           label="Data de Inicio"/>
-                        </sie:column>
-                        <sie:column span="4">
-                            <sie:inputDate value="#{manterTurmaController.turma.dataFim}" required="#{param['salvar']}"
-                                           label="Data de Fim"/>
-                        </sie:column>
-                    </sie:row>
                 </sie:panel>
-                <sie:panel header="Professores" type="default">
+                <sie:panel rendered="#{not empty manterTurmaController.turma.escola}"
+                           header="Professores" type="default">
                     <sie:row>
                         <sie:column span="6">
                             <sie:selectOneMenu label="Professor" required="#{param['adicionar']}"
                                                value="#{manterTurmaController.professorDisciplina.professor}">
                                 <f:selectItem itemLabel="Selecione"/>
-                                <f:selectItems value="#{manterTurmaController.professores}" var="_p"
+                                <f:selectItems value="#{manterTurmaController.buscarProfessores()}" var="_p"
                                                itemLabel="#{_p.nomeCompleto}"/>
                                 <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
                             </sie:selectOneMenu>

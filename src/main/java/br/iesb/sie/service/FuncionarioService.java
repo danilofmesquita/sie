@@ -2,7 +2,9 @@ package br.iesb.sie.service;
 
 import br.iesb.sie.dao.EntidadeDAO;
 import br.iesb.sie.dao.FuncionarioDAO;
+import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.entity.Funcionario;
+import br.iesb.sie.model.Perfil;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -27,5 +29,9 @@ public class FuncionarioService {
 
     public List<Funcionario> buscarFuncionarios(Funcionario filtro) {
         return funcionarioDAO.buscarFuncionarios(filtro);
+    }
+
+    public boolean possuiEscolaVinculada(Perfil perfil, Entidade entidade) {
+        return funcionarioDAO.buscarFuncionarioPorPerfil(perfil, entidade).size() > 0;
     }
 }

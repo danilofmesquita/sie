@@ -25,14 +25,6 @@ public class Turma extends BaseEntity {
     @OneToMany(mappedBy = "turma", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProfessorDisciplina> professorDisciplinas = new ArrayList<>();
 
-    @Column
-    @Temporal(TemporalType.DATE)
-    private Date dataInicio;
-
-    @Column
-    @Temporal(TemporalType.DATE)
-    private Date dataFim;
-
     @ManyToOne
     @JoinColumn
     private Entidade escola;
@@ -40,6 +32,9 @@ public class Turma extends BaseEntity {
     @Column
     @Enumerated
     private Turno turno;
+
+    @Column
+    private Integer ano;
 
     public Turma() {
     }
@@ -63,22 +58,6 @@ public class Turma extends BaseEntity {
 
     public void setProfessorDisciplinas(List<ProfessorDisciplina> professorDisciplinas) {
         this.professorDisciplinas = professorDisciplinas;
-    }
-
-    public Date getDataInicio() {
-        return dataInicio;
-    }
-
-    public void setDataInicio(Date dataInicio) {
-        this.dataInicio = dataInicio;
-    }
-
-    public Date getDataFim() {
-        return dataFim;
-    }
-
-    public void setDataFim(Date dataFim) {
-        this.dataFim = dataFim;
     }
 
     public Serie getSerie() {
@@ -111,5 +90,13 @@ public class Turma extends BaseEntity {
 
     public void setTurno(Turno turno) {
         this.turno = turno;
+    }
+
+    public Integer getAno() {
+        return ano;
+    }
+
+    public void setAno(Integer ano) {
+        this.ano = ano;
     }
 }

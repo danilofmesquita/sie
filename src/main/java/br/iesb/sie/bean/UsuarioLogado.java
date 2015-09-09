@@ -4,6 +4,7 @@ import br.iesb.sie.controller.BaseController;
 import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.model.Perfil;
 import br.iesb.sie.service.EntidadeService;
+import br.iesb.sie.service.FuncionarioService;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -16,6 +17,9 @@ public class UsuarioLogado extends BaseController {
 
     @Inject
     private EntidadeService entidadeService;
+
+    @Inject
+    private FuncionarioService funcionarioService;
 
     private Entidade entidade;
 
@@ -30,7 +34,6 @@ public class UsuarioLogado extends BaseController {
         return entidade;
     }
 
-
     public String logout() {
         ((HttpSession) getFacesContext().getExternalContext().getSession(false)).invalidate();
         return "/view/index.xhtml?faces-redirect=true";
@@ -40,4 +43,13 @@ public class UsuarioLogado extends BaseController {
         return getEntidade().getPerfis().contains(Perfil.ESCOLA);
     }
 
+    public boolean isSecretaria(){
+        return getEntidade().getPerfis().contains(Perfil.SECRETARIA)
+                && funcionarioService.possuiEscolaVinculada(Perfil.SECRETARIA, getEntidade());
+    }
+
+    public boolean isProfessor(){
+        return getEntidade().getPerfis().contains(Perfil.PROFESSOR)
+                && funcionarioService.possuiEscolaVinculada(Perfil.PROFESSOR, getEntidade());
+    }
 }

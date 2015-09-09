@@ -63,4 +63,7 @@ public class EntidadeService {
         return entidadeDAO.buscarProfessores(escola);
     }
 
+    public List<Entidade> buscarEscolasVinculadas(Entidade funcionario, Perfil perfil) {
+        return entidadeDAO.buscarEscolasVinculadas(funcionario, perfil);
+    }
 }

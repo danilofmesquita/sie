@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Map;
 
 public class BaseDAO<T extends BaseEntity, ID extends Serializable> {
@@ -34,7 +35,11 @@ public class BaseDAO<T extends BaseEntity, ID extends Serializable> {
 
     public Query addQueryParams(Map<String, Object> params, Query query) {
         for (Map.Entry<String, Object> entry : params.entrySet()) {
-            query.setParameter(entry.getKey(), entry.getValue());
+            if(entry.getValue() instanceof Collection){
+                query.setParameterList(entry.getKey(), (Collection) entry.getValue());
+            } else {
+                query.setParameter(entry.getKey(), entry.getValue());
+            }
         }
         return query;
     }
