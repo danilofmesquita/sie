@@ -39,3 +39,7 @@ Thumbs.db
 ########
 .idea
 *.iml
+
+# MAVEN #
+#########
+/target/*
