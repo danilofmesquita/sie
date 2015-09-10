@@ -99,4 +99,10 @@ public class Turma extends BaseEntity {
     public void setAno(Integer ano) {
         this.ano = ano;
     }
+
+    @Override
+    public String toString() {
+        String formato = "%s \"%s\" %s de %d";
+        return String.format(formato, serie.getDescricao(), nome, turno.getDescricao(), ano);
+    }
 }

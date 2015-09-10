@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:sie="http://java.sun.com/jsf/composite/sie"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                template="/template/common/template.xhtml">
+    <ui:define name="body">
+        <h:form>
+            <sie:panel header="Consultar Turmas" type="primary">
+                <h:messages/>
+                <sie:row>
+                    <sie:column span="4">
+                        <sie:selectOneMenu label="Escola" value="#{listarTurmaController.filtro.escola}">
+                            <f:selectItem itemLabel="Selecione"/>
+                            <f:selectItems value="#{listarTurmaController.buscarEscolasVinculadas()}" var="_e"
+                                           itemLabel="#{_e.razaoSocial}"/>
+                            <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
+                        </sie:selectOneMenu>
+                    </sie:column>
+                    <sie:column span="4">
+                        <sie:selectOneMenu label="Série" value="#{listarTurmaController.filtro.serie}">
+                            <f:selectItem itemLabel="Selecione"/>
+                            <f:selectItems value="#{factoryUtil.series}" var="_s" itemLabel="#{_s.descricao}"/>
+                        </sie:selectOneMenu>
+                    </sie:column>
+                    <sie:column span="4">
+                        <sie:inputText value="#{listarTurmaController.filtro.ano}" label="Ano" styleClass="ano"/>
+                    </sie:column>
+                </sie:row>
+                <sie:row>
+                    <sie:column span="4">
+                        <sie:inputText value="#{listarTurmaController.filtro.nome}" label="Nome"/>
+                    </sie:column>
+                    <sie:column span="4">
+                        <sie:selectOneMenu label="Turno" value="#{listarTurmaController.filtro.turno}">
+                            <f:selectItem itemLabel="Selecione"/>
+                            <f:selectItems value="#{factoryUtil.turnos}" var="_t" itemLabel="#{_t.descricao}"/>
+                        </sie:selectOneMenu>
+                    </sie:column>
+                </sie:row>
+                <h:commandButton value="Filtrar"
+                                 action="#{listarTurmaController.filtrar}"
+                                 styleClass="btn btn-primary pull-right btn-margin-left"/>
+                <h:commandButton value="Limpar"
+                                 action="#{listarTurmaController.limpar}"
+                                 styleClass="btn btn-danger pull-right btn-margin-left"/>
+                <h:commandButton value="Nova Turma"
+                                 action="incluir.xhtml?faces-redirect=true"
+                                 styleClass="btn btn-default pull-right btn-margin-left"/>
+                <br/>
+                <br/>
+                <br/>
+                <sie:panel header="Turmas" type="default">
+                    <div class="table-responsive">
+                        <h:dataTable value="#{listarTurmaController.turmas}" var="_t"
+                                     styleClass="table table-striped">
+                            <h:column>
+                                <f:facet name="header">Escola</f:facet>
+                                <h:outputText value="#{_t.escola.razaoSocial}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Série</f:facet>
+                                <h:outputText value="#{_t.serie.descricao}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Nome</f:facet>
+                                <h:outputText value="#{_t.nome}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Turno</f:facet>
+                                <h:outputText value="#{_t.turno.descricao}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Ano</f:facet>
+                                <h:outputText value="#{_t.ano}"/>
+                            </h:column>
+                            <h:column>
+                                <div align="center">
+                                    <button class="btn btn-warning"
+                                            jsf:action="#{listarTurmaController.editar(_t)}">
+                                        <span class="glyphicon glyphicon-edit"></span> Editar
+                                    </button>
+                                </div>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </sie:panel>
+            </sie:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -41,4 +41,8 @@ public class FactoryUtil {
     public List<Turno> getTurnos() {
         return Arrays.asList(Turno.values());
     }
+
+    public List<Parentesco> getParentescos() {
+        return Arrays.asList(Parentesco.values());
+    }
 }

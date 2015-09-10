@@ -37,6 +37,9 @@ public class Matricula extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Parentesco parentescoResponsavel;
 
+    @Column
+    private Long telefoneResponsavel;
+
     @Override
     public Long getId() {
         return id;
@@ -100,5 +103,13 @@ public class Matricula extends BaseEntity {
 
     public void setParentescoResponsavel(Parentesco parentescoResponsavel) {
         this.parentescoResponsavel = parentescoResponsavel;
+    }
+
+    public Long getTelefoneResponsavel() {
+        return telefoneResponsavel;
+    }
+
+    public void setTelefoneResponsavel(Long telefoneResponsavel) {
+        this.telefoneResponsavel = telefoneResponsavel;
     }
 }

@@ -17,4 +17,12 @@ public enum Parentesco {
         this.codigo = codigo;
         this.descricao = descricao;
     }
+
+    public Integer getCodigo() {
+        return codigo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
 }

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:sie="http://java.sun.com/jsf/composite/sie"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/template/common/template.xhtml">
+    <ui:define name="body">
+        <h:form>
+            <sie:panel header="Matricula" type="primary">
+                <h:messages/>
+                <sie:panel header="Dados Gerais">
+                    <sie:row>
+                        <sie:column span="6">
+                            <sie:selectOneMenu value="#{manterMatriculaController.matricula.escola}"
+                                               label="#{msg['label.escola']}" required="#{param['salvar']}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{manterMatriculaController.escolasVinculadas}"
+                                               var="_escola" itemLabel="#{_escola.razaoSocial}"/>
+                                <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
+                                <f:ajax event="change" execute="@form" render="@form"
+                                        listener="#{manterMatriculaController.carregarTurmas()}"/>
+                            </sie:selectOneMenu>
+                        </sie:column>
+                        <sie:column span="6">
+                            <sie:selectOneMenu value="#{manterMatriculaController.matricula.aluno}"
+                                               label="#{msg['label.aluno']}" required="#{param['salvar']}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{manterMatriculaController.alunos}" var="_aluno"
+                                               itemLabel="#{_aluno.nomeCompleto}"/>
+                                <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
+                            </sie:selectOneMenu>
+                        </sie:column>
+                    </sie:row>
+                    <sie:row>
+                        <sie:column span="12">
+                            <sie:selectOneMenu value="#{manterMatriculaController.matricula.turma}"
+                                               label="#{msg['label.turma']}" required="#{param['salvar']}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{manterMatriculaController.turmas}"/>
+                                <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
+                            </sie:selectOneMenu>
+                        </sie:column>
+                    </sie:row>
+                </sie:panel>
+                <sie:panel header="Dados do Responsavel">
+                    <sie:row>
+                        <sie:column span="4">
+                            <sie:inputText value="#{manterMatriculaController.matricula.nomeResponsavel}"
+                                           required="#{param['salvar']}" label="#{msg['label.nome.completo']}"/>
+                        </sie:column>
+                        <sie:column span="4">
+                            <sie:inputText value="#{manterMatriculaController.matricula.cpfResponsavel}"
+                                           styleClass="cpf" required="#{param['salvar']}" label="#{msg['label.cpf']}">
+                                <f:converter for="inputText" converterId="sie.converter.number"/>
+                            </sie:inputText>
+                        </sie:column>
+                        <sie:column span="4">
+                            <sie:selectOneMenu value="#{manterMatriculaController.matricula.parentescoResponsavel}"
+                                               label="#{msg['label.parentesco']}" required="#{param['salvar']}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{factoryUtil.parentescos}" var="_p"
+                                               itemLabel="#{_p.descricao}"/>
+                            </sie:selectOneMenu>
+                        </sie:column>
+                    </sie:row>
+                    <sie:row>
+                        <sie:column span="4">
+                            <sie:inputText value="#{manterMatriculaController.matricula.enderecoResponsavel.cep}"
+                                           label="#{msg['label.cep']}" styleClass="cep" required="#{param['salvar']}">
+                                <f:ajax event="change" execute="@form" render="@form"
+                                        listener="#{manterMatriculaController.carregarEnderecoPorCEP()}"/>
+                                <f:converter for="inputText" converterId="sie.converter.number"/>
+                            </sie:inputText>
+                        </sie:column>
+                        <sie:column span="4">
+                            <sie:inputText value="#{manterMatriculaController.matricula.enderecoResponsavel.municipio}"
+                                           label="#{msg['label.municipio']}" required="#{param['salvar']}"/>
+                        </sie:column>
+                        <sie:column span="4">
+                            <sie:selectOneMenu value="#{manterMatriculaController.matricula.enderecoResponsavel.uf}"
+                                               required="#{param['salvar']}" label="#{msg['label.uf']}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{factoryUtil.UFs}" var="_UF" itemLabel="#{_UF.nome}"/>
+                            </sie:selectOneMenu>
+                        </sie:column>
+                    </sie:row>
+                    <sie:row>
+                        <sie:column span="4">
+                            <sie:inputText value="#{manterMatriculaController.matricula.enderecoResponsavel.endereco}"
+                                           label="#{msg['label.endereco']}" required="#{param['salvar']}"/>
+                        </sie:column>
+                        <sie:column span="4">
+                            <sie:inputText value="#{manterMatriculaController.matricula.enderecoResponsavel.bairro}"
+                                           label="#{msg['label.bairro']}" required="#{param['salvar']}"/>
+                        </sie:column>
+                        <sie:column span="4">
+                            <sie:inputText value="#{manterMatriculaController.matricula.enderecoResponsavel.numero}"
+                                           label="#{msg['label.numero']}" required="#{param['salvar']}"/>
+                        </sie:column>
+                    </sie:row>
+                    <sie:row>
+                        <sie:column span="4">
+                            <sie:inputText
+                                    value="#{manterMatriculaController.matricula.enderecoResponsavel.complemento}"
+                                    label="#{msg['label.complemento']}"/>
+                        </sie:column>
+                        <sie:column span="4">
+                            <sie:inputText value="#{manterMatriculaController.matricula.telefoneResponsavel}"
+                                           styleClass="telefone" label="#{msg['label.telefone']}"
+                                           required="#{param['salvar']}">
+                                <f:converter for="inputText" converterId="sie.converter.number"/>
+                            </sie:inputText>
+                        </sie:column>
+                    </sie:row>
+                </sie:panel>
+            </sie:panel>
+            <h:commandButton value="Salvar" action="#{manterMatriculaController.salvar()}"
+                             styleClass="btn btn-primary pull-right btn-margin-left">
+                <f:param name="salvar" value="true"/>
+            </h:commandButton>
+            <h:commandButton value="Voltar" action="listar?faces-redirect=true"
+                             styleClass="btn btn-default pull-right btn-margin-left"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

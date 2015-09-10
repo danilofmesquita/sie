@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
 
+
 public class BaseDAO<T extends BaseEntity, ID extends Serializable> {
 
     private final Class<T> clazz;
