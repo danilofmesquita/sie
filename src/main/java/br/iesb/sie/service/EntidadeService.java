@@ -21,7 +21,6 @@ public class EntidadeService {
     @Inject
     private EmailService emailService;
 
-
     public void criarNovoUsuaro(Entidade u) {
 
         String senha = senhaService.criarNovaSenha();
@@ -65,5 +64,9 @@ public class EntidadeService {
 
     public List<Entidade> buscarEscolasVinculadas(Entidade funcionario, Perfil perfil) {
         return entidadeDAO.buscarEscolasVinculadas(funcionario, perfil);
+    }
+
+    public List<Entidade> buscarAlunosVinculados(List<Entidade> escolasVinculadas) {
+        return entidadeDAO.buscarAlunosVinculados(escolasVinculadas);
     }
 }

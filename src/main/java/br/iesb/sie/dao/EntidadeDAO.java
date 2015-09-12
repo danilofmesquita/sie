@@ -86,4 +86,13 @@ public class EntidadeDAO extends BaseDAO<Entidade, Long> {
                 .setParameter("perfil", perfil).list();
     }
 
+    public List<Entidade> buscarAlunosVinculados(List<Entidade> escolasVinculadas) {
+        String hql = "";
+
+        hql += " SELECT m.aluno FROM Matricula m ";
+        hql += " where m.escola in :escolasVinculadas";
+
+        return getSession().createQuery(hql)
+                .setParameterList("escolasVinculadas", escolasVinculadas).list();
+    }
 }

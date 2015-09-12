@@ -15,7 +15,7 @@
                 <sie:panel header="Dados Gerais" type="default">
                     <sie:row>
                         <sie:column span="4">
-                            <sie:selectOneMenu label="Escola" required="#{param['salvar']}"
+                            <sie:selectOneMenu label="Escola" required="#{param['salvar']}" labelClass="required"
                                                value="#{manterTurmaController.turma.escola}">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{manterTurmaController.escolasVinculadas}"
@@ -25,27 +25,27 @@
                             </sie:selectOneMenu>
                         </sie:column>
                         <sie:column span="4">
-                            <sie:selectOneMenu label="Série" required="#{param['salvar']}"
+                            <sie:selectOneMenu label="Série" required="#{param['salvar']}" labelClass="required"
                                                value="#{manterTurmaController.turma.serie}">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{factoryUtil.series}" var="_s" itemLabel="#{_s.descricao}"/>
                             </sie:selectOneMenu>
                         </sie:column>
                         <sie:column span="4">
-                            <sie:inputText value="#{manterTurmaController.turma.ano}" required="#{param['salvar']}"
+                            <sie:inputText value="#{manterTurmaController.turma.ano}" required="#{param['salvar']}" labelClass="required"
                                            label="Ano" styleClass="ano"/>
                         </sie:column>
                     </sie:row>
                     <sie:row>
                         <sie:column span="4">
-                            <sie:inputText value="#{manterTurmaController.turma.nome}" required="#{param['salvar']}"
+                            <sie:inputText value="#{manterTurmaController.turma.nome}" required="#{param['salvar']}" labelClass="required"
                                            label="Nome"/>
                         </sie:column>
                         <sie:column span="4">
-                            <sie:selectOneMenu label="Turno" required="#{param['salvar']}"
+                            <sie:selectOneMenu label="Turno" required="#{param['salvar']}" labelClass="required"
                                                value="#{manterTurmaController.turma.turno}">
                                 <f:selectItem itemLabel="Selecione"/>
-                                <f:selectItems value="#{factoryUtil.turnos}" var="_t" itemLabel="#{_t.descricao}"/>
+                                <f:selectItems value="#{factoryUtil.turnos}" var="_m" itemLabel="#{_m.descricao}"/>
                             </sie:selectOneMenu>
                         </sie:column>
                     </sie:row>

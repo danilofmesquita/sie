@@ -8,10 +8,11 @@
     <composite:attribute name="required"/>
     <composite:attribute name="label"/>
     <composite:attribute name="value"/>
+    <composite:attribute name="labelClass"/>
 </composite:interface>
 <composite:implementation>
     <div class="form-group #{component.children[2].valid ? '' : 'has-error'}">
-        <h:outputLabel value="#{cc.attrs.label}:" styleClass="control-label"/>
+        <h:outputLabel value="#{cc.attrs.label}:" styleClass="control-label #{cc.attrs.labelClass}"/>
         <h:inputText id="inputText" label="#{cc.attrs.label}" styleClass="form-control data"
                      required="#{cc.attrs.required}" value="#{cc.attrs.value}">
             <f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR" timeZone="America/Sao_Paulo"/>

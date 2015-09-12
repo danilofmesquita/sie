@@ -4,6 +4,7 @@ import br.iesb.sie.bean.UsuarioLogado;
 import br.iesb.sie.entity.*;
 import br.iesb.sie.model.Perfil;
 import br.iesb.sie.service.*;
+import br.iesb.sie.util.Attributes;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -40,8 +41,14 @@ public class ManterMatriculaController extends BaseController {
 
     @PostConstruct
     public void init() {
-        matricula = new Matricula();
-        matricula.setEnderecoResponsavel(new Endereco());
+        Long id = getFlashAttribute(Attributes.ID);
+
+        if (id == null) {
+            matricula = new Matricula();
+            matricula.setEnderecoResponsavel(new Endereco());
+        } else {
+            matricula = matriculaService.buscarMatricula(id);
+        }
     }
 
     public void salvar() {

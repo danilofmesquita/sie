@@ -43,3 +43,10 @@ body {
     left: 0;
     bottom: 0;
 }
+
+.required::before {
+    display:inline;
+    float:none;
+    color:red !important;
+    content: '* ';
+}

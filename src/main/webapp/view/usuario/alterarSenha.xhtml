@@ -13,13 +13,13 @@
             <div class="col-sm-4">
                 <sie:inputSecret label="Senha Anterior"
                                  value="#{alterarSenhaController.senhaAnterior}"
-                                 required="#{param['validateAlterarSenha']}"/>
+                                 required="#{param['validateAlterarSenha']}" labelClass="required"/>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-4">
                 <sie:inputSecret label="Nova Senha"
-                                 value="#{alterarSenhaController.novaSenha}"
+                                 value="#{alterarSenhaController.novaSenha}" labelClass="required"
                                  required="#{param['validateAlterarSenha']}"/>
             </div>
         </div>

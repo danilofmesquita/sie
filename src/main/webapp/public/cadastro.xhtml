@@ -15,7 +15,7 @@
                     <sie:row>
                         <sie:column span="4">
                             <sie:selectOneMenu id="tipoPessoa" value="#{cadastroController.entidade.tipoPessoa}"
-                                               required="#{param['validar']}"
+                                               required="#{param['validar']}" labelClass="required"
                                                label="#{msg['label.tipo.pessoa']}">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{factoryUtil.tiposPessoa}" var="tp"
@@ -31,7 +31,7 @@
                         </sie:column>
                         <sie:column span="4" rendered="#{cadastroController.entidade.tipoPessoa.juridica}">
                             <sie:inputText label="#{msg['label.cnpj']}" styleClass="cnpj"
-                                           required="#{param['validar']}"
+                                           required="#{param['validar']}" labelClass="required"
                                            value="#{cadastroController.entidade.cpfCnpj}">
                                 <f:converter for="inputText" converterId="sie.converter.number"/>
                             </sie:inputText>
@@ -41,40 +41,40 @@
                         <sie:row>
                             <sie:column span="12">
                                 <sie:inputText label="#{msg['label.nome.completo']}"
-                                               required="#{param['validar']}"
+                                               required="#{param['validar']}" labelClass="required"
                                                value="#{cadastroController.entidade.nomeCompleto}"/>
                             </sie:column>
                         </sie:row>
                         <sie:row>
                             <sie:column span="12">
                                 <sie:inputText label="#{msg['label.nome.completo.mae']}"
-                                               required="#{param['validar']}"
+                                               required="#{param['validar']}" labelClass="required"
                                                value="#{cadastroController.entidade.nomeCompletoMae}"/>
                             </sie:column>
                         </sie:row>
                         <sie:row>
                             <sie:column span="12">
                                 <sie:inputText label="#{msg['label.nome.completo.pai']}"
-                                               required="#{param['validar']}"
+                                               required="#{param['validar']}" labelClass="required"
                                                value="#{cadastroController.entidade.nomeCompletoPai}"/>
                             </sie:column>
                         </sie:row>
                         <sie:row>
                             <sie:column span="4">
                                 <sie:inputDate label="#{msg['label.data.nascimento']}"
-                                               required="#{param['validar']}"
+                                               required="#{param['validar']}" labelClass="required"
                                                value="#{cadastroController.entidade.dataNascimento}"/>
                             </sie:column>
                             <sie:column span="8">
                                 <sie:inputText label="#{msg['label.email']}"
-                                               required="#{param['validar']}"
+                                               required="#{param['validar']}" labelClass="required"
                                                value="#{cadastroController.entidade.email}"/>
                             </sie:column>
                         </sie:row>
                         <sie:row>
                             <sie:column span="12">
                                 <sie:selectManyListbox label="Perfil" value="#{cadastroController.entidade.perfis}"
-                                                       required="#{param['validar']}">
+                                                       required="#{param['validar']}" labelClass="required">
                                     <f:selectItems value="#{factoryUtil.perfisCPF}" var="_p" itemLabel="#{_p.nomeMF}"/>
                                     <f:converter for="selectManyListbox" converterId="sie.converter.perfil"/>
                                 </sie:selectManyListbox>
@@ -85,21 +85,21 @@
                         <sie:row>
                             <sie:column span="12">
                                 <sie:inputText label="#{msg['label.razao.social']}"
-                                               required="#{param['validar']}"
+                                               required="#{param['validar']}" labelClass="required"
                                                value="#{cadastroController.entidade.razaoSocial}"/>
                             </sie:column>
                         </sie:row>
                         <sie:row>
                             <sie:column span="12">
                                 <sie:inputText label="#{msg['label.email']}"
-                                               required="#{param['validar']}"
+                                               required="#{param['validar']}" labelClass="required"
                                                value="#{cadastroController.entidade.email}"/>
                             </sie:column>
                         </sie:row>
                         <sie:row>
                             <sie:column span="12">
                                 <sie:selectManyListbox label="Perfil" value="#{cadastroController.entidade.perfis}"
-                                                       required="#{param['validar']}">
+                                                       required="#{param['validar']}" labelClass="required">
                                     <f:selectItems value="#{factoryUtil.perfisCNPJ}" var="_p" itemLabel="#{_p.nomeMF}"
                                                    itemValue="#{_p}"/>
                                     <f:converter for="selectManyListbox" converterId="sie.converter.perfil"/>
@@ -112,7 +112,7 @@
                     <sie:row>
                         <sie:column span="4">
                             <sie:inputText label="#{msg['label.cep']}" styleClass="cep"
-                                           required="#{param['validar']}"
+                                           required="#{param['validar']}" labelClass="required"
                                            value="#{cadastroController.entidade.endereco.cep}">
                                 <f:ajax event="change" execute="@form" render="@form"
                                         listener="#{cadastroController.carregarEnderecoPorCEP}"/>
@@ -121,12 +121,12 @@
                         </sie:column>
                         <sie:column span="4">
                             <sie:inputText label="#{msg['label.municipio']}"
-                                           required="#{param['validar']}"
+                                           required="#{param['validar']}" labelClass="required"
                                            value="#{cadastroController.entidade.endereco.municipio}"/>
                         </sie:column>
                         <sie:column span="4">
                             <sie:selectOneMenu value="#{cadastroController.entidade.endereco.uf}"
-                                               required="#{param['validar']}"
+                                               required="#{param['validar']}" labelClass="required"
                                                label="#{msg['label.uf']}">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{factoryUtil.UFs}" var="_UF" itemLabel="#{_UF.nome}"/>
@@ -136,16 +136,16 @@
                     <sie:row>
                         <sie:column span="4">
                             <sie:inputText label="#{msg['label.endereco']}"
-                                           required="#{param['validar']}"
+                                           required="#{param['validar']}" labelClass="required"
                                            value="#{cadastroController.entidade.endereco.endereco}"/>
                         </sie:column>
                         <sie:column span="4">
                             <sie:inputText label="#{msg['label.bairro']}"
-                                           required="#{param['validar']}"
+                                           required="#{param['validar']}" labelClass="required"
                                            value="#{cadastroController.entidade.endereco.bairro}"/>
                         </sie:column>
                         <sie:column span="4">
-                            <sie:inputText label="#{msg['label.numero']}"
+                            <sie:inputText label="#{msg['label.numero']}" labelClass="required"
                                            required="#{param['validar']}"
                                            value="#{cadastroController.entidade.endereco.numero}"/>
                         </sie:column>
@@ -160,7 +160,7 @@
                 <sie:panel header="Telefone">
                     <sie:row>
                         <sie:column span="4">
-                            <sie:inputText label="#{msg['label.telefone.principal']}"
+                            <sie:inputText label="#{msg['label.telefone.principal']}" labelClass="required"
                                            styleClass="telefone" required="#{param['validar']}"
                                            value="#{cadastroController.entidade.telefones[0].numero}">
                                 <f:converter for="inputText" converterId="sie.converter.number"/>

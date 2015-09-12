@@ -15,7 +15,7 @@
                     <sie:row>
                         <sie:column span="6">
                             <sie:selectOneMenu value="#{manterMatriculaController.matricula.escola}"
-                                               label="#{msg['label.escola']}" required="#{param['salvar']}">
+                                               label="#{msg['label.escola']}" required="#{param['salvar']}" labelClass="required">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{manterMatriculaController.escolasVinculadas}"
                                                var="_escola" itemLabel="#{_escola.razaoSocial}"/>
@@ -26,7 +26,7 @@
                         </sie:column>
                         <sie:column span="6">
                             <sie:selectOneMenu value="#{manterMatriculaController.matricula.aluno}"
-                                               label="#{msg['label.aluno']}" required="#{param['salvar']}">
+                                               label="#{msg['label.aluno']}" required="#{param['salvar']}" labelClass="required">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{manterMatriculaController.alunos}" var="_aluno"
                                                itemLabel="#{_aluno.nomeCompleto}"/>
@@ -37,7 +37,7 @@
                     <sie:row>
                         <sie:column span="12">
                             <sie:selectOneMenu value="#{manterMatriculaController.matricula.turma}"
-                                               label="#{msg['label.turma']}" required="#{param['salvar']}">
+                                               label="#{msg['label.turma']}" required="#{param['salvar']}" labelClass="required">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{manterMatriculaController.turmas}"/>
                                 <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
@@ -49,17 +49,17 @@
                     <sie:row>
                         <sie:column span="4">
                             <sie:inputText value="#{manterMatriculaController.matricula.nomeResponsavel}"
-                                           required="#{param['salvar']}" label="#{msg['label.nome.completo']}"/>
+                                           required="#{param['salvar']}" labelClass="required" label="#{msg['label.nome.completo']}"/>
                         </sie:column>
                         <sie:column span="4">
                             <sie:inputText value="#{manterMatriculaController.matricula.cpfResponsavel}"
-                                           styleClass="cpf" required="#{param['salvar']}" label="#{msg['label.cpf']}">
+                                           styleClass="cpf" required="#{param['salvar']}" labelClass="required" label="#{msg['label.cpf']}">
                                 <f:converter for="inputText" converterId="sie.converter.number"/>
                             </sie:inputText>
                         </sie:column>
                         <sie:column span="4">
                             <sie:selectOneMenu value="#{manterMatriculaController.matricula.parentescoResponsavel}"
-                                               label="#{msg['label.parentesco']}" required="#{param['salvar']}">
+                                               label="#{msg['label.parentesco']}" required="#{param['salvar']}" labelClass="required">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{factoryUtil.parentescos}" var="_p"
                                                itemLabel="#{_p.descricao}"/>
@@ -69,7 +69,7 @@
                     <sie:row>
                         <sie:column span="4">
                             <sie:inputText value="#{manterMatriculaController.matricula.enderecoResponsavel.cep}"
-                                           label="#{msg['label.cep']}" styleClass="cep" required="#{param['salvar']}">
+                                           label="#{msg['label.cep']}" styleClass="cep" required="#{param['salvar']}" labelClass="required">
                                 <f:ajax event="change" execute="@form" render="@form"
                                         listener="#{manterMatriculaController.carregarEnderecoPorCEP()}"/>
                                 <f:converter for="inputText" converterId="sie.converter.number"/>
@@ -77,11 +77,11 @@
                         </sie:column>
                         <sie:column span="4">
                             <sie:inputText value="#{manterMatriculaController.matricula.enderecoResponsavel.municipio}"
-                                           label="#{msg['label.municipio']}" required="#{param['salvar']}"/>
+                                           label="#{msg['label.municipio']}" required="#{param['salvar']}" labelClass="required"/>
                         </sie:column>
                         <sie:column span="4">
                             <sie:selectOneMenu value="#{manterMatriculaController.matricula.enderecoResponsavel.uf}"
-                                               required="#{param['salvar']}" label="#{msg['label.uf']}">
+                                               required="#{param['salvar']}" labelClass="required" label="#{msg['label.uf']}">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{factoryUtil.UFs}" var="_UF" itemLabel="#{_UF.nome}"/>
                             </sie:selectOneMenu>
@@ -90,15 +90,15 @@
                     <sie:row>
                         <sie:column span="4">
                             <sie:inputText value="#{manterMatriculaController.matricula.enderecoResponsavel.endereco}"
-                                           label="#{msg['label.endereco']}" required="#{param['salvar']}"/>
+                                           label="#{msg['label.endereco']}" required="#{param['salvar']}" labelClass="required"/>
                         </sie:column>
                         <sie:column span="4">
                             <sie:inputText value="#{manterMatriculaController.matricula.enderecoResponsavel.bairro}"
-                                           label="#{msg['label.bairro']}" required="#{param['salvar']}"/>
+                                           label="#{msg['label.bairro']}" required="#{param['salvar']}" labelClass="required"/>
                         </sie:column>
                         <sie:column span="4">
                             <sie:inputText value="#{manterMatriculaController.matricula.enderecoResponsavel.numero}"
-                                           label="#{msg['label.numero']}" required="#{param['salvar']}"/>
+                                           label="#{msg['label.numero']}" required="#{param['salvar']}" labelClass="required"/>
                         </sie:column>
                     </sie:row>
                     <sie:row>
@@ -110,7 +110,7 @@
                         <sie:column span="4">
                             <sie:inputText value="#{manterMatriculaController.matricula.telefoneResponsavel}"
                                            styleClass="telefone" label="#{msg['label.telefone']}"
-                                           required="#{param['salvar']}">
+                                           required="#{param['salvar']}" labelClass="required">
                                 <f:converter for="inputText" converterId="sie.converter.number"/>
                             </sie:inputText>
                         </sie:column>

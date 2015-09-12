@@ -14,6 +14,7 @@
                 <sie:row>
                     <sie:column span="6">
                         <sie:selectOneMenu id="cargo" label="#{msg['label.cargo']}" required="#{param['salvar']}"
+                                           labelClass="required"
                                            value="#{manterFuncionarioController.funcionario.perfil}">
                             <f:selectItem itemLabel="Selecione"/>
                             <f:selectItems value="#{factoryUtil.cargos}" var="_p" itemLabel="#{_p.nomeMF}"
@@ -25,6 +26,7 @@
                 <sie:row>
                     <sie:column span="6" rendered="#{not empty manterFuncionarioController.funcionario.perfil}">
                         <sie:selectOneMenu label="#{msg['label.nome']}" required="#{param['salvar']}"
+                                           labelClass="required"
                                            value="#{manterFuncionarioController.funcionario.funcionario}">
                             <f:selectItem itemLabel="Selecione"/>
                             <f:selectItems value="#{manterFuncionarioController.buscarPessoasPorPerfil()}"
