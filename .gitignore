@@ -39,7 +39,10 @@ Thumbs.db
 ########
 .idea
 *.iml
+/.settings/*
+.project
+.classpath
 
 # MAVEN #
 #########
-/target/*
+/target/
