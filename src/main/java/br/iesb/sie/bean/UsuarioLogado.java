@@ -10,6 +10,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Named
 @javax.faces.view.ViewScoped
@@ -43,13 +46,27 @@ public class UsuarioLogado extends BaseController {
         return getEntidade().getPerfis().contains(Perfil.ESCOLA);
     }
 
-    public boolean isSecretaria(){
+    public boolean isSecretaria() {
         return getEntidade().getPerfis().contains(Perfil.SECRETARIA)
                 && funcionarioService.possuiEscolaVinculada(Perfil.SECRETARIA, getEntidade());
     }
 
-    public boolean isProfessor(){
+    public boolean isProfessor() {
         return getEntidade().getPerfis().contains(Perfil.PROFESSOR)
                 && funcionarioService.possuiEscolaVinculada(Perfil.PROFESSOR, getEntidade());
+    }
+
+    public List<Entidade> getEscolasVinculadas() {
+        List<Entidade> escolasVinculadas = new ArrayList<>();
+        if (isSecretaria()) {
+            escolasVinculadas.addAll(entidadeService.buscarEscolasVinculadas(getEntidade(), Perfil.SECRETARIA));
+        }
+        if (isProfessor()) {
+            escolasVinculadas.addAll(entidadeService.buscarEscolasVinculadas(getEntidade(), Perfil.PROFESSOR));
+        }
+        if (isEscola()) {
+            return Collections.singletonList(getEntidade());
+        }
+        return escolasVinculadas;
     }
 }

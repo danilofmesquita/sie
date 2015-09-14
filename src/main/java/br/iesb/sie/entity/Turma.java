@@ -36,6 +36,9 @@ public class Turma extends BaseEntity {
     @Column
     private Integer ano;
 
+    @OneToMany(mappedBy = "turma")
+    private List<Matricula> matriculas;
+
     public Turma() {
     }
 
@@ -104,5 +107,13 @@ public class Turma extends BaseEntity {
     public String toString() {
         String formato = "%s \"%s\" %s de %d";
         return String.format(formato, serie.getDescricao(), nome, turno.getDescricao(), ano);
+    }
+
+    public List<Matricula> getMatriculas() {
+        return matriculas;
+    }
+
+    public void setMatriculas(List<Matricula> matriculas) {
+        this.matriculas = matriculas;
     }
 }
