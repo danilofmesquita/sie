@@ -10,7 +10,7 @@ public class Nota extends BaseEntity {
     private Long id;
 
     @Column
-    private Integer nota;
+    private Double nota;
 
     @JoinColumn
     @ManyToOne
@@ -29,11 +29,11 @@ public class Nota extends BaseEntity {
         this.id = id;
     }
 
-    public Integer getNota() {
+    public Double getNota() {
         return nota;
     }
 
-    public void setNota(Integer nota) {
+    public void setNota(Double nota) {
         this.nota = nota;
     }
 

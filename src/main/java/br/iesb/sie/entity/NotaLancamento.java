@@ -15,7 +15,7 @@ public class NotaLancamento extends BaseEntity {
     @ManyToOne
     private Turma turma;
 
-    @OneToMany(mappedBy = "lancamento")
+    @OneToMany(mappedBy = "lancamento", cascade = CascadeType.ALL)
     private List<Nota> notas;
 
     @Column

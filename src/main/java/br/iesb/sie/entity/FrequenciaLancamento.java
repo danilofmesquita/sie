@@ -15,7 +15,7 @@ public class FrequenciaLancamento extends BaseEntity {
     @ManyToOne
     private Turma turma;
 
-    @OneToMany(mappedBy = "lancamento")
+    @OneToMany(mappedBy = "lancamento", cascade = CascadeType.ALL)
     private List<Frequencia> frequencias;
 
     @Column

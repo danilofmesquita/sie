@@ -41,6 +41,8 @@ public class ManterNotaController extends BaseController {
             lancamento.getTurma().getMatriculas().forEach(matricula -> {
                 if (lancamento.getNotas() == null) {
                     lancamento.setNotas(new ArrayList<>());
+                } else {
+                    lancamento.getNotas().clear();
                 }
 
                 Nota nota = new Nota();
@@ -60,5 +62,15 @@ public class ManterNotaController extends BaseController {
         }
     }
 
+    public void salvar() {
+        notaService.salvarNotas(lancamento);
+    }
 
+    public NotaLancamento getLancamento() {
+        return lancamento;
+    }
+
+    public void setLancamento(NotaLancamento lancamento) {
+        this.lancamento = lancamento;
+    }
 }
