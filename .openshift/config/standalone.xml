@@ -292,7 +292,7 @@
                 <smtp-server outbound-socket-binding-ref="mail-smtp"/>
             </mail-session>
             <mail-session name="sie" jndi-name="java:jboss/mail/sie">
-                <smtp-server outbound-socket-binding-ref="sie-smtp" ssl="true" username="${SENDGRID_USERNAME}"
+                <smtp-server outbound-socket-binding-ref="sie-smtp" ssl="true" username="${OPENSHIFT_SENDGRID_USERNAME}"
                              password="${SENDGRID_PASSWORD}"/>
             </mail-session>
         </subsystem>
