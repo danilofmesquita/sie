@@ -292,8 +292,8 @@
                 <smtp-server outbound-socket-binding-ref="mail-smtp"/>
             </mail-session>
             <mail-session name="sie" jndi-name="java:jboss/mail/sie">
-                <smtp-server outbound-socket-binding-ref="sie-smtp" ssl="true" username="${env.SENDGRID_USERNAME}"
-                             password="${env.SENDGRID_PASSWORD}"/>
+                <smtp-server outbound-socket-binding-ref="sie-smtp" ssl="true" username="${SENDGRID_USERNAME}"
+                             password="${SENDGRID_PASSWORD}"/>
             </mail-session>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:naming:2.0">
