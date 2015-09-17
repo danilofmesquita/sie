@@ -1,6 +1,8 @@
 package br.iesb.sie.entity;
 
 
+import br.iesb.sie.model.Disciplina;
+
 import javax.persistence.*;
 
 @Entity
@@ -53,4 +55,5 @@ public class Frequencia extends BaseEntity {
     public void setAluno(Entidade aluno) {
         this.aluno = aluno;
     }
+
 }

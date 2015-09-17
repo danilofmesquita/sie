@@ -4,8 +4,10 @@ import br.iesb.sie.bean.UsuarioLogado;
 import br.iesb.sie.entity.Frequencia;
 import br.iesb.sie.entity.FrequenciaLancamento;
 import br.iesb.sie.entity.Turma;
+import br.iesb.sie.model.Disciplina;
 import br.iesb.sie.service.FrequenciaService;
 import br.iesb.sie.service.TurmaService;
+import br.iesb.sie.util.Attributes;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -32,10 +34,19 @@ public class ManterFrequenciaController extends BaseController {
 
     private List<Turma> turmas;
 
+    private List<Disciplina> disciplinas;
+
     @PostConstruct
     public void init() {
-        if (lancamento == null) {
-            lancamento = new FrequenciaLancamento();
+        Long id = getFlashAttribute(Attributes.ID);
+        if (id == null) {
+            if (lancamento == null) {
+                lancamento = new FrequenciaLancamento();
+            }
+        } else {
+            lancamento = frequenciaService.getFrequenciaLancamento(id);
+            turmas = turmaService.buscarTurmas(null, usuarioLogado.getEscolasVinculadas());
+            preencherDisciplinas();
         }
     }
 
@@ -62,6 +73,19 @@ public class ManterFrequenciaController extends BaseController {
 
                 lancamento.getFrequencias().add(frequencia);
             });
+            preencherDisciplinas();
+        } else {
+            disciplinas = Collections.emptyList();
+            lancamento.setTurma(null);
+        }
+    }
+
+    private void preencherDisciplinas() {
+        if (usuarioLogado.isProfessor()) {
+            disciplinas = turmaService.buscarDisciplinasVinculadasATurmaEProfessor(lancamento.getTurma().getId(),
+                    usuarioLogado.getEntidade().getId());
+        } else {
+            disciplinas = turmaService.buscarDisciplinasVinculadasATurma(lancamento.getTurma().getId());
         }
     }
 
@@ -85,4 +109,11 @@ public class ManterFrequenciaController extends BaseController {
         return turmas;
     }
 
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(List<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
+    }
 }

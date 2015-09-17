@@ -1,5 +1,6 @@
 package br.iesb.sie.controller;
 
+import br.iesb.sie.bean.UsuarioLogado;
 import br.iesb.sie.entity.FrequenciaLancamento;
 import br.iesb.sie.service.FrequenciaService;
 import br.iesb.sie.util.Attributes;
@@ -17,18 +18,26 @@ public class ListarFrequenciaController extends ListarController {
     @Inject
     private FrequenciaService frequenciaService;
 
+    @Inject
+    private UsuarioLogado usuarioLogado;
+
     private FrequenciaLancamento filtro;
 
     private List<FrequenciaLancamento> frequencias;
 
     @PostConstruct
     public void init() {
-
+        filtrar();
     }
 
     @Override
     public void filtrar() {
-
+        if (usuarioLogado.isProfessor()) {
+            frequencias = frequenciaService.buscarFrequenciasLancamento(usuarioLogado.getEscolasVinculadas(),
+                    usuarioLogado.getEntidade());
+        } else {
+            frequencias = frequenciaService.buscarFrequenciasLancamento(usuarioLogado.getEscolasVinculadas(), null);
+        }
     }
 
     public List<FrequenciaLancamento> getFrequencias() {

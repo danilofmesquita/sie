@@ -11,7 +11,6 @@
     <ui:define name="body">
         <h:form>
             <sie:panel header="Consultar Lancamento de Frequencia" type="primary">
-
                 <h:commandButton value="Filtrar"
                                  styleClass="btn btn-primary pull-right btn-margin-left"/>
                 <h:commandButton value="Novo Lançamento"
@@ -25,24 +24,20 @@
                         <h:dataTable value="#{listarFrequenciaController.frequencias}"
                                      styleClass="table table-striped" var="frequencia">
                             <h:column>
-                                <f:facet name="header">Nome</f:facet>
-                                <h:outputText value=""/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Cargo</f:facet>
-                                <h:outputText value=""/>
-                            </h:column>
-                            <h:column>
                                 <f:facet name="header">Escola</f:facet>
-                                <h:outputText value=""/>
+                                <h:outputText value="#{frequencia.escola.razaoSocial}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Ativo</f:facet>
-                                <sie:simNaoOutput value=""/>
+                                <f:facet name="header">Disciplina</f:facet>
+                                <h:outputText value="#{frequencia.disciplina.descricao}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Data de Ingresso</f:facet>
-                                <h:outputText value=""/>
+                                <f:facet name="header">Turma</f:facet>
+                                <h:outputText value="#{frequencia.turma}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Data do Lançamento</f:facet>
+                                <h:outputText value="#{frequencia.dataLancamento}"/>
                             </h:column>
                             <h:column>
                                 <div align="center">

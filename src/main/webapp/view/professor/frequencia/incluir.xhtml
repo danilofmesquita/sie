@@ -28,11 +28,17 @@
                             <sie:selectOneMenu label="Turma" required="#{param['salvar']}" labelClass="required"
                                                value="#{manterFrequenciaController.lancamento.turma}">
                                 <f:selectItem itemLabel="Selecione"/>
-                                <f:selectItems value="#{manterFrequenciaController.turmas}" var="_turma"
-                                               itemValue="#{_turma}"/>
+                                <f:selectItems value="#{manterFrequenciaController.turmas}"/>
                                 <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
                                 <f:ajax event="change" execute="@form" render="@form"
                                         listener="#{manterFrequenciaController.selecionarTurmaListener()}"/>
+                            </sie:selectOneMenu>
+                        </sie:column>
+                        <sie:column span="4">
+                            <sie:selectOneMenu label="Disciplina" required="#{param['salvar']}" labelClass="required"
+                                               value="#{manterFrequenciaController.lancamento.disciplina}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{manterFrequenciaController.disciplinas}"/>
                             </sie:selectOneMenu>
                         </sie:column>
                     </sie:row>

@@ -1,5 +1,7 @@
 package br.iesb.sie.entity;
 
+import br.iesb.sie.model.Disciplina;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -18,6 +20,10 @@ public class FrequenciaLancamento extends BaseEntity {
     @JoinColumn
     @ManyToOne
     private Turma turma;
+
+    @Column
+    @Enumerated(EnumType.ORDINAL)
+    private Disciplina disciplina;
 
     @OneToMany(mappedBy = "lancamento", cascade = CascadeType.ALL)
     private List<Frequencia> frequencias;
@@ -65,5 +71,13 @@ public class FrequenciaLancamento extends BaseEntity {
 
     public void setEscola(Entidade escola) {
         this.escola = escola;
+    }
+
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
     }
 }
