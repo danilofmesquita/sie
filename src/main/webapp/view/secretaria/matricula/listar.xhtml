@@ -54,24 +54,24 @@
                 <br/>
                 <sie:panel header="Turmas" type="default">
                     <div class="table-responsive">
-                        <h:dataTable value="#{listarMatriculaController.matriculas}" var="_m"
+                        <h:dataTable value="#{listarMatriculaController.matriculas}" var="matricula"
                                      styleClass="table table-striped">
                             <h:column>
                                 <f:facet name="header">Escola</f:facet>
-                                <h:outputText value="#{_m.escola.razaoSocial}"/>
+                                <h:outputText value="#{matricula.escola.razaoSocial}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Aluno</f:facet>
-                                <h:outputText value="#{_m.aluno.nomeCompleto}"/>
+                                <h:outputText value="#{matricula.aluno.nomeCompleto}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Turma</f:facet>
-                                <h:outputText value="#{_m.turma}"/>
+                                <h:outputText value="#{matricula.turma}"/>
                             </h:column>
                             <h:column>
                                 <div align="center">
                                     <button class="btn btn-warning"
-                                            jsf:action="#{listarMatriculaController.editar(_m)}">
+                                            jsf:action="#{listarMatriculaController.editar(matricula.id)}">
                                         <span class="glyphicon glyphicon-edit"></span> Editar
                                     </button>
                                 </div>

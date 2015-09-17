@@ -23,6 +23,7 @@ public class EmailService {
 
     @Asynchronous
     public void enviarEmail(EmailDTO emailDTO) {
+
         try {
             Transport.send(emailDTO.pupularEmail(mailSession));
         } catch (MessagingException e) {

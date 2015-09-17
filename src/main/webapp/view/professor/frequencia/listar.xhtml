@@ -10,64 +10,44 @@
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <h:form>
-            <sie:panel header="Consultar Funcionarios" type="primary">
-                <sie:row>
-                    <sie:column span="6">
-                        <sie:selectOneMenu id="cargo" label="#{msg['label.cargo']}"
-                                           value="#{listarFuncionariosController.filtro.perfil}">
-                            <f:selectItem itemLabel="Selecione"/>
-                            <f:selectItems value="#{factoryUtil.cargos}" var="_p" itemLabel="#{_p.nomeMF}"
-                                           itemValue="#{_p}"/>
-                            <f:ajax event="change" render="@form" execute="@this"/>
-                        </sie:selectOneMenu>
-                    </sie:column>
-                    <sie:column span="6">
-                        <sie:selectOneMenu label="#{msg['label.nome']}"
-                                           value="#{listarFuncionariosController.filtro.funcionario}">
-                            <f:selectItem itemLabel="Selecione"/>
-                            <f:selectItems value="#{listarFuncionariosController.buscarPessoasPorPerfil()}"
-                                           var="_func" itemLabel="#{_func.nomeCompleto}"/>
-                            <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
-                        </sie:selectOneMenu>
-                    </sie:column>
-                </sie:row>
+            <sie:panel header="Consultar Lancamento de Frequencia" type="primary">
+
                 <h:commandButton value="Filtrar"
-                                 action="#{listarFuncionariosController.filtrar}"
                                  styleClass="btn btn-primary pull-right btn-margin-left"/>
-                <h:commandButton value="Novo Funcionario"
+                <h:commandButton value="Novo Lançamento"
                                  action="incluir.xhtml?faces-redirect=true"
                                  styleClass="btn btn-default pull-right btn-margin-left"/>
                 <br/>
                 <br/>
                 <br/>
-                <sie:panel header="Funcionarios" type="default">
+                <sie:panel header="Lançamentos" type="default">
                     <div class="table-responsive">
-                        <h:dataTable value="#{listarFuncionariosController.funcionarios}" var="funcionario"
-                                     styleClass="table table-striped">
+                        <h:dataTable value="#{listarFrequenciaController.frequencias}"
+                                     styleClass="table table-striped" var="frequencia">
                             <h:column>
                                 <f:facet name="header">Nome</f:facet>
-                                <h:outputText value="#{funcionario.funcionario.nomeCompleto}"/>
+                                <h:outputText value=""/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Cargo</f:facet>
-                                <h:outputText value="#{funcionario.perfil.nomeMF}"/>
+                                <h:outputText value=""/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Escola</f:facet>
-                                <h:outputText value="#{funcionario.escola.razaoSocial}"/>
+                                <h:outputText value=""/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Ativo</f:facet>
-                                <sie:simNaoOutput value="#{funcionario.vinculoAtivo}"/>
+                                <sie:simNaoOutput value=""/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Data de Ingresso</f:facet>
-                                <h:outputText value="#{funcionario.dataVinculo}"/>
+                                <h:outputText value=""/>
                             </h:column>
                             <h:column>
                                 <div align="center">
                                     <button class="btn btn-warning"
-                                            jsf:action="#{listarFuncionariosController.editar(funcionario.id)}">
+                                            jsf:action="#{listarFrequenciaController.editar(frequencia.id)}">
                                         <span class="glyphicon glyphicon-edit"></span> Editar
                                     </button>
                                 </div>

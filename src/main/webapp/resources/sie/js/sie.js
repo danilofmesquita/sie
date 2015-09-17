@@ -7,6 +7,7 @@ SIE.aplicarMascaras = function () {
     $(".cep").mask('99.999-999');
     $(".telefone").mask('(99) 9999-99999');
     $(".ano").mask('9999');
+    $(".nota").mask('99.99');
 };
 
 (function () {

@@ -4,7 +4,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
 
-public class BaseController implements Serializable {
+public abstract class BaseController implements Serializable {
 
 
     protected FacesContext getFacesContext() {

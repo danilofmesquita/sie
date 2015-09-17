@@ -56,32 +56,32 @@
                 <br/>
                 <sie:panel header="Turmas" type="default">
                     <div class="table-responsive">
-                        <h:dataTable value="#{listarTurmaController.turmas}" var="_t"
+                        <h:dataTable value="#{listarTurmaController.turmas}" var="turma"
                                      styleClass="table table-striped">
                             <h:column>
                                 <f:facet name="header">Escola</f:facet>
-                                <h:outputText value="#{_t.escola.razaoSocial}"/>
+                                <h:outputText value="#{turma.escola.razaoSocial}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Série</f:facet>
-                                <h:outputText value="#{_t.serie.descricao}"/>
+                                <h:outputText value="#{turma.serie.descricao}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Nome</f:facet>
-                                <h:outputText value="#{_t.nome}"/>
+                                <h:outputText value="#{turma.nome}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Turno</f:facet>
-                                <h:outputText value="#{_t.turno.descricao}"/>
+                                <h:outputText value="#{turma.turno.descricao}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Ano</f:facet>
-                                <h:outputText value="#{_t.ano}"/>
+                                <h:outputText value="#{turma.ano}"/>
                             </h:column>
                             <h:column>
                                 <div align="center">
                                     <button class="btn btn-warning"
-                                            jsf:action="#{listarTurmaController.editar(_t)}">
+                                            jsf:action="#{listarTurmaController.editar(turma.id)}">
                                         <span class="glyphicon glyphicon-edit"></span> Editar
                                     </button>
                                 </div>

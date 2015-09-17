@@ -30,10 +30,20 @@ public class ManterFrequenciaController extends BaseController {
 
     private FrequenciaLancamento lancamento;
 
+    private List<Turma> turmas;
+
     @PostConstruct
     public void init() {
         if (lancamento == null) {
             lancamento = new FrequenciaLancamento();
+        }
+    }
+
+    public void selecionaEscolaListener() {
+        if (lancamento.getEscola() != null) {
+            turmas = turmaService.buscarTurmas(null, usuarioLogado.getEscolasVinculadas());
+        } else {
+            turmas = Collections.emptyList();
         }
     }
 
@@ -55,14 +65,6 @@ public class ManterFrequenciaController extends BaseController {
         }
     }
 
-    public List<Turma> getTurmas() {
-        if (lancamento.getTurma() != null) {
-            return turmaService.buscarTurmas(null, usuarioLogado.getEscolasVinculadas());
-        } else {
-            return Collections.emptyList();
-        }
-    }
-
     public void salvar() {
         frequenciaService.salvarFrequencias(lancamento);
     }
@@ -74,4 +76,13 @@ public class ManterFrequenciaController extends BaseController {
     public void setLancamento(FrequenciaLancamento lancamento) {
         this.lancamento = lancamento;
     }
+
+    public void setTurmas(List<Turma> turmas) {
+        this.turmas = turmas;
+    }
+
+    public List<Turma> getTurmas() {
+        return turmas;
+    }
+
 }

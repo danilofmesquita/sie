@@ -19,7 +19,7 @@ import java.util.List;
 
 @Named
 @ViewScoped
-public class ListarMatriculaController extends BaseController {
+public class ListarMatriculaController extends ListarController {
 
     @Inject
     private MatriculaService matriculaService;
@@ -47,11 +47,7 @@ public class ListarMatriculaController extends BaseController {
         filtrar();
     }
 
-    public String editar(Matricula matricula) {
-        putFlashAttribute(Attributes.ID, matricula.getId());
-        return "incluir.xhtml?faces-redirect=true";
-    }
-
+    @Override
     public void filtrar() {
         matriculas = matriculaService.buscarMatriculas(filtro, getEscolasVinculadas());
     }

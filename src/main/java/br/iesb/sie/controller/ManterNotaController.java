@@ -5,6 +5,7 @@ import br.iesb.sie.entity.Frequencia;
 import br.iesb.sie.entity.Nota;
 import br.iesb.sie.entity.NotaLancamento;
 import br.iesb.sie.entity.Turma;
+import br.iesb.sie.model.Disciplina;
 import br.iesb.sie.service.NotaService;
 import br.iesb.sie.service.TurmaService;
 
@@ -29,11 +30,24 @@ public class ManterNotaController extends BaseController {
     @Inject
     private TurmaService turmaService;
 
+    private List<Turma> turmas;
+
     private NotaLancamento lancamento;
+
+    private List<Disciplina> disciplinas;
 
     @PostConstruct
     public void init() {
+        lancamento = new NotaLancamento();
+    }
 
+    public void selecionaEscolaListener() {
+        if (lancamento.getEscola() != null) {
+            turmas = turmaService.buscarTurmas(null, usuarioLogado.getEscolasVinculadas());
+        } else {
+            turmas = Collections.emptyList();
+            lancamento.setTurma(null);
+        }
     }
 
     public void selecionarTurmaListener() {
@@ -51,14 +65,15 @@ public class ManterNotaController extends BaseController {
 
                 lancamento.getNotas().add(nota);
             });
-        }
-    }
-
-    public List<Turma> getTurmas() {
-        if (lancamento.getTurma() != null) {
-            return turmaService.buscarTurmas(null, usuarioLogado.getEscolasVinculadas());
+            if (usuarioLogado.isProfessor()) {
+                disciplinas = turmaService.buscarDisciplinasVinculadasATurmaEProfessor(lancamento.getTurma().getId(),
+                        usuarioLogado.getEntidade().getId());
+            } else {
+                disciplinas = turmaService.buscarDisciplinasVinculadasATurma(lancamento.getTurma().getId());
+            }
         } else {
-            return Collections.emptyList();
+            disciplinas = Collections.emptyList();
+            lancamento.setTurma(null);
         }
     }
 
@@ -72,5 +87,21 @@ public class ManterNotaController extends BaseController {
 
     public void setLancamento(NotaLancamento lancamento) {
         this.lancamento = lancamento;
+    }
+
+    public List<Turma> getTurmas() {
+        return turmas;
+    }
+
+    public void setTurmas(List<Turma> turmas) {
+        this.turmas = turmas;
+    }
+
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(List<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
     }
 }

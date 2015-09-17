@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:sie="http://java.sun.com/jsf/composite/sie"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/template/common/template.xhtml">
+    <ui:define name="body">
+        <h:form>
+            <sie:panel header="Lançamento de Notas" type="primary">
+                <h:messages/>
+                <sie:panel header="Dados Gerais" type="default">
+                    <sie:row>
+                        <sie:column span="4">
+                            <sie:selectOneMenu label="Escola" required="#{param['salvar']}" labelClass="required"
+                                               value="#{manterFrequenciaController.lancamento.escola}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{usuarioLogado.escolasVinculadas}"
+                                               var="_ev" itemLabel="#{_ev.razaoSocial}"/>
+                                <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
+                                <f:ajax event="change" execute="@form" render="@form"
+                                        listener="#{manterFrequenciaController.selecionaEscolaListener()}"/>
+                            </sie:selectOneMenu>
+                        </sie:column>
+                        <sie:column span="4">
+                            <sie:selectOneMenu label="Turma" required="#{param['salvar']}" labelClass="required"
+                                               value="#{manterFrequenciaController.lancamento.turma}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{manterFrequenciaController.turmas}" var="_turma"
+                                               itemValue="#{_turma}"/>
+                                <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
+                                <f:ajax event="change" execute="@form" render="@form"
+                                        listener="#{manterFrequenciaController.selecionarTurmaListener()}"/>
+                            </sie:selectOneMenu>
+                        </sie:column>
+                    </sie:row>
+                </sie:panel>
+                <sie:panel rendered="#{not empty manterFrequenciaController.lancamento.frequencias}"
+                           header="Notas" type="default">
+                    <h:dataTable value="#{manterFrequenciaController.lancamento.frequencias}"
+                                 styleClass="table table-striped"
+                                 var="frequencia">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Aluno"/>
+                            </f:facet>
+                            <h:outputText value="#{frequencia.aluno.nomeCompleto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Nota"/>
+                            </f:facet>
+
+                            <div class="form-group">
+                                <h:selectBooleanCheckbox value="#{frequencia.presente}"/>
+                            </div>
+                        </h:column>
+                    </h:dataTable>
+                </sie:panel>
+                <h:commandButton value="Salvar" action="#{manterFrequenciaController.salvar()}"
+                                 styleClass="btn btn-primary pull-right btn-margin-left">
+                    <f:param value="true" name="salvar"/>
+                </h:commandButton>
+                <h:commandButton value="Voltar" action="listar?faces-redirect=true"
+                                 styleClass="btn btn-default pull-right btn-margin-left"/>
+            </sie:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>

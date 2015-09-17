@@ -1,5 +1,7 @@
 package br.iesb.sie.entity;
 
+import br.iesb.sie.model.Disciplina;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -13,6 +15,10 @@ public class NotaLancamento extends BaseEntity {
 
     @JoinColumn
     @ManyToOne
+    private Entidade escola;
+
+    @JoinColumn
+    @ManyToOne
     private Turma turma;
 
     @OneToMany(mappedBy = "lancamento", cascade = CascadeType.ALL)
@@ -21,6 +27,10 @@ public class NotaLancamento extends BaseEntity {
     @Column
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataLancamento;
+
+    @Column
+    @Enumerated(EnumType.ORDINAL)
+    private Disciplina disciplina;
 
     @Override
     public Long getId() {
@@ -53,5 +63,21 @@ public class NotaLancamento extends BaseEntity {
 
     public void setDataLancamento(Date dataLancamento) {
         this.dataLancamento = dataLancamento;
+    }
+
+    public Entidade getEscola() {
+        return escola;
+    }
+
+    public void setEscola(Entidade escola) {
+        this.escola = escola;
+    }
+
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
     }
 }

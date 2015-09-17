@@ -17,7 +17,7 @@ import java.util.List;
 
 @Named
 @ViewScoped
-public class ListarTurmaController extends BaseController {
+public class ListarTurmaController extends ListarController {
 
     @Inject
     private TurmaService turmaService;
@@ -37,11 +37,7 @@ public class ListarTurmaController extends BaseController {
         filtrar();
     }
 
-    public String editar(Turma turma) {
-        putFlashAttribute(Attributes.ID, turma.getId());
-        return "incluir.xhtml?faces-redirect=true";
-    }
-
+    @Override
     public void filtrar() {
         turmas = turmaService.buscarTurmas(filtro, buscarEscolasVinculadas());
     }

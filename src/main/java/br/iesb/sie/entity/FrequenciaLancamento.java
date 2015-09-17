@@ -13,6 +13,10 @@ public class FrequenciaLancamento extends BaseEntity {
 
     @JoinColumn
     @ManyToOne
+    private Entidade escola;
+
+    @JoinColumn
+    @ManyToOne
     private Turma turma;
 
     @OneToMany(mappedBy = "lancamento", cascade = CascadeType.ALL)
@@ -53,5 +57,13 @@ public class FrequenciaLancamento extends BaseEntity {
 
     public void setDataLancamento(Date dataLancamento) {
         this.dataLancamento = dataLancamento;
+    }
+
+    public Entidade getEscola() {
+        return escola;
+    }
+
+    public void setEscola(Entidade escola) {
+        this.escola = escola;
     }
 }
