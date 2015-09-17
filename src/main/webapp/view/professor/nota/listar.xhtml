@@ -24,24 +24,23 @@
                     <div class="table-responsive">
                         <h:dataTable value="#{listarNotaController.notas}" styleClass="table table-striped" var="nota">
                             <h:column>
-                                <f:facet name="header">Nome</f:facet>
-                                <h:outputText value=""/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Cargo</f:facet>
-                                <h:outputText value=""/>
-                            </h:column>
-                            <h:column>
                                 <f:facet name="header">Escola</f:facet>
-                                <h:outputText value=""/>
+                                <h:outputText value="#{nota.escola.razaoSocial}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Ativo</f:facet>
-                                <sie:simNaoOutput value=""/>
+                                <f:facet name="header">Disciplina</f:facet>
+                                <h:outputText value="#{nota.disciplina.descricao}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Data de Ingresso</f:facet>
-                                <h:outputText value=""/>
+                                <f:facet name="header">Turma</f:facet>
+                                <h:outputText value="#{nota.turma}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Data do Lançamento</f:facet>
+                                <h:outputText value="#{nota.dataLancamento}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"
+                                                       timeZone="America/Sao_Paulo"/>
+                                </h:outputText>
                             </h:column>
                             <h:column>
                                 <div align="center">

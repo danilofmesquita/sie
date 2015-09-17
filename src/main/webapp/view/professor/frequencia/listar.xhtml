@@ -37,7 +37,10 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Data do Lançamento</f:facet>
-                                <h:outputText value="#{frequencia.dataLancamento}"/>
+                                <h:outputText value="#{frequencia.dataLancamento}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"
+                                                       timeZone="America/Sao_Paulo"/>
+                                </h:outputText>
                             </h:column>
                             <h:column>
                                 <div align="center">

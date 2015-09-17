@@ -91,6 +91,7 @@ public class ManterFrequenciaController extends BaseController {
 
     public void salvar() {
         frequenciaService.salvarFrequencias(lancamento);
+        addInfoMessage("Dados salvos com sucesso!");
     }
 
     public FrequenciaLancamento getLancamento() {
@@ -101,12 +102,12 @@ public class ManterFrequenciaController extends BaseController {
         this.lancamento = lancamento;
     }
 
-    public void setTurmas(List<Turma> turmas) {
-        this.turmas = turmas;
-    }
-
     public List<Turma> getTurmas() {
         return turmas;
+    }
+
+    public void setTurmas(List<Turma> turmas) {
+        this.turmas = turmas;
     }
 
     public List<Disciplina> getDisciplinas() {

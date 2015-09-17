@@ -1,5 +1,6 @@
 package br.iesb.sie.controller;
 
+import br.iesb.sie.bean.UsuarioLogado;
 import br.iesb.sie.entity.NotaLancamento;
 import br.iesb.sie.service.NotaService;
 
@@ -16,18 +17,26 @@ public class ListarNotaController extends ListarController {
     @Inject
     private NotaService notaService;
 
+    @Inject
+    private UsuarioLogado usuarioLogado;
+
     private NotaLancamento filtro;
 
     private List<NotaLancamento> notas;
 
     @PostConstruct
     public void init() {
-
+        filtrar();
     }
 
     @Override
     public void filtrar() {
-
+        if (usuarioLogado.isProfessor()) {
+            notas = notaService.buscarNotasLancamento(usuarioLogado.getEscolasVinculadas(),
+                    usuarioLogado.getEntidade());
+        } else {
+            notas = notaService.buscarNotasLancamento(usuarioLogado.getEscolasVinculadas(), null);
+        }
     }
 
     public NotaLancamento getFiltro() {

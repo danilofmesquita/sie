@@ -2,11 +2,14 @@ package br.iesb.sie.service;
 
 import br.iesb.sie.dao.NotaDAO;
 import br.iesb.sie.dao.NotaLancamentoDAO;
+import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.entity.NotaLancamento;
+import org.hibernate.Hibernate;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.Date;
+import java.util.List;
 
 @Stateless
 public class NotaService {
@@ -25,7 +28,16 @@ public class NotaService {
     }
 
     public NotaLancamento getNotaLancamento(Long idNotaLancamento) {
-        return notaLancamentoDAO.get(idNotaLancamento);
+        NotaLancamento notaLancamento = notaLancamentoDAO.get(idNotaLancamento);
+        Hibernate.initialize(notaLancamento.getNotas());
+        Hibernate.initialize(notaLancamento.getTurma().getMatriculas().size());
+        return notaLancamento;
     }
+
+    public List<NotaLancamento> buscarNotasLancamento(List<Entidade> escolasVinculadas,
+                                                      Entidade professor) {
+        return notaLancamentoDAO.buscarNotasLancamento(escolasVinculadas, professor);
+    }
+
 
 }
