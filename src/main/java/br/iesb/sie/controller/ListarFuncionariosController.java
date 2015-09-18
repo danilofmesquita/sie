@@ -5,7 +5,6 @@ import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.entity.Funcionario;
 import br.iesb.sie.service.EntidadeService;
 import br.iesb.sie.service.FuncionarioService;
-import br.iesb.sie.util.Attributes;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -42,6 +41,11 @@ public class ListarFuncionariosController extends ListarController {
     @Override
     public void filtrar() {
         funcionarios = funcionarioService.buscarFuncionarios(filtro);
+    }
+
+    @Override
+    public void limpar() {
+        filtro = new Funcionario();
     }
 
     public List<Entidade> buscarPessoasPorPerfil() {

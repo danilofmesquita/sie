@@ -29,7 +29,7 @@ public class FrequenciaLancamento extends BaseEntity {
     private List<Frequencia> frequencias;
 
     @Column
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date dataLancamento;
 
     @Override

@@ -2,7 +2,9 @@ package br.iesb.sie.controller;
 
 import br.iesb.sie.bean.UsuarioLogado;
 import br.iesb.sie.entity.NotaLancamento;
+import br.iesb.sie.entity.Turma;
 import br.iesb.sie.service.NotaService;
+import br.iesb.sie.service.TurmaService;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -20,23 +22,32 @@ public class ListarNotaController extends ListarController {
     @Inject
     private UsuarioLogado usuarioLogado;
 
+    @Inject
+    private TurmaService turmaService;
+
     private NotaLancamento filtro;
 
     private List<NotaLancamento> notas;
 
     @PostConstruct
     public void init() {
+        filtro = new NotaLancamento();
         filtrar();
     }
 
     @Override
     public void filtrar() {
         if (usuarioLogado.isProfessor()) {
-            notas = notaService.buscarNotasLancamento(usuarioLogado.getEscolasVinculadas(),
+            notas = notaService.buscarNotasLancamento(filtro, usuarioLogado.getEscolasVinculadas(),
                     usuarioLogado.getEntidade());
         } else {
-            notas = notaService.buscarNotasLancamento(usuarioLogado.getEscolasVinculadas(), null);
+            notas = notaService.buscarNotasLancamento(filtro, usuarioLogado.getEscolasVinculadas(), null);
         }
+    }
+
+    @Override
+    public void limpar() {
+        filtro = new NotaLancamento();
     }
 
     public NotaLancamento getFiltro() {
@@ -53,6 +64,10 @@ public class ListarNotaController extends ListarController {
 
     public void setNotas(List<NotaLancamento> notas) {
         this.notas = notas;
+    }
+
+    public List<Turma> getTurmas() {
+        return turmaService.buscarTurmas(null, usuarioLogado.getEscolasVinculadas());
     }
 
 }

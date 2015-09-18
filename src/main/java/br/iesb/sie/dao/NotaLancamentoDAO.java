@@ -15,7 +15,7 @@ public class NotaLancamentoDAO extends BaseDAO<NotaLancamento, Long> {
         super(NotaLancamento.class);
     }
 
-    public List<NotaLancamento> buscarNotasLancamento(List<Entidade> escolas, Entidade professor) {
+    public List<NotaLancamento> buscarNotasLancamento(NotaLancamento filtro, List<Entidade> escolas, Entidade professor) {
         String hql = "";
         Map<String, Object> params = new HashMap<>();
 
@@ -30,6 +30,25 @@ public class NotaLancamentoDAO extends BaseDAO<NotaLancamento, Long> {
                 hql += "    WHERE pd.turma.escola in :escolas ";
                 hql += "    AND pd.professor = :professor ) ";
                 params.put("professor", professor);
+            }
+        }
+
+        if (filtro != null) {
+            if (filtro.getEscola() != null) {
+                hql += " AND nl.escola = :escola";
+                params.put("escola", filtro.getEscola());
+            }
+            if (filtro.getDisciplina() != null) {
+                hql += " AND nl.disciplina = :disciplina ";
+                params.put("disciplina", filtro.getDisciplina());
+            }
+            if (filtro.getTurma() != null) {
+                hql += " AND nl.turma = :turma ";
+                params.put("turma", filtro.getTurma());
+            }
+            if (filtro.getDataLancamento() != null) {
+                hql += " AND nl.dataLancamento = :dataLancamento ";
+                params.put("dataLancamento", filtro.getDataLancamento());
             }
         }
 

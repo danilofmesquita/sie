@@ -34,9 +34,10 @@ public class NotaService {
         return notaLancamento;
     }
 
-    public List<NotaLancamento> buscarNotasLancamento(List<Entidade> escolasVinculadas,
+    public List<NotaLancamento> buscarNotasLancamento(NotaLancamento notaLancamento,
+                                                      List<Entidade> escolasVinculadas,
                                                       Entidade professor) {
-        return notaLancamentoDAO.buscarNotasLancamento(escolasVinculadas, professor);
+        return notaLancamentoDAO.buscarNotasLancamento(notaLancamento, escolasVinculadas, professor);
     }
 
 

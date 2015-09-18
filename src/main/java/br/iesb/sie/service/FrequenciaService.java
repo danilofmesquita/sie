@@ -34,9 +34,10 @@ public class FrequenciaService {
         return frequenciaLancamento;
     }
 
-    public List<FrequenciaLancamento> buscarFrequenciasLancamento(List<Entidade> escolasVinculadas,
+    public List<FrequenciaLancamento> buscarFrequenciasLancamento(FrequenciaLancamento filtro,
+                                                                  List<Entidade> escolasVinculadas,
                                                                   Entidade professor) {
-        return frequenciaLancamentoDAO.buscarFrequenciasLancamento(escolasVinculadas, professor);
+        return frequenciaLancamentoDAO.buscarFrequenciasLancamento(filtro, escolasVinculadas, professor);
     }
 
 }

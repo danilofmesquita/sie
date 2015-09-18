@@ -11,9 +11,44 @@
     <ui:define name="body">
         <h:form>
             <sie:panel header="Consultar Lancamento de Notas" type="primary">
-
-                <h:commandButton value="Filtrar"
+                <sie:row>
+                    <sie:column span="6">
+                        <sie:selectOneMenu label="#{msg['label.escola']}"
+                                           value="#{listarNotaController.filtro.escola}">
+                            <f:selectItem itemLabel="Selecione"/>
+                            <f:selectItems value="#{usuarioLogado.escolasVinculadas}" var="_e"
+                                           itemLabel="#{_e.razaoSocial}"/>
+                            <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
+                        </sie:selectOneMenu>
+                    </sie:column>
+                    <sie:column span="6">
+                        <sie:selectOneMenu label="#{msg['label.turma']}"
+                                           value="#{listarNotaController.filtro.turma}">
+                            <f:selectItem itemLabel="Selecione"/>
+                            <f:selectItems value="#{listarNotaController.turmas}"/>
+                            <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
+                        </sie:selectOneMenu>
+                    </sie:column>
+                </sie:row>
+                <sie:row>
+                    <sie:column span="6">
+                        <sie:selectOneMenu label="#{msg['label.disciplina']}"
+                                           value="#{listarNotaController.filtro.disciplina}">
+                            <f:selectItem itemLabel="Selecione"/>
+                            <f:selectItems value="#{factoryUtil.disciplinas}" var="_d"
+                                           itemLabel="#{_d.descricao}"/>
+                        </sie:selectOneMenu>
+                    </sie:column>
+                    <sie:column span="6">
+                        <sie:inputDate label="#{msg['label.data.lancamento']}"
+                                       value="#{listarNotaController.filtro.dataLancamento}"/>
+                    </sie:column>
+                </sie:row>
+                <h:commandButton value="Filtrar" action="#{listarNotaController.filtrar()}"
                                  styleClass="btn btn-primary pull-right btn-margin-left"/>
+                <h:commandButton value="Limpar"
+                                 action="#{listarNotaController.limpar()}"
+                                 styleClass="btn btn-danger pull-right btn-margin-left"/>
                 <h:commandButton value="Novo Lançamento"
                                  action="incluir.xhtml?faces-redirect=true"
                                  styleClass="btn btn-default pull-right btn-margin-left"/>

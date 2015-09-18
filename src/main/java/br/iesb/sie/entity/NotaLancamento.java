@@ -25,7 +25,7 @@ public class NotaLancamento extends BaseEntity {
     private List<Nota> notas;
 
     @Column
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date dataLancamento;
 
     @Column
