@@ -13,7 +13,7 @@
                 <h:messages/>
                 <sie:panel header="Dados Gerais" type="default">
                     <sie:row>
-                        <sie:column span="4">
+                        <sie:column span="6">
                             <sie:selectOneMenu label="Escola" required="#{param['salvar']}" labelClass="required"
                                                value="#{manterNotaController.lancamento.escola}">
                                 <f:selectItem itemLabel="Selecione"/>
@@ -24,7 +24,7 @@
                                         listener="#{manterNotaController.selecionaEscolaListener()}"/>
                             </sie:selectOneMenu>
                         </sie:column>
-                        <sie:column span="4">
+                        <sie:column span="6">
                             <sie:selectOneMenu label="Turma" required="#{param['salvar']}" labelClass="required"
                                                value="#{manterNotaController.lancamento.turma}">
                                 <f:selectItem itemLabel="Selecione"/>
@@ -35,11 +35,20 @@
                                         listener="#{manterNotaController.selecionarTurmaListener()}"/>
                             </sie:selectOneMenu>
                         </sie:column>
-                        <sie:column span="4">
+                        </sie:row>
+                    <sie:row>
+                        <sie:column span="6">
                             <sie:selectOneMenu label="Disciplina" required="#{param['salvar']}" labelClass="required"
                                                value="#{manterNotaController.lancamento.disciplina}">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{manterNotaController.disciplinas}"/>
+                            </sie:selectOneMenu>
+                        </sie:column>
+                        <sie:column span="6">
+                            <sie:selectOneMenu label="Bimestre" required="#{param['salvar']}" labelClass="required"
+                                               value="#{manterNotaController.lancamento.bimestre}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{factoryUtil.bimestres}"/>
                             </sie:selectOneMenu>
                         </sie:column>
                     </sie:row>

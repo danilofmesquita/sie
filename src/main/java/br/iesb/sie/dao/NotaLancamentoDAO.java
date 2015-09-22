@@ -50,6 +50,10 @@ public class NotaLancamentoDAO extends BaseDAO<NotaLancamento, Long> {
                 hql += " AND nl.dataLancamento = :dataLancamento ";
                 params.put("dataLancamento", filtro.getDataLancamento());
             }
+            if (filtro.getBimestre() != null) {
+                hql += "AND nl.bimestre = :bimestre";
+                params.put("bimestre", filtro.getBimestre());
+            }
         }
 
         return addQueryParams(params, getSession().createQuery(hql)).list();

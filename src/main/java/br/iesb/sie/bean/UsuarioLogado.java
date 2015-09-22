@@ -10,9 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Named
 @javax.faces.view.ViewScoped
@@ -57,7 +55,7 @@ public class UsuarioLogado extends BaseController {
     }
 
     public List<Entidade> getEscolasVinculadas() {
-        List<Entidade> escolasVinculadas = new ArrayList<>();
+        Set<Entidade> escolasVinculadas = new HashSet<>();
         if (isSecretaria()) {
             escolasVinculadas.addAll(entidadeService.buscarEscolasVinculadas(getEntidade(), Perfil.SECRETARIA));
         }
@@ -67,6 +65,6 @@ public class UsuarioLogado extends BaseController {
         if (isEscola()) {
             return Collections.singletonList(getEntidade());
         }
-        return escolasVinculadas;
+        return new ArrayList<>(escolasVinculadas);
     }
 }

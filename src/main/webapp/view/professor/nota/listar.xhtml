@@ -12,7 +12,7 @@
         <h:form>
             <sie:panel header="Consultar Lancamento de Notas" type="primary">
                 <sie:row>
-                    <sie:column span="6">
+                    <sie:column span="4">
                         <sie:selectOneMenu label="#{msg['label.escola']}"
                                            value="#{listarNotaController.filtro.escola}">
                             <f:selectItem itemLabel="Selecione"/>
@@ -21,7 +21,7 @@
                             <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
                         </sie:selectOneMenu>
                     </sie:column>
-                    <sie:column span="6">
+                    <sie:column span="4">
                         <sie:selectOneMenu label="#{msg['label.turma']}"
                                            value="#{listarNotaController.filtro.turma}">
                             <f:selectItem itemLabel="Selecione"/>
@@ -29,9 +29,7 @@
                             <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
                         </sie:selectOneMenu>
                     </sie:column>
-                </sie:row>
-                <sie:row>
-                    <sie:column span="6">
+                    <sie:column span="4">
                         <sie:selectOneMenu label="#{msg['label.disciplina']}"
                                            value="#{listarNotaController.filtro.disciplina}">
                             <f:selectItem itemLabel="Selecione"/>
@@ -39,7 +37,16 @@
                                            itemLabel="#{_d.descricao}"/>
                         </sie:selectOneMenu>
                     </sie:column>
-                    <sie:column span="6">
+                </sie:row>
+                <sie:row>
+                    <sie:column span="4">
+                        <sie:selectOneMenu label="#{msg['label.bimestre']}"
+                                           value="#{listarNotaController.filtro.bimestre}">
+                            <f:selectItem itemLabel="Selecione"/>
+                            <f:selectItems value="#{factoryUtil.bimestres}"/>
+                        </sie:selectOneMenu>
+                    </sie:column>
+                    <sie:column span="4">
                         <sie:inputDate label="#{msg['label.data.lancamento']}"
                                        value="#{listarNotaController.filtro.dataLancamento}"/>
                     </sie:column>
@@ -61,6 +68,10 @@
                             <h:column>
                                 <f:facet name="header">Escola</f:facet>
                                 <h:outputText value="#{nota.escola.razaoSocial}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Bimestre</f:facet>
+                                <h:outputText value="#{nota.bimestre.descricao}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Disciplina</f:facet>

@@ -75,7 +75,7 @@ public class EntidadeDAO extends BaseDAO<Entidade, Long> {
     public List<Entidade> buscarEscolasVinculadas(Entidade funcionario, Perfil perfil) {
         String hql = "";
 
-        hql += " SELECT e FROM Entidade e ";
+        hql += " SELECT distinct e FROM Entidade e ";
         hql += " INNER JOIN e.funcionarios f ";
         hql += " where f.funcionario = :funcionario ";
         hql += " and f.perfil = :perfil ";

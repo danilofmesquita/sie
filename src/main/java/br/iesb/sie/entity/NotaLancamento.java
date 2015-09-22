@@ -1,5 +1,6 @@
 package br.iesb.sie.entity;
 
+import br.iesb.sie.model.Bimestre;
 import br.iesb.sie.model.Disciplina;
 
 import javax.persistence.*;
@@ -31,6 +32,10 @@ public class NotaLancamento extends BaseEntity {
     @Column
     @Enumerated(EnumType.ORDINAL)
     private Disciplina disciplina;
+
+    @Column
+    @Enumerated(EnumType.ORDINAL)
+    private Bimestre bimestre;
 
     @Override
     public Long getId() {
@@ -79,5 +84,13 @@ public class NotaLancamento extends BaseEntity {
 
     public void setDisciplina(Disciplina disciplina) {
         this.disciplina = disciplina;
+    }
+
+    public Bimestre getBimestre() {
+        return bimestre;
+    }
+
+    public void setBimestre(Bimestre bimestre) {
+        this.bimestre = bimestre;
     }
 }

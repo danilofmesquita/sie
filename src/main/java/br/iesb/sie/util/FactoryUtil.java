@@ -45,4 +45,8 @@ public class FactoryUtil {
     public List<Parentesco> getParentescos() {
         return Arrays.asList(Parentesco.values());
     }
+
+    public List<Bimestre> getBimestres() {
+        return Arrays.asList(Bimestre.values());
+    }
 }
