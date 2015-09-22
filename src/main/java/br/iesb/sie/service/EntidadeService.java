@@ -3,10 +3,12 @@ package br.iesb.sie.service;
 import br.iesb.sie.dao.EntidadeDAO;
 import br.iesb.sie.dto.EmailCadastroConcluidoDTO;
 import br.iesb.sie.entity.Entidade;
+import br.iesb.sie.entity.Telefone;
 import br.iesb.sie.model.Perfil;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.Iterator;
 import java.util.List;
 
 @Stateless
@@ -24,10 +26,9 @@ public class EntidadeService {
     public void criarNovoUsuaro(Entidade u) {
 
         String senha = senhaService.criarNovaSenha();
-
+        ajustarTelefones(u);
         u.setSenha(senhaService.codificarSenha(senha));
         u.setLogin(criarNovoLogin());
-
         entidadeDAO.salvar(u);
 
         emailService.enviarEmail(new EmailCadastroConcluidoDTO(u, senha));
@@ -41,10 +42,9 @@ public class EntidadeService {
         return entidadeDAO.buscarEntidadePorLogin(login);
     }
 
-    public Integer atualizarSenha(Entidade entidade, String senhaAnterior, 
-            String novaSenha) 
-    {
-        
+    public Integer atualizarSenha(Entidade entidade, String senhaAnterior,
+                                  String novaSenha) {
+
         if (entidade.getSenha().equals(senhaService.codificarSenha(senhaAnterior))) {
             entidade.setSenha(senhaService.codificarSenha(novaSenha));
             entidadeDAO.salvar(entidade);
@@ -68,5 +68,15 @@ public class EntidadeService {
 
     public List<Entidade> buscarAlunosVinculados(List<Entidade> escolasVinculadas) {
         return entidadeDAO.buscarAlunosVinculados(escolasVinculadas);
+    }
+
+    private void ajustarTelefones(Entidade u) {
+        Iterator<Telefone> it = u.getTelefones().iterator();
+        while (it.hasNext()) {
+            Telefone telefone = it.next();
+            if (telefone.getNumero() == null) {
+                it.remove();
+            }
+        }
     }
 }
