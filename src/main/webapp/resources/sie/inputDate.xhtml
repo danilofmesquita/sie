@@ -21,7 +21,10 @@
     <script type="text/javascript">
         $("input[id='#{cc.clientId}:inputText']").datepicker({
             format: "dd/mm/yyyy",
-            language: "pt-BR"
+            language: "pt-BR",
+            autoclose: true,
+            todayHighlight: true,
+            orientation: "top auto"
         });
     </script>
 </composite:implementation>
