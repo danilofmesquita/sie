@@ -9,9 +9,9 @@
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <h:form>
-            <sie:panel header="Lançamento de Notas" type="primary">
+            <sie:panel header="#{msg['label.lancamento.frequencia']}" type="primary">
                 <h:messages/>
-                <sie:panel header="Dados Gerais" type="default">
+                <sie:panel header="#{msg['label.dados.gerais']}" type="default">
                     <sie:row>
                         <sie:column span="4">
                             <sie:selectOneMenu label="Escola" required="#{param['salvar']}" labelClass="required"
@@ -44,7 +44,7 @@
                     </sie:row>
                 </sie:panel>
                 <sie:panel rendered="#{not empty manterFrequenciaController.lancamento.frequencias}"
-                           header="Notas" type="default">
+                           header="#{msg['label.frequencia']}" type="default">
                     <h:dataTable value="#{manterFrequenciaController.lancamento.frequencias}"
                                  styleClass="table table-striped"
                                  var="frequencia">
