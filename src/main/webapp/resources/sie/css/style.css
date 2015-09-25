@@ -50,3 +50,7 @@ body {
     color:red !important;
     content: '* ';
 }
+
+.bootstrap-switch {
+    height: 28px !important;
+}

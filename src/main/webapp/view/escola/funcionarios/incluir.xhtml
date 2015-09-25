@@ -37,13 +37,8 @@
                 </sie:row>
                 <sie:row>
                     <sie:column span="12">
-                        <div class="check-box">
-                            <label>
-                                <h:selectBooleanCheckbox
-                                        value="#{manterFuncionarioController.funcionario.vinculoAtivo}"/>
-                                Ativar Vinculo
-                            </label>
-                        </div>
+                        <sie:switch label="Ativar Vinculo"
+                                    value="#{manterFuncionarioController.funcionario.vinculoAtivo}"/>
                     </sie:column>
                 </sie:row>
             </sie:panel>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+<composite:interface>
+    <composite:attribute name="label"/>
+    <composite:attribute name="value"/>
+</composite:interface>
+<composite:implementation>
+    <h:outputLabel value="#{cc.attrs.label}:" style="margin-right: 5px;"/>
+    <h:selectBooleanCheckbox label="#{cc.attrs.label}" id="switch"
+                             value="#{cc.attrs.value}">
+        <composite:insertChildren/>
+    </h:selectBooleanCheckbox>
+    <script type="text/javascript">
+        $("[id='#{cc.clientId}:switch']").bootstrapSwitch({
+            size: "small",
+            onText: "Sim",
+            offText: "Não"
+        });
+    </script>
+</composite:implementation>
+</html>
