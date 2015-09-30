@@ -40,6 +40,10 @@ public class UsuarioLogado extends BaseController {
         return "/view/index.xhtml?faces-redirect=true";
     }
 
+    public boolean isAluno() {
+        return getEntidade().getPerfis().contains(Perfil.ALUNO);
+    }
+
     public boolean isEscola() {
         return getEntidade().getPerfis().contains(Perfil.ESCOLA);
     }
