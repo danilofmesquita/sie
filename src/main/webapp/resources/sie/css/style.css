@@ -63,3 +63,7 @@ body, html {
     width: 100%;
     z-index: 9999;
 }
+
+.nav-form {
+    margin-bottom: 14px;
+}
