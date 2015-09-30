@@ -334,7 +334,7 @@
                             <module-option name="dsJndiName" value="java:jboss/datasources/SieDS"/>
                             <module-option name="principalsQuery" value="SELECT SENHA FROM sie.ENTIDADE WHERE LOGIN=?"/>
                             <module-option name="rolesQuery"
-                                           value="SELECT PE.NOME_PERFIL, 'ROLES' FROM sie.PERFIL_ENTIDADE PE INNER JOIN sie.ENTIDADE E ON PE.FK_ENTIDADE = E.ID_ENTIDADE WHERE E.LOGIN = ?"/>
+                                           value="SELECT PE.NOME_PERFIL, 'Roles' FROM sie.PERFIL_ENTIDADE PE INNER JOIN sie.ENTIDADE E ON PE.FK_ENTIDADE = E.ID_ENTIDADE WHERE E.LOGIN = ?"/>
                             <module-option name="hashAlgorithm" value="SHA-256"/>
                             <module-option name="hashEncoding" value="base64"/>
                         </login-module>
