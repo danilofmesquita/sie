@@ -1,10 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-</f:view>
-</html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:sie="http://java.sun.com/jsf/composite/sie"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/template/common/template.xhtml">
+    <ui:define name="body">
+        <h:form>
+            <sie:panel header="#{msg['label.passe.estudantil']}" type="primary">
+                <h:messages/>
+                <sie:row>
+                    <sie:column span="6">
+                        <sie:selectOneMenu id="cargo" label="#{msg['label.escola']}" required="#{param['gerar']}"
+                                           value="#{solicitarPasseController.passeDTO.escola}" labelClass="required">
+                            <f:selectItem itemLabel="Selecione"/>
+                            <f:selectItems value="#{solicitarPasseController.escolasVinculadas}" var="_escola"
+                                           itemLabel="#{_escola.razaoSocial}"/>
+                            <f:ajax event="change" execute="@form" render="@form"/>
+                            <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
+                        </sie:selectOneMenu>
+                    </sie:column>
+                    <sie:column span="6">
+                        <sie:selectOneMenu label="#{msg['label.turma']}" required="#{param['gerar']}"
+                                           labelClass="required" value="#{solicitarPasseController.passeDTO.turma}">
+                            <f:selectItem itemLabel="Selecione"/>
+                            <f:selectItems value="#{solicitarPasseController.turmasVinculadas}" var="_turma"/>
+                            <f:ajax event="change" execute="@form" render="@form"/>
+                            <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
+                        </sie:selectOneMenu>
+                    </sie:column>
+                </sie:row>
+            </sie:panel>
+            <h:commandButton value="#{msg['label.imprimir']}" action="#{solicitarPasseController.imprimir()}"
+                             styleClass="btn btn-primary pull-right btn-margin-left">
+                <f:param name="gerar" value="true"/>
+            </h:commandButton>
+            <h:commandButton value="Voltar" action="listar?faces-redirect=true"
+                             styleClass="btn btn-default pull-right btn-margin-left"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

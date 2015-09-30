@@ -8,7 +8,6 @@ import br.iesb.sie.model.Perfil;
 import br.iesb.sie.service.EntidadeService;
 import br.iesb.sie.service.MatriculaService;
 import br.iesb.sie.service.TurmaService;
-import br.iesb.sie.util.Attributes;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -69,7 +68,7 @@ public class ListarMatriculaController extends ListarController {
         if (usuarioLogado.isEscola()) {
             return Collections.singletonList(usuarioLogado.getEntidade());
         } else if (usuarioLogado.isSecretaria()) {
-            return entidadeService.buscarEscolasVinculadas(usuarioLogado.getEntidade(), Perfil.SECRETARIA);
+            return entidadeService.buscarEscolasVinculadasAoFuncionario(usuarioLogado.getEntidade(), Perfil.SECRETARIA);
         }
         return Collections.emptyList();
     }

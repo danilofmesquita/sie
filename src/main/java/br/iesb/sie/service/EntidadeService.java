@@ -62,7 +62,7 @@ public class EntidadeService {
         return entidadeDAO.buscarProfessores(escola);
     }
 
-    public List<Entidade> buscarEscolasVinculadas(Entidade funcionario, Perfil perfil) {
+    public List<Entidade> buscarEscolasVinculadasAoFuncionario(Entidade funcionario, Perfil perfil) {
         return entidadeDAO.buscarEscolasVinculadas(funcionario, perfil);
     }
 
@@ -78,5 +78,10 @@ public class EntidadeService {
                 it.remove();
             }
         }
+    }
+
+
+    public List<Entidade> buscarEscolasVinculadasAoAluno(Entidade aluno) {
+        return entidadeDAO.buscarEscolasVinculadasAoAluno(aluno);
     }
 }

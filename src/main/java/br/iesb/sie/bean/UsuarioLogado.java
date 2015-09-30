@@ -57,10 +57,10 @@ public class UsuarioLogado extends BaseController {
     public List<Entidade> getEscolasVinculadas() {
         Set<Entidade> escolasVinculadas = new HashSet<>();
         if (isSecretaria()) {
-            escolasVinculadas.addAll(entidadeService.buscarEscolasVinculadas(getEntidade(), Perfil.SECRETARIA));
+            escolasVinculadas.addAll(entidadeService.buscarEscolasVinculadasAoFuncionario(getEntidade(), Perfil.SECRETARIA));
         }
         if (isProfessor()) {
-            escolasVinculadas.addAll(entidadeService.buscarEscolasVinculadas(getEntidade(), Perfil.PROFESSOR));
+            escolasVinculadas.addAll(entidadeService.buscarEscolasVinculadasAoFuncionario(getEntidade(), Perfil.PROFESSOR));
         }
         if (isEscola()) {
             return Collections.singletonList(getEntidade());

@@ -56,4 +56,19 @@ public class TurmaDAO extends BaseDAO<Turma, Long> {
 
         return addQueryParams(params, getSession().createQuery(hql)).list();
     }
+
+    public List<Turma> buscarTurmasVinculadasAEscolaEAluno(Entidade escola, Entidade aluno) {
+
+        String hql = "";
+
+        hql += " SELECT distinct t FROM Turma t ";
+        hql += " INNER JOIN t.matriculas m ";
+        hql += " WHERE m.aluno = :aluno ";
+        hql += " AND t.escola = :escola ";
+
+        return getSession().createQuery(hql)
+                .setParameter("aluno", aluno).setParameter("escola", escola).list();
+
+    }
+
 }

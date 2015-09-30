@@ -81,4 +81,7 @@ public class TurmaService {
         return disciplinas;
     }
 
+    public List<Turma> buscarTurmasVinculadasAEscolaEAluno(Entidade escola, Entidade aluno) {
+        return turmaDAO.buscarTurmasVinculadasAEscolaEAluno(escola, aluno);
+    }
 }

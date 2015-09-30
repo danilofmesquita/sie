@@ -16,12 +16,12 @@ SIE.aplicarMascaras = function () {
     if (typeof jsf != "undefined") {
 
         jsf.ajax.addOnEvent(SIE.aplicarMascaras);
-        jsf.ajax.addOnEvent(function(data){
+        jsf.ajax.addOnEvent(function (data) {
 
             var ajaxStatus = data.status;
             var ajaxloaderContainer = $('.ajaxloaderContainer').hide();
 
-            switch (ajaxStatus){
+            switch (ajaxStatus) {
                 case "begin":
                     ajaxloaderContainer.show();
                     break;
@@ -35,3 +35,14 @@ SIE.aplicarMascaras = function () {
     }
 })();
 
+SIE.toTop = function () {
+    $("html, body").animate({scrollTop: 0}, "slow");
+};
+
+$(".navbar-sie").affix({
+    offset: {
+        top: 100
+    }
+});
+
+$(".navbar-wrapper").height($(".navbar-sie").height());

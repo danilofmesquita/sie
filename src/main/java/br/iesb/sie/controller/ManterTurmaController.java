@@ -48,7 +48,7 @@ public class ManterTurmaController extends BaseController {
         if (usuarioLogado.isEscola()) {
             escolasVinculadas = Collections.singletonList(usuarioLogado.getEntidade());
         } else if (usuarioLogado.isSecretaria()) {
-            escolasVinculadas = entidadeService.buscarEscolasVinculadas(usuarioLogado.getEntidade(), Perfil.SECRETARIA);
+            escolasVinculadas = entidadeService.buscarEscolasVinculadasAoFuncionario(usuarioLogado.getEntidade(), Perfil.SECRETARIA);
         }
 
         professorDisciplina = new ProfessorDisciplina(turma);

@@ -1,9 +1,6 @@
 body, html {
     background-color: #FCFDFE;
-}
-
-body {
-    padding-top: 70px;
+    height: 100%;
 }
 
 .btn-margin-left {
@@ -22,9 +19,6 @@ body {
     margin-right: 10px;
 }
 
-body {
-    margin-bottom: 30px;
-}
 
 .ajaxloader {
     position: fixed;
@@ -53,4 +47,19 @@ body {
 
 .bootstrap-switch {
     height: 28px !important;
+}
+
+.invert
+{
+    filter: invert(1);
+    -webkit-filter: invert(1);
+    -moz-filter: invert(1);
+    -o-filter: invert(1);
+    -ms-filter: invert(1);
+}
+
+.affix {
+    top: 0;
+    width: 100%;
+    z-index: 9999;
 }

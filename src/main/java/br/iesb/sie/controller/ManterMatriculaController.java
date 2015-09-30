@@ -74,7 +74,7 @@ public class ManterMatriculaController extends BaseController {
 
     public List<Entidade> getEscolasVinculadas() {
         if (usuarioLogado.isSecretaria()) {
-            return entidadeService.buscarEscolasVinculadas(usuarioLogado.getEntidade(), Perfil.SECRETARIA);
+            return entidadeService.buscarEscolasVinculadasAoFuncionario(usuarioLogado.getEntidade(), Perfil.SECRETARIA);
         } else if (usuarioLogado.isEscola()) {
             return Collections.singletonList(usuarioLogado.getEntidade());
         }

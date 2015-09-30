@@ -11,12 +11,9 @@ import java.util.Collection;
 import java.util.Map;
 
 
-public class BaseDAO<T extends BaseEntity, ID extends Serializable> {
+public class BaseDAO<T extends BaseEntity, ID extends Serializable> extends SimpleDAO {
 
     private final Class<T> clazz;
-
-    @PersistenceContext(name = "sie-pu")
-    private EntityManager em;
 
     public BaseDAO(Class<T> clazz) {
         this.clazz = clazz;
@@ -26,17 +23,13 @@ public class BaseDAO<T extends BaseEntity, ID extends Serializable> {
         getSession().saveOrUpdate(t);
     }
 
-    public Session getSession() {
-        return (Session) em.getDelegate();
-    }
-
     public T get(ID id) {
         return (T) getSession().get(clazz, id);
     }
 
     public Query addQueryParams(Map<String, Object> params, Query query) {
         for (Map.Entry<String, Object> entry : params.entrySet()) {
-            if(entry.getValue() instanceof Collection){
+            if (entry.getValue() instanceof Collection) {
                 query.setParameterList(entry.getKey(), (Collection) entry.getValue());
             } else {
                 query.setParameter(entry.getKey(), entry.getValue());

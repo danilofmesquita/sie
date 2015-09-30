@@ -1,8 +1,10 @@
 package br.iesb.sie.util;
 
 
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
+import javax.jms.Session;
 import java.util.logging.Logger;
 
 public class Resources {
