@@ -30,7 +30,7 @@
                  INNER JOIN sie.TURMA TURMA ON TURMA.ID_TURMA = MATRICULA.FK_TURMA
                  INNER JOIN sie.ENDERECO ENDERECO ON ALUNO.FK_ENDERECO = ENDERECO.ID_ENDERECO
                  INNER JOIN sie.ENTIDADE ESCOLA ON TURMA.FK_ENTIDADE_ESCOLA = ESCOLA.ID_ENTIDADE
-                 INNER JOIN SIE.ENDERECO ENDERECO_ESCOLA ON ESCOLA.FK_ENDERECO = ENDERECO_ESCOLA.ID_ENDERECO
+                 INNER JOIN sie.ENDERECO ENDERECO_ESCOLA ON ESCOLA.FK_ENDERECO = ENDERECO_ESCOLA.ID_ENDERECO
                  WHERE ALUNO.ID_ENTIDADE = $P{ID_ALUNO}
                  AND TURMA.ID_TURMA = $P{ID_TURMA} 
                  AND ESCOLA.ID_ENTIDADE =  $P{ID_ESCOLA}
@@ -113,7 +113,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Responsável: "+$F{RESPONSAVEL}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["SIEsável: "+$F{RESPONSAVEL}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="0" y="160" width="550" height="20" uuid="e1416873-0b45-4393-ba8c-8e960b26aad0"/>
