@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Stateless
-public class EmailService {
+public class EmailService extends BaseService {
 
     @Resource(mappedName = "java:jboss/mail/sie")
     private Session mailSession;

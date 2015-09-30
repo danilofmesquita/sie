@@ -12,7 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Stateless
-public class EntidadeService {
+public class EntidadeService extends BaseService {
 
     @Inject
     private EntidadeDAO entidadeDAO;

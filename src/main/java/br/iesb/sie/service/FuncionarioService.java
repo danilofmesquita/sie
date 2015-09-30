@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Stateless
-public class FuncionarioService {
+public class FuncionarioService extends BaseService {
 
     @Inject
     private FuncionarioDAO funcionarioDAO;

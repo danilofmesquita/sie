@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Stateless
-public class MatriculaService {
+public class MatriculaService extends BaseService {
 
     @Inject
     private MatriculaDAO matriculaDAO;

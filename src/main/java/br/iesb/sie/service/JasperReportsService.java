@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Stateless
-public class JasperReportsService {
+public class JasperReportsService extends BaseService  {
 
     public static final String PASSE = "reports/passe.jrxml";
 

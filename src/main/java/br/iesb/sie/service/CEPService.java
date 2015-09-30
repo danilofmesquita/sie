@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 import java.io.StringReader;
 
 @Stateless
-public class CEPService {
+public class CEPService extends BaseService {
 
     public Endereco buscarEnderecoPorCEP(Integer cep) {
 

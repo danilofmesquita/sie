@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 @Stateless
-public class NotaService {
+public class NotaService extends BaseService  {
 
     @Inject
     private NotaDAO notaDAO;

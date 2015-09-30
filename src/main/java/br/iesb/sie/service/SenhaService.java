@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Stateless
-public class SenhaService {
+public class SenhaService extends BaseService {
 
     @Inject
     private Logger logger;

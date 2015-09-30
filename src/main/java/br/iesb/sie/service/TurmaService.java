@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
-public class TurmaService {
+public class TurmaService extends BaseService {
 
     @Inject
     private TurmaDAO turmaDAO;
