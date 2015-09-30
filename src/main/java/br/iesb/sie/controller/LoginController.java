@@ -24,7 +24,7 @@ public class LoginController extends BaseController {
             return "/view/index.xhtml";
         } catch (ServletException e) {
             addErrorMessage("Não possível autenticar, verifique a Matrícula e a Senha.");
-            logger.log(Level.SEVERE, "Erro ao efetuar o login");
+            logger.log(Level.SEVERE, "Erro ao efetuar o login", e);
         }
         return null;
     }
