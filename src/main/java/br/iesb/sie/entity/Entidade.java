@@ -10,56 +10,58 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(name = "ENTIDADE")
 public class Entidade extends BaseEntity {
 
     @Id
+    @Column(name = "ID_ENTIDADE")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(name = "TIPO_PESSOA")
     @Enumerated(EnumType.STRING)
     private TipoPessoa tipoPessoa;
 
-    @Column
+    @Column(name = "CPF_CNPJ")
     private String cpfCnpj;
 
-    @Column
+    @Column(name = "NOME_COMPLETO")
     private String nomeCompleto;
 
-    @Column
+    @Column(name = "NOME_COMPLETO_PAI")
     private String nomeCompletoPai;
 
-    @Column
+    @Column(name = "NOME_COMPLETO_MAE")
     private String nomeCompletoMae;
 
-    @Column
+    @Column(name = "RAZAO_SOCIAL")
     private String razaoSocial;
 
-    @Column
+    @Column(name = "DATA_NASCIMENTO")
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
 
-    @Column
+    @Column(name = "EMAIL")
     private String email;
 
-    @Column
+    @Column(name = "SENHA")
     private String senha;
 
-    @JoinColumn
+    @JoinColumn(name = "FK_ENDERECO")
     @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
 
     @OneToMany(mappedBy = "entidade", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Telefone> telefones = new ArrayList<>();
 
-    @Column(name = "nomePerfil")
+    @Column(name = "NOME_PERFIL")
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = Perfil.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "PerfilEntidade",
-            joinColumns = @JoinColumn(name = "idEntidade"))
+    @CollectionTable(name = "PEFIL_ENTIDADE",
+            joinColumns = @JoinColumn(name = "FK_ENTIDADE"))
     private List<Perfil> perfis = new ArrayList<>();
 
-    @Column
+    @Column(name = "LOGIN")
     private Integer login;
 
     @OneToMany(mappedBy = "escola")

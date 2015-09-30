@@ -6,21 +6,23 @@ import br.iesb.sie.model.Disciplina;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "FREQUENCIA")
 public class Frequencia extends BaseEntity {
 
     @Id
+    @Column(name = "ID_FREQUENCIA")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(name = "PRESENTE")
     private boolean presente;
 
-    @JoinColumn
     @ManyToOne
+    @JoinColumn(name = "FK_FREQUENCIA_LANCAMENTO")
     private FrequenciaLancamento lancamento;
 
-    @JoinColumn
     @ManyToOne
+    @JoinColumn(name = "FK_ENTIDADE_ALUNO")
     private Entidade aluno;
 
     @Override

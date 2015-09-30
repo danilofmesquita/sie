@@ -9,31 +9,33 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "TURMA")
 public class Turma extends BaseEntity {
 
     @Id
+    @Column(name = "ID_TURMA")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    @Enumerated
+    @Column(name = "SERIE")
+    @Enumerated(EnumType.STRING)
     private Serie serie;
 
-    @Column
+    @Column(name = "NOME")
     private String nome;
 
     @OneToMany(mappedBy = "turma", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProfessorDisciplina> professorDisciplinas = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "FK_ENTIDADE_ESCOLA")
     private Entidade escola;
 
-    @Column
-    @Enumerated
+    @Column(name = "TURNO")
+    @Enumerated(EnumType.STRING)
     private Turno turno;
 
-    @Column
+    @Column(name = "ANO")
     private Integer ano;
 
     @OneToMany(mappedBy = "turma")

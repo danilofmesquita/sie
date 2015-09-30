@@ -3,17 +3,19 @@ package br.iesb.sie.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "TELEFONE")
 public class Telefone extends BaseEntity {
 
     @Id
+    @Column(name = "ID_TELEFONE")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(name = "NUMERO")
     private Long numero;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "FK_ENTIDADE")
     private Entidade entidade;
 
     public Long getId() {

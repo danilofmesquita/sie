@@ -6,28 +6,30 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "FUNCIONARIO")
 public class Funcionario extends BaseEntity {
 
     @Id
+    @Column(name = "ID_FUNCIONARIO")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "FK_ENTIDADE_FUNCIONARIO")
     private Entidade funcionario;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "FK_ENTIDADE_ESCOLA")
     private Entidade escola;
 
-    @Column
+    @Column(name = "VINCULO_ATIVO")
     private boolean vinculoAtivo;
 
-    @Column
+    @Column(name = "DATA_VINCULO")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataVinculo;
 
-    @Column
+    @Column(name = "PERFIL")
     @Enumerated(EnumType.STRING)
     private Perfil perfil;
 

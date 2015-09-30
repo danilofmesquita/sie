@@ -5,32 +5,34 @@ import br.iesb.sie.model.UF;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "ENDERECO")
 public class Endereco extends BaseEntity {
 
     @Id
+    @Column(name = "ID_ENDERECO")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(name = "CEP")
     private Integer cep;
 
-    @Column
+    @Column(name = "MUNICIPIO")
     private String municipio;
 
-    @Column
+    @Column(name = "ENDERECO")
     private String endereco;
 
-    @Column
+    @Column(name = "UF")
     @Enumerated(EnumType.STRING)
     private UF uf;
 
-    @Column
+    @Column(name = "NUMERO")
     private String numero;
 
-    @Column
+    @Column(name = "BAIRRO")
     private String bairro;
 
-    @Column
+    @Column(name = "COMPLEMENTO")
     private String complemento;
 
     public Long getId() {

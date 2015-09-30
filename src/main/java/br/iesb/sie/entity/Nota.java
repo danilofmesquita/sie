@@ -3,21 +3,23 @@ package br.iesb.sie.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "NOTA")
 public class Nota extends BaseEntity {
 
     @Id
+    @Column(name = "ID_NOTA")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(name = "NOTA")
     private Double nota;
 
-    @JoinColumn
     @ManyToOne
+    @JoinColumn(name = "FK_NOTA_LANCAMENTO")
     private NotaLancamento lancamento;
 
-    @JoinColumn
     @ManyToOne
+    @JoinColumn(name = "FK_ENTIDADE_ALUNO")
     private Entidade aluno;
 
     @Override

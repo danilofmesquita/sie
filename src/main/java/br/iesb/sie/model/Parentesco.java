@@ -2,24 +2,18 @@ package br.iesb.sie.model;
 
 public enum Parentesco {
 
-    PAI(1, "Pai"),
-    MAE(2, "Mãe"),
-    TIO(3, "Tio(a)"),
-    AVO(4, "Avô(ó)"),
-    PADRINHO(5, "Padrinho(a)"),
-    IRMAO(6, "Irmão(ã)"),
-    PRIMO(7, "Primo(a)");
+    PAI("Pai"),
+    MAE("Mãe"),
+    TIO("Tio(a)"),
+    AVO("Avô(ó)"),
+    PADRINHO("Padrinho(a)"),
+    IRMAO("Irmão(ã)"),
+    PRIMO("Primo(a)");
 
-    private Integer codigo;
     private String descricao;
 
-    Parentesco(Integer codigo, String descricao) {
-        this.codigo = codigo;
+    Parentesco(String descricao) {
         this.descricao = descricao;
-    }
-
-    public Integer getCodigo() {
-        return codigo;
     }
 
     public String getDescricao() {

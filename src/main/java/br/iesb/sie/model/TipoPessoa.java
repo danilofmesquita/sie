@@ -2,19 +2,12 @@ package br.iesb.sie.model;
 
 public enum TipoPessoa {
 
-    FISICA('F', "Física"),
-    JURIDICA('J', "Júridica");
+    FISICA("Física"),
+    JURIDICA("Júridica");
+        private String descricao;
 
-    private Character codigo;
-    private String descricao;
-
-    TipoPessoa(Character codigo, String descricao) {
+    TipoPessoa(String descricao) {
         this.descricao = descricao;
-        this.codigo = codigo;
-    }
-
-    public Character getCodigo() {
-        return codigo;
     }
 
     public String getDescricao() {

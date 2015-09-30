@@ -5,22 +5,24 @@ import br.iesb.sie.model.Disciplina;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "PROFESSOR_DISCIPLINA")
 public class ProfessorDisciplina extends BaseEntity {
 
     @Id
+    @Column(name = "ID_PROFESSOR_DISCIPLINA")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    @Enumerated
+    @Column(name = "DISCIPLINA")
+    @Enumerated(EnumType.STRING)
     private Disciplina disciplina;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "FK_TURMA")
     private Turma turma;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "FK_ENTIDADE_PROFESSOR")
     private Entidade professor;
 
     public ProfessorDisciplina() {

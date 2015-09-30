@@ -332,9 +332,9 @@
                     <authentication>
                         <login-module code="Database" flag="required">
                             <module-option name="dsJndiName" value="java:jboss/datasources/SieDS"/>
-                            <module-option name="principalsQuery" value="select senha from sie.Entidade where login=?"/>
+                            <module-option name="principalsQuery" value="SELECT SENHA FROM sie.ENTIDADE WHERE LOGIN=?"/>
                             <module-option name="rolesQuery"
-                                           value="select pe.nomePerfil, 'Roles' from sie.PerfilEntidade pe inner join sie.Entidade e on pe.idEntidade = e.id where e.login = ?"/>
+                                           value="SELECT PE.NOME_PERFIL, 'ROLES' FROM sie.PERFIL_ENTIDADE PE INNER JOIN sie.ENTIDADE E ON PE.FK_ENTIDADE = E.ID_ENTIDADE WHERE E.LOGIN = ?"/>
                             <module-option name="hashAlgorithm" value="SHA-256"/>
                             <module-option name="hashEncoding" value="base64"/>
                         </login-module>

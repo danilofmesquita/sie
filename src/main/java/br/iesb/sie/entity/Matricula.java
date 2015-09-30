@@ -5,39 +5,41 @@ import br.iesb.sie.model.Parentesco;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "MATRICULA")
 public class Matricula extends BaseEntity {
 
     @Id
+    @Column(name = "ID_MATRICULA")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "FK_ENTIDADE_ALUNO")
     private Entidade aluno;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "FK_ENTIDADE_ESCOLA")
     private Entidade escola;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "FK_TURMA")
     private Turma turma;
 
-    @Column
+    @Column(name = "NOME_RESPONSAVEL")
     private String nomeResponsavel;
 
-    @Column
+    @Column(name = "CPF_RESPONSAVEL")
     private String cpfResponsavel;
 
-    @JoinColumn
+    @JoinColumn(name = "FK_ENDERECO_RESPONSAVEL")
     @OneToOne(cascade = CascadeType.ALL)
     private Endereco enderecoResponsavel;
 
-    @Column
+    @Column(name = "PARENTESCO_RESPONSAVEL")
     @Enumerated(EnumType.STRING)
     private Parentesco parentescoResponsavel;
 
-    @Column
+    @Column(name = "TELEFONE_RESPONSAVEL")
     private Long telefoneResponsavel;
 
     @Override

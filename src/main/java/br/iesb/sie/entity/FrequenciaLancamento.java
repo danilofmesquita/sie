@@ -7,29 +7,31 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "FREQUENCIA_LANCAMENTO")
 public class FrequenciaLancamento extends BaseEntity {
 
     @Id
+    @Column(name = "ID_FREQUENCIA_LANCAMENTO")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn
     @ManyToOne
+    @JoinColumn(name = "FK_ENTIDADE_ESCOLA")
     private Entidade escola;
 
-    @JoinColumn
     @ManyToOne
+    @JoinColumn(name = "FK_TURMA")
     private Turma turma;
 
-    @Column
-    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "DISCIPLINA")
+    @Enumerated(EnumType.STRING)
     private Disciplina disciplina;
 
     @OneToMany(mappedBy = "lancamento", cascade = CascadeType.ALL)
     private List<Frequencia> frequencias;
 
-    @Column
     @Temporal(TemporalType.DATE)
+    @Column(name = "DATA_LANCAMENTO")
     private Date dataLancamento;
 
     @Override

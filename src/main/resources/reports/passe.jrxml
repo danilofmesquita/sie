@@ -10,41 +10,43 @@
 	<parameter name="ID_ESCOLA" class="java.lang.Long"/>
 	<parameter name="ID_TURMA" class="java.lang.Long"/>
 	<queryString>
-		<![CDATA[select distinct escola.razaosocial as Escola,
-	aluno.nomeCompleto as Aluno, 
-	aluno.login as Matricula, 
-    aluno.cpfCnpj as CPF, 
-    turma.nome as Turma, 
-    case turma.turno
-		when 0 then 'Matutino'
-		when 1 then 'Vespertino'
-		when 2 then 'Noturno'
-	end as Turno, 
-    matricula.nomeResponsavel as Responsavel,
-	concat(endereco.endereco,', ',endereco.numero,', ',endereco.bairro,' - ',enderecoEscola.municipio,'/',enderecoEscola.uf) as Endereco,
-	turma.ano as 'Ano Letivo',
-    concat(enderecoEscola.municipio,'/',enderecoEscola.uf) as 'Local',
-    DATE_FORMAT(curdate(), '%d/%m/%Y') as 'Data'
-from sie.entidade aluno
-inner join sie.matricula matricula on matricula.aluno_id = aluno.id
-inner join sie.turma turma on turma.id = matricula.turma_id
-inner join sie.endereco endereco on aluno.endereco_id = endereco.id
-inner join sie.entidade escola on turma.escola_id = escola.id
-inner join sie.endereco enderecoEscola on escola.endereco_id = enderecoEscola.id
-where aluno.id = $P{ID_ALUNO} and turma.id = $P{ID_TURMA} and escola.id =  $P{ID_ESCOLA}
-limit 1]]>
+		<![CDATA[SELECT DISTINCT ESCOLA.RAZAO_SOCIAL AS ESCOLA,
+                 	ALUNO.NOME_COMPLETO AS ALUNO, 
+                 	ALUNO.LOGIN AS MATRICULA, 
+                     ALUNO.CPF_CNPJ AS CPF, 
+                     TURMA.NOME AS TURMA, 
+                     CASE TURMA.TURNO
+                 		WHEN 'MATUTINO' THEN 'Matutino'
+                 		WHEN 'VESPERTINO' THEN 'Vespertino'
+                 		WHEN 'NOTURNO' THEN 'Noturno'
+                 	END AS TURNO, 
+                     MATRICULA.NOME_RESPONSAVEL AS RESPONSAVEL,
+                 	CONCAT(ENDERECO.ENDERECO,', ',ENDERECO.NUMERO,', ',ENDERECO.BAIRRO,' - ',ENDERECO_ESCOLA.MUNICIPIO,'/',ENDERECO_ESCOLA.UF) AS ENDERECO,
+                 	TURMA.ANO AS 'ANO_LETIVO',
+                     CONCAT(ENDERECO_ESCOLA.MUNICIPIO,'/',ENDERECO_ESCOLA.UF) AS 'LOCAL',
+                     DATE_FORMAT(CURDATE(), '%D/%M/%Y') AS 'DATA'
+                 FROM SIE.ENTIDADE ALUNO
+                 INNER JOIN SIE.MATRICULA MATRICULA ON MATRICULA.FK_ENTIDADE_ALUNO = ALUNO.ID_ENTIDADE
+                 INNER JOIN SIE.TURMA TURMA ON TURMA.ID_TURMA = MATRICULA.FK_TURMA
+                 INNER JOIN SIE.ENDERECO ENDERECO ON ALUNO.FK_ENDERECO = ENDERECO.ID_ENDERECO
+                 INNER JOIN SIE.ENTIDADE ESCOLA ON TURMA.FK_ENTIDADE_ESCOLA = ESCOLA.ID_ENTIDADE
+                 INNER JOIN SIE.ENDERECO ENDERECO_ESCOLA ON ESCOLA.FK_ENDERECO = ENDERECO_ESCOLA.ID_ENDERECO
+                 WHERE ALUNO.ID_ENTIDADE = $P{ID_ALUNO}
+                 AND TURMA.ID_TURMA = $P{ID_TURMA} 
+                 AND ESCOLA.ID_ENTIDADE =  $P{ID_ESCOLA}
+                 LIMIT 1]]>
 	</queryString>
-	<field name="Escola" class="java.lang.String"/>
-	<field name="Aluno" class="java.lang.String"/>
-	<field name="Matricula" class="java.lang.Integer"/>
+	<field name="ESCOLA" class="java.lang.String"/>
+	<field name="ALUNO" class="java.lang.String"/>
+	<field name="MATRICULA" class="java.lang.Integer"/>
 	<field name="CPF" class="java.lang.String"/>
-	<field name="Turma" class="java.lang.String"/>
-	<field name="Turno" class="java.lang.String"/>
-	<field name="Responsavel" class="java.lang.String"/>
-	<field name="Endereco" class="java.lang.String"/>
-	<field name="Ano Letivo" class="java.lang.Integer"/>
-	<field name="Local" class="java.lang.String"/>
-	<field name="Data" class="java.lang.String"/>
+	<field name="TURMA" class="java.lang.String"/>
+	<field name="TURNO" class="java.lang.String"/>
+	<field name="RESPONSAVEL" class="java.lang.String"/>
+	<field name="ENDERECO" class="java.lang.String"/>
+	<field name="ANO_LETIVO" class="java.lang.Integer"/>
+	<field name="LOCAL" class="java.lang.String"/>
+	<field name="DATA" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -65,7 +67,7 @@ limit 1]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="24"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Escola}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ESCOLA}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="0" width="170" height="80" uuid="b7129f9f-c5ef-4052-83dc-da414a9b36a7"/>
@@ -89,7 +91,7 @@ limit 1]]>
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Aluno: "+$F{Aluno}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["ALUNO: "+$F{ALUNO}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="0" y="120" width="280" height="20" uuid="c5bbf1c6-0ab9-4c08-944a-4d2bcc07f854"/>
@@ -100,7 +102,7 @@ limit 1]]>
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Turma: "+$F{Turma}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["TURMA: "+$F{TURMA}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="0" y="140" width="550" height="20" uuid="4b997c21-fc9b-48c0-88fd-425aeac1e544"/>
@@ -133,7 +135,7 @@ limit 1]]>
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Matrícula: "+$F{Matricula}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Matrícula: "+$F{MATRICULA}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="410" y="100" width="140" height="20" uuid="3a8eec7d-1c93-47d4-9126-891c4ad84c44"/>
@@ -210,7 +212,7 @@ limit 1]]>
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Declaração de Escolaridade - Aquisição de Passe Estudantil]]></text>
+				<text><![CDATA[Declaração de ESCOLAridade - Aquisição de Passe Estudantil]]></text>
 			</staticText>
 			<rectangle>
 				<reportElement x="60" y="364" width="431" height="50" uuid="40cc5b6e-f490-4ffb-924a-fd157e983d53"/>
@@ -218,7 +220,7 @@ limit 1]]>
 			<textField>
 				<reportElement x="100" y="394" width="360" height="14" uuid="71cf064c-7324-4e16-a1c5-481d7816af0e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{Aluno}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ALUNO}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="100" y="380" width="360" height="14" uuid="ae790ec7-6066-45aa-9b1b-6c07b3c7a81d"/>
