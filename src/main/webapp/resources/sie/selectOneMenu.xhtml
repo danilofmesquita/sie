@@ -9,6 +9,7 @@
     <composite:attribute name="label"/>
     <composite:attribute name="value"/>
     <composite:attribute name="labelClass"/>
+    <composite:attribute name="combobox" default="false"/>
     <composite:valueHolder name="selectOneMenu"/>
     <composite:clientBehavior name="change" event="change" targets="selectOneMenu"/>
 </composite:interface>
@@ -24,8 +25,10 @@
             <composite:insertChildren/>
         </h:selectOneMenu>
     </div>
-    <script type="text/javascript">
-        $("select[id='#{cc.clientId}:selectOneMenu']").select2();
-    </script>
+    <h:panelGroup rendered="#{cc.attrs.combobox}">
+        <script type="text/javascript">
+            $("select[id='#{cc.clientId}:selectOneMenu']").select2();
+        </script>
+    </h:panelGroup>
 </composite:implementation>
 </html>
