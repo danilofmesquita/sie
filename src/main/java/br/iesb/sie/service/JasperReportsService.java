@@ -36,7 +36,7 @@ public class JasperReportsService extends BaseService  {
         try {
             return JasperExportManager.exportReportToPdf(jasperPrint);
         } catch (JRException e) {
-            logger.log(Level.SEVERE, "erro ao gerar o relatorio");
+            logger.log(Level.SEVERE, "erro ao gerar o relatorio", e);
         }
 
         return null;

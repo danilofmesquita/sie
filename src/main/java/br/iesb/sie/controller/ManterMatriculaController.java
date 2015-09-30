@@ -48,6 +48,7 @@ public class ManterMatriculaController extends BaseController {
             matricula.setEnderecoResponsavel(new Endereco());
         } else {
             matricula = matriculaService.buscarMatricula(id);
+            carregarTurmas();
         }
     }
 
