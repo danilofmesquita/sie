@@ -4,38 +4,34 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:sie="http://java.sun.com/jsf/composite/sie" xmlns:f="http://java.sun.com/jsf/core"
                 template="/template/common/template.xhtml">
     <ui:define name="body">
-        <form method="post" action="j_security_check">
+        <h:form>
             <div class="col-sm-6 col-sm-offset-3">
                 <div class="panel panel-primary">
                     <div class="panel-heading bold">Login</div>
                     <div class="panel-body">
-                        <h:panelGroup rendered="#{param['error']}">
-                            <div class="alert alert-danger bold" role="alert">
-                                <span class="sr-only">Error:</span>
-                                Não possível autenticar, verifique a matricula e senha inserida
-                            </div>
-                        </h:panelGroup>
+                        <h:messages/>
+                        <sie:inputText value="#{loginController.login}" required="#{param['logar']}"
+                                       labelClass="required" label="#{msg['label.matricula']}"/>
 
-                        <div class="form-group">
-                            <span class="control-label bold">#{msg['label.matricula']}:</span>
-                            <input type="text" name="j_username" class="form-control" required="true"/>
-                        </div>
+                        <sie:inputSecret value="#{loginController.senha}" required="#{param['logar']}"
+                                       labelClass="required" label="#{msg['label.senha']}"/>
 
-                        <div class="form-group">
-                            <span class="control-label bold">#{msg['label.senha']}:</span>
-                            <input type="password" name="j_password" class="form-control" required="true"/>
-                        </div>
                         <p>
                             Não possui login? <a href="/public/cadastro.xhtml">Cadastre-se</a>
                         </p>
-                        <button type="submit" class="btn btn-primary pull-right btn-margin-left">Entrar</button>
-                        <button type="reset" class="btn btn-default pull-right btn-margin-right">Limpar</button>
+                        <h:commandButton type="submit" value="Entrar" action="#{loginController.logar()}"
+                                         class="btn btn-primary pull-right btn-margin-left">
+                            <f:param name="logar" value="true"/>
+                        </h:commandButton>
+                        <button type="reset"
+                                class="btn btn-default pull-right btn-margin-right">Limpar
+                        </button>
                     </div>
                 </div>
-
             </div>
-        </form>
+        </h:form>
     </ui:define>
 </ui:composition>
