@@ -113,7 +113,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Responsável: "+$F{Responsavel}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Responsável: "+$F{RESPONSAVEL}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="0" y="160" width="550" height="20" uuid="e1416873-0b45-4393-ba8c-8e960b26aad0"/>
@@ -124,7 +124,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Endereço: "+$F{Endereco}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Endereço: "+$F{ENDERECO}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="280" y="100" width="130" height="20" uuid="36affe80-762d-4418-b8d0-609c6c9c7fce"/>
@@ -157,7 +157,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Turno: "+$F{Turno}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Turno: "+$F{TURNO}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="180" width="550" height="110" uuid="842aaa2a-c44e-4891-9265-fc8bd8e7ada0"/>
@@ -179,7 +179,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Local: "+$F{Local}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Local: "+$F{LOCAL}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="280" y="180" width="270" height="20" uuid="56292d01-ecc3-4d0b-9853-dc21958e1339"/>
@@ -190,7 +190,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Data: "+$F{Data}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Data: "+$F{DATA}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="290" width="550" height="42" uuid="a16db22b-1abb-45ce-bddf-618079ef8495"/>
