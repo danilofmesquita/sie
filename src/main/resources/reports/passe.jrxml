@@ -214,7 +214,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Declaração de ESCOLAridade - Aquisição de Passe Estudantil]]></text>
+				<text><![CDATA[Declaração de Escolaridade - Aquisição de Passe Estudantil]]></text>
 			</staticText>
 			<rectangle>
 				<reportElement x="60" y="364" width="431" height="50" uuid="40cc5b6e-f490-4ffb-924a-fd157e983d53"/>
