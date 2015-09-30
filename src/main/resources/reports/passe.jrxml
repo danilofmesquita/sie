@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
+<!-- 2015-09-29T22:32:39 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2253c9bd-d3c4-4431-bc1a-9f8bc66e7649">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="LOGO" class="java.lang.Object"/>
+	<parameter name="ID_ALUNO" class="java.lang.Long">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="ID_ESCOLA" class="java.lang.Long"/>
+	<parameter name="ID_TURMA" class="java.lang.Long"/>
+	<queryString>
+		<![CDATA[select distinct escola.razaosocial as Escola,
+	aluno.nomeCompleto as Aluno, 
+	aluno.login as Matricula, 
+    aluno.cpfCnpj as CPF, 
+    turma.nome as Turma, 
+    case turma.turno
+		when 0 then 'Matutino'
+		when 1 then 'Vespertino'
+		when 2 then 'Noturno'
+	end as Turno, 
+    matricula.nomeResponsavel as Responsavel,
+	concat(endereco.endereco,', ',endereco.numero,', ',endereco.bairro,' - ',enderecoEscola.municipio,'/',enderecoEscola.uf) as Endereco,
+	turma.ano as 'Ano Letivo',
+    concat(enderecoEscola.municipio,'/',enderecoEscola.uf) as 'Local',
+    DATE_FORMAT(curdate(), '%d/%m/%Y') as 'Data'
+from sie.entidade aluno
+inner join sie.matricula matricula on matricula.aluno_id = aluno.id
+inner join sie.turma turma on turma.id = matricula.turma_id
+inner join sie.endereco endereco on aluno.endereco_id = endereco.id
+inner join sie.entidade escola on turma.escola_id = escola.id
+inner join sie.endereco enderecoEscola on escola.endereco_id = enderecoEscola.id
+where aluno.id = $P{ID_ALUNO} and turma.id = $P{ID_TURMA} and escola.id =  $P{ID_ESCOLA}
+limit 1]]>
+	</queryString>
+	<field name="Escola" class="java.lang.String"/>
+	<field name="Aluno" class="java.lang.String"/>
+	<field name="Matricula" class="java.lang.Integer"/>
+	<field name="CPF" class="java.lang.String"/>
+	<field name="Turma" class="java.lang.String"/>
+	<field name="Turno" class="java.lang.String"/>
+	<field name="Responsavel" class="java.lang.String"/>
+	<field name="Endereco" class="java.lang.String"/>
+	<field name="Ano Letivo" class="java.lang.Integer"/>
+	<field name="Local" class="java.lang.String"/>
+	<field name="Data" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="500" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<rectangle>
+				<reportElement x="0" y="0" width="550" height="450" uuid="7e416665-98eb-4acc-9abb-8245de5681e6"/>
+			</rectangle>
+			<textField>
+				<reportElement x="170" y="0" width="380" height="80" uuid="5ff3a79a-79ab-4504-9b77-6057750d4bbb"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Escola}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="170" height="80" uuid="b7129f9f-c5ef-4052-83dc-da414a9b36a7"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="100" width="280" height="20" uuid="c2a88d28-7770-4f4f-a284-3dd6be59ebe2"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Aluno: "+$F{Aluno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="120" width="280" height="20" uuid="c5bbf1c6-0ab9-4c08-944a-4d2bcc07f854"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Turma: "+$F{Turma}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="140" width="550" height="20" uuid="4b997c21-fc9b-48c0-88fd-425aeac1e544"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Responsável: "+$F{Responsavel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="160" width="550" height="20" uuid="e1416873-0b45-4393-ba8c-8e960b26aad0"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Endereço: "+$F{Endereco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="100" width="130" height="20" uuid="36affe80-762d-4418-b8d0-609c6c9c7fce"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Matrícula: "+$F{Matricula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="100" width="140" height="20" uuid="3a8eec7d-1c93-47d4-9126-891c4ad84c44"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["CPF: "+$F{CPF}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="120" width="270" height="20" uuid="f9022d71-a9fa-4b93-b565-9ec2ab57b87f"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Turno: "+$F{Turno}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="180" width="550" height="110" uuid="842aaa2a-c44e-4891-9265-fc8bd8e7ada0"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Declaramos, para fins de aquisição de passes estudantis, que o(a) aluno(a) acima identificado(a) está regularmente matriculado(a) neste Estabelecimento de ensino.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="180" width="280" height="20" uuid="a835deed-90eb-429b-9f29-1b1f87c68359"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Local: "+$F{Local}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="180" width="270" height="20" uuid="56292d01-ecc3-4d0b-9853-dc21958e1339"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Data: "+$F{Data}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="290" width="550" height="42" uuid="a16db22b-1abb-45ce-bddf-618079ef8495"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ESTA DECLARAÇÃO SÓ É VÁLIDA SEM RASURA OU RESSALVA DE QUALQUER NATUREZA.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="80" width="550" height="20" uuid="0c99738a-7b11-4b02-8984-a48b17da8ee2"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Declaração de Escolaridade - Aquisição de Passe Estudantil]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="60" y="364" width="431" height="50" uuid="40cc5b6e-f490-4ffb-924a-fd157e983d53"/>
+			</rectangle>
+			<textField>
+				<reportElement x="100" y="394" width="360" height="14" uuid="71cf064c-7324-4e16-a1c5-481d7816af0e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Aluno}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="100" y="380" width="360" height="14" uuid="ae790ec7-6066-45aa-9b1b-6c07b3c7a81d"/>
+				<text><![CDATA[_________________________________________________________________]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="170" height="80" uuid="6b4289aa-20ed-42cc-88c2-389ef2b04f17"/>
+				<box leftPadding="45"/>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+</jasperReport>
