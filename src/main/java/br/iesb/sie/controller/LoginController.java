@@ -21,7 +21,7 @@ public class LoginController extends BaseController {
         HttpServletRequest request = (HttpServletRequest) getFacesContext().getExternalContext().getRequest();
         try {
             request.login(login, senha);
-            return "/view/index.xhtml";
+            return "/view/index.xhtml?faces-redirect=true";
         } catch (ServletException e) {
             addErrorMessage("Não possível autenticar, verifique a Matrícula e a Senha.");
             logger.log(Level.SEVERE, "Erro ao efetuar o login", e);

@@ -115,7 +115,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["SIEsável: "+$F{RESPONSAVEL}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Responsável: "+$F{RESPONSAVEL}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="0" y="160" width="550" height="20" uuid="e1416873-0b45-4393-ba8c-8e960b26aad0"/>
