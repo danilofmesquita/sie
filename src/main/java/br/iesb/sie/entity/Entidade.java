@@ -57,7 +57,7 @@ public class Entidade extends BaseEntity {
     @Column(name = "NOME_PERFIL")
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = Perfil.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "PEFIL_ENTIDADE",
+    @CollectionTable(name = "PERFIL_ENTIDADE",
             joinColumns = @JoinColumn(name = "FK_ENTIDADE"))
     private List<Perfil> perfis = new ArrayList<>();
 
