@@ -2,6 +2,7 @@ package br.iesb.sie.entity;
 
 import br.iesb.sie.model.Bimestre;
 import br.iesb.sie.model.Disciplina;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,6 +10,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "NOTA_LANCAMENTO")
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class NotaLancamento extends BaseEntity {
 
     @Id

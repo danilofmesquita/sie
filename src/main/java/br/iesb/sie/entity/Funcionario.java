@@ -1,12 +1,15 @@
 package br.iesb.sie.entity;
 
 import br.iesb.sie.model.Perfil;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "FUNCIONARIO")
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Funcionario extends BaseEntity {
 
     @Id

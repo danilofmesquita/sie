@@ -2,11 +2,14 @@ package br.iesb.sie.entity;
 
 
 import br.iesb.sie.model.Disciplina;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "FREQUENCIA")
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Frequencia extends BaseEntity {
 
     @Id

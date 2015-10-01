@@ -1,9 +1,13 @@
 package br.iesb.sie.entity;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "TELEFONE")
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Telefone extends BaseEntity {
 
     @Id

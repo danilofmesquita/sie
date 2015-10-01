@@ -2,6 +2,7 @@ package br.iesb.sie.entity;
 
 import br.iesb.sie.model.Perfil;
 import br.iesb.sie.model.TipoPessoa;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,6 +12,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "ENTIDADE")
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Entidade extends BaseEntity {
 
     @Id

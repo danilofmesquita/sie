@@ -1,11 +1,14 @@
 package br.iesb.sie.entity;
 
 import br.iesb.sie.model.UF;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "ENDERECO")
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Endereco extends BaseEntity {
 
     @Id

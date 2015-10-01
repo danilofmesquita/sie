@@ -2,6 +2,7 @@ package br.iesb.sie.entity;
 
 import br.iesb.sie.model.Serie;
 import br.iesb.sie.model.Turno;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,6 +11,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "TURMA")
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Turma extends BaseEntity {
 
     @Id

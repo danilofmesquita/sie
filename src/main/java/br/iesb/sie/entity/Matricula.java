@@ -1,11 +1,14 @@
 package br.iesb.sie.entity;
 
 import br.iesb.sie.model.Parentesco;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "MATRICULA")
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Matricula extends BaseEntity {
 
     @Id
