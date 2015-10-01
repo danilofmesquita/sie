@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 @Table(name = "FUNCIONARIO")
 @Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Funcionario extends BaseEntity {
 
     @Id

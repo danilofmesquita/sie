@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "ENDERECO")
 @Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Endereco extends BaseEntity {
 
     @Id

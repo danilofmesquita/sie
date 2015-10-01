@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "FREQUENCIA")
 @Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Frequencia extends BaseEntity {
 
     @Id

@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "FREQUENCIA_LANCAMENTO")
 @Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class FrequenciaLancamento extends BaseEntity {
 
     @Id
