@@ -22,9 +22,7 @@
                             <f:ajax event="change" render="@form" execute="@this"/>
                         </sie:selectOneMenu>
                     </sie:column>
-                </sie:row>
-                <sie:row>
-                    <sie:column span="6" rendered="#{not empty manterFuncionarioController.funcionario.perfil}">
+                    <sie:column span="6">
                         <sie:selectOneMenu label="#{msg['label.nome']}" required="#{param['salvar']}"
                                            labelClass="required"
                                            value="#{manterFuncionarioController.funcionario.funcionario}">

@@ -5,7 +5,9 @@ import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.model.Perfil;
 import br.iesb.sie.service.EntidadeService;
 import br.iesb.sie.service.FuncionarioService;
+import br.iesb.sie.util.NavigationRules;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,7 +16,7 @@ import java.security.Principal;
 import java.util.*;
 
 @Named
-@ViewScoped
+@SessionScoped
 public class UsuarioLogado extends BaseController {
 
     @Inject
@@ -25,6 +27,16 @@ public class UsuarioLogado extends BaseController {
 
     private Entidade entidade;
 
+    private Boolean isEscola = null;
+
+    private Boolean isAluno = null;
+
+    private Boolean isSecretaria = null;
+
+    private Boolean isProfessor = null;
+
+    private List<Entidade> escolasVinculadas;
+
     public Entidade getEntidade() {
         if (entidade == null) {
             Principal userPrincipal = getFacesContext().getExternalContext().getUserPrincipal();
@@ -32,44 +44,59 @@ public class UsuarioLogado extends BaseController {
                 entidade = entidadeService.buscarEntidadePorLogin(userPrincipal.getName());
             }
         }
-
         return entidade;
     }
 
     public String logout() {
         ((HttpSession) getFacesContext().getExternalContext().getSession(false)).invalidate();
-        return "/view/index.xhtml?faces-redirect=true";
+        return NavigationRules.SIE_HOME;
     }
 
     public boolean isAluno() {
-        return getEntidade().getPerfis().contains(Perfil.ALUNO);
+        if (isAluno == null) {
+            isAluno = getEntidade().getPerfis().contains(Perfil.ALUNO);
+        }
+        return isAluno;
     }
 
     public boolean isEscola() {
-        return getEntidade().getPerfis().contains(Perfil.ESCOLA);
+        if (isEscola == null) {
+            isEscola = getEntidade().getPerfis().contains(Perfil.ESCOLA);
+        }
+        return isEscola;
     }
 
     public boolean isSecretaria() {
-        return getEntidade().getPerfis().contains(Perfil.SECRETARIA)
-                && funcionarioService.possuiEscolaVinculada(Perfil.SECRETARIA, getEntidade());
+        if (isSecretaria == null) {
+            isSecretaria = getEntidade().getPerfis().contains(Perfil.SECRETARIA)
+                    && funcionarioService.possuiEscolaVinculada(Perfil.SECRETARIA, getEntidade());
+        }
+        return isSecretaria;
     }
 
     public boolean isProfessor() {
-        return getEntidade().getPerfis().contains(Perfil.PROFESSOR)
-                && funcionarioService.possuiEscolaVinculada(Perfil.PROFESSOR, getEntidade());
+        if (isProfessor == null) {
+            isProfessor = getEntidade().getPerfis().contains(Perfil.PROFESSOR)
+                    && funcionarioService.possuiEscolaVinculada(Perfil.PROFESSOR, getEntidade());
+        }
+        return isProfessor;
     }
 
     public List<Entidade> getEscolasVinculadas() {
-        Set<Entidade> escolasVinculadas = new HashSet<>();
-        if (isSecretaria()) {
-            escolasVinculadas.addAll(entidadeService.buscarEscolasVinculadasAoFuncionario(getEntidade(), Perfil.SECRETARIA));
+        if (escolasVinculadas == null) {
+            Set<Entidade> setEscolasVinculadas = new HashSet<>();
+            if (isSecretaria()) {
+                setEscolasVinculadas.addAll(entidadeService.buscarEscolasVinculadasAoFuncionario(getEntidade(), Perfil.SECRETARIA));
+            }
+            if (isProfessor()) {
+                setEscolasVinculadas.addAll(entidadeService.buscarEscolasVinculadasAoFuncionario(getEntidade(), Perfil.PROFESSOR));
+            }
+            if (isEscola()) {
+                return Collections.singletonList(getEntidade());
+            }
+            escolasVinculadas = new ArrayList<>(setEscolasVinculadas);
         }
-        if (isProfessor()) {
-            escolasVinculadas.addAll(entidadeService.buscarEscolasVinculadasAoFuncionario(getEntidade(), Perfil.PROFESSOR));
-        }
-        if (isEscola()) {
-            return Collections.singletonList(getEntidade());
-        }
-        return new ArrayList<>(escolasVinculadas);
+        return escolasVinculadas;
     }
+
 }
