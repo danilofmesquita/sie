@@ -6,8 +6,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "TELEFONE")
-@Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Telefone extends BaseEntity {
 
     @Id

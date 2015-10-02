@@ -23,28 +23,7 @@ public class TurmaService extends BaseService {
 
 
     public void salvarTurma(Turma turma) {
-        if (turma.getId() != null) {
-
-            Turma turmaSalva = buscarTurma(turma.getId());
-
-            turmaSalva.setEscola(turma.getEscola());
-            turmaSalva.setAno(turma.getAno());
-            turmaSalva.getProfessorDisciplinas().clear();
-            turmaSalva.setTurno(turma.getTurno());
-            turmaSalva.setSerie(turma.getSerie());
-            turmaSalva.setNome(turma.getNome());
-
-            for (ProfessorDisciplina pd : turma.getProfessorDisciplinas()) {
-                if (pd.getId() != null) {
-                    turmaSalva.getProfessorDisciplinas().add(professorDisciplinaDAO.get(pd.getId()));
-                } else {
-                    turmaSalva.getProfessorDisciplinas().add(pd);
-                }
-            }
-
-        } else {
-            turmaDAO.salvar(turma);
-        }
+        turmaDAO.salvar(turma);
     }
 
     public Turma buscarTurma(Long id) {

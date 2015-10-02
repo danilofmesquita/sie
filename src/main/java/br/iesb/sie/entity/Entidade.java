@@ -12,8 +12,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "ENTIDADE")
-@Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Entidade extends BaseEntity {
 
     @Id

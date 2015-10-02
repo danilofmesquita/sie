@@ -10,8 +10,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "NOTA_LANCAMENTO")
-@Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class NotaLancamento extends BaseEntity {
 
     @Id

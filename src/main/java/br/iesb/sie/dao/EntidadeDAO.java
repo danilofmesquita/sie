@@ -37,7 +37,7 @@ public class EntidadeDAO extends BaseDAO<Entidade, Long> {
         hql += " FROM Entidade e ";
         hql += " WHERE e.login = :login ";
 
-        return (Entidade) getSession().createQuery(hql).setCacheable(true).setParameter("login", Integer.valueOf(login)).uniqueResult();
+        return (Entidade) getSession().createQuery(hql).setParameter("login", Integer.valueOf(login)).uniqueResult();
     }
 
     public List buscarEntidadesPorPerfil(Perfil perfil) {
@@ -49,7 +49,7 @@ public class EntidadeDAO extends BaseDAO<Entidade, Long> {
         hql += " WHERE p = :perfil ";
 
 
-        return getSession().createQuery(hql).setCacheable(true).setParameter("perfil", perfil).list();
+        return getSession().createQuery(hql).setParameter("perfil", perfil).list();
     }
 
     public List buscarProfessores(Entidade escola) {
@@ -82,7 +82,7 @@ public class EntidadeDAO extends BaseDAO<Entidade, Long> {
         hql += " and f.vinculoAtivo is true ";
 
         return getSession().createQuery(hql)
-                .setCacheable(true)
+
                 .setParameter("funcionario", funcionario)
                 .setParameter("perfil", perfil).list();
     }
@@ -93,7 +93,7 @@ public class EntidadeDAO extends BaseDAO<Entidade, Long> {
         hql += " SELECT m.aluno FROM Matricula m ";
         hql += " where m.escola in :escolasVinculadas";
 
-        return getSession().createQuery(hql).setCacheable(true)
+        return getSession().createQuery(hql)
                 .setParameterList("escolasVinculadas", escolasVinculadas).list();
     }
 
@@ -105,7 +105,7 @@ public class EntidadeDAO extends BaseDAO<Entidade, Long> {
         hql += " INNER JOIN t.matriculas m ";
         hql += " where m.aluno = :aluno ";
 
-        return getSession().createQuery(hql).setCacheable(true)
+        return getSession().createQuery(hql)
                 .setParameter("aluno", aluno).list();
     }
 }

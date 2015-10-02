@@ -66,7 +66,7 @@ public class TurmaDAO extends BaseDAO<Turma, Long> {
         hql += " WHERE m.aluno = :aluno ";
         hql += " AND t.escola = :escola ";
 
-        return getSession().createQuery(hql).setCacheable(true)
+        return getSession().createQuery(hql)
                 .setParameter("aluno", aluno).setParameter("escola", escola).list();
 
     }

@@ -11,8 +11,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "TURMA")
-@Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Turma extends BaseEntity {
 
     @Id

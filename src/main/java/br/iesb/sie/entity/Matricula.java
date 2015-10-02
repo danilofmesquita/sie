@@ -7,8 +7,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "MATRICULA")
-@Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Matricula extends BaseEntity {
 
     @Id

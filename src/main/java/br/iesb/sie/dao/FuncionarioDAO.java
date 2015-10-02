@@ -58,7 +58,7 @@ public class FuncionarioDAO extends BaseDAO<Funcionario, Long> {
         hql += " and f.vinculoAtivo is true ";
 
         return getSession().createQuery(hql)
-                .setCacheable(true)
+
                 .setParameter("funcionario", funcionario)
                 .setParameter("perfil",perfil)
                 .list();

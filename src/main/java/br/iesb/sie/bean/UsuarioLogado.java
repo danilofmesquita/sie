@@ -6,6 +6,7 @@ import br.iesb.sie.model.Perfil;
 import br.iesb.sie.service.EntidadeService;
 import br.iesb.sie.service.FuncionarioService;
 
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
@@ -13,7 +14,7 @@ import java.security.Principal;
 import java.util.*;
 
 @Named
-@javax.faces.view.ViewScoped
+@ViewScoped
 public class UsuarioLogado extends BaseController {
 
     @Inject

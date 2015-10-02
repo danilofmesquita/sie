@@ -8,8 +8,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "FREQUENCIA")
-@Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Frequencia extends BaseEntity {
 
     @Id
