@@ -37,7 +37,10 @@ public class NotaService extends BaseService  {
     public List<NotaLancamento> buscarNotasLancamento(NotaLancamento notaLancamento,
                                                       List<Entidade> escolasVinculadas,
                                                       Entidade professor) {
-        return notaLancamentoDAO.buscarNotasLancamento(notaLancamento, escolasVinculadas, professor);
+        List<NotaLancamento> notaLancamentos
+                = notaLancamentoDAO.buscarNotasLancamento(notaLancamento, escolasVinculadas, professor);
+        notaLancamentos.forEach(n -> Hibernate.initialize(n.getNotas()));
+        return notaLancamentos;
     }
 
 

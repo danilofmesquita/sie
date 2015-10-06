@@ -98,6 +98,39 @@
                                             jsf:action="#{listarNotaController.editar(nota.id)}">
                                         <span class="glyphicon glyphicon-edit"></span> Editar
                                     </button>
+                                    <button class="btn btn-default" data-toggle="modal" data-target=".notaModal#{nota.id}">
+                                        <span class="glyphicon glyphicon-list-alt"></span> Detalhar
+                                    </button>
+                                </div>
+                                <!-- Modal -->
+                                <div class="modal fade notaModal#{nota.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                                        aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">Notas</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="table-responsive">
+                                                    <h:dataTable value="#{nota.notas}" styleClass="table table-striped"
+                                                                 var="notaAluno">
+                                                        <h:column>
+                                                            <f:facet name="header">Aluno</f:facet>
+                                                            <h:outputText value="#{notaAluno.aluno.nomeCompleto}"/>
+                                                        </h:column>
+                                                        <h:column>
+                                                            <f:facet name="header">Nota</f:facet>
+                                                            <h:outputText value="#{notaAluno.nota}"/>
+                                                        </h:column>
+                                                    </h:dataTable>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </h:column>
                         </h:dataTable>
