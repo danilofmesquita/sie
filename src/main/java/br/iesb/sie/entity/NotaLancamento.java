@@ -33,7 +33,7 @@ public class NotaLancamento extends BaseEntity {
     private Date dataLancamento;
 
     @Column(name = "DISCIPLINA")
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Disciplina disciplina;
 
     @Column(name = "BIMESTRE")
