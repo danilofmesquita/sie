@@ -6,21 +6,16 @@
                 xmlns:sie="http://java.sun.com/jsf/composite/sie"
                 template="/template/common/template.xhtml">
     <ui:define name="body">
-        <sie:panel header="Configurações" type="default">
+        <sie:panel header="Configurações" type="primary">
             <div>
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#senhaPanel" aria-controls="home" role="tab"
                                                               data-toggle="tab">Alterar Senha</a></li>
-                    <li role="presentation"><a href="#dadosPanel" aria-controls="profile" role="tab"
-                                               data-toggle="tab">Atualizar Dados</a></li>
                 </ul>
 
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="senhaPanel">
                         <ui:include src="/view/usuario/alterarSenha.xhtml"/>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="dadosPanel">
-
                     </div>
                 </div>
             </div>
