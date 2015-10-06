@@ -6,6 +6,7 @@
                 xmlns:sie="http://java.sun.com/jsf/composite/sie"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <h:form>
@@ -128,13 +129,16 @@
                         </sie:column>
                     </sie:row>
                 </sie:panel>
+                <button class="btn btn-primary pull-right btn-margin-left"
+                        jsf:action="#{manterMatriculaController.salvar}">
+                    <i class="fa fa-save"></i>Salvar
+                    <f:param value="true" name="salvar"/>
+                </button>
+                <button class="btn btn-default pull-right btn-margin-left"
+                        jsf:action="listar?faces-redirect=true">
+                    <i class="fa fa-undo"></i>Voltar
+                </button>
             </sie:panel>
-            <h:commandButton value="Salvar" action="#{manterMatriculaController.salvar()}"
-                             styleClass="btn btn-primary pull-right btn-margin-left">
-                <f:param name="salvar" value="true"/>
-            </h:commandButton>
-            <h:commandButton value="Voltar" action="listar?faces-redirect=true"
-                             styleClass="btn btn-default pull-right btn-margin-left"/>
         </h:form>
     </ui:define>
 </ui:composition>

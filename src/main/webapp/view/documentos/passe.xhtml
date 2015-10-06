@@ -6,6 +6,7 @@
                 xmlns:sie="http://java.sun.com/jsf/composite/sie"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <h:form>
@@ -32,13 +33,12 @@
                         </sie:selectOneMenu>
                     </sie:column>
                 </sie:row>
+                <button class="btn btn-primary pull-right btn-margin-left"
+                        jsf:action="#{solicitarPasseController.imprimir()}">
+                    <i class="fa fa-print"></i>#{msg['label.imprimir']}
+                    <f:param value="true" name="gerar"/>
+                </button>
             </sie:panel>
-            <h:commandButton value="#{msg['label.imprimir']}" action="#{solicitarPasseController.imprimir()}"
-                             styleClass="btn btn-primary pull-right btn-margin-left">
-                <f:param name="gerar" value="true"/>
-            </h:commandButton>
-            <h:commandButton value="Voltar" action="listar?faces-redirect=true"
-                             styleClass="btn btn-default pull-right btn-margin-left"/>
         </h:form>
     </ui:define>
 </ui:composition>

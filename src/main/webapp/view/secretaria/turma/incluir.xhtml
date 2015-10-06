@@ -32,13 +32,15 @@
                             </sie:selectOneMenu>
                         </sie:column>
                         <sie:column span="4">
-                            <sie:inputText value="#{manterTurmaController.turma.ano}" required="#{param['salvar']}" labelClass="required"
+                            <sie:inputText value="#{manterTurmaController.turma.ano}" required="#{param['salvar']}"
+                                           labelClass="required"
                                            label="Ano" styleClass="ano"/>
                         </sie:column>
                     </sie:row>
                     <sie:row>
                         <sie:column span="4">
-                            <sie:inputText value="#{manterTurmaController.turma.nome}" required="#{param['salvar']}" labelClass="required"
+                            <sie:inputText value="#{manterTurmaController.turma.nome}" required="#{param['salvar']}"
+                                           labelClass="required"
                                            label="Nome"/>
                         </sie:column>
                         <sie:column span="4">
@@ -93,7 +95,7 @@
                         </h:column>
                         <h:column>
                             <div align="center">
-                                <button class="btn btn-warning"
+                                <button class="btn btn-default"
                                         jsf:action="#{manterTurmaController.editarProfessorDisciplina(_pd)}">
                                     <span class="glyphicon glyphicon-edit"></span> Editar
                                     <f:ajax execute="@form" render="@form"/>
@@ -108,12 +110,15 @@
                         </h:column>
                     </h:dataTable>
                 </sie:panel>
-                <h:commandButton value="Salvar" action="#{manterTurmaController.salvar}"
-                                 styleClass="btn btn-primary pull-right btn-margin-left">
+                <button class="btn btn-primary pull-right btn-margin-left"
+                        jsf:action="#{manterTurmaController.salvar}">
+                    <i class="fa fa-save"></i>Salvar
                     <f:param value="true" name="salvar"/>
-                </h:commandButton>
-                <h:commandButton value="Voltar" action="listar?faces-redirect=true"
-                                 styleClass="btn btn-default pull-right btn-margin-left"/>
+                </button>
+                <button class="btn btn-default pull-right btn-margin-left"
+                        jsf:action="listar?faces-redirect=true">
+                    <i class="fa fa-undo"></i>Voltar
+                </button>
             </sie:panel>
         </h:form>
     </ui:define>

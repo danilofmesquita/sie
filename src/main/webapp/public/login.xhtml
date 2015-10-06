@@ -4,7 +4,9 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:sie="http://java.sun.com/jsf/composite/sie" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:sie="http://java.sun.com/jsf/composite/sie"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://java.sun.com/jsf/core"
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <h:form>
@@ -22,12 +24,13 @@
                         <p>
                             Não possui login? <a href="/public/cadastro.xhtml">Cadastre-se</a>
                         </p>
-                        <h:commandButton type="submit" value="Entrar" action="#{loginController.logar()}"
-                                         class="btn btn-primary pull-right btn-margin-left">
+                        <button class="btn btn-primary pull-right btn-margin-left"
+                                jsf:action="#{loginController.logar()}">
+                            <i class="fa fa-sign-in"></i>Entrar
                             <f:param name="logar" value="true"/>
-                        </h:commandButton>
-                        <button type="reset"
-                                class="btn btn-default pull-right btn-margin-right">Limpar
+                        </button>
+                        <button type="reset" class="btn btn-default pull-right btn-margin-left">
+                            <i class="fa fa-recycle"></i>Limpar
                         </button>
                     </div>
                 </div>

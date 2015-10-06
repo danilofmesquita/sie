@@ -51,14 +51,18 @@
                                        value="#{listarNotaController.filtro.dataLancamento}"/>
                     </sie:column>
                 </sie:row>
-                <h:commandButton value="Filtrar" action="#{listarNotaController.filtrar()}"
-                                 styleClass="btn btn-primary pull-right btn-margin-left"/>
-                <h:commandButton value="Limpar"
-                                 action="#{listarNotaController.limpar()}"
-                                 styleClass="btn btn-danger pull-right btn-margin-left"/>
-                <h:commandButton value="Novo Lançamento"
-                                 action="incluir.xhtml?faces-redirect=true"
-                                 styleClass="btn btn-default pull-right btn-margin-left"/>
+                <button class="btn btn-primary pull-right btn-margin-left"
+                        jsf:action="#{listarNotaController.filtrar}">
+                    <i class="fa fa-search"></i>Filtrar
+                </button>
+                <button class="btn btn-warning pull-right btn-margin-left"
+                        jsf:action="#{listarNotaController.limpar}">
+                    <i class="fa fa-recycle"></i>Limpar
+                </button>
+                <button class="btn btn-default pull-right btn-margin-left"
+                        jsf:action="incluir.xhtml?faces-redirect=true">
+                    <i class="fa fa-plus"></i>Novo Lançamento
+                </button>
                 <br/>
                 <br/>
                 <br/>
@@ -90,7 +94,7 @@
                             </h:column>
                             <h:column>
                                 <div align="center">
-                                    <button class="btn btn-warning"
+                                    <button class="btn btn-default"
                                             jsf:action="#{listarNotaController.editar(nota.id)}">
                                         <span class="glyphicon glyphicon-edit"></span> Editar
                                     </button>

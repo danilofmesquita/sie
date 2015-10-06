@@ -31,12 +31,18 @@
                         </sie:selectOneMenu>
                     </sie:column>
                 </sie:row>
-                <h:commandButton value="Filtrar"
-                                 action="#{listarFuncionariosController.filtrar}"
-                                 styleClass="btn btn-primary pull-right btn-margin-left"/>
-                <h:commandButton value="Novo Funcionario"
-                                 action="incluir.xhtml?faces-redirect=true"
-                                 styleClass="btn btn-default pull-right btn-margin-left"/>
+                <button class="btn btn-primary pull-right btn-margin-left"
+                        jsf:action="#{listarFuncionariosController.filtrar}">
+                    <i class="fa fa-search"></i>Filtrar
+                </button>
+                <button class="btn btn-default pull-right btn-margin-left"
+                        jsf:action="#{listarFuncionariosController.limpar}">
+                    <i class="fa fa-recycle"></i>Limpar
+                </button>
+                <button class="btn btn-default pull-right btn-margin-left"
+                        jsf:action="incluir.xhtml?faces-redirect=true">
+                    <i class="fa fa-plus"></i>Novo Funcionario
+                </button>
                 <br/>
                 <br/>
                 <br/>
