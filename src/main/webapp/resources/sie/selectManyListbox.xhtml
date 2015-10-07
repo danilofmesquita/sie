@@ -10,6 +10,7 @@
     <composite:attribute name="value"/>
     <composite:attribute name="style"/>
     <composite:attribute name="labelClass"/>
+    <composite:attribute name="combobox" default="true"/>
     <composite:valueHolder name="selectManyListbox"/>
 </composite:interface>
 <composite:implementation>
@@ -25,5 +26,10 @@
             <composite:insertChildren/>
         </h:selectManyListbox>
     </div>
+    <h:panelGroup rendered="#{cc.attrs.combobox}">
+        <script type="text/javascript">
+            $("select[id='#{cc.clientId}:selectManyListbox']").select2();
+        </script>
+    </h:panelGroup>
 </composite:implementation>
 </html>
