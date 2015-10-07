@@ -60,13 +60,12 @@ public class ManterFrequenciaController extends BaseController {
 
     public void selecionarTurmaListener() {
         if (lancamento.getTurma() != null) {
+            if (lancamento.getFrequencias() == null) {
+                lancamento.setFrequencias(new ArrayList<>());
+            } else {
+                lancamento.getFrequencias().clear();
+            }
             lancamento.getTurma().getMatriculas().forEach(matricula -> {
-                if (lancamento.getFrequencias() == null) {
-                    lancamento.setFrequencias(new ArrayList<>());
-                } else {
-                    lancamento.getFrequencias().clear();
-                }
-
                 Frequencia frequencia = new Frequencia();
                 frequencia.setAluno(matricula.getAluno());
                 frequencia.setLancamento(lancamento);

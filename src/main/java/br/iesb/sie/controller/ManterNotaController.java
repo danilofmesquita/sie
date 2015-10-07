@@ -68,19 +68,21 @@ public class ManterNotaController extends BaseController {
 
     public void selecionarTurmaListener() {
         if (lancamento.getTurma() != null) {
-            lancamento.getTurma().getMatriculas().forEach(matricula -> {
-                if (lancamento.getNotas() == null) {
-                    lancamento.setNotas(new ArrayList<>());
-                } else {
-                    lancamento.getNotas().clear();
-                }
 
+            if (lancamento.getNotas() == null) {
+                lancamento.setNotas(new ArrayList<>());
+            } else {
+                lancamento.getNotas().clear();
+            }
+
+            lancamento.getTurma().getMatriculas().forEach(matricula -> {
                 Nota nota = new Nota();
                 nota.setAluno(matricula.getAluno());
                 nota.setLancamento(lancamento);
 
                 lancamento.getNotas().add(nota);
             });
+
             preencherDisciplinas();
         } else {
             disciplinas = Collections.emptyList();
