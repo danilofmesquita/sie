@@ -8,6 +8,9 @@ import br.iesb.sie.service.EntidadeService;
 import br.iesb.sie.service.JasperReportsService;
 import br.iesb.sie.service.TurmaService;
 import br.iesb.sie.util.DownloadUtil;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperReport;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -53,7 +56,7 @@ public class SolicitarPasseController extends BaseController {
         }
     }
 
-    public void imprimir() {
+    public void imprimir() throws JRException {
         Map<String, Object> params = new HashMap<>();
 
         params.put("ID_ALUNO", usuarioLogado.getEntidade().getId());

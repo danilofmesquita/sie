@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 public class JasperReportsService extends BaseService  {
 
     public static final String PASSE = "reports/passe.jrxml";
+    public static final String BOLETIM = "reports/boletim.jrxml";
 
     @Inject
     private Logger logger;
