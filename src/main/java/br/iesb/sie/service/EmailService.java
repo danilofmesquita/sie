@@ -27,7 +27,7 @@ public class EmailService extends BaseService {
         try {
             Transport.send(emailDTO.pupularEmail(mailSession));
         } catch (MessagingException e) {
-            logger.log(Level.SEVERE, "Não foi possivel enviar o email", e);
+            logger.log(Level.SEVERE, "Não foi possível enviar o email", e);
         }
     }
 

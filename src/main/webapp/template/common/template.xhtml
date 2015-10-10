@@ -71,14 +71,14 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a jsf:action="/view/escola/funcionarios/listar.xhtml?faces-redirect=true"><span
-                                            class="fa fa-users fa-fw"></span> Funcionarios</a></li>
+                                            class="fa fa-users fa-fw"></span> Funcionários</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown"
                                 jsf:rendered="#{not empty usuarioLogado.entidade and (usuarioLogado.secretaria or usuarioLogado.escola)}">
                                 <a class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-haspopup="true"
-                                   aria-expanded="false">Secretária<span class="caret"></span>
+                                   aria-expanded="false">Secretaria<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
@@ -89,19 +89,19 @@
                                     </li>
                                     <li>
                                         <a jsf:action="/view/secretaria/matricula/listar.xhtml?faces-redirect=true">
-                                            <span class="fa fa-edit fa-fw"></span>Matricula</a>
+                                            <span class="fa fa-edit fa-fw"></span>Matrícula</a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="dropdown" jsf:rendered="#{not empty usuarioLogado.entidade}">
                                 <a class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-haspopup="true"
-                                   aria-expanded="false">Acadêmico<span class="caret"></span>
+                                   aria-expanded="false">Discente<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a jsf:action="/view/professor/frequencia/listar.xhtml?faces-redirect=true">
-                                            <span class="fa fa-th-list fa-fw"></span>Frequencia
+                                            <span class="fa fa-th-list fa-fw"></span>Frequência
                                         </a>
                                     </li>
                                     <li>
@@ -114,10 +114,10 @@
                             <li class="dropdown" jsf:rendered="#{not empty usuarioLogado.entidade}">
                                 <a class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-haspopup="true"
-                                   aria-expanded="false">Documentos Eletronicos<span class="caret"></span>
+                                   aria-expanded="false">Documentos Eletrônicos<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a><span class="fa fa-file-text-o fa-fw"></span>Historico Escolar</a>
+                                    <li><a><span class="fa fa-file-text-o fa-fw"></span>Histórico Escolar</a>
                                     </li>
                                     <li jsf:rendered="#{usuarioLogado.aluno}">
                                         <a jsf:action="/view/documentos/passe.xhtml?faces-redirect=true">
@@ -129,10 +129,10 @@
                             <li class="dropdown" jsf:rendered="#{not empty usuarioLogado.entidade}">
                                 <a class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-haspopup="true"
-                                   aria-expanded="false">Graficos<span class="caret"></span>
+                                   aria-expanded="false">Gráficos<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a><span class="fa fa-bar-chart fa-fw"></span>Analise Estatistica</a>
+                                    <li><a><span class="fa fa-bar-chart fa-fw"></span>Análise Estatística</a>
                                     </li>
                                 </ul>
                             </li>

@@ -23,7 +23,7 @@ public class LoginController extends BaseController {
             request.login(login, senha);
             return "/view/index.xhtml?faces-redirect=true";
         } catch (ServletException e) {
-            addErrorMessage("Não possível autenticar, verifique a Matrícula e a Senha.");
+            addErrorMessage("Não foi possível autenticar, verifique a Matrícula e a Senha.");
             logger.log(Level.SEVERE, "Erro ao efetuar o login", e);
         }
         return null;
