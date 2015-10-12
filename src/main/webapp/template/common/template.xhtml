@@ -16,7 +16,6 @@
         SIE - Sistema Integrado de Educação
     </title>
 
-    <!--/<h:outputStylesheet library="bootstrap" name="/css/bootstrap-theme.css"/>-->
     <h:outputStylesheet library="sie" name="/css/style.css"/>
     <h:outputStylesheet library="font-awesome" name="/css/font-awesome.css"/>
     <h:outputStylesheet library="select2" name="/css/select2.css"/>
@@ -33,6 +32,7 @@
     <h:outputScript library="datepicker" name="/js/bootstrap-datepicker.min.js"/>
     <h:outputScript library="datepicker" name="/locales/bootstrap-datepicker.pt-BR.min.js"/>
     <h:outputScript library="switch" name="/js/bootstrap-switch.min.js"/>
+
 
     <ui:insert name="head"/>
 
@@ -136,10 +136,18 @@
                             <li class="dropdown" jsf:rendered="#{not empty usuarioLogado.entidade}">
                                 <a class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-haspopup="true"
-                                   aria-expanded="false">Gráficos<span class="caret"></span>
+                                   aria-expanded="false">Análise Estatística<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a><span class="fa fa-bar-chart fa-fw"></span>Análise Estatística</a>
+                                    <li>
+                                        <a jsf:action="/view/analise/frequencia.xhtml?faces-redirect=true">
+                                            <span class="fa fa-bar-chart fa-fw"></span>#{msg['label.frequencia']}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <span class="fa fa-bar-chart fa-fw"></span>#{msg['label.nota.frequencia']}
+                                        </a>
                                     </li>
                                 </ul>
                             </li>

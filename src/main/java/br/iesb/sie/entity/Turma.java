@@ -2,11 +2,9 @@ package br.iesb.sie.entity;
 
 import br.iesb.sie.model.Serie;
 import br.iesb.sie.model.Turno;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -41,6 +39,9 @@ public class Turma extends BaseEntity {
 
     @OneToMany(mappedBy = "turma")
     private List<Matricula> matriculas;
+
+    @OneToMany(mappedBy = "turma")
+    private List<FrequenciaLancamento> frequenciaLancamentos;
 
     public Turma() {
     }
@@ -118,5 +119,13 @@ public class Turma extends BaseEntity {
 
     public void setMatriculas(List<Matricula> matriculas) {
         this.matriculas = matriculas;
+    }
+
+    public List<FrequenciaLancamento> getFrequenciaLancamentos() {
+        return frequenciaLancamentos;
+    }
+
+    public void setFrequenciaLancamentos(List<FrequenciaLancamento> frequenciaLancamentos) {
+        this.frequenciaLancamentos = frequenciaLancamentos;
     }
 }
