@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
-<!-- 2015-10-09T22:56:05 -->
+<!-- 2015-10-12T12:16:12 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="boletim" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1792ac30-092d-4db8-a357-ea9306cd1115">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F5F5F5">
@@ -30,71 +30,6 @@
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
-	<subDataset name="headerDataset" uuid="6e0768e6-da29-44c9-915d-a6ca1393f0ec">
-		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SIE - Connection"/>
-		<queryString>
-			<![CDATA[select RAZAO_SOCIAL from sie.entidade where RAZAO_SOCIAL = "dandel"]]>
-		</queryString>
-		<field name="RAZAO_SOCIAL" class="java.lang.String">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-	</subDataset>
-	<subDataset name="Dataset1" uuid="d071b6ee-d274-4cdd-8da0-05adfb821164">
-		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SIE - Connection"/>
-		<queryString>
-			<![CDATA[select  
-primeiro_bimestre.DISCIPLINA as disciplina, 
-total_aulas.total as aulas,
-case when faltas.total is null then '0'
-    else 
-    faltas.total
-end as faltas,
-nota_primeiro_bimestre.NOTA  as notaPrimeiroBimestre, 
-nota_segundo_bimestre.NOTA as notaSegundoBimestre,
-nota_terceiro_bimestre.NOTA  as notaTerceiroBimestre, 
-nota_quarto_bimestre.NOTA as notaQuartoBimestre,
-nota_primeiro_bimestre.NOTA + nota_segundo_bimestre.NOTA + nota_terceiro_bimestre.NOTA  + nota_quarto_bimestre.NOTA  as somaTotal,
-(nota_primeiro_bimestre.NOTA + nota_segundo_bimestre.NOTA + nota_terceiro_bimestre.NOTA  + nota_quarto_bimestre.NOTA)/4 as mediaAnual,
-case 
-	when (nota_primeiro_bimestre.NOTA + nota_segundo_bimestre.NOTA + nota_terceiro_bimestre.NOTA  + nota_quarto_bimestre.NOTA)/4 < 5 then 'Sim'
-    when (nota_primeiro_bimestre.NOTA + nota_segundo_bimestre.NOTA + nota_terceiro_bimestre.NOTA  + nota_quarto_bimestre.NOTA)/4 > 5 then 'Nâo'
-end as recuperacao
-from sie.nota_lancamento primeiro_bimestre 
-left join sie.nota_lancamento segundo_bimestre on primeiro_bimestre.FK_ENTIDADE_ESCOLA = segundo_bimestre.FK_ENTIDADE_ESCOLA and primeiro_bimestre.FK_ENTIDADE_TURMA = segundo_bimestre.FK_ENTIDADE_TURMA
-left join sie.nota_lancamento terceiro_bimestre on primeiro_bimestre.FK_ENTIDADE_ESCOLA = terceiro_bimestre.FK_ENTIDADE_ESCOLA and primeiro_bimestre.FK_ENTIDADE_TURMA = terceiro_bimestre.FK_ENTIDADE_TURMA
-left join sie.nota_lancamento quarto_bimestre on primeiro_bimestre.FK_ENTIDADE_ESCOLA = quarto_bimestre.FK_ENTIDADE_ESCOLA and primeiro_bimestre.FK_ENTIDADE_TURMA = quarto_bimestre.FK_ENTIDADE_TURMA
-left join sie.nota nota_primeiro_bimestre on primeiro_bimestre.ID_NOTA_LANCAMENTO = nota_primeiro_bimestre.FK_NOTA_LANCAMENTO
-left join sie.nota nota_segundo_bimestre on segundo_bimestre.ID_NOTA_LANCAMENTO = nota_segundo_bimestre.FK_NOTA_LANCAMENTO
-left join sie.nota nota_terceiro_bimestre on terceiro_bimestre.ID_NOTA_LANCAMENTO = nota_terceiro_bimestre.FK_NOTA_LANCAMENTO
-left join sie.nota nota_quarto_bimestre on quarto_bimestre.ID_NOTA_LANCAMENTO = nota_quarto_bimestre.FK_NOTA_LANCAMENTO
-left join ( select count(distinct fl.ID_FREQUENCIA_LANCAMENTO) as total, fl.FK_TURMA, fl.DISCIPLINA, f.FK_ENTIDADE_ALUNO from sie.frequencia_lancamento fl 
-			inner join sie.frequencia f on f.FK_FREQUENCIA_LANCAMENTO = fl.ID_FREQUENCIA_LANCAMENTO ) as total_aulas on total_aulas.DISCIPLINA = primeiro_bimestre.DISCIPLINA and primeiro_bimestre.FK_ENTIDADE_TURMA = total_aulas.FK_TURMA
-left join ( select count(distinct fl.ID_FREQUENCIA_LANCAMENTO) as total, fl.FK_TURMA, fl.DISCIPLINA, f.FK_ENTIDADE_ALUNO from sie.frequencia_lancamento fl 
-			inner join sie.frequencia f on f.FK_FREQUENCIA_LANCAMENTO = fl.ID_FREQUENCIA_LANCAMENTO where f.PRESENTE = false ) as faltas on faltas.DISCIPLINA = primeiro_bimestre.DISCIPLINA and primeiro_bimestre.FK_ENTIDADE_TURMA = faltas.FK_TURMA
-where 1=1
-and primeiro_bimestre.BIMESTRE = 'PRIMEIRO' 
-and segundo_bimestre.BIMESTRE = 'SEGUNDO'
-and terceiro_bimestre.BIMESTRE = 'TERCEIRO' 
-and quarto_bimestre.BIMESTRE = 'QUARTO'
-and nota_primeiro_bimestre.FK_ENTIDADE_ALUNO = '1'  
-and nota_segundo_bimestre.FK_ENTIDADE_ALUNO = '1'
-and nota_terceiro_bimestre.FK_ENTIDADE_ALUNO = '1']]>
-		</queryString>
-		<field name="disciplina" class="java.lang.String">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="aulas" class="java.lang.Long"/>
-		<field name="faltas" class="java.lang.String"/>
-		<field name="notaPrimeiroBimestre" class="java.lang.Double"/>
-		<field name="notaSegundoBimestre" class="java.lang.Double"/>
-		<field name="notaTerceiroBimestre" class="java.lang.Double"/>
-		<field name="notaQuartoBimestre" class="java.lang.Double"/>
-		<field name="somaTotal" class="java.lang.Double"/>
-		<field name="mediaAnual" class="java.lang.Double"/>
-		<field name="recuperacao" class="java.lang.String"/>
-	</subDataset>
 	<subDataset name="tableDS" uuid="8926b01e-362f-4acc-a4ca-54303f05a120">
 		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SIE - Connection"/>
@@ -138,10 +73,18 @@ and primeiro_bimestre.BIMESTRE = 'PRIMEIRO'
 and segundo_bimestre.BIMESTRE = 'SEGUNDO'
 and terceiro_bimestre.BIMESTRE = 'TERCEIRO' 
 and quarto_bimestre.BIMESTRE = 'QUARTO'
-and nota_primeiro_bimestre.FK_ENTIDADE_ALUNO = '1'  
-and nota_segundo_bimestre.FK_ENTIDADE_ALUNO = '1'
-and nota_terceiro_bimestre.FK_ENTIDADE_ALUNO = '1'
-and nota_quarto_bimestre.FK_ENTIDADE_ALUNO = '1']]>
+and nota_primeiro_bimestre.FK_ENTIDADE_ALUNO = $P{ID_ALUNO}
+and nota_segundo_bimestre.FK_ENTIDADE_ALUNO =  $P{ID_ALUNO}
+and nota_terceiro_bimestre.FK_ENTIDADE_ALUNO =  $P{ID_ALUNO}
+and nota_quarto_bimestre.FK_ENTIDADE_ALUNO =  $P{ID_ALUNO}
+and primeiro_bimestre.FK_ENTIDADE_TURMA =   $P{ID_TURMA}
+and segundo_bimestre.FK_ENTIDADE_TURMA =  $P{ID_TURMA}
+and terceiro_bimestre.FK_ENTIDADE_TURMA =  $P{ID_TURMA}
+and quarto_bimestre.FK_ENTIDADE_TURMA = $P{ID_TURMA}
+and primeiro_bimestre.FK_ENTIDADE_ESCOLA = $P{ID_ESCOLA}
+and segundo_bimestre.FK_ENTIDADE_ESCOLA = $P{ID_ESCOLA}
+and terceiro_bimestre.FK_ENTIDADE_ESCOLA = $P{ID_ESCOLA}
+and quarto_bimestre.FK_ENTIDADE_ESCOLA = $P{ID_ESCOLA}]]>
 		</queryString>
 		<field name="disciplina" class="java.lang.String">
 			<fieldDescription><![CDATA[]]></fieldDescription>
@@ -163,62 +106,51 @@ and nota_quarto_bimestre.FK_ENTIDADE_ALUNO = '1']]>
 	<parameter name="ID_ESCOLA" class="java.lang.Long"/>
 	<parameter name="ID_TURMA" class="java.lang.Long"/>
 	<queryString>
-		<![CDATA[select  
-primeiro_bimestre.DISCIPLINA as disciplina, 
-total_aulas.total as aulas,
-case when faltas.total is null then '0'
-    else 
-    faltas.total
-end as faltas,
-nota_primeiro_bimestre.NOTA  as notaPrimeiroBimestre, 
-nota_segundo_bimestre.NOTA as notaSegundoBimestre,
-nota_terceiro_bimestre.NOTA  as notaTerceiroBimestre, 
-nota_quarto_bimestre.NOTA as notaQuartoBimestre,
-nota_primeiro_bimestre.NOTA + nota_segundo_bimestre.NOTA + nota_terceiro_bimestre.NOTA  + nota_quarto_bimestre.NOTA  as somaTotal,
-(nota_primeiro_bimestre.NOTA + nota_segundo_bimestre.NOTA + nota_terceiro_bimestre.NOTA  + nota_quarto_bimestre.NOTA)/4 as mediaAnual,
-case 
-	when (nota_primeiro_bimestre.NOTA + nota_segundo_bimestre.NOTA + nota_terceiro_bimestre.NOTA  + nota_quarto_bimestre.NOTA)/4 < 5 then 'Sim'
-    when (nota_primeiro_bimestre.NOTA + nota_segundo_bimestre.NOTA + nota_terceiro_bimestre.NOTA  + nota_quarto_bimestre.NOTA)/4 > 5 then 'Nâo'
-end as recuperacao
-from sie.nota_lancamento primeiro_bimestre 
-left join sie.nota_lancamento segundo_bimestre on primeiro_bimestre.FK_ENTIDADE_ESCOLA = segundo_bimestre.FK_ENTIDADE_ESCOLA and primeiro_bimestre.FK_ENTIDADE_TURMA = segundo_bimestre.FK_ENTIDADE_TURMA
-left join sie.nota_lancamento terceiro_bimestre on primeiro_bimestre.FK_ENTIDADE_ESCOLA = terceiro_bimestre.FK_ENTIDADE_ESCOLA and primeiro_bimestre.FK_ENTIDADE_TURMA = terceiro_bimestre.FK_ENTIDADE_TURMA
-left join sie.nota_lancamento quarto_bimestre on primeiro_bimestre.FK_ENTIDADE_ESCOLA = quarto_bimestre.FK_ENTIDADE_ESCOLA and primeiro_bimestre.FK_ENTIDADE_TURMA = quarto_bimestre.FK_ENTIDADE_TURMA
-left join sie.nota nota_primeiro_bimestre on primeiro_bimestre.ID_NOTA_LANCAMENTO = nota_primeiro_bimestre.FK_NOTA_LANCAMENTO
-left join sie.nota nota_segundo_bimestre on segundo_bimestre.ID_NOTA_LANCAMENTO = nota_segundo_bimestre.FK_NOTA_LANCAMENTO
-left join sie.nota nota_terceiro_bimestre on terceiro_bimestre.ID_NOTA_LANCAMENTO = nota_terceiro_bimestre.FK_NOTA_LANCAMENTO
-left join sie.nota nota_quarto_bimestre on quarto_bimestre.ID_NOTA_LANCAMENTO = nota_quarto_bimestre.FK_NOTA_LANCAMENTO
-left join ( select count(distinct fl.ID_FREQUENCIA_LANCAMENTO) as total, fl.FK_TURMA, fl.DISCIPLINA, f.FK_ENTIDADE_ALUNO from sie.frequencia_lancamento fl 
-			inner join sie.frequencia f on f.FK_FREQUENCIA_LANCAMENTO = fl.ID_FREQUENCIA_LANCAMENTO ) as total_aulas on total_aulas.DISCIPLINA = primeiro_bimestre.DISCIPLINA and primeiro_bimestre.FK_ENTIDADE_TURMA = total_aulas.FK_TURMA
-left join ( select count(distinct fl.ID_FREQUENCIA_LANCAMENTO) as total, fl.FK_TURMA, fl.DISCIPLINA, f.FK_ENTIDADE_ALUNO from sie.frequencia_lancamento fl 
-			inner join sie.frequencia f on f.FK_FREQUENCIA_LANCAMENTO = fl.ID_FREQUENCIA_LANCAMENTO where f.PRESENTE = false ) as faltas on faltas.DISCIPLINA = primeiro_bimestre.DISCIPLINA and primeiro_bimestre.FK_ENTIDADE_TURMA = faltas.FK_TURMA
-where 1=1
-and primeiro_bimestre.BIMESTRE = 'PRIMEIRO' 
-and segundo_bimestre.BIMESTRE = 'SEGUNDO'
-and terceiro_bimestre.BIMESTRE = 'TERCEIRO' 
-and quarto_bimestre.BIMESTRE = 'QUARTO'
-and nota_primeiro_bimestre.FK_ENTIDADE_ALUNO = '1'  
-and nota_segundo_bimestre.FK_ENTIDADE_ALUNO = '1'
-and nota_terceiro_bimestre.FK_ENTIDADE_ALUNO = '1'  
-and nota_quarto_bimestre.FK_ENTIDADE_ALUNO = '1']]>
+		<![CDATA[SELECT DISTINCT
+ESCOLA.RAZAO_SOCIAL AS NOME_ESCOLA,
+ALUNO.NOME_COMPLETO AS NOME_ALUNO,
+ALUNO.LOGIN AS MATRICULA,
+ALUNO.CPF_CNPJ AS CPF,
+TURMA.NOME AS TURMA,
+CONCAT(ALUNO.NOME_COMPLETO_MAE,' e ',ALUNO.NOME_COMPLETO_PAI) AS FILIACAO,
+CONCAT(ENDERECO.ENDERECO, ', ', ENDERECO.MUNICIPIO, ' - ', ENDERECO.UF) AS ENDERECO,
+ENDERECO.NUMERO AS NUMERO,
+TURMA.ANO AS ANO,
+CASE TURMA.TURNO 
+WHEN 'MATUTINO' THEN 'Matutino'
+WHEN 'VESPERTINO' THEN 'Vespertino' 
+WHEN 'NOTURNO' THEN 'Noturno' 
+END AS TURNO,
+DATE_FORMAT(CURDATE(), '%d/%m/%Y') AS DATA_ATUAL
+FROM sie.ENTIDADE ALUNO
+INNER JOIN sie.MATRICULA MATRICULA ON MATRICULA.FK_ENTIDADE_ALUNO
+INNER JOIN sie.ENTIDADE ESCOLA ON MATRICULA.FK_ENTIDADE_ESCOLA = ESCOLA.ID_ENTIDADE
+INNER JOIN sie.TURMA TURMA ON TURMA.ID_TURMA = MATRICULA.FK_TURMA
+INNER JOIN sie.ENDERECO ENDERECO ON ALUNO.FK_ENDERECO = ENDERECO.ID_ENDERECO
+WHERE TURMA.ID_TURMA = $P{ID_TURMA}
+AND ESCOLA.ID_ENTIDADE = $P{ID_ESCOLA}
+AND ALUNO.ID_ENTIDADE = $P{ID_ALUNO}]]>
 	</queryString>
-	<field name="disciplina" class="java.lang.String">
+	<field name="NOME_ESCOLA" class="java.lang.String"/>
+	<field name="NOME_ALUNO" class="java.lang.String"/>
+	<field name="MATRICULA" class="java.lang.Integer"/>
+	<field name="CPF" class="java.lang.String"/>
+	<field name="TURMA" class="java.lang.String"/>
+	<field name="FILIACAO" class="java.lang.String"/>
+	<field name="ENDERECO" class="java.lang.String"/>
+	<field name="NUMERO" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="aulas" class="java.lang.Long"/>
-	<field name="faltas" class="java.lang.String"/>
-	<field name="notaPrimeiroBimestre" class="java.lang.Double"/>
-	<field name="notaSegundoBimestre" class="java.lang.Double"/>
-	<field name="notaTerceiroBimestre" class="java.lang.Double"/>
-	<field name="notaQuartoBimestre" class="java.lang.Double"/>
-	<field name="somaTotal" class="java.lang.Double"/>
-	<field name="mediaAnual" class="java.lang.Double"/>
-	<field name="recuperacao" class="java.lang.String"/>
+	<field name="ANO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TURNO" class="java.lang.String"/>
+	<field name="DATA_ATUAL" class="java.lang.String"/>
 	<pageHeader>
 		<band height="180" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<textField>
-				<reportElement x="0" y="80" width="210" height="20" uuid="d1733e3d-350f-4cc1-add6-482a73d54202">
+				<reportElement x="70" y="80" width="140" height="20" uuid="d1733e3d-350f-4cc1-add6-482a73d54202">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<box leftPadding="10">
@@ -228,10 +160,10 @@ and nota_quarto_bimestre.FK_ENTIDADE_ALUNO = '1']]>
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Aluno: "]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{NOME_ALUNO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="100" width="210" height="20" uuid="317da26b-c4d5-4a36-952b-fbb1828ef96d"/>
+				<reportElement x="70" y="100" width="140" height="20" uuid="317da26b-c4d5-4a36-952b-fbb1828ef96d"/>
 				<box leftPadding="10">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -239,10 +171,10 @@ and nota_quarto_bimestre.FK_ENTIDADE_ALUNO = '1']]>
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Turma: "]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{TURMA}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="120" width="554" height="20" uuid="2a121e08-b964-4815-855c-23c3350eb7df"/>
+				<reportElement x="70" y="120" width="484" height="20" uuid="2a121e08-b964-4815-855c-23c3350eb7df"/>
 				<box leftPadding="10">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -250,10 +182,10 @@ and nota_quarto_bimestre.FK_ENTIDADE_ALUNO = '1']]>
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Filiação: "]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{FILIACAO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="140" width="370" height="20" uuid="ce21b0e4-1266-4f33-9f8c-91f84ba9a677"/>
+				<reportElement x="70" y="140" width="300" height="20" uuid="ce21b0e4-1266-4f33-9f8c-91f84ba9a677"/>
 				<box leftPadding="10">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -261,10 +193,10 @@ and nota_quarto_bimestre.FK_ENTIDADE_ALUNO = '1']]>
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Endereço: "]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ENDERECO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="160" width="554" height="20" uuid="402b84d3-d9a3-4f4f-9e6d-cf6c9741188d"/>
+				<reportElement x="70" y="160" width="484" height="20" uuid="402b84d3-d9a3-4f4f-9e6d-cf6c9741188d"/>
 				<box leftPadding="10">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -272,10 +204,10 @@ and nota_quarto_bimestre.FK_ENTIDADE_ALUNO = '1']]>
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Ano Letivo: "]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ANO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="370" y="140" width="184" height="20" uuid="263c6e47-af71-4407-9c9b-ec17061d1aa3"/>
+				<reportElement x="420" y="140" width="134" height="20" uuid="263c6e47-af71-4407-9c9b-ec17061d1aa3"/>
 				<box leftPadding="10">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -283,10 +215,10 @@ and nota_quarto_bimestre.FK_ENTIDADE_ALUNO = '1']]>
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Número: "]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{NUMERO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="210" y="80" width="160" height="20" uuid="25f956b2-966b-4abf-a664-f19d81dcfcf6"/>
+				<reportElement x="270" y="80" width="100" height="20" uuid="25f956b2-966b-4abf-a664-f19d81dcfcf6"/>
 				<box leftPadding="10">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -294,10 +226,10 @@ and nota_quarto_bimestre.FK_ENTIDADE_ALUNO = '1']]>
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Mátricula: "]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{MATRICULA}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="210" y="100" width="344" height="20" uuid="6799f228-8922-4eb4-b894-33d96be7e600"/>
+				<reportElement x="270" y="100" width="284" height="20" uuid="6799f228-8922-4eb4-b894-33d96be7e600"/>
 				<box leftPadding="10">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -305,10 +237,10 @@ and nota_quarto_bimestre.FK_ENTIDADE_ALUNO = '1']]>
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Turno: "]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{TURNO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="370" y="80" width="184" height="20" uuid="286dfab5-3f82-4d6f-9877-28cfac338337"/>
+				<reportElement x="420" y="80" width="134" height="20" uuid="286dfab5-3f82-4d6f-9877-28cfac338337"/>
 				<box leftPadding="10">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -316,7 +248,7 @@ and nota_quarto_bimestre.FK_ENTIDADE_ALUNO = '1']]>
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["CPF: "]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{CPF}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="174" y="0" width="380" height="80" uuid="17ff114e-2bb8-4a37-ad30-fd9b97f3530f">
@@ -332,6 +264,7 @@ and nota_quarto_bimestre.FK_ENTIDADE_ALUNO = '1']]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="24" isBold="true"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$F{NOME_ESCOLA}]]></textFieldExpression>
 			</textField>
 			<image>
 				<reportElement x="0" y="0" width="174" height="80" uuid="5998b597-050a-487d-a7b6-2c59c58003a3"/>
@@ -343,6 +276,105 @@ and nota_quarto_bimestre.FK_ENTIDADE_ALUNO = '1']]>
 				</box>
 				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="80" width="70" height="20" backcolor="#F5F5F5" uuid="6feed0b2-1225-4ee8-a576-1991ddeb1f93"/>
+				<box leftPadding="0" rightPadding="0">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Aluno:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="100" width="70" height="20" backcolor="#F5F5F5" uuid="484ab3f3-ea3d-4262-a155-d45f547ae9c6"/>
+				<box leftPadding="0" rightPadding="0">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Turma:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="120" width="70" height="20" backcolor="#F5F5F5" uuid="351d7d25-4f08-4471-b64c-b0e292e351fc"/>
+				<box leftPadding="0" rightPadding="0">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Filiação:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="140" width="70" height="20" backcolor="#F5F5F5" uuid="27846659-b7b6-48fc-9282-1b02931c321a"/>
+				<box leftPadding="0" rightPadding="0">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Endereço:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="160" width="70" height="20" backcolor="#F5F5F5" uuid="dee78d0f-317d-438f-bb95-e7e7a728fa88"/>
+				<box leftPadding="0" rightPadding="0">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Ano Letivo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="210" y="80" width="60" height="20" backcolor="#F5F5F5" uuid="4bf89a0c-2674-40f2-9806-bc877be61c02"/>
+				<box leftPadding="0" rightPadding="0">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Matrícula:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="210" y="100" width="60" height="20" backcolor="#F5F5F5" uuid="e7187a03-240f-4f96-bbf8-2a3b98cad3ba"/>
+				<box leftPadding="0" rightPadding="0">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Turno:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="370" y="140" width="50" height="20" backcolor="#F5F5F5" uuid="7882e924-675a-4556-9269-fe5a2bfc10a0"/>
+				<box leftPadding="0" rightPadding="0">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Número:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="370" y="80" width="50" height="20" backcolor="#F5F5F5" uuid="5b413cef-d805-4a62-88e1-98fce8158f29"/>
+				<box leftPadding="0" rightPadding="0">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CPF:]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -486,14 +518,14 @@ and nota_quarto_bimestre.FK_ENTIDADE_ALUNO = '1']]>
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Recuperacao]]></text>
+				<text><![CDATA[Recuperação]]></text>
 			</staticText>
 			<componentElement>
 				<reportElement x="0" y="30" width="554" height="20" uuid="1566cdf5-258a-4fc5-ad03-1a7ef1f2df0d">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
-					<datasetRun subDataset="tableDS" uuid="22a72047-b645-4cf7-b3af-5e89c8e75a9f">
+					<datasetRun subDataset="tableDS" uuid="fb3fea04-37c1-4486-96cf-3ba10e60ed81">
 						<datasetParameter name="ID_ALUNO">
 							<datasetParameterExpression><![CDATA[$P{ID_ALUNO}]]></datasetParameterExpression>
 						</datasetParameter>
@@ -501,7 +533,7 @@ and nota_quarto_bimestre.FK_ENTIDADE_ALUNO = '1']]>
 							<datasetParameterExpression><![CDATA[$P{ID_ESCOLA}]]></datasetParameterExpression>
 						</datasetParameter>
 						<datasetParameter name="ID_TURMA">
-							<datasetParameterExpression><![CDATA[]]></datasetParameterExpression>
+							<datasetParameterExpression><![CDATA[$P{ID_TURMA}]]></datasetParameterExpression>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
@@ -634,7 +666,7 @@ and nota_quarto_bimestre.FK_ENTIDADE_ALUNO = '1']]>
 			<textField>
 				<reportElement x="0" y="18" width="554" height="30" uuid="0f144019-0ddd-4b8d-a381-d88d7d65ee84"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Documento Emitido pelo Sistema Integrado de Educação, em "]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Documento Emitido pelo Sistema Integrado de Educação, em "+$F{DATA_ATUAL}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
