@@ -7,7 +7,6 @@ import javax.persistence.PersistenceContext;
 
 public abstract class SimpleDAO {
 
-
     @PersistenceContext(name = "sie-pu")
     private EntityManager em;
 

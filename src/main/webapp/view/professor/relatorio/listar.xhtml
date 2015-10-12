@@ -11,45 +11,90 @@
     <ui:define name="body">
         <h:form>
             <sie:panel header="Consultar Relátorios" type="primary">
+                <h:messages/>
+                <sie:row>
+                    <sie:column span="4">
+                        <sie:selectOneMenu label="#{msg['label.escola']}"
+                                           labelClass="required" value="#{listarRelatorioController.relatorio.escola}">
+                            <f:selectItem itemLabel="#{msg['label.selecione']}"/>
+                            <f:selectItems value="#{usuarioLogado.escolasVinculadas}" var="_escola"
+                                           itemLabel="#{_escola.razaoSocial}"/>
+                            <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
+                            <f:ajax event="change" execute="@form" render="@form"/>
+                        </sie:selectOneMenu>
+                    </sie:column>
+                    <sie:column span="4">
+                        <sie:selectOneMenu label="#{msg['label.turma']}"
+                                           labelClass="required" value="#{listarRelatorioController.relatorio.turma}">
+                            <f:selectItem itemLabel="Selecione"/>
+                            <f:selectItems value="#{listarRelatorioController.turmas}"/>
+                            <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
+                            <f:ajax event="change" execute="@form" render="@form"/>
+                        </sie:selectOneMenu>
+                    </sie:column>
+                    <sie:column span="4">
+                        <sie:selectOneMenu label="#{msg['label.aluno']}"
+                                           labelClass="required" value="#{listarRelatorioController.relatorio.aluno}">
+                            <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
+                            <f:selectItem itemLabel="Selecione"/>
+                            <f:selectItems itemLabel="#{_aluno.nomeCompleto}" var="_aluno"
+                                           value="#{listarRelatorioController.alunos}"/>
+                        </sie:selectOneMenu>
+                    </sie:column>
+                </sie:row>
+                <sie:row>
+                    <sie:column span="4">
+                        <sie:selectOneMenu label="#{msg['label.bimestre']}" required="#{param['salvar']}"
+                                           labelClass="required"
+                                           value="#{listarRelatorioController.relatorio.bimestre}">
+                            <f:selectItem itemLabel="Selecione"/>
+                            <f:selectItems value="#{factoryUtil.bimestres}"/>
+                        </sie:selectOneMenu>
+                    </sie:column>
+                </sie:row>
 
-                <button class="btn btn-primary pull-right btn-margin-left">
+                <button class="btn btn-primary pull-right btn-margin-left"
+                        jsf:action="#{listarRelatorioController.filtrar()}">
                     <i class="fa fa-search"></i>Filtrar
                 </button>
-                <button class="btn btn-warning pull-right btn-margin-left">
+                <button class="btn btn-warning pull-right btn-margin-left"
+                        jsf:action="#{listarRelatorioController.limpar()}">
                     <i class="fa fa-recycle"></i>Limpar
                 </button>
                 <button class="btn btn-default pull-right btn-margin-left"
                         jsf:action="incluir.xhtml?faces-redirect=true">
                     <i class="fa fa-plus"></i>Novo Relátorio
                 </button>
-                <br />
-                <br />
-                <br />
+                <br/>
+                <br/>
+                <br/>
                 <sie:panel header="Relátorios" type="default">
                     <div class="table-responsive">
-                        <h:dataTable styleClass="table table-striped" var="nota">
+                        <h:dataTable styleClass="table table-striped" value="#{listarRelatorioController.relatorios}"
+                                     var="_relatorio">
                             <h:column>
                                 <f:facet name="header">Escola</f:facet>
-
+                                <h:outputText value="#{_relatorio.escola.razaoSocial}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Bimestre</f:facet>
-
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Disciplina</f:facet>
-
+                                <h:outputText value="#{_relatorio.bimestre.descricao}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Turma</f:facet>
-
+                                <h:outputText value="#{_relatorio.turma}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Aluno</f:facet>
-
+                                <h:outputText value="#{_relatorio.aluno.nomeCompleto}"/>
                             </h:column>
                             <h:column>
-
+                                <div align="center">
+                                    <button class="btn btn-default"
+                                            jsf:action="#{listarRelatorioController.editar(_relatorio.id)}">
+                                        <i class="fa fa-edit"></i> Editar
+                                    </button>
+                                </div>
                             </h:column>
                         </h:dataTable>
                     </div>

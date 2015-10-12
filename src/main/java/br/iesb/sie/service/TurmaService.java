@@ -3,7 +3,6 @@ package br.iesb.sie.service;
 import br.iesb.sie.dao.ProfessorDisciplinaDAO;
 import br.iesb.sie.dao.TurmaDAO;
 import br.iesb.sie.entity.Entidade;
-import br.iesb.sie.entity.ProfessorDisciplina;
 import br.iesb.sie.entity.Turma;
 import br.iesb.sie.model.Disciplina;
 
@@ -20,7 +19,6 @@ public class TurmaService extends BaseService {
 
     @Inject
     private ProfessorDisciplinaDAO professorDisciplinaDAO;
-
 
     public void salvarTurma(Turma turma) {
         turmaDAO.salvar(turma);
@@ -62,5 +60,13 @@ public class TurmaService extends BaseService {
 
     public List<Turma> buscarTurmasVinculadasAEscolaEAluno(Entidade escola, Entidade aluno) {
         return turmaDAO.buscarTurmasVinculadasAEscolaEAluno(escola, aluno);
+    }
+
+    public List<Turma> buscarTurmasVinculadasAEscola(Entidade escola) {
+        return turmaDAO.buscarTurmasVinculadasAEscola(escola);
+    }
+
+    public List<Entidade> buscarAlunosVinculadosATurma(Turma turma) {
+        return turmaDAO.buscarAlunosVinculadosATurma(turma);
     }
 }

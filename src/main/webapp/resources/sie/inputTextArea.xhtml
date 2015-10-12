@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+<composite:interface>
+    <composite:attribute name="styleClass"/>
+    <composite:attribute name="label"/>
+    <composite:attribute name="value"/>
+    <composite:attribute name="required"/>
+    <composite:attribute name="onkeypress"/>
+    <composite:attribute name="labelClass"/>
+    <composite:attribute name="cols"/>
+    <composite:attribute name="rows"/>
+    <composite:valueHolder name="inputText"/>
+    <composite:clientBehavior name="change" event="change" targets="inputText"/>
+</composite:interface>
+<composite:implementation>
+    <div class="form-group #{component.children[2].valid ? '' : 'has-error'}">
+        <h:outputLabel value="#{cc.attrs.label}:"
+                       styleClass="control-label #{cc.attrs.labelClass}"/>
+        <h:inputTextarea id="inputTextarea" label="#{cc.attrs.label}" cols="#{cc.attrs.cols}" rows="#{cc.attrs.rows}"
+                         styleClass="form-control #{cc.attrs.styleClass}" onkeypress="#{cc.attrs.onkeypress}"
+                         required="#{cc.attrs.required}" value="#{cc.attrs.value}">
+            <composite:insertChildren/>
+        </h:inputTextarea>
+    </div>
+</composite:implementation>
+</html>

@@ -10,12 +10,56 @@
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <h:form>
-            <sie:panel header="Relatórios" type="primary">
+            <sie:panel header="#{msg['label.relatorios']}" type="primary">
                 <h:messages/>
-                <sie:panel>
-
-                </sie:panel>
-                <button class="btn btn-primary pull-right btn-margin-left">
+                <sie:row>
+                    <sie:column span="4">
+                        <sie:selectOneMenu label="#{msg['label.escola']}" required="#{param['salvar']}"
+                                           labelClass="required" value="#{manterRelatorioController.relatorio.escola}">
+                            <f:selectItem itemLabel="#{msg['label.selecione']}"/>
+                            <f:selectItems value="#{usuarioLogado.escolasVinculadas}" var="_escola"
+                                           itemLabel="#{_escola.razaoSocial}"/>
+                            <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
+                            <f:ajax event="change" execute="@form" render="@form"/>
+                        </sie:selectOneMenu>
+                    </sie:column>
+                    <sie:column span="4">
+                        <sie:selectOneMenu label="#{msg['label.turma']}" required="#{param['salvar']}"
+                                           labelClass="required" value="#{manterRelatorioController.relatorio.turma}">
+                            <f:selectItem itemLabel="Selecione"/>
+                            <f:selectItems value="#{manterRelatorioController.turmas}"/>
+                            <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
+                            <f:ajax event="change" execute="@form" render="@form"/>
+                        </sie:selectOneMenu>
+                    </sie:column>
+                    <sie:column span="4">
+                        <sie:selectOneMenu label="#{msg['label.aluno']}" required="#{param['salvar']}"
+                                           labelClass="required" value="#{manterRelatorioController.relatorio.aluno}">
+                            <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
+                            <f:selectItem itemLabel="Selecione"/>
+                            <f:selectItems itemLabel="#{_aluno.nomeCompleto}" var="_aluno"
+                                           value="#{manterRelatorioController.alunos}"/>
+                        </sie:selectOneMenu>
+                    </sie:column>
+                </sie:row>
+                <sie:row>
+                    <sie:column span="4">
+                        <sie:selectOneMenu label="#{msg['label.bimestre']}" required="#{param['salvar']}"
+                                           labelClass="required"
+                                           value="#{manterRelatorioController.relatorio.bimestre}">
+                            <f:selectItem itemLabel="Selecione"/>
+                            <f:selectItems value="#{factoryUtil.bimestres}"/>
+                        </sie:selectOneMenu>
+                    </sie:column>
+                </sie:row>
+                <sie:row>
+                    <sie:column span="12">
+                        <sie:inputTextarea value="#{manterRelatorioController.relatorio.texto}" labelClass="required"
+                                           required="#{param['salvar']}" label="#{msg['label.relatorio']}" rows="10"/>
+                    </sie:column>
+                </sie:row>
+                <button class="btn btn-primary pull-right btn-margin-left"
+                        jsf:action="#{manterRelatorioController.salvar()}">
                     <i class="fa fa-save"></i>Salvar
                     <f:param value="true" name="salvar"/>
                 </button>
