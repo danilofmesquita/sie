@@ -14,7 +14,7 @@ public class EmailCadastroConcluidoDTO extends EmailDTO {
         conteudo.append(String.format("Senha: %s\n", senha));
 
         addDestino(u.getEmail());
-        addAssunto("[SIE] Cadastro Concluido com Sucesso !");
+        addAssunto("[SIE] Cadastro Concluído com Sucesso !");
         addConteudo(conteudo.toString());
     }
 }

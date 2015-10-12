@@ -34,7 +34,7 @@ public class FillReportWork implements Work {
             JasperReport jasperReport = JasperCompileManager.compileReport(reportTemplateAsStream);
             jasperPrint = JasperFillManager.fillReport(jasperReport, params, connection);
         } catch (JRException e) {
-            logger.log(Level.SEVERE, "Não foi possivel preencher o relatorio", e);
+            logger.log(Level.SEVERE, "Não foi possível preencher o relatório", e);
         }
     }
 
@@ -44,7 +44,7 @@ public class FillReportWork implements Work {
             BufferedImage image = ImageIO.read(getClass().getResource("/reports/SIE.png"));
             params.put("LOGO", image);
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "Não foi adicionar o logo do SIE ao relatorio.", e);
+            logger.log(Level.SEVERE, "Não foi possível adicionar o logo do SIE ao relatório.", e);
         }
     }
 
