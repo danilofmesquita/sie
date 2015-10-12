@@ -22,6 +22,7 @@ public class ManterRelatorioController extends RelatorioController {
 
     public void salvar(){
         relatorioService.salvar(getRelatorio());
+        addInfoMessage("Dados salvos com sucesso!");
     }
 
 }
