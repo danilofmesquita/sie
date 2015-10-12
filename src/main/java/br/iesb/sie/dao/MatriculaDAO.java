@@ -46,4 +46,17 @@ public class MatriculaDAO extends BaseDAO<Matricula, Long> {
         return addQueryParams(params, getSession().createQuery(hql)).list();
 
     }
+
+    public boolean isAlunoMatriculado(Long idAluno) {
+
+        String hql = "";
+
+        hql += " SELECT count(m.id) FROM Matricula m ";
+        hql += " WHERE m.aluno.id = :idAluno ";
+
+
+        Long matriculas = (Long) getSession().createQuery(hql).setParameter("idAluno", idAluno).uniqueResult();
+        return matriculas > 0L;
+
+    }
 }

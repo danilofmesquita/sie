@@ -93,7 +93,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="dropdown" jsf:rendered="#{not empty usuarioLogado.entidade}">
+                            <li class="dropdown"
+                                jsf:rendered="#{not empty usuarioLogado.entidade and ( usuarioLogado.professor or usuarioLogado.escola or usuarioLogado.secretaria) }">
                                 <a class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-haspopup="true"
                                    aria-expanded="false">Discente<span class="caret"></span>
@@ -111,7 +112,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="dropdown" jsf:rendered="#{not empty usuarioLogado.entidade}">
+                            <li class="dropdown" jsf:rendered="#{not empty usuarioLogado.entidade and usuarioLogado.aluno}">
                                 <a class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-haspopup="true"
                                    aria-expanded="false">Documentos Eletrônicos<span class="caret"></span>

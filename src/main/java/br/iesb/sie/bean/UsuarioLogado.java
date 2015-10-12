@@ -5,6 +5,7 @@ import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.model.Perfil;
 import br.iesb.sie.service.EntidadeService;
 import br.iesb.sie.service.FuncionarioService;
+import br.iesb.sie.service.MatriculaService;
 import br.iesb.sie.util.NavigationRules;
 
 import javax.enterprise.context.SessionScoped;
@@ -24,6 +25,9 @@ public class UsuarioLogado extends BaseController {
 
     @Inject
     private FuncionarioService funcionarioService;
+
+    @Inject
+    private MatriculaService matriculaService;
 
     private Entidade entidade;
 
@@ -54,7 +58,8 @@ public class UsuarioLogado extends BaseController {
 
     public boolean isAluno() {
         if (isAluno == null) {
-            isAluno = getEntidade().getPerfis().contains(Perfil.ALUNO);
+            isAluno = getEntidade().getPerfis().contains(Perfil.ALUNO)
+                    && matriculaService.isAlunoMatriculado(getEntidade().getId());
         }
         return isAluno;
     }
@@ -62,6 +67,7 @@ public class UsuarioLogado extends BaseController {
     public boolean isEscola() {
         if (isEscola == null) {
             isEscola = getEntidade().getPerfis().contains(Perfil.ESCOLA);
+
         }
         return isEscola;
     }

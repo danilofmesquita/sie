@@ -26,4 +26,8 @@ public class MatriculaService extends BaseService {
     public Matricula buscarMatricula(Long id) {
         return matriculaDAO.get(id);
     }
+
+    public boolean isAlunoMatriculado(Long idAluno) {
+        return matriculaDAO.isAlunoMatriculado(idAluno);
+    }
 }
