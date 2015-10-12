@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
-<!-- 2015-10-12T12:16:12 -->
+<!-- 2015-10-12T12:31:08 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="boletim" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1792ac30-092d-4db8-a357-ea9306cd1115">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F5F5F5">
@@ -39,52 +39,52 @@
 		<parameter name="ID_ESCOLA" class="java.lang.Long"/>
 		<parameter name="ID_TURMA" class="java.lang.Long"/>
 		<queryString>
-			<![CDATA[select  
-primeiro_bimestre.DISCIPLINA as disciplina, 
-total_aulas.total as aulas,
-case when faltas.total is null then '0'
-    else 
-    faltas.total
-end as faltas,
-nota_primeiro_bimestre.NOTA  as notaPrimeiroBimestre, 
-nota_segundo_bimestre.NOTA as notaSegundoBimestre,
-nota_terceiro_bimestre.NOTA  as notaTerceiroBimestre, 
-nota_quarto_bimestre.NOTA as notaQuartoBimestre,
-nota_primeiro_bimestre.NOTA + nota_segundo_bimestre.NOTA + nota_terceiro_bimestre.NOTA  + nota_quarto_bimestre.NOTA  as somaTotal,
-(nota_primeiro_bimestre.NOTA + nota_segundo_bimestre.NOTA + nota_terceiro_bimestre.NOTA  + nota_quarto_bimestre.NOTA)/4 as mediaAnual,
-case 
-	when (nota_primeiro_bimestre.NOTA + nota_segundo_bimestre.NOTA + nota_terceiro_bimestre.NOTA  + nota_quarto_bimestre.NOTA)/4 < 5 then 'Sim'
-    when (nota_primeiro_bimestre.NOTA + nota_segundo_bimestre.NOTA + nota_terceiro_bimestre.NOTA  + nota_quarto_bimestre.NOTA)/4 > 5 then 'Nâo'
-end as recuperacao
-from sie.nota_lancamento primeiro_bimestre 
-left join sie.nota_lancamento segundo_bimestre on primeiro_bimestre.FK_ENTIDADE_ESCOLA = segundo_bimestre.FK_ENTIDADE_ESCOLA and primeiro_bimestre.FK_ENTIDADE_TURMA = segundo_bimestre.FK_ENTIDADE_TURMA
-left join sie.nota_lancamento terceiro_bimestre on primeiro_bimestre.FK_ENTIDADE_ESCOLA = terceiro_bimestre.FK_ENTIDADE_ESCOLA and primeiro_bimestre.FK_ENTIDADE_TURMA = terceiro_bimestre.FK_ENTIDADE_TURMA
-left join sie.nota_lancamento quarto_bimestre on primeiro_bimestre.FK_ENTIDADE_ESCOLA = quarto_bimestre.FK_ENTIDADE_ESCOLA and primeiro_bimestre.FK_ENTIDADE_TURMA = quarto_bimestre.FK_ENTIDADE_TURMA
-left join sie.nota nota_primeiro_bimestre on primeiro_bimestre.ID_NOTA_LANCAMENTO = nota_primeiro_bimestre.FK_NOTA_LANCAMENTO
-left join sie.nota nota_segundo_bimestre on segundo_bimestre.ID_NOTA_LANCAMENTO = nota_segundo_bimestre.FK_NOTA_LANCAMENTO
-left join sie.nota nota_terceiro_bimestre on terceiro_bimestre.ID_NOTA_LANCAMENTO = nota_terceiro_bimestre.FK_NOTA_LANCAMENTO
-left join sie.nota nota_quarto_bimestre on quarto_bimestre.ID_NOTA_LANCAMENTO = nota_quarto_bimestre.FK_NOTA_LANCAMENTO
-left join ( select count(distinct fl.ID_FREQUENCIA_LANCAMENTO) as total, fl.FK_TURMA, fl.DISCIPLINA, f.FK_ENTIDADE_ALUNO from sie.frequencia_lancamento fl 
-			inner join sie.frequencia f on f.FK_FREQUENCIA_LANCAMENTO = fl.ID_FREQUENCIA_LANCAMENTO ) as total_aulas on total_aulas.DISCIPLINA = primeiro_bimestre.DISCIPLINA and primeiro_bimestre.FK_ENTIDADE_TURMA = total_aulas.FK_TURMA
-left join ( select count(distinct fl.ID_FREQUENCIA_LANCAMENTO) as total, fl.FK_TURMA, fl.DISCIPLINA, f.FK_ENTIDADE_ALUNO from sie.frequencia_lancamento fl 
-			inner join sie.frequencia f on f.FK_FREQUENCIA_LANCAMENTO = fl.ID_FREQUENCIA_LANCAMENTO where f.PRESENTE = false ) as faltas on faltas.DISCIPLINA = primeiro_bimestre.DISCIPLINA and primeiro_bimestre.FK_ENTIDADE_TURMA = faltas.FK_TURMA
-where 1=1
-and primeiro_bimestre.BIMESTRE = 'PRIMEIRO' 
-and segundo_bimestre.BIMESTRE = 'SEGUNDO'
-and terceiro_bimestre.BIMESTRE = 'TERCEIRO' 
-and quarto_bimestre.BIMESTRE = 'QUARTO'
-and nota_primeiro_bimestre.FK_ENTIDADE_ALUNO = $P{ID_ALUNO}
-and nota_segundo_bimestre.FK_ENTIDADE_ALUNO =  $P{ID_ALUNO}
-and nota_terceiro_bimestre.FK_ENTIDADE_ALUNO =  $P{ID_ALUNO}
-and nota_quarto_bimestre.FK_ENTIDADE_ALUNO =  $P{ID_ALUNO}
-and primeiro_bimestre.FK_ENTIDADE_TURMA =   $P{ID_TURMA}
-and segundo_bimestre.FK_ENTIDADE_TURMA =  $P{ID_TURMA}
-and terceiro_bimestre.FK_ENTIDADE_TURMA =  $P{ID_TURMA}
-and quarto_bimestre.FK_ENTIDADE_TURMA = $P{ID_TURMA}
-and primeiro_bimestre.FK_ENTIDADE_ESCOLA = $P{ID_ESCOLA}
-and segundo_bimestre.FK_ENTIDADE_ESCOLA = $P{ID_ESCOLA}
-and terceiro_bimestre.FK_ENTIDADE_ESCOLA = $P{ID_ESCOLA}
-and quarto_bimestre.FK_ENTIDADE_ESCOLA = $P{ID_ESCOLA}]]>
+			<![CDATA[SELECT  
+PRIMEIRO_BIMESTRE.DISCIPLINA AS DISCIPLINA, 
+TOTAL_AULAS.TOTAL AS AULAS,
+CASE WHEN FALTAS.TOTAL IS NULL THEN '0'
+    ELSE 
+    FALTAS.TOTAL
+END AS FALTAS,
+NOTA_PRIMEIRO_BIMESTRE.NOTA  AS NOTAPRIMEIROBIMESTRE, 
+NOTA_SEGUNDO_BIMESTRE.NOTA AS NOTASEGUNDOBIMESTRE,
+NOTA_TERCEIRO_BIMESTRE.NOTA  AS NOTATERCEIROBIMESTRE, 
+NOTA_QUARTO_BIMESTRE.NOTA AS NOTAQUARTOBIMESTRE,
+NOTA_PRIMEIRO_BIMESTRE.NOTA + NOTA_SEGUNDO_BIMESTRE.NOTA + NOTA_TERCEIRO_BIMESTRE.NOTA  + NOTA_QUARTO_BIMESTRE.NOTA  AS SOMATOTAL,
+(NOTA_PRIMEIRO_BIMESTRE.NOTA + NOTA_SEGUNDO_BIMESTRE.NOTA + NOTA_TERCEIRO_BIMESTRE.NOTA  + NOTA_QUARTO_BIMESTRE.NOTA)/4 AS MEDIAANUAL,
+CASE 
+	WHEN (NOTA_PRIMEIRO_BIMESTRE.NOTA + NOTA_SEGUNDO_BIMESTRE.NOTA + NOTA_TERCEIRO_BIMESTRE.NOTA  + NOTA_QUARTO_BIMESTRE.NOTA)/4 < 5 THEN 'Sim'
+    WHEN (NOTA_PRIMEIRO_BIMESTRE.NOTA + NOTA_SEGUNDO_BIMESTRE.NOTA + NOTA_TERCEIRO_BIMESTRE.NOTA  + NOTA_QUARTO_BIMESTRE.NOTA)/4 > 5 THEN 'Não'
+END AS RECUPERACAO
+FROM sie.NOTA_LANCAMENTO PRIMEIRO_BIMESTRE 
+LEFT JOIN sie.NOTA_LANCAMENTO SEGUNDO_BIMESTRE ON PRIMEIRO_BIMESTRE.FK_ENTIDADE_ESCOLA = SEGUNDO_BIMESTRE.FK_ENTIDADE_ESCOLA AND PRIMEIRO_BIMESTRE.FK_ENTIDADE_TURMA = SEGUNDO_BIMESTRE.FK_ENTIDADE_TURMA
+LEFT JOIN sie.NOTA_LANCAMENTO TERCEIRO_BIMESTRE ON PRIMEIRO_BIMESTRE.FK_ENTIDADE_ESCOLA = TERCEIRO_BIMESTRE.FK_ENTIDADE_ESCOLA AND PRIMEIRO_BIMESTRE.FK_ENTIDADE_TURMA = TERCEIRO_BIMESTRE.FK_ENTIDADE_TURMA
+LEFT JOIN sie.NOTA_LANCAMENTO QUARTO_BIMESTRE ON PRIMEIRO_BIMESTRE.FK_ENTIDADE_ESCOLA = QUARTO_BIMESTRE.FK_ENTIDADE_ESCOLA AND PRIMEIRO_BIMESTRE.FK_ENTIDADE_TURMA = QUARTO_BIMESTRE.FK_ENTIDADE_TURMA
+LEFT JOIN sie.NOTA NOTA_PRIMEIRO_BIMESTRE ON PRIMEIRO_BIMESTRE.ID_NOTA_LANCAMENTO = NOTA_PRIMEIRO_BIMESTRE.FK_NOTA_LANCAMENTO
+LEFT JOIN sie.NOTA NOTA_SEGUNDO_BIMESTRE ON SEGUNDO_BIMESTRE.ID_NOTA_LANCAMENTO = NOTA_SEGUNDO_BIMESTRE.FK_NOTA_LANCAMENTO
+LEFT JOIN sie.NOTA NOTA_TERCEIRO_BIMESTRE ON TERCEIRO_BIMESTRE.ID_NOTA_LANCAMENTO = NOTA_TERCEIRO_BIMESTRE.FK_NOTA_LANCAMENTO
+LEFT JOIN sie.NOTA NOTA_QUARTO_BIMESTRE ON QUARTO_BIMESTRE.ID_NOTA_LANCAMENTO = NOTA_QUARTO_BIMESTRE.FK_NOTA_LANCAMENTO
+LEFT JOIN ( SELECT COUNT(DISTINCT FL.ID_FREQUENCIA_LANCAMENTO) AS TOTAL, FL.FK_TURMA, FL.DISCIPLINA, F.FK_ENTIDADE_ALUNO FROM sie.FREQUENCIA_LANCAMENTO FL 
+			INNER JOIN sie.FREQUENCIA F ON F.FK_FREQUENCIA_LANCAMENTO = FL.ID_FREQUENCIA_LANCAMENTO ) AS TOTAL_AULAS ON TOTAL_AULAS.DISCIPLINA = PRIMEIRO_BIMESTRE.DISCIPLINA AND PRIMEIRO_BIMESTRE.FK_ENTIDADE_TURMA = TOTAL_AULAS.FK_TURMA
+LEFT JOIN ( SELECT COUNT(DISTINCT FL.ID_FREQUENCIA_LANCAMENTO) AS TOTAL, FL.FK_TURMA, FL.DISCIPLINA, F.FK_ENTIDADE_ALUNO FROM sie.FREQUENCIA_LANCAMENTO FL 
+			INNER JOIN sie.FREQUENCIA F ON F.FK_FREQUENCIA_LANCAMENTO = FL.ID_FREQUENCIA_LANCAMENTO WHERE F.PRESENTE = FALSE ) AS FALTAS ON FALTAS.DISCIPLINA = PRIMEIRO_BIMESTRE.DISCIPLINA AND PRIMEIRO_BIMESTRE.FK_ENTIDADE_TURMA = FALTAS.FK_TURMA
+WHERE 1=1
+AND PRIMEIRO_BIMESTRE.BIMESTRE = 'PRIMEIRO' 
+AND SEGUNDO_BIMESTRE.BIMESTRE = 'SEGUNDO'
+AND TERCEIRO_BIMESTRE.BIMESTRE = 'TERCEIRO' 
+AND QUARTO_BIMESTRE.BIMESTRE = 'QUARTO'
+AND NOTA_PRIMEIRO_BIMESTRE.FK_ENTIDADE_ALUNO = $P{ID_ALUNO}
+AND NOTA_SEGUNDO_BIMESTRE.FK_ENTIDADE_ALUNO = $P{ID_ALUNO}
+AND NOTA_TERCEIRO_BIMESTRE.FK_ENTIDADE_ALUNO = $P{ID_ALUNO}
+AND NOTA_QUARTO_BIMESTRE.FK_ENTIDADE_ALUNO = $P{ID_ALUNO}
+AND PRIMEIRO_BIMESTRE.FK_ENTIDADE_TURMA =   $P{ID_TURMA}
+AND SEGUNDO_BIMESTRE.FK_ENTIDADE_TURMA =   $P{ID_TURMA}
+AND TERCEIRO_BIMESTRE.FK_ENTIDADE_TURMA =   $P{ID_TURMA}
+AND QUARTO_BIMESTRE.FK_ENTIDADE_TURMA = $P{ID_TURMA}
+AND PRIMEIRO_BIMESTRE.FK_ENTIDADE_ESCOLA = $P{ID_ESCOLA}
+AND SEGUNDO_BIMESTRE.FK_ENTIDADE_ESCOLA = $P{ID_ESCOLA}
+AND TERCEIRO_BIMESTRE.FK_ENTIDADE_ESCOLA = $P{ID_ESCOLA}
+AND QUARTO_BIMESTRE.FK_ENTIDADE_ESCOLA = $P{ID_ESCOLA}]]>
 		</queryString>
 		<field name="disciplina" class="java.lang.String">
 			<fieldDescription><![CDATA[]]></fieldDescription>
