@@ -9,7 +9,7 @@
     <composite:attribute name="value"/>
 </composite:interface>
 <composite:implementation>
-    <h:outputLabel value="#{cc.attrs.label}:" style="margin-right: 5px;"/>
+    <h:outputLabel rendered="#{not empty cc.attrs.label}" value="#{cc.attrs.label}:" style="margin-right: 5px;"/>
     <h:selectBooleanCheckbox label="#{cc.attrs.label}" id="switch"
                              value="#{cc.attrs.value}">
         <composite:insertChildren/>
