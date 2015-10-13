@@ -6,9 +6,9 @@
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <div class="jumbotron">
-            <h1>Olá, #{usuarioLogado.entidade.primeiroNome}</h1>
+            <h1>#{msg['msg.ola']} #{usuarioLogado.entidade.primeiroNome}</h1>
 
-            <p>Seja bem-vindo ao Sistema Integrado de Educação</p>
+            <p>#{msg['msg.saudacao']}</p>
         </div>
     </ui:define>
 </ui:composition>

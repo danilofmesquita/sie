@@ -7,11 +7,11 @@
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <div class="jumbotron">
-            <h1>Cadastro concluído</h1>
+            <h1>#{msg['msg.cadastro.concluido']}</h1>
 
-            <p>Suas informações de acesso foram enviadas para o seu e-mail</p>
+            <p>#{msg['msg.envio.email']}</p>
             <h:form>
-                <h:commandButton styleClass="btn btn-lg btn-primary" value="Entrar"
+                <h:commandButton styleClass="btn btn-lg btn-primary" value="#{msg['label.entrar']}"
                                  action="/view/index.xhtml?faces-redirect=true"/>
             </h:form>
         </div>

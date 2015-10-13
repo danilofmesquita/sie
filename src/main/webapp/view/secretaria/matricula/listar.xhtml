@@ -10,11 +10,11 @@
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <h:form>
-            <sie:panel header="Consultar Matriculas" type="primary">
+            <sie:panel header="#{msg['label.consultar.matriculas']}" type="primary">
                 <h:messages/>
                 <sie:row>
                     <sie:column span="4">
-                        <sie:selectOneMenu label="Escola" value="#{listarMatriculaController.filtro.escola}">
+                        <sie:selectOneMenu label="#{msg['label.escola']}" value="#{listarMatriculaController.filtro.escola}">
                             <f:selectItem itemLabel="Selecione"/>
                             <f:selectItems value="#{listarMatriculaController.escolasVinculadas}" var="_e"
                                            itemLabel="#{_e.razaoSocial}"/>
@@ -24,14 +24,14 @@
                         </sie:selectOneMenu>
                     </sie:column>
                     <sie:column span="4">
-                        <sie:selectOneMenu label="Turma" value="#{listarMatriculaController.filtro.turma}">
+                        <sie:selectOneMenu label="#{msg['label.turma']}" value="#{listarMatriculaController.filtro.turma}">
                             <f:selectItem itemLabel="Selecione"/>
                             <f:selectItems value="#{listarMatriculaController.turmas}"/>
                             <f:converter for="selectOneMenu" converterId="sie.converter.entity"/>
                         </sie:selectOneMenu>
                     </sie:column>
                     <sie:column span="4">
-                        <sie:selectOneMenu label="Aluno" value="#{listarMatriculaController.filtro.aluno}">
+                        <sie:selectOneMenu label="#{msg['label.aluno']}" value="#{listarMatriculaController.filtro.aluno}">
                             <f:selectItem itemLabel="Selecione"/>
                             <f:selectItems value="#{listarMatriculaController.alunos}" var="_a"
                                            itemLabel="#{_a.nomeCompleto}"/>
@@ -42,40 +42,40 @@
                 </sie:row>
                 <button class="btn btn-primary pull-right btn-margin-left"
                         jsf:action="#{listarMatriculaController.filtrar}">
-                    <i class="fa fa-search"></i>Filtrar
+                    <i class="fa fa-search"></i>#{msg['label.filtrar']}
                 </button>
                 <button class="btn btn-warning pull-right btn-margin-left"
                         jsf:action="#{listarMatriculaController.limpar}">
-                    <i class="fa fa-recycle"></i>Limpar
+                    <i class="fa fa-recycle"></i>#{msg['label.limpar']}
                 </button>
                 <button class="btn btn-default pull-right btn-margin-left"
                         jsf:action="incluir.xhtml?faces-redirect=true">
-                    <i class="fa fa-plus"></i>Nova Matricula
+                    <i class="fa fa-plus"></i>#{msg['label.nova.matricula']}
                 </button>
                 <br/>
                 <br/>
                 <br/>
-                <sie:panel header="Turmas" type="default">
+                <sie:panel header="#{msg['label.turmas']}" type="default">
                     <div class="table-responsive">
                         <h:dataTable value="#{listarMatriculaController.matriculas}" var="matricula"
                                      styleClass="table table-striped">
                             <h:column>
-                                <f:facet name="header">Escola</f:facet>
+                                <f:facet name="header">#{msg['label.escola']}</f:facet>
                                 <h:outputText value="#{matricula.escola.razaoSocial}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Aluno</f:facet>
+                                <f:facet name="header">#{msg['label.aluno']}</f:facet>
                                 <h:outputText value="#{matricula.aluno.nomeCompleto}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Turma</f:facet>
+                                <f:facet name="header">#{msg['label.turma']}</f:facet>
                                 <h:outputText value="#{matricula.turma}"/>
                             </h:column>
                             <h:column>
                                 <div align="center">
                                     <button class="btn btn-default"
                                             jsf:action="#{listarMatriculaController.editar(matricula.id)}">
-                                        <i class="fa fa-edit"></i> Editar
+                                        <i class="fa fa-edit"></i> #{msg['label.editar']}
                                     </button>
                                 </div>
                             </h:column>

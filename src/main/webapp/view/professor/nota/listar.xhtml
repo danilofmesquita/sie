@@ -10,7 +10,7 @@
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <h:form>
-            <sie:panel header="Consultar Lançamento de Notas" type="primary">
+            <sie:panel header="#{msg['label.consultar.lancamento.notas']}" type="primary">
                 <sie:row>
                     <sie:column span="4">
                         <sie:selectOneMenu label="#{msg['label.escola']}"
@@ -53,40 +53,40 @@
                 </sie:row>
                 <button class="btn btn-primary pull-right btn-margin-left"
                         jsf:action="#{listarNotaController.filtrar}">
-                    <i class="fa fa-search"></i>Filtrar
+                    <i class="fa fa-search"></i>#{msg['label.filtrar']}
                 </button>
                 <button class="btn btn-warning pull-right btn-margin-left"
                         jsf:action="#{listarNotaController.limpar}">
-                    <i class="fa fa-recycle"></i>Limpar
+                    <i class="fa fa-recycle"></i>#{msg['label.limpar']}
                 </button>
                 <button class="btn btn-default pull-right btn-margin-left"
                         jsf:action="incluir.xhtml?faces-redirect=true">
-                    <i class="fa fa-plus"></i>Novo Lançamento
+                    <i class="fa fa-plus"></i>#{msg['label.novo.lancamento']}
                 </button>
                 <br/>
                 <br/>
                 <br/>
-                <sie:panel header="Lançamentos" type="default">
+                <sie:panel header="#{msg['label.lancamentos']}" type="default">
                     <div class="table-responsive">
                         <h:dataTable value="#{listarNotaController.notas}" styleClass="table table-striped" var="nota">
                             <h:column>
-                                <f:facet name="header">Escola</f:facet>
+                                <f:facet name="header">#{msg['label.escola']}</f:facet>
                                 <h:outputText value="#{nota.escola.razaoSocial}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Bimestre</f:facet>
+                                <f:facet name="header">#{msg['label.bimestre']}</f:facet>
                                 <h:outputText value="#{nota.bimestre.descricao}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Disciplina</f:facet>
+                                <f:facet name="header">#{msg['label.disciplina']}</f:facet>
                                 <h:outputText value="#{nota.disciplina.descricao}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Turma</f:facet>
+                                <f:facet name="header">#{msg['label.turma']}</f:facet>
                                 <h:outputText value="#{nota.turma}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Data do Lançamento</f:facet>
+                                <f:facet name="header">#{msg['label.data.lancamento']}</f:facet>
                                 <h:outputText value="#{nota.dataLancamento}">
                                     <f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"
                                                        timeZone="America/Sao_Paulo"/>
@@ -96,10 +96,10 @@
                                 <div align="center">
                                     <button class="btn btn-default"
                                             jsf:action="#{listarNotaController.editar(nota.id)}">
-                                        <i class="fa fa-edit"></i> Editar
+                                        <i class="fa fa-edit"></i> #{msg['label.editar']}
                                     </button>
                                     <button type="button" class="btn btn-default" data-toggle="modal" data-target=".notaModal#{nota.id}">
-                                        <i class="fa fa-reorder"></i> Visualizar Notas
+                                        <i class="fa fa-reorder"></i> #{msg['label.visualizar.notas']}
                                     </button>
                                 </div>
                                 <!-- Modal -->
@@ -109,25 +109,25 @@
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                                         aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">Notas</h4>
+                                                <h4 class="modal-title" id="myModalLabel">#{msg['label.notas']}</h4>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="table-responsive">
                                                     <h:dataTable value="#{nota.notas}" styleClass="table table-striped"
                                                                  var="notaAluno">
                                                         <h:column>
-                                                            <f:facet name="header">Aluno</f:facet>
+                                                            <f:facet name="header">#{msg['label.aluno']}</f:facet>
                                                             <h:outputText value="#{notaAluno.aluno.nomeCompleto}"/>
                                                         </h:column>
                                                         <h:column>
-                                                            <f:facet name="header">Nota</f:facet>
+                                                            <f:facet name="header">#{msg['label.nota']}</f:facet>
                                                             <h:outputText value="#{notaAluno.nota}"/>
                                                         </h:column>
                                                     </h:dataTable>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">#{msg['label.fechar']}</button>
                                             </div>
                                         </div>
                                     </div>

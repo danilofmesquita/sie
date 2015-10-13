@@ -15,7 +15,7 @@
                 <sie:panel header="#{msg['label.dados.gerais']}" type="default">
                     <sie:row>
                         <sie:column span="4">
-                            <sie:selectOneMenu label="Escola" required="#{param['salvar']}" labelClass="required"
+                            <sie:selectOneMenu label="#{msg['label.escola']}" required="#{param['salvar']}" labelClass="required"
                                                value="#{manterFrequenciaController.lancamento.escola}">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{usuarioLogado.escolasVinculadas}"
@@ -26,7 +26,7 @@
                             </sie:selectOneMenu>
                         </sie:column>
                         <sie:column span="4">
-                            <sie:selectOneMenu label="Turma" required="#{param['salvar']}" labelClass="required"
+                            <sie:selectOneMenu label="#{msg['label.turma']}" required="#{param['salvar']}" labelClass="required"
                                                value="#{manterFrequenciaController.lancamento.turma}">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{manterFrequenciaController.turmas}"/>
@@ -36,7 +36,7 @@
                             </sie:selectOneMenu>
                         </sie:column>
                         <sie:column span="4">
-                            <sie:selectOneMenu label="Disciplina" required="#{param['salvar']}" labelClass="required"
+                            <sie:selectOneMenu label="#{msg['label.disciplina']}" required="#{param['salvar']}" labelClass="required"
                                                value="#{manterFrequenciaController.lancamento.disciplina}">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{manterFrequenciaController.disciplinas}"/>
@@ -51,13 +51,13 @@
                                  var="frequencia">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputLabel value="Aluno"/>
+                                <h:outputLabel value="#{msg['label.aluno']}"/>
                             </f:facet>
                             <h:outputText value="#{frequencia.aluno.nomeCompleto}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputLabel value="Presente"/>
+                                <h:outputLabel value="#{msg['label.presente']}"/>
                             </f:facet>
 
                             <div class="form-group">
@@ -68,12 +68,12 @@
                 </sie:panel>
                 <button class="btn btn-primary pull-right btn-margin-left"
                                                  jsf:action="#{manterFrequenciaController.salvar}">
-                <i class="fa fa-save"></i>Salvar
+                <i class="fa fa-save"></i> #{msg['label.salvar']}
                 <f:param value="true" name="salvar"/>
             </button>
                 <button class="btn btn-default pull-right btn-margin-left"
                         jsf:action="listar?faces-redirect=true">
-                    <i class="fa fa-undo"></i>Voltar
+                    <i class="fa fa-undo"></i> #{msg['label.voltar']}
                 </button>
             </sie:panel>
         </h:form>
