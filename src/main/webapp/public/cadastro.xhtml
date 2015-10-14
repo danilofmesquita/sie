@@ -10,8 +10,8 @@
     <ui:define name="body">
         <h:form id="form">
             <h:messages/>
-            <sie:panel type="primary" header="Cadastro de Usuario">
-                <sie:panel header="Dados Gerais">
+            <sie:panel type="primary" header="#{msg['label.cadastro.usuario']}">
+                <sie:panel header="#{msg['label.dados.gerais']}">
                     <sie:row>
                         <sie:column span="4">
                             <sie:selectOneMenu id="tipoPessoa" value="#{cadastroController.entidade.tipoPessoa}"
@@ -73,7 +73,7 @@
                         </sie:row>
                         <sie:row>
                             <sie:column span="12">
-                                <sie:selectManyListbox label="Perfil" value="#{cadastroController.entidade.perfis}"
+                                <sie:selectManyListbox label="#{msg['label.perfil']}" value="#{cadastroController.entidade.perfis}"
                                                        required="#{param['validar']}" labelClass="required">
                                     <f:selectItems value="#{factoryUtil.perfisCPF}" var="_p" itemLabel="#{_p.nomeMF}"/>
                                     <f:converter for="selectManyListbox" converterId="sie.converter.perfil"/>
@@ -98,7 +98,7 @@
                         </sie:row>
                         <sie:row>
                             <sie:column span="12">
-                                <sie:selectManyListbox label="Perfil" value="#{cadastroController.entidade.perfis}"
+                                <sie:selectManyListbox label="#{msg['label.perfil']}" value="#{cadastroController.entidade.perfis}"
                                                        required="#{param['validar']}" labelClass="required">
                                     <f:selectItems value="#{factoryUtil.perfisCNPJ}" var="_p" itemLabel="#{_p.nomeMF}"
                                                    itemValue="#{_p}"/>
@@ -108,7 +108,7 @@
                         </sie:row>
                     </h:panelGroup>
                 </sie:panel>
-                <sie:panel header="Endereço">
+                <sie:panel header="#{msg['label.endereco']}">
                     <sie:row>
                         <sie:column span="4">
                             <sie:inputText label="#{msg['label.cep']}" styleClass="cep"
@@ -175,11 +175,11 @@
                         </sie:column>
                     </sie:row>
                 </sie:panel>
-                <h:commandButton value="Salvar" styleClass="btn btn-primary pull-right btn-margin-left"
+                <h:commandButton value="#{msg['label.salvar']}" styleClass="btn btn-primary pull-right btn-margin-left"
                                  action="#{cadastroController.salvar}">
                     <f:param name="validar" value="true"/>
                 </h:commandButton>
-                <h:commandButton value="Limpar" styleClass="btn btn-default pull-right btn-margin-right"
+                <h:commandButton value="#{msg['label.limpar']}" styleClass="btn btn-default pull-right btn-margin-right"
                                  action="#{cadastroController.limpar}">
                     <f:param name="validar" value="false"/>
                 </h:commandButton>

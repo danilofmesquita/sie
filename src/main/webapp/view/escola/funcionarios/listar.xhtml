@@ -10,7 +10,7 @@
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <h:form>
-            <sie:panel header="Consultar Funcionarios" type="primary">
+            <sie:panel header="#{msg['label.consultar.funcionarios']}" type="primary">
                 <sie:row>
                     <sie:column span="6">
                         <sie:selectOneMenu id="cargo" label="#{msg['label.cargo']}"
@@ -46,35 +46,35 @@
                 <br/>
                 <br/>
                 <br/>
-                <sie:panel header="Funcionarios" type="default">
+                <sie:panel header="#{msg['label.funcionarios']}" type="default">
                     <div class="table-responsive">
                         <h:dataTable value="#{listarFuncionariosController.funcionarios}" var="funcionario"
                                      styleClass="table table-striped">
                             <h:column>
-                                <f:facet name="header">Nome</f:facet>
+                                <f:facet name="header">#{msg['label.nome']}</f:facet>
                                 <h:outputText value="#{funcionario.funcionario.nomeCompleto}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Cargo</f:facet>
+                                <f:facet name="header">#{msg['label.cargo']}</f:facet>
                                 <h:outputText value="#{funcionario.perfil.nomeMF}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Escola</f:facet>
+                                <f:facet name="header">#{msg['label.escola']}</f:facet>
                                 <h:outputText value="#{funcionario.escola.razaoSocial}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Ativo</f:facet>
+                                <f:facet name="header">#{msg['label.ativo']}</f:facet>
                                 <sie:simNaoOutput value="#{funcionario.vinculoAtivo}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Data de Ingresso</f:facet>
+                                <f:facet name="header">#{msg['label.data.ingresso']}</f:facet>
                                 <h:outputText value="#{funcionario.dataVinculo}"/>
                             </h:column>
                             <h:column>
                                 <div align="center">
                                     <button class="btn btn-warning"
                                             jsf:action="#{listarFuncionariosController.editar(funcionario.id)}">
-                                        <i class="fa fa-edit"></i> Editar
+                                        <i class="fa fa-edit"></i> #{msg['label.editar']}
                                     </button>
                                 </div>
                             </h:column>

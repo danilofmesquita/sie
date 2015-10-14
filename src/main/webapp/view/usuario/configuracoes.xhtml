@@ -6,11 +6,11 @@
                 xmlns:sie="http://java.sun.com/jsf/composite/sie"
                 template="/template/common/template.xhtml">
     <ui:define name="body">
-        <sie:panel header="Configurações" type="primary">
+        <sie:panel header="#{msg['label.configuracoes']}" type="primary">
             <div>
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#senhaPanel" aria-controls="home" role="tab"
-                                                              data-toggle="tab">Alterar Senha</a></li>
+                                                              data-toggle="tab">#{msg['label.alterar.senha']}</a></li>
                 </ul>
 
                 <div class="tab-content">

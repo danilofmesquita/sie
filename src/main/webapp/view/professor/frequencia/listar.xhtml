@@ -10,7 +10,7 @@
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <h:form>
-            <sie:panel header="Consultar Lançamento de Frequência" type="primary">
+            <sie:panel header="#{msg['label.consultar.lancamento.frequencia']}" type="primary">
                 <sie:row>
                     <sie:column span="6">
                         <sie:selectOneMenu label="#{msg['label.escola']}"
@@ -46,37 +46,37 @@
                 </sie:row>
                 <button class="btn btn-primary pull-right btn-margin-left"
                         jsf:action="#{listarFrequenciaController.filtrar}">
-                    <i class="fa fa-search"></i>Filtrar
+                    <i class="fa fa-search"></i>#{msg['label.filtrar']}
                 </button>
                 <button class="btn btn-warning pull-right btn-margin-left"
                         jsf:action="#{listarFrequenciaController.limpar}">
-                    <i class="fa fa-recycle"></i>Limpar
+                    <i class="fa fa-recycle"></i>#{msg['label.limpar']}
                 </button>
                 <button class="btn btn-default pull-right btn-margin-left"
                         jsf:action="incluir.xhtml?faces-redirect=true">
-                    <i class="fa fa-plus"></i>Novo Lançamento
+                    <i class="fa fa-plus"></i>#{msg['label.novo.lancamento']}
                 </button>
                 <br/>
                 <br/>
                 <br/>
-                <sie:panel header="Lançamentos" type="default">
+                <sie:panel header="#{msg['label.lancamentos']}" type="default">
                     <div class="table-responsive">
                         <h:dataTable value="#{listarFrequenciaController.frequencias}"
                                      styleClass="table table-striped" var="frequencia">
                             <h:column>
-                                <f:facet name="header">Escola</f:facet>
+                                <f:facet name="header">#{msg['label.escola']}</f:facet>
                                 <h:outputText value="#{frequencia.escola.razaoSocial}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Disciplina</f:facet>
+                                <f:facet name="header">#{msg['label.disciplina']}</f:facet>
                                 <h:outputText value="#{frequencia.disciplina.descricao}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Turma</f:facet>
+                                <f:facet name="header">#{msg['label.turma']}</f:facet>
                                 <h:outputText value="#{frequencia.turma}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Data do Lançamento</f:facet>
+                                <f:facet name="header">#{msg['label.data.lancamento']}</f:facet>
                                 <h:outputText value="#{frequencia.dataLancamento}">
                                     <f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"
                                                        timeZone="America/Sao_Paulo"/>
@@ -86,7 +86,7 @@
                                 <div align="center">
                                     <button class="btn btn-default"
                                             jsf:action="#{listarFrequenciaController.editar(frequencia.id)}">
-                                        <i class="fa fa-edit"></i> Editar
+                                        <i class="fa fa-edit"></i> #{msg['label.editar']}
                                     </button>
                                 </div>
                             </h:column>

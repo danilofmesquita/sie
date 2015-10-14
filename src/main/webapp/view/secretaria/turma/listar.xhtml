@@ -10,11 +10,11 @@
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <h:form>
-            <sie:panel header="Consultar Turmas" type="primary">
+            <sie:panel header="#{msg['label.consultar.turmas']}" type="primary">
                 <h:messages/>
                 <sie:row>
                     <sie:column span="4">
-                        <sie:selectOneMenu label="Escola" value="#{listarTurmaController.filtro.escola}">
+                        <sie:selectOneMenu label="#{msg['label.escola']}" value="#{listarTurmaController.filtro.escola}">
                             <f:selectItem itemLabel="Selecione"/>
                             <f:selectItems value="#{listarTurmaController.buscarEscolasVinculadas()}" var="_e"
                                            itemLabel="#{_e.razaoSocial}"/>
@@ -22,21 +22,21 @@
                         </sie:selectOneMenu>
                     </sie:column>
                     <sie:column span="4">
-                        <sie:selectOneMenu label="Série" value="#{listarTurmaController.filtro.serie}">
+                        <sie:selectOneMenu label="#{msg['label.serie']}" value="#{listarTurmaController.filtro.serie}">
                             <f:selectItem itemLabel="Selecione"/>
                             <f:selectItems value="#{factoryUtil.series}" var="_s" itemLabel="#{_s.descricao}"/>
                         </sie:selectOneMenu>
                     </sie:column>
                     <sie:column span="4">
-                        <sie:inputText value="#{listarTurmaController.filtro.ano}" label="Ano" styleClass="ano"/>
+                        <sie:inputText value="#{listarTurmaController.filtro.ano}" label="#{msg['label.ano']}" styleClass="ano"/>
                     </sie:column>
                 </sie:row>
                 <sie:row>
                     <sie:column span="4">
-                        <sie:inputText value="#{listarTurmaController.filtro.nome}" label="Nome"/>
+                        <sie:inputText value="#{listarTurmaController.filtro.nome}" label="#{msg['label.nome']}"/>
                     </sie:column>
                     <sie:column span="4">
-                        <sie:selectOneMenu label="Turno" value="#{listarTurmaController.filtro.turno}">
+                        <sie:selectOneMenu label="#{msg['label.turno']}" value="#{listarTurmaController.filtro.turno}">
                             <f:selectItem itemLabel="Selecione"/>
                             <f:selectItems value="#{factoryUtil.turnos}" var="_m" itemLabel="#{_m.descricao}"/>
                         </sie:selectOneMenu>
@@ -44,48 +44,48 @@
                 </sie:row>
                 <button class="btn btn-primary pull-right btn-margin-left"
                         jsf:action="#{listarTurmaController.filtrar}">
-                    <i class="fa fa-search"></i>Filtrar
+                    <i class="fa fa-search"></i>#{msg['label.filtrar']}
                 </button>
                 <button class="btn btn-warning pull-right btn-margin-left"
                         jsf:action="#{listarTurmaController.limpar}">
-                    <i class="fa fa-recycle"></i>Limpar
+                    <i class="fa fa-recycle"></i>#{msg['label.limpar']}
                 </button>
                 <button class="btn btn-default pull-right btn-margin-left"
                         jsf:action="incluir.xhtml?faces-redirect=true">
-                    <i class="fa fa-plus"></i>Nova Turma
+                    <i class="fa fa-plus"></i>#{msg['label.nova.turma']}
                 </button>
                 <br/>
                 <br/>
                 <br/>
-                <sie:panel header="Turmas" type="default">
+                <sie:panel header="#{msg['label.turmas']}" type="default">
                     <div class="table-responsive">
                         <h:dataTable value="#{listarTurmaController.turmas}" var="turma"
                                      styleClass="table table-striped">
                             <h:column>
-                                <f:facet name="header">Escola</f:facet>
+                                <f:facet name="header">#{msg['label.escola']}</f:facet>
                                 <h:outputText value="#{turma.escola.razaoSocial}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Série</f:facet>
+                                <f:facet name="header">#{msg['label.serie']}</f:facet>
                                 <h:outputText value="#{turma.serie.descricao}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Nome</f:facet>
+                                <f:facet name="header">#{msg['label.nome']}</f:facet>
                                 <h:outputText value="#{turma.nome}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Turno</f:facet>
+                                <f:facet name="header">#{msg['label.turno']}</f:facet>
                                 <h:outputText value="#{turma.turno.descricao}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Ano</f:facet>
+                                <f:facet name="header">#{msg['label.ano']}</f:facet>
                                 <h:outputText value="#{turma.ano}"/>
                             </h:column>
                             <h:column>
                                 <div align="center">
                                     <button class="btn btn-default"
                                             jsf:action="#{listarTurmaController.editar(turma.id)}">
-                                        <i class="fa fa-edit"></i> Editar
+                                        <i class="fa fa-edit"></i> #{msg['label.editar']}
                                     </button>
                                 </div>
                             </h:column>

@@ -22,7 +22,7 @@
                                        labelClass="required" label="#{msg['label.senha']}"/>
 
                         <p>
-                            Não possui login? <a href="/public/cadastro.xhtml">Cadastre-se</a>
+                            #{msg['msg.sem.login']} <a href="/public/cadastro.xhtml">#{msg['label.cadastre.se']}</a>
                         </p>
                         <button class="btn btn-primary pull-right btn-margin-left"
                                 jsf:action="#{loginController.logar()}">

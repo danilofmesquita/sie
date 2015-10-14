@@ -11,19 +11,19 @@
     <h:form>
         <div class="row">
             <div class="col-sm-4">
-                <sie:inputSecret label="Senha Anterior"
+                <sie:inputSecret label="#{msg['label.senha.anterior']}"
                                  value="#{alterarSenhaController.senhaAnterior}"
                                  required="#{param['validateAlterarSenha']}" labelClass="required"/>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-4">
-                <sie:inputSecret label="Nova Senha"
+                <sie:inputSecret label="#{msg['label.nova.senha']}"
                                  value="#{alterarSenhaController.novaSenha}" labelClass="required"
                                  required="#{param['validateAlterarSenha']}"/>
             </div>
         </div>
-        <h:commandButton value="Salvar" styleClass="btn btn-primary pull-right btn-margin-left"
+        <h:commandButton value="#{msg['label.salvar']}" styleClass="btn btn-primary pull-right btn-margin-left"
                          action="#{alterarSenhaController.salvar}">
             <f:param name="validateAlterarSenha" value="true"/>
         </h:commandButton>

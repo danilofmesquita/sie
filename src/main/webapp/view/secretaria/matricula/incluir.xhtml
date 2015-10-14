@@ -10,9 +10,9 @@
                 template="/template/common/template.xhtml">
     <ui:define name="body">
         <h:form>
-            <sie:panel header="Matricula" type="primary">
+            <sie:panel header="#{msg['label.matricula']}" type="primary">
                 <h:messages/>
-                <sie:panel header="Dados Gerais">
+                <sie:panel header="#{msg['label.dados.gerais']}">
                     <sie:row>
                         <sie:column span="6">
                             <sie:selectOneMenu value="#{manterMatriculaController.matricula.escola}"
@@ -49,7 +49,7 @@
                         </sie:column>
                     </sie:row>
                 </sie:panel>
-                <sie:panel header="Dados do Responsavel">
+                <sie:panel header="#{msg['label.dados.responsavel']}">
                     <sie:row>
                         <sie:column span="4">
                             <sie:inputText value="#{manterMatriculaController.matricula.nomeResponsavel}"
@@ -131,12 +131,12 @@
                 </sie:panel>
                 <button class="btn btn-primary pull-right btn-margin-left"
                         jsf:action="#{manterMatriculaController.salvar}">
-                    <i class="fa fa-save"></i>Salvar
+                    <i class="fa fa-save"></i>#{msg['label.salvar']}
                     <f:param value="true" name="salvar"/>
                 </button>
                 <button class="btn btn-default pull-right btn-margin-left"
                         jsf:action="listar?faces-redirect=true">
-                    <i class="fa fa-undo"></i>Voltar
+                    <i class="fa fa-undo"></i>#{msg['label.voltar']}
                 </button>
             </sie:panel>
         </h:form>

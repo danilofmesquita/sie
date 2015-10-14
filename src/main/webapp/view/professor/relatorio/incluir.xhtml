@@ -60,12 +60,12 @@
                 </sie:row>
                 <button class="btn btn-primary pull-right btn-margin-left"
                         jsf:action="#{manterRelatorioController.salvar()}">
-                    <i class="fa fa-save"></i>Salvar
+                    <i class="fa fa-save"></i>#{msg['label.salvar']}
                     <f:param value="true" name="salvar"/>
                 </button>
                 <button class="btn btn-default pull-right btn-margin-left"
                         jsf:action="listar?faces-redirect=true">
-                    <i class="fa fa-undo"></i>Voltar
+                    <i class="fa fa-undo"></i>#{msg['label.voltar']}
                 </button>
             </sie:panel>
         </h:form>
