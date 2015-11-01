@@ -1,14 +1,13 @@
 package br.iesb.sie.dao;
 
-
-import br.iesb.sie.entity.Entidade;
-import br.iesb.sie.entity.Matricula;
-import org.hibernate.Query;
-
-import javax.inject.Named;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.inject.Named;
+
+import br.iesb.sie.entity.Entidade;
+import br.iesb.sie.entity.Matricula;
 
 @Named
 public class MatriculaDAO extends BaseDAO<Matricula, Long> {
@@ -17,6 +16,7 @@ public class MatriculaDAO extends BaseDAO<Matricula, Long> {
         super(Matricula.class);
     }
 
+    @SuppressWarnings("unchecked")
     public List<Matricula> buscarMatriculas(Matricula filtro, List<Entidade> escolasVinculadas) {
 
         String hql = "";
@@ -53,7 +53,6 @@ public class MatriculaDAO extends BaseDAO<Matricula, Long> {
 
         hql += " SELECT count(m.id) FROM Matricula m ";
         hql += " WHERE m.aluno.id = :idAluno ";
-
 
         Long matriculas = (Long) getSession().createQuery(hql).setParameter("idAluno", idAluno).uniqueResult();
         return matriculas > 0L;

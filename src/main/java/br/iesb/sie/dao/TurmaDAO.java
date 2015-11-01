@@ -1,11 +1,11 @@
 package br.iesb.sie.dao;
 
-import br.iesb.sie.entity.Entidade;
-import br.iesb.sie.entity.Turma;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import br.iesb.sie.entity.Entidade;
+import br.iesb.sie.entity.Turma;
 
 public class TurmaDAO extends BaseDAO<Turma, Long> {
 
@@ -13,8 +13,8 @@ public class TurmaDAO extends BaseDAO<Turma, Long> {
         super(Turma.class);
     }
 
-
-    public List buscarTurmas(Turma filtro, List<Entidade> escolas) {
+    @SuppressWarnings("unchecked")
+    public List<Turma> buscarTurmas(Turma filtro, List<Entidade> escolas) {
 
         String hql = "";
         Map<String, Object> params = new HashMap<>();
@@ -57,6 +57,7 @@ public class TurmaDAO extends BaseDAO<Turma, Long> {
         return addQueryParams(params, getSession().createQuery(hql)).list();
     }
 
+    @SuppressWarnings("unchecked")
     public List<Turma> buscarTurmasVinculadasAEscolaEAluno(Entidade escola, Entidade aluno) {
 
         String hql = "";
@@ -66,16 +67,17 @@ public class TurmaDAO extends BaseDAO<Turma, Long> {
         hql += " WHERE m.aluno = :aluno ";
         hql += " AND t.escola = :escola ";
 
-        return getSession().createQuery(hql)
-                .setParameter("aluno", aluno).setParameter("escola", escola).list();
+        return getSession().createQuery(hql).setParameter("aluno", aluno).setParameter("escola", escola).list();
 
     }
 
+    @SuppressWarnings("unchecked")
     public List<Turma> buscarTurmasVinculadasAEscola(Entidade escola) {
         String hql = "SELECT distinct t FROM Turma t WHERE t.escola = :escola ";
         return getSession().createQuery(hql).setParameter("escola", escola).list();
     }
 
+    @SuppressWarnings("unchecked")
     public List<Entidade> buscarAlunosVinculadosATurma(Turma turma) {
         String hql = "SELECT distinct m.aluno FROM Matricula m where m.turma = :turma";
         return getSession().createQuery(hql).setParameter("turma", turma).list();

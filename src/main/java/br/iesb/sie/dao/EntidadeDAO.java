@@ -1,12 +1,13 @@
 package br.iesb.sie.dao;
 
-import br.iesb.sie.entity.Entidade;
-import br.iesb.sie.model.Perfil;
-
-import javax.inject.Named;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.inject.Named;
+
+import br.iesb.sie.entity.Entidade;
+import br.iesb.sie.model.Perfil;
 
 @Named
 public class EntidadeDAO extends BaseDAO<Entidade, Long> {
@@ -40,7 +41,8 @@ public class EntidadeDAO extends BaseDAO<Entidade, Long> {
         return (Entidade) getSession().createQuery(hql).setParameter("login", Integer.valueOf(login)).uniqueResult();
     }
 
-    public List buscarEntidadesPorPerfil(Perfil perfil) {
+    @SuppressWarnings("unchecked")
+    public List<Entidade> buscarEntidadesPorPerfil(Perfil perfil) {
 
         String hql = "";
         hql += " SELECT e ";
@@ -48,11 +50,11 @@ public class EntidadeDAO extends BaseDAO<Entidade, Long> {
         hql += " INNER JOIN e.perfis p ";
         hql += " WHERE p = :perfil ";
 
-
         return getSession().createQuery(hql).setParameter("perfil", perfil).list();
     }
 
-    public List buscarProfessores(Entidade escola) {
+    @SuppressWarnings("unchecked")
+    public List<Entidade> buscarProfessores(Entidade escola) {
         String hql = "";
         Map<String, Object> params = new HashMap<>();
 
@@ -72,6 +74,7 @@ public class EntidadeDAO extends BaseDAO<Entidade, Long> {
 
     }
 
+    @SuppressWarnings("unchecked")
     public List<Entidade> buscarEscolasVinculadas(Entidade funcionario, Perfil perfil) {
         String hql = "";
 
@@ -82,21 +85,22 @@ public class EntidadeDAO extends BaseDAO<Entidade, Long> {
         hql += " and f.vinculoAtivo is true ";
 
         return getSession().createQuery(hql)
-
                 .setParameter("funcionario", funcionario)
-                .setParameter("perfil", perfil).list();
+                .setParameter("perfil", perfil)
+                .list();
     }
 
+    @SuppressWarnings("unchecked")
     public List<Entidade> buscarAlunosVinculados(List<Entidade> escolasVinculadas) {
         String hql = "";
 
         hql += " SELECT m.aluno FROM Matricula m ";
         hql += " where m.escola in :escolasVinculadas";
 
-        return getSession().createQuery(hql)
-                .setParameterList("escolasVinculadas", escolasVinculadas).list();
+        return getSession().createQuery(hql).setParameterList("escolasVinculadas", escolasVinculadas).list();
     }
 
+    @SuppressWarnings("unchecked")
     public List<Entidade> buscarEscolasVinculadasAoAluno(Entidade aluno) {
 
         String hql = "";
@@ -105,7 +109,6 @@ public class EntidadeDAO extends BaseDAO<Entidade, Long> {
         hql += " INNER JOIN t.matriculas m ";
         hql += " where m.aluno = :aluno ";
 
-        return getSession().createQuery(hql)
-                .setParameter("aluno", aluno).list();
+        return getSession().createQuery(hql).setParameter("aluno", aluno).list();
     }
 }

@@ -1,12 +1,13 @@
 package br.iesb.sie.dao;
 
-import br.iesb.sie.entity.Entidade;
-import br.iesb.sie.entity.NotaLancamento;
-
-import javax.inject.Named;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.inject.Named;
+
+import br.iesb.sie.entity.Entidade;
+import br.iesb.sie.entity.NotaLancamento;
 
 @Named
 public class NotaLancamentoDAO extends BaseDAO<NotaLancamento, Long> {
@@ -15,7 +16,9 @@ public class NotaLancamentoDAO extends BaseDAO<NotaLancamento, Long> {
         super(NotaLancamento.class);
     }
 
-    public List<NotaLancamento> buscarNotasLancamento(NotaLancamento filtro, List<Entidade> escolas, Entidade professor) {
+    @SuppressWarnings("unchecked")
+    public List<NotaLancamento> buscarNotasLancamento(NotaLancamento filtro, List<Entidade> escolas,
+            Entidade professor) {
         String hql = "";
         Map<String, Object> params = new HashMap<>();
 

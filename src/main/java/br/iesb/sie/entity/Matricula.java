@@ -1,13 +1,28 @@
 package br.iesb.sie.entity;
 
-import br.iesb.sie.model.Parentesco;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-import javax.persistence.*;
+import br.iesb.sie.model.Parentesco;
 
 @Entity
 @Table(name = "MATRICULA")
 public class Matricula extends BaseEntity {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5467575616078149974L;
 
     @Id
     @Column(name = "ID_MATRICULA")

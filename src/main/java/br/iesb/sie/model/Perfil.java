@@ -2,10 +2,7 @@ package br.iesb.sie.model;
 
 public enum Perfil {
 
-    ESCOLA("Escola"),
-    ALUNO("Aluno(a)"),
-    PROFESSOR("Professor(a)"),
-    SECRETARIA("Secretária(o)");
+    ESCOLA("Escola"), ALUNO("Aluno(a)"), PROFESSOR("Professor(a)"), SECRETARIA("Secretária(o)");
 
     private String nomeMF;
 

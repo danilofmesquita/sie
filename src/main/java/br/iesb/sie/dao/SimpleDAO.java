@@ -1,9 +1,9 @@
 package br.iesb.sie.dao;
 
-import org.hibernate.Session;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import org.hibernate.Session;
 
 public abstract class SimpleDAO {
 

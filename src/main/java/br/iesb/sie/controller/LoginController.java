@@ -1,14 +1,20 @@
 package br.iesb.sie.controller;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Model
 public class LoginController extends BaseController {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2601070582054015945L;
 
     @Inject
     private Logger logger;

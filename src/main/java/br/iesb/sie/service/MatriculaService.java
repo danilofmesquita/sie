@@ -1,19 +1,23 @@
 package br.iesb.sie.service;
 
+import java.util.List;
+
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+
 import br.iesb.sie.dao.MatriculaDAO;
 import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.entity.Matricula;
 
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-import java.util.List;
-
 @Stateless
 public class MatriculaService extends BaseService {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8972974778951135391L;
     @Inject
     private MatriculaDAO matriculaDAO;
-
 
     public void salvar(Matricula matricula) {
         matriculaDAO.salvar(matricula);

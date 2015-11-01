@@ -1,30 +1,39 @@
 package br.iesb.sie.controller;
 
-import br.iesb.sie.bean.UsuarioLogado;
-import br.iesb.sie.entity.*;
-import br.iesb.sie.model.Perfil;
-import br.iesb.sie.service.*;
-import br.iesb.sie.util.Attributes;
+import java.util.Collections;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.Collections;
-import java.util.List;
+
+import br.iesb.sie.bean.UsuarioLogado;
+import br.iesb.sie.entity.Endereco;
+import br.iesb.sie.entity.Entidade;
+import br.iesb.sie.entity.Matricula;
+import br.iesb.sie.entity.Turma;
+import br.iesb.sie.model.Perfil;
+import br.iesb.sie.service.CEPService;
+import br.iesb.sie.service.EntidadeService;
+import br.iesb.sie.service.MatriculaService;
+import br.iesb.sie.service.TurmaService;
+import br.iesb.sie.util.Attributes;
 
 @Named
 @ViewScoped
 public class ManterMatriculaController extends BaseController {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5709305336703459906L;
 
     @Inject
     private CEPService cepService;
 
     @Inject
     private EntidadeService entidadeService;
-
-    @Inject
-    private FuncionarioService funcionarioService;
 
     @Inject
     private TurmaService turmaService;

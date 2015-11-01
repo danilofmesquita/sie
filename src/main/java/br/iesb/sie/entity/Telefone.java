@@ -1,12 +1,22 @@
 package br.iesb.sie.entity;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "TELEFONE")
 public class Telefone extends BaseEntity {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 8946129650010683658L;
 
     @Id
     @Column(name = "ID_TELEFONE")

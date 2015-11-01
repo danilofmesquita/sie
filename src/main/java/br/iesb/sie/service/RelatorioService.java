@@ -1,16 +1,21 @@
 package br.iesb.sie.service;
 
+import java.util.List;
+
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+
 import br.iesb.sie.dao.RelatorioDAO;
 import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.entity.Relatorio;
 
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-import java.util.List;
-
 @Stateless
 public class RelatorioService extends BaseService {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3383922181255447427L;
     @Inject
     private RelatorioDAO relatorioDAO;
 

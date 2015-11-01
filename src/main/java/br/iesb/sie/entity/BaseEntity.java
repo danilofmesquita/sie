@@ -4,6 +4,11 @@ import java.io.Serializable;
 
 public abstract class BaseEntity implements Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4753521334736571769L;
+
     public abstract Serializable getId();
 
     @Override

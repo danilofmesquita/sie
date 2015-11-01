@@ -1,13 +1,24 @@
 package br.iesb.sie.entity;
 
-import br.iesb.sie.model.UF;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import javax.persistence.*;
+import br.iesb.sie.model.UF;
 
 @Entity
 @Table(name = "ENDERECO")
 public class Endereco extends BaseEntity {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3733186077832078559L;
 
     @Id
     @Column(name = "ID_ENDERECO")

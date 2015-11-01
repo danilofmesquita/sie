@@ -1,5 +1,13 @@
 package br.iesb.sie.controller;
 
+import java.util.Collections;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import br.iesb.sie.bean.UsuarioLogado;
 import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.entity.Turma;
@@ -7,16 +15,14 @@ import br.iesb.sie.model.Perfil;
 import br.iesb.sie.service.EntidadeService;
 import br.iesb.sie.service.TurmaService;
 
-import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-import java.util.Collections;
-import java.util.List;
-
 @Named
 @ViewScoped
 public class ListarTurmaController extends ListarController {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4324573957672301264L;
 
     @Inject
     private TurmaService turmaService;

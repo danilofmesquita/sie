@@ -1,20 +1,26 @@
 package br.iesb.sie.controller;
 
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import br.iesb.sie.bean.UsuarioLogado;
 import br.iesb.sie.entity.NotaLancamento;
 import br.iesb.sie.entity.Turma;
 import br.iesb.sie.service.NotaService;
 import br.iesb.sie.service.TurmaService;
 
-import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-import java.util.List;
-
 @Named
 @ViewScoped
 public class ListarNotaController extends ListarController {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7999335048470317415L;
 
     @Inject
     private NotaService notaService;

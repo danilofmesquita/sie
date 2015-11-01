@@ -1,18 +1,24 @@
 package br.iesb.sie.controller;
 
-import br.iesb.sie.bean.UsuarioLogado;
-import br.iesb.sie.entity.Relatorio;
-import br.iesb.sie.util.Attributes;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.List;
+
+import br.iesb.sie.bean.UsuarioLogado;
+import br.iesb.sie.entity.Relatorio;
+import br.iesb.sie.util.Attributes;
 
 @Named
 @ViewScoped
 public class ListarRelatorioController extends RelatorioController {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6994565579201203332L;
 
     @Inject
     private UsuarioLogado usuarioLogado;
@@ -42,7 +48,7 @@ public class ListarRelatorioController extends RelatorioController {
         setRelatorio(new Relatorio());
     }
 
-    public String editar(Long id){
+    public String editar(Long id) {
         putFlashAttribute(Attributes.ID, id);
         return "incluir.xhtml?faces-redirect=true";
     }

@@ -1,21 +1,24 @@
 package br.iesb.sie.service;
 
-import br.iesb.sie.dao.FrequenciaDAO;
-import br.iesb.sie.dao.FrequenciaLancamentoDAO;
-import br.iesb.sie.entity.Entidade;
-import br.iesb.sie.entity.FrequenciaLancamento;
-import org.hibernate.Hibernate;
+import java.util.Date;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import java.util.Date;
-import java.util.List;
+
+import org.hibernate.Hibernate;
+
+import br.iesb.sie.dao.FrequenciaLancamentoDAO;
+import br.iesb.sie.entity.Entidade;
+import br.iesb.sie.entity.FrequenciaLancamento;
 
 @Stateless
 public class FrequenciaService extends BaseService {
 
-    @Inject
-    private FrequenciaDAO frequenciaDAO;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5255051289876767357L;
 
     @Inject
     private FrequenciaLancamentoDAO frequenciaLancamentoDAO;
@@ -35,8 +38,7 @@ public class FrequenciaService extends BaseService {
     }
 
     public List<FrequenciaLancamento> buscarFrequenciasLancamento(FrequenciaLancamento filtro,
-                                                                  List<Entidade> escolasVinculadas,
-                                                                  Entidade professor) {
+            List<Entidade> escolasVinculadas, Entidade professor) {
         return frequenciaLancamentoDAO.buscarFrequenciasLancamento(filtro, escolasVinculadas, professor);
     }
 

@@ -1,16 +1,22 @@
 package br.iesb.sie.controller;
 
+import java.util.Collections;
+import java.util.List;
+
+import javax.inject.Inject;
+
 import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.entity.Relatorio;
 import br.iesb.sie.entity.Turma;
 import br.iesb.sie.service.RelatorioService;
 import br.iesb.sie.service.TurmaService;
 
-import javax.inject.Inject;
-import java.util.Collections;
-import java.util.List;
-
 public class RelatorioController extends BaseController {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -990109336743387660L;
 
     @Inject
     protected RelatorioService relatorioService;
@@ -20,7 +26,7 @@ public class RelatorioController extends BaseController {
 
     private Relatorio relatorio;
 
-    public void init(){
+    public void init() {
         relatorio = new Relatorio();
     }
 

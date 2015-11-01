@@ -1,8 +1,8 @@
 package br.iesb.sie.dao;
 
-import br.iesb.sie.entity.ProfessorDisciplina;
-
 import javax.inject.Named;
+
+import br.iesb.sie.entity.ProfessorDisciplina;
 
 @Named
 public class ProfessorDisciplinaDAO extends BaseDAO<ProfessorDisciplina, Long> {

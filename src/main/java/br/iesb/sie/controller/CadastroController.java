@@ -1,5 +1,12 @@
 package br.iesb.sie.controller;
 
+import java.util.ArrayList;
+
+import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import br.iesb.sie.entity.Endereco;
 import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.entity.Telefone;
@@ -7,15 +14,14 @@ import br.iesb.sie.service.CEPService;
 import br.iesb.sie.service.EntidadeService;
 import br.iesb.sie.util.NavigationRules;
 
-import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-import java.util.ArrayList;
-
 @Named
 @ViewScoped
 public class CadastroController extends BaseController {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 8565729650757035391L;
 
     @Inject
     private EntidadeService entidadeService;

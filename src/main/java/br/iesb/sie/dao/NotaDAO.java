@@ -1,9 +1,8 @@
 package br.iesb.sie.dao;
 
+import javax.inject.Named;
 
 import br.iesb.sie.entity.Nota;
-
-import javax.inject.Named;
 
 @Named
 public class NotaDAO extends BaseDAO<Nota, Long> {

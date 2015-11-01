@@ -1,5 +1,15 @@
 package br.iesb.sie.controller;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import br.iesb.sie.bean.UsuarioLogado;
 import br.iesb.sie.dto.PasseDTO;
 import br.iesb.sie.entity.Entidade;
@@ -9,21 +19,15 @@ import br.iesb.sie.service.JasperReportsService;
 import br.iesb.sie.service.TurmaService;
 import br.iesb.sie.util.DownloadUtil;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperReport;
-
-import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Named
 @ViewScoped
 public class SolicitarPasseController extends BaseController {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4247747463101803545L;
 
     @Inject
     private EntidadeService entidadeService;

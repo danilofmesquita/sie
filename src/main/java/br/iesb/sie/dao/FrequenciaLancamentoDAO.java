@@ -1,12 +1,13 @@
 package br.iesb.sie.dao;
 
-import br.iesb.sie.entity.Entidade;
-import br.iesb.sie.entity.FrequenciaLancamento;
-
-import javax.inject.Named;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.inject.Named;
+
+import br.iesb.sie.entity.Entidade;
+import br.iesb.sie.entity.FrequenciaLancamento;
 
 @Named
 public class FrequenciaLancamentoDAO extends BaseDAO<FrequenciaLancamento, Long> {
@@ -15,8 +16,9 @@ public class FrequenciaLancamentoDAO extends BaseDAO<FrequenciaLancamento, Long>
         super(FrequenciaLancamento.class);
     }
 
+    @SuppressWarnings("unchecked")
     public List<FrequenciaLancamento> buscarFrequenciasLancamento(FrequenciaLancamento filtro, List<Entidade> escolas,
-                                                                  Entidade professor) {
+            Entidade professor) {
         String hql = "";
         Map<String, Object> params = new HashMap<>();
 

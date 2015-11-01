@@ -1,21 +1,24 @@
 package br.iesb.sie.service;
 
-import br.iesb.sie.dao.NotaDAO;
-import br.iesb.sie.dao.NotaLancamentoDAO;
-import br.iesb.sie.entity.Entidade;
-import br.iesb.sie.entity.NotaLancamento;
-import org.hibernate.Hibernate;
-
-import javax.ejb.Stateless;
-import javax.inject.Inject;
 import java.util.Date;
 import java.util.List;
 
-@Stateless
-public class NotaService extends BaseService  {
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 
-    @Inject
-    private NotaDAO notaDAO;
+import org.hibernate.Hibernate;
+
+import br.iesb.sie.dao.NotaLancamentoDAO;
+import br.iesb.sie.entity.Entidade;
+import br.iesb.sie.entity.NotaLancamento;
+
+@Stateless
+public class NotaService extends BaseService {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2181078896638463490L;
 
     @Inject
     private NotaLancamentoDAO notaLancamentoDAO;
@@ -34,14 +37,12 @@ public class NotaService extends BaseService  {
         return notaLancamento;
     }
 
-    public List<NotaLancamento> buscarNotasLancamento(NotaLancamento notaLancamento,
-                                                      List<Entidade> escolasVinculadas,
-                                                      Entidade professor) {
-        List<NotaLancamento> notaLancamentos
-                = notaLancamentoDAO.buscarNotasLancamento(notaLancamento, escolasVinculadas, professor);
+    public List<NotaLancamento> buscarNotasLancamento(NotaLancamento notaLancamento, List<Entidade> escolasVinculadas,
+            Entidade professor) {
+        List<NotaLancamento> notaLancamentos = notaLancamentoDAO.buscarNotasLancamento(notaLancamento,
+                escolasVinculadas, professor);
         notaLancamentos.forEach(n -> Hibernate.initialize(n.getNotas()));
         return notaLancamentos;
     }
-
 
 }

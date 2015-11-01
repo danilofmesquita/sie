@@ -1,20 +1,26 @@
 package br.iesb.sie.controller;
 
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import br.iesb.sie.bean.UsuarioLogado;
 import br.iesb.sie.entity.FrequenciaLancamento;
 import br.iesb.sie.entity.Turma;
 import br.iesb.sie.service.FrequenciaService;
 import br.iesb.sie.service.TurmaService;
 
-import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-import java.util.List;
-
 @Named
 @ViewScoped
 public class ListarFrequenciaController extends ListarController {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8143593084481355599L;
 
     @Inject
     private FrequenciaService frequenciaService;
@@ -41,7 +47,8 @@ public class ListarFrequenciaController extends ListarController {
             frequencias = frequenciaService.buscarFrequenciasLancamento(filtro, usuarioLogado.getEscolasVinculadas(),
                     usuarioLogado.getEntidade());
         } else {
-            frequencias = frequenciaService.buscarFrequenciasLancamento(filtro, usuarioLogado.getEscolasVinculadas(), null);
+            frequencias = frequenciaService.buscarFrequenciasLancamento(filtro, usuarioLogado.getEscolasVinculadas(),
+                    null);
         }
     }
 

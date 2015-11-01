@@ -1,11 +1,19 @@
 package br.iesb.sie.util;
 
-import br.iesb.sie.model.*;
-
-import javax.enterprise.inject.Model;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import javax.enterprise.inject.Model;
+
+import br.iesb.sie.model.Bimestre;
+import br.iesb.sie.model.Disciplina;
+import br.iesb.sie.model.Parentesco;
+import br.iesb.sie.model.Perfil;
+import br.iesb.sie.model.Serie;
+import br.iesb.sie.model.TipoPessoa;
+import br.iesb.sie.model.Turno;
+import br.iesb.sie.model.UF;
 
 @Model
 public class FactoryUtil {

@@ -1,8 +1,8 @@
 package br.iesb.sie.dao;
 
-import br.iesb.sie.entity.Frequencia;
-
 import javax.inject.Named;
+
+import br.iesb.sie.entity.Frequencia;
 
 @Named
 public class FrequenciaDAO extends BaseDAO<Frequencia, Long> {

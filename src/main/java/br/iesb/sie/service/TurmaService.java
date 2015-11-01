@@ -1,24 +1,26 @@
 package br.iesb.sie.service;
 
-import br.iesb.sie.dao.ProfessorDisciplinaDAO;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+
 import br.iesb.sie.dao.TurmaDAO;
 import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.entity.Turma;
 import br.iesb.sie.model.Disciplina;
 
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.List;
-
 @Stateless
 public class TurmaService extends BaseService {
 
-    @Inject
-    private TurmaDAO turmaDAO;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8505725186152964563L;
 
     @Inject
-    private ProfessorDisciplinaDAO professorDisciplinaDAO;
+    private TurmaDAO turmaDAO;
 
     public void salvarTurma(Turma turma) {
         turmaDAO.salvar(turma);
@@ -50,7 +52,7 @@ public class TurmaService extends BaseService {
         List<Disciplina> disciplinas = new ArrayList<>();
 
         turma.getProfessorDisciplinas().forEach((pd) -> {
-            if(pd.getProfessor().getId().equals(idEntidadeProfessor)) {
+            if (pd.getProfessor().getId().equals(idEntidadeProfessor)) {
                 disciplinas.add(pd.getDisciplina());
             }
         });

@@ -1,5 +1,14 @@
 package br.iesb.sie.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import br.iesb.sie.bean.UsuarioLogado;
 import br.iesb.sie.entity.Nota;
 import br.iesb.sie.entity.NotaLancamento;
@@ -9,17 +18,14 @@ import br.iesb.sie.service.NotaService;
 import br.iesb.sie.service.TurmaService;
 import br.iesb.sie.util.Attributes;
 
-import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 @Named
 @ViewScoped
 public class ManterNotaController extends BaseController {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -7994476545778420377L;
 
     @Inject
     private UsuarioLogado usuarioLogado;

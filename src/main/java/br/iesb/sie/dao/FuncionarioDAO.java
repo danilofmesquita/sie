@@ -1,14 +1,16 @@
 package br.iesb.sie.dao;
 
-import br.iesb.sie.entity.Entidade;
-import br.iesb.sie.entity.Funcionario;
-import br.iesb.sie.model.Perfil;
-import org.hibernate.Query;
-
-import javax.inject.Named;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.inject.Named;
+
+import org.hibernate.Query;
+
+import br.iesb.sie.entity.Entidade;
+import br.iesb.sie.entity.Funcionario;
+import br.iesb.sie.model.Perfil;
 
 @Named
 public class FuncionarioDAO extends BaseDAO<Funcionario, Long> {
@@ -17,7 +19,8 @@ public class FuncionarioDAO extends BaseDAO<Funcionario, Long> {
         super(Funcionario.class);
     }
 
-    public List buscarFuncionarios(Funcionario filtro) {
+    @SuppressWarnings("unchecked")
+    public List<Funcionario> buscarFuncionarios(Funcionario filtro) {
 
         StringBuilder hql = new StringBuilder();
         Map<String, Object> params = new HashMap<>();
@@ -50,6 +53,7 @@ public class FuncionarioDAO extends BaseDAO<Funcionario, Long> {
         return query.list();
     }
 
+    @SuppressWarnings("unchecked")
     public List<Funcionario> buscarFuncionarioPorPerfil(Perfil perfil, Entidade funcionario) {
         String hql = " select f from Funcionario f";
 
@@ -58,9 +62,8 @@ public class FuncionarioDAO extends BaseDAO<Funcionario, Long> {
         hql += " and f.vinculoAtivo is true ";
 
         return getSession().createQuery(hql)
-
                 .setParameter("funcionario", funcionario)
-                .setParameter("perfil",perfil)
+                .setParameter("perfil", perfil)
                 .list();
     }
 }

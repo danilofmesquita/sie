@@ -1,12 +1,13 @@
 package br.iesb.sie.dao;
 
-import br.iesb.sie.entity.Entidade;
-import br.iesb.sie.entity.Relatorio;
-
-import javax.inject.Named;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.inject.Named;
+
+import br.iesb.sie.entity.Entidade;
+import br.iesb.sie.entity.Relatorio;
 
 @Named
 public class RelatorioDAO extends BaseDAO<Relatorio, Long> {
@@ -15,6 +16,7 @@ public class RelatorioDAO extends BaseDAO<Relatorio, Long> {
         super(Relatorio.class);
     }
 
+    @SuppressWarnings("unchecked")
     public List<Relatorio> buscarRelatorios(Relatorio relatorio, List<Entidade> escolas) {
         String hql = "";
         Map<String, Object> params = new HashMap<>();
@@ -37,7 +39,7 @@ public class RelatorioDAO extends BaseDAO<Relatorio, Long> {
                 hql += " AND r.bimestre = :bimestre ";
                 params.put("bimestre", relatorio.getBimestre());
             }
-            if(relatorio.getAluno() != null){
+            if (relatorio.getAluno() != null) {
                 hql += " AND r.aluno = :aluno ";
                 params.put("aluno", relatorio.getAluno());
             }

@@ -1,9 +1,11 @@
 package br.iesb.sie.jsf;
 
-import com.sun.faces.renderkit.Attribute;
-import com.sun.faces.renderkit.AttributeManager;
-import com.sun.faces.renderkit.RenderKitUtils;
-import com.sun.faces.renderkit.html_basic.MessagesRenderer;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
@@ -12,12 +14,15 @@ import javax.faces.component.UIMessages;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
-import java.io.IOException;
-import java.util.*;
+
+import com.sun.faces.renderkit.Attribute;
+import com.sun.faces.renderkit.AttributeManager;
+import com.sun.faces.renderkit.RenderKitUtils;
+import com.sun.faces.renderkit.html_basic.MessagesRenderer;
 
 /**
- * Component for twitter bootstrap alerts.
- * Overrides default JSF Message renderer with Bootstrap alert design.
+ * Component for twitter bootstrap alerts. Overrides default JSF Message
+ * renderer with Bootstrap alert design.
  *
  * @author vlcekmi3
  */
@@ -35,7 +40,8 @@ public class BootstrapMessagesRenderer extends MessagesRenderer {
     public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
         rendererParamsNotNull(context, component);
 
-        if (!shouldEncode(component)) return;
+        if (!shouldEncode(component))
+            return;
 
         boolean mustRender = shouldWriteIdAttribute(component);
 
@@ -48,7 +54,7 @@ public class BootstrapMessagesRenderer extends MessagesRenderer {
             if (messages.isGlobalOnly())
                 clientId = "";
 
-        Iterator messageIter = getMessageIter(context, clientId, component);
+        Iterator<?> messageIter = getMessageIter(context, clientId, component);
 
         assert (messageIter != null);
 
@@ -70,10 +76,14 @@ public class BootstrapMessagesRenderer extends MessagesRenderer {
         RenderKitUtils.renderPassThruAttributes(context, writer, component, ATTRIBUTES);
 
         Map<Severity, List<FacesMessage>> msgs = new HashMap<Severity, List<FacesMessage>>();
-        msgs.put(FacesMessage.SEVERITY_INFO, new ArrayList<FacesMessage>()); // Bootstrap info
-        msgs.put(FacesMessage.SEVERITY_WARN, new ArrayList<FacesMessage>()); // Bootstrap warning
-        msgs.put(FacesMessage.SEVERITY_ERROR, new ArrayList<FacesMessage>()); // Bootstrap error
-        msgs.put(FacesMessage.SEVERITY_FATAL, new ArrayList<FacesMessage>()); // Bootstrap error
+        msgs.put(FacesMessage.SEVERITY_INFO, new ArrayList<FacesMessage>()); // Bootstrap
+                                                                             // info
+        msgs.put(FacesMessage.SEVERITY_WARN, new ArrayList<FacesMessage>()); // Bootstrap
+                                                                             // warning
+        msgs.put(FacesMessage.SEVERITY_ERROR, new ArrayList<FacesMessage>()); // Bootstrap
+                                                                              // error
+        msgs.put(FacesMessage.SEVERITY_FATAL, new ArrayList<FacesMessage>()); // Bootstrap
+                                                                              // error
 
         while (messageIter.hasNext()) {
             FacesMessage curMessage = (FacesMessage) messageIter.next();
@@ -105,7 +115,8 @@ public class BootstrapMessagesRenderer extends MessagesRenderer {
         }
     }
 
-    private void encodeSeverityMessages(FacesContext facesContext, UIComponent component, UIMessages uiMessages, Severity severity, List<FacesMessage> messages) throws IOException {
+    private void encodeSeverityMessages(FacesContext facesContext, UIComponent component, UIMessages uiMessages,
+            Severity severity, List<FacesMessage> messages) throws IOException {
         ResponseWriter writer = facesContext.getResponseWriter();
 
         String alertSeverityClass = "";

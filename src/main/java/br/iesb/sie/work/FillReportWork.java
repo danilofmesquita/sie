@@ -1,9 +1,5 @@
 package br.iesb.sie.work;
 
-import net.sf.jasperreports.engine.*;
-import org.hibernate.jdbc.Work;
-
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -11,6 +7,16 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.imageio.ImageIO;
+
+import org.hibernate.jdbc.Work;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 
 public class FillReportWork implements Work {
 
@@ -40,7 +46,7 @@ public class FillReportWork implements Work {
 
     private void addDefaultParams() {
         try {
-            //Sempre adiciona o logo do SIE aos params
+            // Sempre adiciona o logo do SIE aos params
             BufferedImage image = ImageIO.read(getClass().getResource("/reports/SIE.png"));
             params.put("LOGO", image);
         } catch (Exception e) {

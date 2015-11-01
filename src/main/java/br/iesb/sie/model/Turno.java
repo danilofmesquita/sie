@@ -1,11 +1,8 @@
 package br.iesb.sie.model;
 
-
 public enum Turno {
 
-    MATUTINO("Matutino"),
-    VESPERTINO("Vespertino"),
-    NOTURNO("Noturno");
+    MATUTINO("Matutino"), VESPERTINO("Vespertino"), NOTURNO("Noturno");
 
     private String descricao;
 

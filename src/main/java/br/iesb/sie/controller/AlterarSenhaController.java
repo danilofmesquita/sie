@@ -1,15 +1,20 @@
 package br.iesb.sie.controller;
 
-import br.iesb.sie.bean.UsuarioLogado;
-import br.iesb.sie.service.EntidadeService;
-
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.iesb.sie.bean.UsuarioLogado;
+import br.iesb.sie.service.EntidadeService;
+
 @Named
 @ViewScoped
 public class AlterarSenhaController extends BaseController {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1801248198797724561L;
 
     @Inject
     private EntidadeService entidadeService;

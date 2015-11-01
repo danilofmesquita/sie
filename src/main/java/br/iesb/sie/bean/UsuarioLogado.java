@@ -1,5 +1,17 @@
 package br.iesb.sie.bean;
 
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.servlet.http.HttpSession;
+
 import br.iesb.sie.controller.BaseController;
 import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.model.Perfil;
@@ -8,17 +20,14 @@ import br.iesb.sie.service.FuncionarioService;
 import br.iesb.sie.service.MatriculaService;
 import br.iesb.sie.util.NavigationRules;
 
-import javax.enterprise.context.SessionScoped;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.servlet.http.HttpSession;
-import java.security.Principal;
-import java.util.*;
-
 @Named
 @SessionScoped
 public class UsuarioLogado extends BaseController {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8508465255757968157L;
 
     @Inject
     private EntidadeService entidadeService;
@@ -92,10 +101,12 @@ public class UsuarioLogado extends BaseController {
         if (escolasVinculadas == null) {
             Set<Entidade> setEscolasVinculadas = new HashSet<>();
             if (isSecretaria()) {
-                setEscolasVinculadas.addAll(entidadeService.buscarEscolasVinculadasAoFuncionario(getEntidade(), Perfil.SECRETARIA));
+                setEscolasVinculadas
+                        .addAll(entidadeService.buscarEscolasVinculadasAoFuncionario(getEntidade(), Perfil.SECRETARIA));
             }
             if (isProfessor()) {
-                setEscolasVinculadas.addAll(entidadeService.buscarEscolasVinculadasAoFuncionario(getEntidade(), Perfil.PROFESSOR));
+                setEscolasVinculadas
+                        .addAll(entidadeService.buscarEscolasVinculadasAoFuncionario(getEntidade(), Perfil.PROFESSOR));
             }
             if (isEscola()) {
                 return Collections.singletonList(getEntidade());

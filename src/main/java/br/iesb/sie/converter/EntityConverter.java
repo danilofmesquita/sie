@@ -1,15 +1,14 @@
 package br.iesb.sie.converter;
 
-import br.iesb.sie.entity.BaseEntity;
-
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+import br.iesb.sie.entity.BaseEntity;
+
 @FacesConverter("sie.converter.entity")
 public class EntityConverter implements Converter {
-
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {

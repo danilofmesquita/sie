@@ -1,13 +1,14 @@
 package br.iesb.sie.dto;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.inject.Inject;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class EmailDTO {
 
@@ -29,7 +30,6 @@ public class EmailDTO {
         this.assunto = assunto;
         return this;
     }
-
 
     public EmailDTO addConteudo(String conteudo) {
         this.conteudo = conteudo;
@@ -54,6 +54,5 @@ public class EmailDTO {
 
         return null;
     }
-
 
 }

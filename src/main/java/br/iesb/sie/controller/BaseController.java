@@ -1,11 +1,16 @@
 package br.iesb.sie.controller;
 
+import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import java.io.Serializable;
 
 public abstract class BaseController implements Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 450687208376152404L;
 
     protected FacesContext getFacesContext() {
         return FacesContext.getCurrentInstance();
@@ -19,6 +24,7 @@ public abstract class BaseController implements Serializable {
         getFacesContext().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
     }
 
+    @SuppressWarnings("unchecked")
     protected <T> T getFlashAttribute(String flashAttributeName) {
         return (T) getFacesContext().getExternalContext().getFlash().get(flashAttributeName);
     }

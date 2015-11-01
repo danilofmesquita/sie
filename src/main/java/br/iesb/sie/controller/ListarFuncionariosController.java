@@ -1,21 +1,27 @@
 package br.iesb.sie.controller;
 
+import java.util.Collections;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import br.iesb.sie.bean.UsuarioLogado;
 import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.entity.Funcionario;
 import br.iesb.sie.service.EntidadeService;
 import br.iesb.sie.service.FuncionarioService;
 
-import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-import java.util.Collections;
-import java.util.List;
-
 @Named
 @ViewScoped
 public class ListarFuncionariosController extends ListarController {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4191109168685375283L;
 
     @Inject
     private FuncionarioService funcionarioService;

@@ -1,14 +1,30 @@
 package br.iesb.sie.entity;
 
-import br.iesb.sie.model.Perfil;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+
+import br.iesb.sie.model.Perfil;
 
 @Entity
 @Table(name = "FUNCIONARIO")
 public class Funcionario extends BaseEntity {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6001316206032963693L;
 
     @Id
     @Column(name = "ID_FUNCIONARIO")

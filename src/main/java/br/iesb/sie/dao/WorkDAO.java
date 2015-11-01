@@ -1,8 +1,8 @@
 package br.iesb.sie.dao;
 
-import org.hibernate.jdbc.Work;
-
 import javax.enterprise.inject.Model;
+
+import org.hibernate.jdbc.Work;
 
 @Model
 public class WorkDAO extends SimpleDAO {

@@ -1,18 +1,39 @@
 package br.iesb.sie.entity;
 
-import br.iesb.sie.model.Perfil;
-import br.iesb.sie.model.TipoPessoa;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import br.iesb.sie.model.Perfil;
+import br.iesb.sie.model.TipoPessoa;
+
 @Entity
 @Table(name = "ENTIDADE")
 public class Entidade extends BaseEntity {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3664592317168038783L;
 
     @Id
     @Column(name = "ID_ENTIDADE")
@@ -58,8 +79,7 @@ public class Entidade extends BaseEntity {
     @Column(name = "NOME_PERFIL")
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = Perfil.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "PERFIL_ENTIDADE",
-            joinColumns = @JoinColumn(name = "FK_ENTIDADE"))
+    @CollectionTable(name = "PERFIL_ENTIDADE", joinColumns = @JoinColumn(name = "FK_ENTIDADE") )
     private List<Perfil> perfis = new ArrayList<>();
 
     @Column(name = "LOGIN")
@@ -200,15 +220,14 @@ public class Entidade extends BaseEntity {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Entidade entidade = (Entidade) o;
-        return Objects.equals(id, entidade.id) &&
-                Objects.equals(tipoPessoa, entidade.tipoPessoa) &&
-                Objects.equals(cpfCnpj, entidade.cpfCnpj) &&
-                Objects.equals(email, entidade.email) &&
-                Objects.equals(senha, entidade.senha) &&
-                Objects.equals(login, entidade.login);
+        return Objects.equals(id, entidade.id) && Objects.equals(tipoPessoa, entidade.tipoPessoa)
+                && Objects.equals(cpfCnpj, entidade.cpfCnpj) && Objects.equals(email, entidade.email)
+                && Objects.equals(senha, entidade.senha) && Objects.equals(login, entidade.login);
     }
 
     @Override

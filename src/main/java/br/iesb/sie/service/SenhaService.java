@@ -1,7 +1,5 @@
 package br.iesb.sie.service;
 
-import javax.ejb.Stateless;
-import javax.inject.Inject;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -10,9 +8,16 @@ import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+
 @Stateless
 public class SenhaService extends BaseService {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 3966796190208328542L;
     @Inject
     private Logger logger;
 

@@ -1,18 +1,24 @@
 package br.iesb.sie.service;
 
+import java.util.Iterator;
+import java.util.List;
+
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+
 import br.iesb.sie.dao.EntidadeDAO;
 import br.iesb.sie.dto.EmailCadastroConcluidoDTO;
 import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.entity.Telefone;
 import br.iesb.sie.model.Perfil;
 
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-import java.util.Iterator;
-import java.util.List;
-
 @Stateless
 public class EntidadeService extends BaseService {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2722218344413941569L;
 
     @Inject
     private EntidadeDAO entidadeDAO;
@@ -42,8 +48,7 @@ public class EntidadeService extends BaseService {
         return entidadeDAO.buscarEntidadePorLogin(login);
     }
 
-    public Integer atualizarSenha(Entidade entidade, String senhaAnterior,
-                                  String novaSenha) {
+    public Integer atualizarSenha(Entidade entidade, String senhaAnterior, String novaSenha) {
 
         if (entidade.getSenha().equals(senhaService.codificarSenha(senhaAnterior))) {
             entidade.setSenha(senhaService.codificarSenha(novaSenha));
@@ -79,7 +84,6 @@ public class EntidadeService extends BaseService {
             }
         }
     }
-
 
     public List<Entidade> buscarEscolasVinculadasAoAluno(Entidade aluno) {
         return entidadeDAO.buscarEscolasVinculadasAoAluno(aluno);

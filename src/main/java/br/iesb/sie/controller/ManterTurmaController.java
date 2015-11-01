@@ -1,5 +1,13 @@
 package br.iesb.sie.controller;
 
+import java.util.Collections;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import br.iesb.sie.bean.UsuarioLogado;
 import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.entity.ProfessorDisciplina;
@@ -9,16 +17,14 @@ import br.iesb.sie.service.EntidadeService;
 import br.iesb.sie.service.TurmaService;
 import br.iesb.sie.util.Attributes;
 
-import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-import java.util.Collections;
-import java.util.List;
-
 @Named
 @ViewScoped
 public class ManterTurmaController extends BaseController {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -2643724481960871552L;
 
     @Inject
     private UsuarioLogado usuarioLogado;
@@ -48,7 +54,8 @@ public class ManterTurmaController extends BaseController {
         if (usuarioLogado.isEscola()) {
             escolasVinculadas = Collections.singletonList(usuarioLogado.getEntidade());
         } else if (usuarioLogado.isSecretaria()) {
-            escolasVinculadas = entidadeService.buscarEscolasVinculadasAoFuncionario(usuarioLogado.getEntidade(), Perfil.SECRETARIA);
+            escolasVinculadas = entidadeService.buscarEscolasVinculadasAoFuncionario(usuarioLogado.getEntidade(),
+                    Perfil.SECRETARIA);
         }
 
         professorDisciplina = new ProfessorDisciplina(turma);

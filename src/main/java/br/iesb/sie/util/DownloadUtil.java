@@ -1,11 +1,12 @@
 package br.iesb.sie.util;
 
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 
 public class DownloadUtil {
 
@@ -14,14 +15,12 @@ public class DownloadUtil {
 
     public void download(FacesContext facesContext, String contentType, byte[] file, String fileName) {
 
-
         ExternalContext ec = facesContext.getExternalContext();
 
         ec.responseReset();
         ec.setResponseContentType(contentType);
         ec.setResponseContentLength(file.length);
         ec.setResponseHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
-
 
         try (OutputStream output = ec.getResponseOutputStream()) {
             output.write(file);

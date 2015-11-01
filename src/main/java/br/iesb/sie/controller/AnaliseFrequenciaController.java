@@ -1,20 +1,27 @@
 package br.iesb.sie.controller;
 
-import br.iesb.sie.entity.Entidade;
-import br.iesb.sie.entity.Turma;
-import br.iesb.sie.service.AnaliseService;
-import br.iesb.sie.service.TurmaService;
-import com.google.gson.Gson;
+import java.util.Collections;
+import java.util.List;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.Collections;
-import java.util.List;
+
+import com.google.gson.Gson;
+
+import br.iesb.sie.entity.Entidade;
+import br.iesb.sie.entity.Turma;
+import br.iesb.sie.service.AnaliseService;
+import br.iesb.sie.service.TurmaService;
 
 @Named
 @ViewScoped
 public class AnaliseFrequenciaController extends BaseController {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2581244621930458646L;
 
     @Inject
     private TurmaService turmaService;
@@ -28,8 +35,7 @@ public class AnaliseFrequenciaController extends BaseController {
 
     private String graphData;
 
-
-    public void constuirGrafico(){
+    public void constuirGrafico() {
         graphData = new Gson().toJson(analiseService.buscarDadosGraficoFrequencia(turma));
     }
 
