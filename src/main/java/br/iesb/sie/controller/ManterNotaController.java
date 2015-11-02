@@ -1,14 +1,5 @@
 package br.iesb.sie.controller;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import br.iesb.sie.bean.UsuarioLogado;
 import br.iesb.sie.entity.Nota;
 import br.iesb.sie.entity.NotaLancamento;
@@ -17,6 +8,14 @@ import br.iesb.sie.model.Disciplina;
 import br.iesb.sie.service.NotaService;
 import br.iesb.sie.service.TurmaService;
 import br.iesb.sie.util.Attributes;
+
+import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Named
 @ViewScoped
@@ -56,10 +55,10 @@ public class ManterNotaController extends BaseController {
 
     private void preencherDisciplinas() {
         if (usuarioLogado.isProfessor()) {
-            disciplinas = turmaService.buscarDisciplinasVinculadasATurmaEProfessor(lancamento.getTurma().getId(),
+            disciplinas = turmaService.buscarDisciplinasPorTurmaProfessor(lancamento.getTurma().getId(),
                     usuarioLogado.getEntidade().getId());
         } else {
-            disciplinas = turmaService.buscarDisciplinasVinculadasATurma(lancamento.getTurma().getId());
+            disciplinas = turmaService.buscarDisciplinasPorTurma(lancamento.getTurma().getId());
         }
     }
 

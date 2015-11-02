@@ -1,15 +1,5 @@
 package br.iesb.sie.controller;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import br.iesb.sie.bean.UsuarioLogado;
 import br.iesb.sie.dto.BoletimDTO;
 import br.iesb.sie.entity.Entidade;
@@ -19,6 +9,15 @@ import br.iesb.sie.service.JasperReportsService;
 import br.iesb.sie.service.TurmaService;
 import br.iesb.sie.util.DownloadUtil;
 import net.sf.jasperreports.engine.JRException;
+
+import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Named
 @ViewScoped
@@ -54,7 +53,7 @@ public class SolicitarBoletimController extends BaseController {
 
     public List<Turma> getTurmasVinculadas() {
         if (boletimDTO.getEscola() != null) {
-            return turmaService.buscarTurmasVinculadasAEscolaEAluno(boletimDTO.getEscola(),
+            return turmaService.buscarTurmasPorEscolaAluno(boletimDTO.getEscola(),
                     usuarioLogado.getEntidade());
         } else {
             return Collections.emptyList();

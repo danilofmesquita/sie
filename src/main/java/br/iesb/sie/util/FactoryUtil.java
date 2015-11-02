@@ -1,22 +1,21 @@
 package br.iesb.sie.util;
 
+import br.iesb.sie.entity.Entidade;
+import br.iesb.sie.entity.Turma;
+import br.iesb.sie.model.*;
+import br.iesb.sie.service.TurmaService;
+
+import javax.enterprise.inject.Model;
+import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import javax.enterprise.inject.Model;
-
-import br.iesb.sie.model.Bimestre;
-import br.iesb.sie.model.Disciplina;
-import br.iesb.sie.model.Parentesco;
-import br.iesb.sie.model.Perfil;
-import br.iesb.sie.model.Serie;
-import br.iesb.sie.model.TipoPessoa;
-import br.iesb.sie.model.Turno;
-import br.iesb.sie.model.UF;
-
 @Model
 public class FactoryUtil {
+
+    @Inject
+    private TurmaService turmaService;
 
     public List<TipoPessoa> getTiposPessoa() {
         return Arrays.asList(TipoPessoa.values());
@@ -56,5 +55,25 @@ public class FactoryUtil {
 
     public List<Bimestre> getBimestres() {
         return Arrays.asList(Bimestre.values());
+    }
+
+    public List<TipoAnalise> getTiposAnalise() {
+        return Arrays.asList(TipoAnalise.values());
+    }
+
+    public List<Entidade> buscarAlunos(Turma turma) {
+        if (turma != null) {
+            return turmaService.buscarAlunos(turma);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<Disciplina> buscarDisciplinas(Turma turma) {
+        if (turma != null) {
+            return turmaService.buscarDisciplinasPorTurma(turma.getId());
+        } else {
+            return Collections.emptyList();
+        }
     }
 }

@@ -2,10 +2,10 @@ package br.iesb.sie.dto;
 
 import java.util.List;
 
-public class FrequenciaDTO {
+public class GraficoBarrasDTO {
 
     public List<String> ticks;
-    public List<List<Long>> bars;
+    public List<List<Object>> bars;
 
     public List<String> getTicks() {
         return ticks;
@@ -15,11 +15,11 @@ public class FrequenciaDTO {
         this.ticks = ticks;
     }
 
-    public List<List<Long>> getBars() {
+    public List<List<Object>> getBars() {
         return bars;
     }
 
-    public void setBars(List<List<Long>> bars) {
+    public void setBars(List<List<Object>> bars) {
         this.bars = bars;
     }
 }

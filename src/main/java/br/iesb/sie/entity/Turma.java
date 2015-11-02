@@ -1,23 +1,11 @@
 package br.iesb.sie.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
 import br.iesb.sie.model.Serie;
 import br.iesb.sie.model.Turno;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "TURMA")
@@ -59,6 +47,9 @@ public class Turma extends BaseEntity {
 
     @OneToMany(mappedBy = "turma")
     private List<FrequenciaLancamento> frequenciaLancamentos;
+
+    @OneToMany(mappedBy = "turma")
+    private List<NotaLancamento> notaLancamentos;
 
     public Turma() {
     }
@@ -144,5 +135,13 @@ public class Turma extends BaseEntity {
 
     public void setFrequenciaLancamentos(List<FrequenciaLancamento> frequenciaLancamentos) {
         this.frequenciaLancamentos = frequenciaLancamentos;
+    }
+
+    public List<NotaLancamento> getNotaLancamentos() {
+        return notaLancamentos;
+    }
+
+    public void setNotaLancamentos(List<NotaLancamento> notaLancamentos) {
+        this.notaLancamentos = notaLancamentos;
     }
 }

@@ -1,7 +1,6 @@
 package br.iesb.sie.service;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import br.iesb.sie.dto.EmailDTO;
 
 import javax.annotation.Resource;
 import javax.ejb.Asynchronous;
@@ -10,8 +9,8 @@ import javax.inject.Inject;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
-
-import br.iesb.sie.dto.EmailDTO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Stateless
 public class EmailService extends BaseService {
@@ -29,7 +28,6 @@ public class EmailService extends BaseService {
 
     @Asynchronous
     public void enviarEmail(EmailDTO emailDTO) {
-
         try {
             Transport.send(emailDTO.pupularEmail(mailSession));
         } catch (MessagingException e) {

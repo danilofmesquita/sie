@@ -1,11 +1,11 @@
 package br.iesb.sie.dao;
 
+import br.iesb.sie.entity.Entidade;
+import br.iesb.sie.entity.Turma;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import br.iesb.sie.entity.Entidade;
-import br.iesb.sie.entity.Turma;
 
 public class TurmaDAO extends BaseDAO<Turma, Long> {
 
@@ -58,7 +58,7 @@ public class TurmaDAO extends BaseDAO<Turma, Long> {
     }
 
     @SuppressWarnings("unchecked")
-    public List<Turma> buscarTurmasVinculadasAEscolaEAluno(Entidade escola, Entidade aluno) {
+    public List<Turma> buscarTurmasPorEscolaAluno(Entidade escola, Entidade aluno) {
 
         String hql = "";
 
@@ -72,13 +72,13 @@ public class TurmaDAO extends BaseDAO<Turma, Long> {
     }
 
     @SuppressWarnings("unchecked")
-    public List<Turma> buscarTurmasVinculadasAEscola(Entidade escola) {
+    public List<Turma> buscarTurmasPorEscola(Entidade escola) {
         String hql = "SELECT distinct t FROM Turma t WHERE t.escola = :escola ";
         return getSession().createQuery(hql).setParameter("escola", escola).list();
     }
 
     @SuppressWarnings("unchecked")
-    public List<Entidade> buscarAlunosVinculadosATurma(Turma turma) {
+    public List<Entidade> buscarAlunosPorTurma(Turma turma) {
         String hql = "SELECT distinct m.aluno FROM Matricula m where m.turma = :turma";
         return getSession().createQuery(hql).setParameter("turma", turma).list();
     }

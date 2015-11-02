@@ -1,15 +1,14 @@
 package br.iesb.sie.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-
 import br.iesb.sie.dao.TurmaDAO;
 import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.entity.Turma;
 import br.iesb.sie.model.Disciplina;
+
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 @Stateless
 public class TurmaService extends BaseService {
@@ -38,7 +37,7 @@ public class TurmaService extends BaseService {
         return turmas;
     }
 
-    public List<Disciplina> buscarDisciplinasVinculadasATurma(Long idTurma) {
+    public List<Disciplina> buscarDisciplinasPorTurma(Long idTurma) {
         Turma turma = turmaDAO.get(idTurma);
         List<Disciplina> disciplinas = new ArrayList<>();
 
@@ -47,7 +46,7 @@ public class TurmaService extends BaseService {
         return disciplinas;
     }
 
-    public List<Disciplina> buscarDisciplinasVinculadasATurmaEProfessor(Long idTurma, Long idEntidadeProfessor) {
+    public List<Disciplina> buscarDisciplinasPorTurmaProfessor(Long idTurma, Long idEntidadeProfessor) {
         Turma turma = turmaDAO.get(idTurma);
         List<Disciplina> disciplinas = new ArrayList<>();
 
@@ -60,15 +59,15 @@ public class TurmaService extends BaseService {
         return disciplinas;
     }
 
-    public List<Turma> buscarTurmasVinculadasAEscolaEAluno(Entidade escola, Entidade aluno) {
-        return turmaDAO.buscarTurmasVinculadasAEscolaEAluno(escola, aluno);
+    public List<Turma> buscarTurmasPorEscolaAluno(Entidade escola, Entidade aluno) {
+        return turmaDAO.buscarTurmasPorEscolaAluno(escola, aluno);
     }
 
-    public List<Turma> buscarTurmasVinculadasAEscola(Entidade escola) {
-        return turmaDAO.buscarTurmasVinculadasAEscola(escola);
+    public List<Turma> buscarTurmasPorEscola(Entidade escola) {
+        return turmaDAO.buscarTurmasPorEscola(escola);
     }
 
-    public List<Entidade> buscarAlunosVinculadosATurma(Turma turma) {
-        return turmaDAO.buscarAlunosVinculadosATurma(turma);
+    public List<Entidade> buscarAlunos(Turma turma) {
+        return turmaDAO.buscarAlunosPorTurma(turma);
     }
 }

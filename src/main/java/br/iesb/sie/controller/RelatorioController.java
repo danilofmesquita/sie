@@ -1,15 +1,14 @@
 package br.iesb.sie.controller;
 
-import java.util.Collections;
-import java.util.List;
-
-import javax.inject.Inject;
-
 import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.entity.Relatorio;
 import br.iesb.sie.entity.Turma;
 import br.iesb.sie.service.RelatorioService;
 import br.iesb.sie.service.TurmaService;
+
+import javax.inject.Inject;
+import java.util.Collections;
+import java.util.List;
 
 public class RelatorioController extends BaseController {
 
@@ -32,7 +31,7 @@ public class RelatorioController extends BaseController {
 
     public List<Turma> getTurmas() {
         if (relatorio.getEscola() != null) {
-            return turmaService.buscarTurmasVinculadasAEscola(relatorio.getEscola());
+            return turmaService.buscarTurmasPorEscola(relatorio.getEscola());
         } else {
             return Collections.emptyList();
         }
@@ -40,7 +39,7 @@ public class RelatorioController extends BaseController {
 
     public List<Entidade> getAlunos() {
         if (relatorio.getTurma() != null) {
-            return turmaService.buscarAlunosVinculadosATurma(relatorio.getTurma());
+            return turmaService.buscarAlunos(relatorio.getTurma());
         } else {
             return Collections.emptyList();
         }
