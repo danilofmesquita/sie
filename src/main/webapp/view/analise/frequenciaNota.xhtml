@@ -21,14 +21,14 @@
     <ui:define name="body">
         <h:form prependId="false" id="form">
             <h:inputHidden id="graphData"
-                           value="#{analiseFrequenciaController.graphData}"/>
-            <sie:panel header="#{msg['label.frequencias']}" type="primary">
+                           value="#{analiseFrequenciaNotaController.graphData}"/>
+            <sie:panel header="#{msg['label.nota.frequencia']}" type="primary">
                 <h:messages/>
                 <sie:row>
                     <sie:column span="4">
                         <sie:selectOneMenu label="#{msg['label.tipo.analise']}"
                                            required="#{param['construir']}" labelClass="required"
-                                           value="#{analiseFrequenciaController.tipoAnalise}">
+                                           value="#{analiseFrequenciaNotaController.tipoAnalise}">
                             <f:selectItem itemLabel="#{msg['label.selecione']}"/>
                             <f:selectItems value="#{factoryUtil.tiposAnalise}" var="_ta"
                                            itemLabel="#{_ta.descricao}"/>
@@ -36,11 +36,11 @@
                         </sie:selectOneMenu>
                     </sie:column>
                 </sie:row>
-                <sie:row rendered="#{not empty analiseFrequenciaController.tipoAnalise}">
+                <sie:row rendered="#{not empty analiseFrequenciaNotaController.tipoAnalise}">
                     <sie:column span="4">
                         <sie:selectOneMenu label="#{msg['label.escola']}"
                                            required="#{param['construir']}" labelClass="required"
-                                           value="#{analiseFrequenciaController.escola}">
+                                           value="#{analiseFrequenciaNotaController.escola}">
                             <f:selectItem itemLabel="#{msg['label.selecione']}"/>
                             <f:selectItems value="#{usuarioLogado.escolasVinculadas}"
                                            var="_escola" itemLabel="#{_escola.razaoSocial}"/>
@@ -52,36 +52,37 @@
                     <sie:column span="4">
                         <sie:selectOneMenu label="#{msg['label.turma']}"
                                            required="#{param['construir']}" labelClass="required"
-                                           value="#{analiseFrequenciaController.turma}">
+                                           value="#{analiseFrequenciaNotaController.turma}">
                             <f:selectItem itemLabel="Selecione"/>
-                            <f:selectItems value="#{analiseFrequenciaController.turmas}"/>
+                            <f:selectItems value="#{analiseFrequenciaNotaController.turmas}"/>
                             <f:converter for="selectOneMenu"
                                          converterId="sie.converter.entity"/>
                             <f:ajax event="change" execute="@form" render="@form"/>
                         </sie:selectOneMenu>
                     </sie:column>
-                    <sie:column span="4" rendered="#{analiseFrequenciaController.tipoAnalise.individial}">
+                    <sie:column span="4" rendered="#{analiseFrequenciaNotaController.tipoAnalise.individial}">
                         <sie:selectOneMenu label="#{msg['label.aluno']}"
                                            required="#{param['construir']}" labelClass="required"
-                                           value="#{analiseFrequenciaController.aluno}">
+                                           value="#{analiseFrequenciaNotaController.aluno}">
                             <f:selectItem itemLabel="Selecione"/>
                             <f:selectItems var="_aluno" itemLabel="#{_aluno.nomeCompleto}"
-                                           value="#{factoryUtil.buscarAlunos(analiseFrequenciaController.turma)}"/>
+                                           value="#{factoryUtil.buscarAlunos(analiseFrequenciaNotaController.turma)}"/>
                             <f:converter for="selectOneMenu"
                                          converterId="sie.converter.entity"/>
                         </sie:selectOneMenu>
                     </sie:column>
-                    <sie:column span="4" rendered="#{analiseFrequenciaController.tipoAnalise.coletiva}">
+                    <sie:column span="4" rendered="#{analiseFrequenciaNotaController.tipoAnalise.coletiva}">
                         <sie:selectOneMenu label="#{msg['label.disciplina']}"
                                            required="#{param['construir']}" labelClass="required"
-                                           value="#{analiseFrequenciaController.disciplina}">
+                                           value="#{analiseFrequenciaNotaController.disciplina}">
                             <f:selectItem itemLabel="Selecione"/>
-                            <f:selectItems value="#{factoryUtil.buscarDisciplinas(analiseFrequenciaController.turma)}"/>
+                            <f:selectItems
+                                    value="#{factoryUtil.buscarDisciplinas(analiseFrequenciaNotaController.turma)}"/>
                         </sie:selectOneMenu>
                     </sie:column>
                 </sie:row>
                 <button class="btn btn-primary pull-right btn-margin-left"
-                        jsf:action="#{analiseFrequenciaController.construirGrafico()}">
+                        jsf:action="#{analiseFrequenciaNotaController.construirGrafico()}">
                     <i class="fa fa-bar-chart"></i>Constuir Gráfico
                     <f:param name="construir" value="true"/>
                     <f:ajax render="@form" execute="@form"/>
@@ -89,56 +90,61 @@
                 <br/>
                 <br/>
                 <br/>
-                <sie:panel rendered="#{not empty analiseFrequenciaController.graphData}">
+                <sie:panel rendered="#{not empty analiseFrequenciaNotaController.graphData}">
                     <div id="chart1" style="margin: auto;"></div>
                 </sie:panel>
             </sie:panel>
-            <h:panelGroup rendered="#{not empty analiseFrequenciaController.graphData}">
+            <h:panelGroup rendered="#{not empty analiseFrequenciaNotaController.graphData}">
                 <script type="text/javascript">
                     var graphData = JSON.parse($("#graphData").val());
                     var ticks = graphData.ticks;
                     var bars = graphData.bars;
                     var plot1 = $.jqplot('chart1', bars, {
-                        // The "seriesDefaults" option is an options object that will
-                        // be applied to all series in the chart.
-                        title: "Frequência em Aulas",
-                        seriesDefaults: {
-                            renderer: $.jqplot.BarRenderer,
-                            rendererOptions: {
-                                fillToZero: true
-                            }
-                        },
-                        // Custom labels for the series are specified with the "label"
-                        // option on the series option.  Here a series option object
-                        // is specified for each series.
-                        series: [{
-                            label: 'Frequência'
-                        }],
-                        // Show the legend and put it outside the grid, but inside the
-                        // plot container, shrinking the grid to accomodate the legend.
-                        // A value of "outside" would not shrink the grid and allow
-                        // the legend to overflow the container.
-                        legend: {
-                            show: true,
-                            placement: 'outsideGrid'
-                        },
-                        axes: {
-                            // Use a category axis on the x axis and use our custom ticks.
-                            xaxis: {
-                                renderer: $.jqplot.CategoryAxisRenderer,
-                                ticks: ticks
-                            },
-                            // Pad the y axis just a little so bars can get close to, but
-                            // not touch, the grid boundaries.  1.2 is the default padding.
-                            yaxis: {
-                                pad: 1.05,
-                                tickOptions: {
-                                    formatString: '%d'
+                                // The "seriesDefaults" option is an options object that will
+                                // be applied to all series in the chart.
+                                title: "Média de Notas",
+                                seriesDefaults: {
+                                    renderer: $.jqplot.BarRenderer,
+                                    rendererOptions: {
+                                        fillToZero: true
+                                    }
                                 },
-                                min: 0
-                            }
-                        }
-                    });
+                                // Custom labels for the series are specified with the "label"
+                                // option on the series option.  Here a series option object
+                                // is specified for each series.
+                                series: [
+                                    {label: 'Frequência'},
+                                    {label: 'Nota'}
+                                ],
+                                // Show the legend and put it outside the grid, but inside the
+                                // plot container, shrinking the grid to accomodate the legend.
+                                // A value of "outside" would not shrink the grid and allow
+                                // the legend to overflow the container.
+                                legend: {
+                                    show: true,
+                                    placement: 'outsideGrid'
+                                }
+                                ,
+                                axes: {
+                                    // Use a category axis on the x axis and use our custom ticks.
+                                    xaxis: {
+                                        renderer: $.jqplot.CategoryAxisRenderer,
+                                        ticks: ticks
+                                    }
+                                    ,
+                                    // Pad the y axis just a little so bars can get close to, but
+                                    // not touch, the grid boundaries.  1.2 is the default padding.
+                                    yaxis: {
+                                        pad: 1.05,
+                                        tickOptions: {
+                                            formatString: '%d'
+                                        }
+                                        ,
+                                        min: 0
+                                    }
+                                }
+                            })
+                            ;
                 </script>
             </h:panelGroup>
         </h:form>

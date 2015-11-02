@@ -14,7 +14,7 @@ public class AnaliseFrequenciaController extends AnaliseAbstractController {
 
     @Override
     protected Object construirGrafhData() {
-        return analiseService.buscarDadosGraficoFrequencia(turma);
+        return analiseService.buscarDadosGraficoFrequencia(tipoAnalise, turma, aluno, disciplina);
     }
 
 }
