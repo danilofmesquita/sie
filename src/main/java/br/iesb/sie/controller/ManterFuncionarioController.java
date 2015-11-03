@@ -20,7 +20,7 @@ import br.iesb.sie.util.Attributes;
 public class ManterFuncionarioController extends BaseController {
 
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = -1748037368764476859L;
 
@@ -43,6 +43,7 @@ public class ManterFuncionarioController extends BaseController {
             if (usuarioLogado.isEscola()) {
                 funcionario.setEscola(usuarioLogado.getEntidade());
             }
+            funcionario.setVinculoAtivo(true);
         } else {
             funcionario = funcionarioService.buscarFuncionario(id);
         }
