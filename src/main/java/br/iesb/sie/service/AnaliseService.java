@@ -18,6 +18,7 @@ public class AnaliseService extends BaseService {
      *
      */
     private static final long serialVersionUID = -4274795361628074599L;
+
     @Inject
     private TurmaDAO turmaDAO;
 

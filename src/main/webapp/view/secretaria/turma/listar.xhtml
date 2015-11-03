@@ -14,7 +14,8 @@
                 <h:messages/>
                 <sie:row>
                     <sie:column span="4">
-                        <sie:selectOneMenu label="#{msg['label.escola']}" value="#{listarTurmaController.filtro.escola}">
+                        <sie:selectOneMenu label="#{msg['label.escola']}"
+                                           value="#{listarTurmaController.filtro.escola}">
                             <f:selectItem itemLabel="Selecione"/>
                             <f:selectItems value="#{listarTurmaController.buscarEscolasVinculadas()}" var="_e"
                                            itemLabel="#{_e.razaoSocial}"/>
@@ -28,7 +29,8 @@
                         </sie:selectOneMenu>
                     </sie:column>
                     <sie:column span="4">
-                        <sie:inputText value="#{listarTurmaController.filtro.ano}" label="#{msg['label.ano']}" styleClass="ano"/>
+                        <sie:inputText value="#{listarTurmaController.filtro.ano}" label="#{msg['label.ano']}"
+                                       styleClass="ano"/>
                     </sie:column>
                 </sie:row>
                 <sie:row>
@@ -58,39 +60,38 @@
                 <br/>
                 <br/>
                 <sie:panel header="#{msg['label.turmas']}" type="default">
-                    <div class="table-responsive">
-                        <h:dataTable value="#{listarTurmaController.turmas}" var="turma"
-                                     styleClass="table table-striped">
-                            <h:column>
-                                <f:facet name="header">#{msg['label.escola']}</f:facet>
-                                <h:outputText value="#{turma.escola.razaoSocial}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">#{msg['label.serie']}</f:facet>
-                                <h:outputText value="#{turma.serie.descricao}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">#{msg['label.nome']}</f:facet>
-                                <h:outputText value="#{turma.nome}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">#{msg['label.turno']}</f:facet>
-                                <h:outputText value="#{turma.turno.descricao}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">#{msg['label.ano']}</f:facet>
-                                <h:outputText value="#{turma.ano}"/>
-                            </h:column>
-                            <h:column>
-                                <div align="center">
-                                    <button class="btn btn-default"
-                                            jsf:action="#{listarTurmaController.editar(turma.id)}">
-                                        <i class="fa fa-edit"></i> #{msg['label.editar']}
-                                    </button>
-                                </div>
-                            </h:column>
-                        </h:dataTable>
-                    </div>
+                    <h:dataTable value="#{listarTurmaController.turmas}" var="turma"
+                                 width="100%"
+                                 styleClass="table table-striped dt-responsive nowrap">
+                        <h:column>
+                            <f:facet name="header">#{msg['label.escola']}</f:facet>
+                            <h:outputText value="#{turma.escola.razaoSocial}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">#{msg['label.serie']}</f:facet>
+                            <h:outputText value="#{turma.serie.descricao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">#{msg['label.nome']}</f:facet>
+                            <h:outputText value="#{turma.nome}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">#{msg['label.turno']}</f:facet>
+                            <h:outputText value="#{turma.turno.descricao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">#{msg['label.ano']}</f:facet>
+                            <h:outputText value="#{turma.ano}"/>
+                        </h:column>
+                        <h:column>
+                            <div align="center">
+                                <button class="btn btn-default"
+                                        jsf:action="#{listarTurmaController.editar(turma.id)}">
+                                    <i class="fa fa-edit"></i> #{msg['label.editar']}
+                                </button>
+                            </div>
+                        </h:column>
+                    </h:dataTable>
                 </sie:panel>
             </sie:panel>
         </h:form>
