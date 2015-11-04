@@ -48,7 +48,7 @@
                 <br/>
                 <sie:panel header="#{msg['label.funcionarios']}" type="default">
                         <h:dataTable value="#{listarFuncionariosController.funcionarios}" var="funcionario"
-                                     styleClass="table table-striped dt-responsive nowrap">
+                                     styleClass="table table-striped dt-responsive nowrap" width="100%">
                             <h:column>
                                 <f:facet name="header">#{msg['label.nome']}</f:facet>
                                 <h:outputText value="#{funcionario.funcionario.nomeCompleto}"/>

@@ -60,7 +60,7 @@
                 <br/>
                 <sie:panel header="#{msg['label.turmas']}" type="default">
                     <h:dataTable value="#{listarMatriculaController.matriculas}" var="matricula"
-                                 styleClass="table table-striped dt-responsive nowrap">
+                                 styleClass="table table-striped dt-responsive nowrap" width="100%">
                         <h:column>
                             <f:facet name="header">#{msg['label.escola']}</f:facet>
                             <h:outputText value="#{matricula.escola.razaoSocial}"/>

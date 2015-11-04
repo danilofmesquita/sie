@@ -61,7 +61,7 @@
                 <br/>
                 <sie:panel header="#{msg['label.lancamentos']}" type="default">
                         <h:dataTable value="#{listarFrequenciaController.frequencias}"
-                                     styleClass="table table-striped dt-responsive nowrap" var="frequencia">
+                                     styleClass="table table-striped dt-responsive nowrap" width="100%" var="frequencia">
                             <h:column>
                                 <f:facet name="header">#{msg['label.escola']}</f:facet>
                                 <h:outputText value="#{frequencia.escola.razaoSocial}"/>

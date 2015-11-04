@@ -67,7 +67,7 @@
                 <br/>
                 <br/>
                 <sie:panel header="#{msg['label.lancamentos']}" type="default">
-                    <h:dataTable value="#{listarNotaController.notas}" styleClass="table table-striped dt-responsive nowrap" var="nota">
+                    <h:dataTable value="#{listarNotaController.notas}" styleClass="table table-striped dt-responsive nowrap" width="100%" var="nota">
                         <h:column>
                             <f:facet name="header">#{msg['label.escola']}</f:facet>
                             <h:outputText value="#{nota.escola.razaoSocial}"/>
@@ -113,7 +113,7 @@
                                             <h4 class="modal-title" id="myModalLabel">#{msg['label.notas']}</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <h:dataTable value="#{nota.notas}" styleClass="table table-striped dt-responsive nowrap"
+                                            <h:dataTable value="#{nota.notas}" styleClass="table table-striped dt-responsive nowrap" width="100%"
                                                          var="notaAluno">
                                                 <h:column>
                                                     <f:facet name="header">#{msg['label.aluno']}</f:facet>
