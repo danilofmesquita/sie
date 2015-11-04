@@ -81,6 +81,9 @@
                         <f:ajax execute="@form" render="@form"/>
                         <f:param name="adicionar" value="true"/>
                     </button>
+                    <br/>
+                    <br/>
+                    <br/>
                     <sie:dataTable value="#{manterTurmaController.turma.professorDisciplinas}" var="_pd"
                                    rendered="#{not empty manterTurmaController.turma.professorDisciplinas}">
                         <h:column>
