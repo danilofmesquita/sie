@@ -69,7 +69,7 @@
                 <br/>
                 <br/>
                 <sie:panel header="#{msg['label.relatorios']}" type="default">
-                    <h:dataTable styleClass="table table-striped dt-responsive nowrap" width="100%" value="#{listarRelatorioController.relatorios}"
+                    <sie:dataTable   value="#{listarRelatorioController.relatorios}"
                                  var="_relatorio">
                         <h:column>
                             <f:facet name="header">#{msg['label.escola']}</f:facet>
@@ -95,7 +95,7 @@
                                 </button>
                             </div>
                         </h:column>
-                    </h:dataTable>
+                    </sie:dataTable>
                 </sie:panel>
             </sie:panel>
         </h:form>

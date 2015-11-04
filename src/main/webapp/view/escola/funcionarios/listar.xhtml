@@ -47,8 +47,7 @@
                 <br/>
                 <br/>
                 <sie:panel header="#{msg['label.funcionarios']}" type="default">
-                        <h:dataTable value="#{listarFuncionariosController.funcionarios}" var="funcionario"
-                                     styleClass="table table-striped dt-responsive nowrap" width="100%">
+                        <sie:dataTable value="#{listarFuncionariosController.funcionarios}" var="funcionario">
                             <h:column>
                                 <f:facet name="header">#{msg['label.nome']}</f:facet>
                                 <h:outputText value="#{funcionario.funcionario.nomeCompleto}"/>
@@ -77,7 +76,7 @@
                                     </button>
                                 </div>
                             </h:column>
-                        </h:dataTable>
+                        </sie:dataTable>
                 </sie:panel>
             </sie:panel>
         </h:form>

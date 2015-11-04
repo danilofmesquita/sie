@@ -15,7 +15,8 @@
                 <sie:panel header="#{msg['label.dados.gerais']}" type="default">
                     <sie:row>
                         <sie:column span="4">
-                            <sie:selectOneMenu label="#{msg['label.escola']}" required="#{param['salvar']}" labelClass="required"
+                            <sie:selectOneMenu label="#{msg['label.escola']}" required="#{param['salvar']}"
+                                               labelClass="required"
                                                value="#{manterTurmaController.turma.escola}">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{manterTurmaController.escolasVinculadas}"
@@ -25,7 +26,8 @@
                             </sie:selectOneMenu>
                         </sie:column>
                         <sie:column span="4">
-                            <sie:selectOneMenu label="#{msg['label.serie']}" required="#{param['salvar']}" labelClass="required"
+                            <sie:selectOneMenu label="#{msg['label.serie']}" required="#{param['salvar']}"
+                                               labelClass="required"
                                                value="#{manterTurmaController.turma.serie}">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{factoryUtil.series}" var="_s" itemLabel="#{_s.descricao}"/>
@@ -44,7 +46,8 @@
                                            label="#{msg['label.nome']}"/>
                         </sie:column>
                         <sie:column span="4">
-                            <sie:selectOneMenu label="#{msg['label.turno']}" required="#{param['salvar']}" labelClass="required"
+                            <sie:selectOneMenu label="#{msg['label.turno']}" required="#{param['salvar']}"
+                                               labelClass="required"
                                                value="#{manterTurmaController.turma.turno}">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{factoryUtil.turnos}" var="_m" itemLabel="#{_m.descricao}"/>
@@ -78,9 +81,8 @@
                         <f:ajax execute="@form" render="@form"/>
                         <f:param name="adicionar" value="true"/>
                     </button>
-                    <h:dataTable value="#{manterTurmaController.turma.professorDisciplinas}" var="_pd"
-                                 rendered="#{not empty manterTurmaController.turma.professorDisciplinas}"
-                                 styleClass="table table-striped dt-responsive nowrap" width="100%">
+                    <sie:dataTable value="#{manterTurmaController.turma.professorDisciplinas}" var="_pd"
+                                   rendered="#{not empty manterTurmaController.turma.professorDisciplinas}">
                         <h:column>
                             <f:facet name="header">
                                 #{msg['label.professor']}
@@ -108,7 +110,7 @@
                                 </button>
                             </div>
                         </h:column>
-                    </h:dataTable>
+                    </sie:dataTable>
                 </sie:panel>
                 <button class="btn btn-primary pull-right btn-margin-left"
                         jsf:action="#{manterTurmaController.salvar}">

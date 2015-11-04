@@ -15,7 +15,8 @@
                 <sie:panel header="#{msg['label.dados.gerais']}" type="default">
                     <sie:row>
                         <sie:column span="6">
-                            <sie:selectOneMenu label="#{msg['label.escola']}" required="#{param['salvar']}" labelClass="required"
+                            <sie:selectOneMenu label="#{msg['label.escola']}" required="#{param['salvar']}"
+                                               labelClass="required"
                                                value="#{manterNotaController.lancamento.escola}">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{usuarioLogado.escolasVinculadas}"
@@ -26,7 +27,8 @@
                             </sie:selectOneMenu>
                         </sie:column>
                         <sie:column span="6">
-                            <sie:selectOneMenu label="#{msg['label.turma']}" required="#{param['salvar']}" labelClass="required"
+                            <sie:selectOneMenu label="#{msg['label.turma']}" required="#{param['salvar']}"
+                                               labelClass="required"
                                                value="#{manterNotaController.lancamento.turma}">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{manterNotaController.turmas}" var="_turma"
@@ -39,14 +41,16 @@
                     </sie:row>
                     <sie:row>
                         <sie:column span="6">
-                            <sie:selectOneMenu label="#{msg['label.disciplina']}" required="#{param['salvar']}" labelClass="required"
+                            <sie:selectOneMenu label="#{msg['label.disciplina']}" required="#{param['salvar']}"
+                                               labelClass="required"
                                                value="#{manterNotaController.lancamento.disciplina}">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{manterNotaController.disciplinas}"/>
                             </sie:selectOneMenu>
                         </sie:column>
                         <sie:column span="6">
-                            <sie:selectOneMenu label="#{msg['label.bimestre']}" required="#{param['salvar']}" labelClass="required"
+                            <sie:selectOneMenu label="#{msg['label.bimestre']}" required="#{param['salvar']}"
+                                               labelClass="required"
                                                value="#{manterNotaController.lancamento.bimestre}">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{factoryUtil.bimestres}"/>
@@ -56,8 +60,8 @@
                 </sie:panel>
                 <sie:panel rendered="#{not empty manterNotaController.lancamento.notas}"
                            header="#{msg['label.notas']}" type="default">
-                    <h:dataTable value="#{manterNotaController.lancamento.notas}" styleClass="table table-striped dt-responsive nowrap" width="100%"
-                                 var="nota">
+                    <sie:dataTable value="#{manterNotaController.lancamento.notas}"
+                                   var="nota">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputLabel value="#{msg['label.aluno']}"/>
@@ -70,7 +74,8 @@
                             </f:facet>
 
                             <div class="form-group">
-                                <h:inputText label="#{msg['label.nota']}" styleClass="form-control nota" required="#{param['salvar']}"
+                                <h:inputText label="#{msg['label.nota']}" styleClass="form-control nota"
+                                             required="#{param['salvar']}"
                                              converter="javax.faces.Double" id="notaInput"
                                              validatorMessage="#{msg['msg.erro.nota']}"
                                              value="#{nota.nota}" style="max-width: 80px;">
@@ -79,7 +84,7 @@
                                 </h:inputText>
                             </div>
                         </h:column>
-                    </h:dataTable>
+                    </sie:dataTable>
                 </sie:panel>
                 <button class="btn btn-primary pull-right btn-margin-left"
                         jsf:action="#{manterNotaController.salvar}">

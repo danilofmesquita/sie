@@ -59,8 +59,7 @@
                 <br/>
                 <br/>
                 <sie:panel header="#{msg['label.turmas']}" type="default">
-                    <h:dataTable value="#{listarMatriculaController.matriculas}" var="matricula"
-                                 styleClass="table table-striped dt-responsive nowrap" width="100%">
+                    <sie:dataTable value="#{listarMatriculaController.matriculas}" var="matricula">
                         <h:column>
                             <f:facet name="header">#{msg['label.escola']}</f:facet>
                             <h:outputText value="#{matricula.escola.razaoSocial}"/>
@@ -81,7 +80,7 @@
                                 </button>
                             </div>
                         </h:column>
-                    </h:dataTable>
+                    </sie:dataTable>
                 </sie:panel>
             </sie:panel>
         </h:form>

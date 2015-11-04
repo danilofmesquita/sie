@@ -15,7 +15,8 @@
                 <sie:panel header="#{msg['label.dados.gerais']}" type="default">
                     <sie:row>
                         <sie:column span="4">
-                            <sie:selectOneMenu label="#{msg['label.escola']}" required="#{param['salvar']}" labelClass="required"
+                            <sie:selectOneMenu label="#{msg['label.escola']}" required="#{param['salvar']}"
+                                               labelClass="required"
                                                value="#{manterFrequenciaController.lancamento.escola}">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{usuarioLogado.escolasVinculadas}"
@@ -26,7 +27,8 @@
                             </sie:selectOneMenu>
                         </sie:column>
                         <sie:column span="4">
-                            <sie:selectOneMenu label="#{msg['label.turma']}" required="#{param['salvar']}" labelClass="required"
+                            <sie:selectOneMenu label="#{msg['label.turma']}" required="#{param['salvar']}"
+                                               labelClass="required"
                                                value="#{manterFrequenciaController.lancamento.turma}">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{manterFrequenciaController.turmas}"/>
@@ -36,7 +38,8 @@
                             </sie:selectOneMenu>
                         </sie:column>
                         <sie:column span="4">
-                            <sie:selectOneMenu label="#{msg['label.disciplina']}" required="#{param['salvar']}" labelClass="required"
+                            <sie:selectOneMenu label="#{msg['label.disciplina']}" required="#{param['salvar']}"
+                                               labelClass="required"
                                                value="#{manterFrequenciaController.lancamento.disciplina}">
                                 <f:selectItem itemLabel="Selecione"/>
                                 <f:selectItems value="#{manterFrequenciaController.disciplinas}"/>
@@ -46,9 +49,8 @@
                 </sie:panel>
                 <sie:panel rendered="#{not empty manterFrequenciaController.lancamento.frequencias}"
                            header="#{msg['label.frequencias']}" type="default">
-                    <h:dataTable value="#{manterFrequenciaController.lancamento.frequencias}"
-                                 styleClass="table table-striped dt-responsive nowrap" width="100%"
-                                 var="frequencia">
+                    <sie:dataTable value="#{manterFrequenciaController.lancamento.frequencias}"
+                                   var="frequencia">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputLabel value="#{msg['label.aluno']}"/>
@@ -64,13 +66,13 @@
                                 <sie:switch value="#{frequencia.presente}"/>
                             </div>
                         </h:column>
-                    </h:dataTable>
+                    </sie:dataTable>
                 </sie:panel>
                 <button class="btn btn-primary pull-right btn-margin-left"
-                                                 jsf:action="#{manterFrequenciaController.salvar}">
-                <i class="fa fa-save"></i> #{msg['label.salvar']}
-                <f:param value="true" name="salvar"/>
-            </button>
+                        jsf:action="#{manterFrequenciaController.salvar}">
+                    <i class="fa fa-save"></i> #{msg['label.salvar']}
+                    <f:param value="true" name="salvar"/>
+                </button>
                 <button class="btn btn-default pull-right btn-margin-left"
                         jsf:action="listar?faces-redirect=true">
                     <i class="fa fa-undo"></i> #{msg['label.voltar']}
