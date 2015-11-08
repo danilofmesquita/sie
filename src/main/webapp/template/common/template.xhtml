@@ -134,6 +134,11 @@
                                             <span class="fa fa-bus fa-fw"></span>Declaração de Passe
                                         </a>
                                     </li>
+                                    <li jsf:rendered="#{usuarioLogado.aluno}">
+                                        <a jsf:action="/view/documentos/historico.xhtml?faces-redirect=true">
+                                            <span class="fa fa-file-text-o fa-fw"></span>Histórico Escolar
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="dropdown" jsf:rendered="#{not empty usuarioLogado.entidade}">

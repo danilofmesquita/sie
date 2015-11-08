@@ -25,9 +25,10 @@ public class ManterRelatorioController extends RelatorioController {
         }
     }
 
-    public void salvar() {
+    public String salvar() {
         relatorioService.salvar(getRelatorio());
         addInfoMessage("Dados salvos com sucesso!");
+        return "listar.xhtml?faces-redirect=true";
     }
 
 }

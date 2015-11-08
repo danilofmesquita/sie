@@ -70,4 +70,8 @@ public class TurmaService extends BaseService {
     public List<Entidade> buscarAlunos(Turma turma) {
         return turmaDAO.buscarAlunosPorTurma(turma);
     }
+
+    public List<Turma> buscarTurmasPorAluno(Entidade aluno){
+     return turmaDAO.buscarTurmasPorAluno(aluno);
+    }
 }

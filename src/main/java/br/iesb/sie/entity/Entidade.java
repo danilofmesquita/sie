@@ -234,4 +234,8 @@ public class Entidade extends BaseEntity {
     public int hashCode() {
         return Objects.hash(id, tipoPessoa, cpfCnpj, email, senha, login);
     }
+
+    public String getFiliacao(){
+        return String.format("%s e %s", nomeCompletoPai, nomeCompletoMae);
+    }
 }

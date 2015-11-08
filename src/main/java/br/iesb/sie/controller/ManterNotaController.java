@@ -95,9 +95,10 @@ public class ManterNotaController extends BaseController {
         }
     }
 
-    public void salvar() {
+    public String salvar() {
         notaService.salvarNotas(lancamento);
         addInfoMessage("Dados salvos com sucesso!");
+        return "listar.xhtml?faces-redirect=true";
     }
 
     public NotaLancamento getLancamento() {

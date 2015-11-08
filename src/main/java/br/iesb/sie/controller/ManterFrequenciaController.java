@@ -93,9 +93,10 @@ public class ManterFrequenciaController extends BaseController {
         }
     }
 
-    public void salvar() {
+    public String salvar() {
         frequenciaService.salvarFrequencias(lancamento);
         addInfoMessage("Dados salvos com sucesso!");
+        return "listar.xhtml?faces-redirect=true";
     }
 
     public FrequenciaLancamento getLancamento() {

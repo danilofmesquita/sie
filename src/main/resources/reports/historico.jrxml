@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
+<!-- 2015-11-08T15:53:49 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="historico" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9c2c5aad-f3ae-4e95-a2b6-8f8d782c225b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<subDataset name="turmas" uuid="89cd5f9a-0666-4f51-b0fb-169573bd2ba5">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="escola" class="java.lang.String"/>
+		<field name="disciplinas" class="java.util.List"/>
+		<field name="nomeTurma" class="java.lang.String"/>
+		<field name="ano" class="java.lang.Integer"/>
+	</subDataset>
+	<subDataset name="disciplinas" uuid="65e0925e-6d97-4e05-936c-c42356c776c7">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="disciplina" class="java.lang.String"/>
+		<field name="media" class="java.lang.Double"/>
+		<field name="recuperacao" class="java.lang.String"/>
+	</subDataset>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="aluno" class="java.lang.String"/>
+	<field name="turmas" class="java.util.List"/>
+	<pageHeader>
+		<band height="67">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="30" uuid="bf7080c6-cca4-4e94-8797-df6ededa525d"/>
+				<textFieldExpression><![CDATA[$F{aluno}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="158">
+			<componentElement>
+				<reportElement x="0" y="0" width="550" height="70" uuid="3eb9e1e8-aaa9-43aa-9eb4-60204c11de15"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="turmas" uuid="72909974-4aad-4111-bd40-da827b7a7116">
+						<dataSourceExpression><![CDATA[new  net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{turmas}) ]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="70" width="550">
+						<textField>
+							<reportElement mode="Opaque" x="0" y="10" width="100" height="20" backcolor="#F0F0F0" uuid="0d87688d-2ecf-4b38-aa47-044e6d6e12b3"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA["Escola"]]></textFieldExpression>
+						</textField>
+						<componentElement>
+							<reportElement x="0" y="50" width="550" height="20" uuid="ce5ef82a-4170-44cf-b9a9-60ed051d9900"/>
+							<jr:list>
+								<datasetRun subDataset="disciplinas" uuid="f7adf9f4-14f0-41c8-b2eb-be9f4457b238">
+									<dataSourceExpression><![CDATA[new  net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{disciplinas}) ]]></dataSourceExpression>
+								</datasetRun>
+								<jr:listContents height="20" width="550">
+									<textField>
+										<reportElement x="0" y="0" width="200" height="20" uuid="11d1d675-965b-4911-81ae-699db5c4fdad">
+											<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+										</reportElement>
+										<box>
+											<topPen lineWidth="0.5"/>
+											<leftPen lineWidth="0.5"/>
+											<bottomPen lineWidth="0.5"/>
+											<rightPen lineWidth="0.5"/>
+										</box>
+										<textElement textAlignment="Center" verticalAlignment="Middle"/>
+										<textFieldExpression><![CDATA[$F{disciplina}]]></textFieldExpression>
+									</textField>
+									<textField>
+										<reportElement x="200" y="0" width="200" height="20" uuid="19ca8b40-39f8-42eb-a660-d158509fba7b"/>
+										<box>
+											<topPen lineWidth="0.5"/>
+											<leftPen lineWidth="0.5"/>
+											<bottomPen lineWidth="0.5"/>
+											<rightPen lineWidth="0.5"/>
+										</box>
+										<textElement textAlignment="Center" verticalAlignment="Middle"/>
+										<textFieldExpression><![CDATA[$F{media}]]></textFieldExpression>
+									</textField>
+									<textField>
+										<reportElement x="400" y="0" width="150" height="20" uuid="6c7c0809-4c81-48bd-b7cc-5f1cc9dc7d8d"/>
+										<box>
+											<topPen lineWidth="0.5"/>
+											<leftPen lineWidth="0.5"/>
+											<bottomPen lineWidth="0.5"/>
+											<rightPen lineWidth="0.5"/>
+										</box>
+										<textElement textAlignment="Center" verticalAlignment="Middle"/>
+										<textFieldExpression><![CDATA[$F{recuperacao}]]></textFieldExpression>
+									</textField>
+								</jr:listContents>
+							</jr:list>
+						</componentElement>
+						<textField>
+							<reportElement x="100" y="10" width="100" height="20" uuid="1aa30b22-174f-43ba-ba7d-1d04badf8ffd"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{escola}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="300" y="10" width="250" height="20" uuid="b625d702-842b-474c-b02b-1b29c3c0f622"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{nomeTurma}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement mode="Opaque" x="200" y="10" width="100" height="20" backcolor="#F0F0F0" uuid="be77fd2a-70db-4be3-91ee-f85eb8daeebf"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA["Turma"]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement mode="Opaque" x="0" y="30" width="200" height="20" backcolor="#F0F0F0" uuid="548ea3d6-074c-4f58-bddf-969a806ca999">
+								<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA["Disciplina"]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement mode="Opaque" x="200" y="30" width="200" height="20" backcolor="#F0F0F0" uuid="7712a7a8-643d-4301-bd4d-dc45f158c3fb"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA["Média"]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement mode="Opaque" x="400" y="30" width="150" height="20" backcolor="#F0F0F0" uuid="91827c25-9478-4fcb-9541-910aa38fecba"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA["Recuperação"]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

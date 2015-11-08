@@ -61,9 +61,10 @@ public class ManterTurmaController extends BaseController {
         professorDisciplina = new ProfessorDisciplina(turma);
     }
 
-    public void salvar() {
+    public String salvar() {
         turmaService.salvarTurma(turma);
         addInfoMessage("Dados salvos com sucesso!");
+        return "listar.xhtml?faces-redirect=true";
     }
 
     public void adicionarProfessorDisciplina() {

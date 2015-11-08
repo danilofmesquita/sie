@@ -61,9 +61,10 @@ public class ManterMatriculaController extends BaseController {
         }
     }
 
-    public void salvar() {
+    public String salvar() {
         matriculaService.salvar(matricula);
         addInfoMessage("Dados salvos com sucesso!");
+        return "listar.xhtml?faces-redirect=true";
     }
 
     public void carregarEnderecoPorCEP() {

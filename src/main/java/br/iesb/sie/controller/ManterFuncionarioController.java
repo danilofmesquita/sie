@@ -49,9 +49,10 @@ public class ManterFuncionarioController extends BaseController {
         }
     }
 
-    public void salvar() {
+    public String salvar() {
         funcionarioService.salvar(funcionario);
         addInfoMessage("Dados salvos com sucesso!");
+        return "listar.xhtml?faces-redirect=true";
     }
 
     public List<Entidade> buscarPessoasPorPerfil() {
