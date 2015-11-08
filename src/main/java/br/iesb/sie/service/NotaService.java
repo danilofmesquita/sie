@@ -45,4 +45,8 @@ public class NotaService extends BaseService {
         return notaLancamentos;
     }
 
+    public void delete(Long idNotaLancamento) {
+        NotaLancamento nl = getNotaLancamento(idNotaLancamento);
+        notaLancamentoDAO.delete(nl);
+    }
 }

@@ -35,4 +35,8 @@ public class BaseDAO<T extends BaseEntity, ID extends Serializable> extends Simp
         }
         return query;
     }
+
+    public void delete(T entity){
+        getSession().delete(entity);
+    }
 }

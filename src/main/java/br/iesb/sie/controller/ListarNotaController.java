@@ -76,4 +76,10 @@ public class ListarNotaController extends ListarController {
         return turmaService.buscarTurmas(null, usuarioLogado.getEscolasVinculadas());
     }
 
+    public void delete(NotaLancamento nota){
+        notas.remove(nota);
+        notaService.delete(nota.getId());
+        addInfoMessage("Registro Deletado com Sucesso");
+    }
+
 }

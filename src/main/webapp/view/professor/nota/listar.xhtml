@@ -9,7 +9,8 @@
                 xmlns:jsf="http://xmlns.jcp.org/jsf"
                 template="/template/common/template.xhtml">
     <ui:define name="body">
-        <h:form>
+        <h:form id="form">
+            <h:messages/>
             <sie:panel header="#{msg['label.consultar.lancamento.notas']}" type="primary">
                 <sie:row>
                     <sie:column span="4">
@@ -66,7 +67,7 @@
                 <br/>
                 <br/>
                 <br/>
-                <sie:panel header="#{msg['label.lancamentos']}" type="default">
+                <sie:panel header="#{msg['label.lancamentos']}" type="default" id="tablePanel">
                     <sie:dataTable value="#{listarNotaController.notas}" var="nota">
                         <h:column>
                             <f:facet name="header">#{msg['label.escola']}</f:facet>
@@ -101,6 +102,10 @@
                                         data-target=".notaModal#{nota.id}">
                                     <i class="fa fa-reorder"></i> #{msg['label.visualizar.notas']}
                                 </button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                        data-target=".exclusaoModal#{nota.id}">
+                                    <i class="fa fa-trash"></i> #{msg['label.deletar']}
+                                </button>
                             </div>
                             <!-- Modal -->
                             <div class="modal fade notaModal#{nota.id}" tabindex="-1" role="dialog"
@@ -127,6 +132,23 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-primary"
                                                     data-dismiss="modal">#{msg['label.fechar']}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade exclusaoModal#{nota.id}" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <h4 class="modal-title">Tem Certeza que deseseja excluir?</h4>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">#{msg['label.fechar']}</button>
+                                            <h:commandButton styleClass="btn btn-primary" value="#{msg['label.sim']}"
+                                                             action="#{listarNotaController.delete(nota)}">
+                                            </h:commandButton>
                                         </div>
                                     </div>
                                 </div>
