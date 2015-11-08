@@ -69,7 +69,7 @@ public class HistoricoService {
                 Double media = somaNota / entry.getValue().size();
 
                 historicoDisciplinaDTO.setMedia(media);
-                historicoDisciplinaDTO.setRecuperacao(media > 5 ? "Sim" : "Não");
+                historicoDisciplinaDTO.setRecuperacao(media >= 5 ? "Não" : "Sim");
 
                 historicoTurmaDTO.getDisciplinas().add(historicoDisciplinaDTO);
             }

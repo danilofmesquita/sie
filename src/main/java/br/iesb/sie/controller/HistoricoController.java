@@ -35,7 +35,7 @@ public class HistoricoController extends BaseController {
                 new JRBeanCollectionDataSource(Collections.singletonList(historicoDTO)));
 
 
-        new DownloadUtil().download(getFacesContext(), DownloadUtil.PDF_TYPE, bytes, "declaracao.pdf");
+        new DownloadUtil().download(getFacesContext(), DownloadUtil.PDF_TYPE, bytes, "historico.pdf");
 
     }
 

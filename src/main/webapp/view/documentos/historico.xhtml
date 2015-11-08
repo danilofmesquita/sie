@@ -11,12 +11,11 @@
     <ui:define name="body">
         <h:form>
             <sie:panel header="#{msg['label.historico.escolar']}" type="primary">
-                <h:messages/>
-                <button class="btn btn-primary pull-right btn-margin-left"
-                        jsf:action="#{historicoController.imprimir()}">
-                    <i class="fa fa-print"></i>#{msg['label.imprimir']}
-                    <f:param value="true" name="gerar"/>
-                </button>
+                <div align="center">
+                    <button class="btn btn-primary" jsf:action="#{historicoController.imprimir()}">
+                        <i class="fa fa-print"></i>#{msg['label.imprimir']}
+                    </button>
+                </div>
             </sie:panel>
         </h:form>
     </ui:define>
