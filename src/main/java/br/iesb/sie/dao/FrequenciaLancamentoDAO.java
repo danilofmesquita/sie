@@ -49,7 +49,7 @@ public class FrequenciaLancamentoDAO extends BaseDAO<FrequenciaLancamento, Long>
                 params.put("turma", filtro.getTurma());
             }
             if (filtro.getDataLancamento() != null) {
-                '' hql += " AND year(fl.dataLancamento) = year(:dataLancamento) ";
+                hql += " AND year(fl.dataLancamento) = year(:dataLancamento) ";
                 hql += " AND month(fl.dataLancamento) = month(:dataLancamento) ";
                 hql += " AND day(fl.dataLancamento) = day(:dataLancamento) ";
                 params.put("dataLancamento", filtro.getDataLancamento());
