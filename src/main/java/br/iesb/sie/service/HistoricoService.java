@@ -85,7 +85,7 @@ public class HistoricoService {
                 Double media = somaNota / entry.getValue().size();
 
                 historicoDisciplinaDTO.setMedia(media);
-                historicoDisciplinaDTO.setRecuperacao(media >= 5 ? "Não" : "Sim");
+                historicoDisciplinaDTO.setAprovado(media >= 5 ? "Sim" : "Não");
 
                 if(aulasMap.containsKey(entry.getKey())){
                     historicoDisciplinaDTO.setAulas(aulasMap.get(entry.getKey()));
