@@ -1,5 +1,12 @@
 package br.iesb.sie.service;
 
+import br.iesb.sie.dao.WorkDAO;
+import br.iesb.sie.work.FillReportWork;
+import net.sf.jasperreports.engine.*;
+
+import javax.ejb.Stateless;
+import javax.imageio.ImageIO;
+import javax.inject.Inject;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,25 +14,16 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.ejb.Stateless;
-import javax.imageio.ImageIO;
-import javax.inject.Inject;
-
-import br.iesb.sie.dao.WorkDAO;
-import br.iesb.sie.work.FillReportWork;
-import net.sf.jasperreports.engine.*;
-
 @Stateless
 public class JasperReportsService extends BaseService {
 
+    public static final String PASSE = "reports/passe.jrxml";
+    public static final String BOLETIM = "reports/boletim2.jrxml";
+    public static final String HISTORICO = "reports/historico.jrxml";
     /**
      *
      */
     private static final long serialVersionUID = -3046705544671892769L;
-    public static final String PASSE = "reports/passe.jrxml";
-    public static final String BOLETIM = "reports/boletim.jrxml";
-    public static final String HISTORICO = "reports/historico.jrxml";
-
     @Inject
     private Logger logger;
 

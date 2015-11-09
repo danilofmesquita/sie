@@ -2,13 +2,16 @@ package br.iesb.sie.controller;
 
 import br.iesb.sie.bean.UsuarioLogado;
 import br.iesb.sie.dto.BoletimDTO;
+import br.iesb.sie.dto.ImpressaoBoletimDTO;
 import br.iesb.sie.entity.Entidade;
 import br.iesb.sie.entity.Turma;
+import br.iesb.sie.service.BoletimService;
 import br.iesb.sie.service.EntidadeService;
 import br.iesb.sie.service.JasperReportsService;
 import br.iesb.sie.service.TurmaService;
 import br.iesb.sie.util.DownloadUtil;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -40,6 +43,9 @@ public class SolicitarBoletimController extends BaseController {
     @Inject
     private JasperReportsService jasperReportsService;
 
+    @Inject
+    private BoletimService boletimService;
+
     private BoletimDTO boletimDTO;
 
     @PostConstruct
@@ -61,13 +67,15 @@ public class SolicitarBoletimController extends BaseController {
     }
 
     public void imprimir() throws JRException {
-        Map<String, Object> params = new HashMap<>();
 
-        params.put("ID_ALUNO", usuarioLogado.getEntidade().getId());
-        params.put("ID_ESCOLA", boletimDTO.getEscola().getId());
-        params.put("ID_TURMA", boletimDTO.getTurma().getId());
+        Map<String, Object> params;
+        ImpressaoBoletimDTO impressaoBoletimDTO;
+        byte[] bytes;
 
-        byte[] bytes = jasperReportsService.gerarRelatorio(JasperReportsService.BOLETIM, params);
+        params = new HashMap<>();
+        impressaoBoletimDTO = boletimService.montarBoletim(boletimDTO.getEscola(), usuarioLogado.getEntidade(), boletimDTO.getTurma().getId());
+        bytes = jasperReportsService.gerarRelatorio(JasperReportsService.BOLETIM, params,
+                new JRBeanCollectionDataSource(Collections.singletonList(impressaoBoletimDTO)));
 
         new DownloadUtil().download(getFacesContext(), DownloadUtil.PDF_TYPE, bytes, "boletim.pdf");
     }
