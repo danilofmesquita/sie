@@ -3,10 +3,7 @@ package br.iesb.sie.service;
 import br.iesb.sie.dto.HistoricoDTO;
 import br.iesb.sie.dto.HistoricoDisciplinaDTO;
 import br.iesb.sie.dto.HistoricoTurmaDTO;
-import br.iesb.sie.entity.Entidade;
-import br.iesb.sie.entity.Nota;
-import br.iesb.sie.entity.NotaLancamento;
-import br.iesb.sie.entity.Turma;
+import br.iesb.sie.entity.*;
 import br.iesb.sie.model.Disciplina;
 
 import javax.ejb.Stateless;
@@ -28,6 +25,8 @@ public class HistoricoService {
 
         List<Turma> turmas = turmaService.buscarTurmasPorAluno(aluno);
         Map<Disciplina, List<Double>> disciplinasNotasMap = new LinkedHashMap<>();
+        Map<Disciplina, Integer> aulasMap = new LinkedHashMap<>();
+        Map<Disciplina, Integer> faltasMap = new LinkedHashMap<>();
         HistoricoDTO historicoDTO = new HistoricoDTO();
 
         historicoDTO.setAluno(aluno.getNomeCompleto());
@@ -56,6 +55,23 @@ public class HistoricoService {
                 }
             }
 
+            for(FrequenciaLancamento fl : t.getFrequenciaLancamentos()){
+                for (Frequencia f : fl.getFrequencias()){
+                    if(f.getAluno().getId().equals(aluno.getId())){
+                        if (!aulasMap.containsKey(fl.getDisciplina())) {
+                            aulasMap.put(fl.getDisciplina(), 0);
+                        }
+                        if (!faltasMap.containsKey(fl.getDisciplina())) {
+                            faltasMap.put(fl.getDisciplina(), 0);
+                        }
+                        aulasMap.put(fl.getDisciplina(), aulasMap.get(fl.getDisciplina())+1);
+                        if(!f.isPresente()) {
+                            faltasMap.put(fl.getDisciplina(), faltasMap.get(fl.getDisciplina())+1);
+                        }
+                    }
+                }
+            }
+
             for (Map.Entry<Disciplina, List<Double>> entry : disciplinasNotasMap.entrySet()) {
                 HistoricoDisciplinaDTO historicoDisciplinaDTO = new HistoricoDisciplinaDTO();
                 historicoDisciplinaDTO.setDisciplina(entry.getKey().getDescricao());
@@ -71,11 +87,23 @@ public class HistoricoService {
                 historicoDisciplinaDTO.setMedia(media);
                 historicoDisciplinaDTO.setRecuperacao(media >= 5 ? "Não" : "Sim");
 
+                if(aulasMap.containsKey(entry.getKey())){
+                    historicoDisciplinaDTO.setAulas(aulasMap.get(entry.getKey()));
+                }
+
+                if(faltasMap.containsKey(entry.getKey())){
+                    historicoDisciplinaDTO.setFaltas(faltasMap.get(entry.getKey()));
+                }
+
                 historicoTurmaDTO.getDisciplinas().add(historicoDisciplinaDTO);
             }
 
             disciplinasNotasMap.clear();
-            historicoDTO.getTurmas().add(historicoTurmaDTO);
+            aulasMap.clear();
+            faltasMap.clear();
+            if(!historicoTurmaDTO.getDisciplinas().isEmpty()) {
+                historicoDTO.getTurmas().add(historicoTurmaDTO);
+            }
         }
 
         return historicoDTO;

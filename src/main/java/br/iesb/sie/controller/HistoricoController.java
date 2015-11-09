@@ -28,15 +28,17 @@ public class HistoricoController extends BaseController {
     private UsuarioLogado usuarioLogado;
 
     public void imprimir(){
-        HistoricoDTO historicoDTO = historicoService.montarHistorico(usuarioLogado.getEntidade());
 
-        Map<String, Object> params = new HashMap<>();
-        byte[] bytes = jasperReportsService.gerarRelatorio(JasperReportsService.HISTORICO, params,
+        Map<String, Object> params;
+        HistoricoDTO historicoDTO;
+        byte[] bytes;
+
+        params = new HashMap<>();
+        historicoDTO = historicoService.montarHistorico(usuarioLogado.getEntidade());
+        bytes = jasperReportsService.gerarRelatorio(JasperReportsService.HISTORICO, params,
                 new JRBeanCollectionDataSource(Collections.singletonList(historicoDTO)));
 
-
         new DownloadUtil().download(getFacesContext(), DownloadUtil.PDF_TYPE, bytes, "historico.pdf");
-
     }
 
 }

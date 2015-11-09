@@ -8,6 +8,8 @@ public class HistoricoDisciplinaDTO {
     private String disciplina;
     private Double media;
     private String recuperacao;
+    private Integer aulas = 0;
+    private Integer faltas = 0;
 
     public String getDisciplina() {
         return disciplina;
@@ -31,5 +33,21 @@ public class HistoricoDisciplinaDTO {
 
     public void setRecuperacao(String recuperacao) {
         this.recuperacao = recuperacao;
+    }
+
+    public Integer getAulas() {
+        return aulas;
+    }
+
+    public void setAulas(Integer aulas) {
+        this.aulas = aulas;
+    }
+
+    public Integer getFaltas() {
+        return faltas;
+    }
+
+    public void setFaltas(Integer faltas) {
+        this.faltas = faltas;
     }
 }
