@@ -1,13 +1,12 @@
 package br.iesb.sie.dao;
 
+import br.iesb.sie.entity.Entidade;
+import br.iesb.sie.entity.FrequenciaLancamento;
+
+import javax.inject.Named;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.inject.Named;
-
-import br.iesb.sie.entity.Entidade;
-import br.iesb.sie.entity.FrequenciaLancamento;
 
 @Named
 public class FrequenciaLancamentoDAO extends BaseDAO<FrequenciaLancamento, Long> {
@@ -50,7 +49,9 @@ public class FrequenciaLancamentoDAO extends BaseDAO<FrequenciaLancamento, Long>
                 params.put("turma", filtro.getTurma());
             }
             if (filtro.getDataLancamento() != null) {
-                hql += " AND fl.dataLancamento = :dataLancamento ";
+                '' hql += " AND year(fl.dataLancamento) = year(:dataLancamento) ";
+                hql += " AND month(fl.dataLancamento) = month(:dataLancamento) ";
+                hql += " AND day(fl.dataLancamento) = day(:dataLancamento) ";
                 params.put("dataLancamento", filtro.getDataLancamento());
             }
         }

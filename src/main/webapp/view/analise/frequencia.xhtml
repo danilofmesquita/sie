@@ -99,13 +99,20 @@
                     var ticks = graphData.ticks;
                     var bars = graphData.bars;
                     var plot1 = $.jqplot('chart1', bars, {
+                        animate: true,
                         // The "seriesDefaults" option is an options object that will
                         // be applied to all series in the chart.
                         title: "Frequência em Aulas",
                         seriesDefaults: {
                             renderer: $.jqplot.BarRenderer,
                             rendererOptions: {
-                                fillToZero: true
+                                fillToZero: true,
+                                animation: {
+                                    speed: 1500
+                                }
+                            },
+                            pointLabels: {
+                                show: true
                             }
                         },
                         // Custom labels for the series are specified with the "label"
@@ -137,6 +144,9 @@
                                 },
                                 min: 0
                             }
+                        },
+                        hightlighter: {
+                            shor: true
                         }
                     });
                 </script>

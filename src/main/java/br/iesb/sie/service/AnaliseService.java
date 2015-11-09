@@ -49,6 +49,10 @@ public class AnaliseService extends BaseService {
                                 Double value = barMap.get(f.getAluno().getId());
                                 barMap.put(f.getAluno().getId(), value + calcularPercentual(totalAulas, 1D, 100D));
                             }
+                        } else {
+                            if (!barMap.containsKey(f.getAluno().getId())) {
+                                barMap.put(f.getAluno().getId(), 0D);
+                            }
                         }
                     }
                 }
@@ -172,6 +176,10 @@ public class AnaliseService extends BaseService {
                             } else {
                                 Double value = barFreqenciaMap.get(f.getAluno().getId());
                                 barFreqenciaMap.put(f.getAluno().getId(), calcularPercentual(totalAulas, 1D, 10D) + value);
+                            }
+                        } else {
+                            if (!barFreqenciaMap.containsKey(f.getAluno().getId())) {
+                                barFreqenciaMap.put(f.getAluno().getId(), 0D);
                             }
                         }
                     }
